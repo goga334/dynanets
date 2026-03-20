@@ -1,0 +1,32 @@
+﻿name: minimal-experiment
+dataset:
+  name: gaussian_blobs
+  params:
+    train_size: 512
+    validation_size: 128
+    test_size: 128
+    input_dim: 2
+    num_classes: 2
+    cluster_std: 1.0
+    seed: 42
+model:
+  name: dynamic_mlp_classifier
+  params:
+    input_dim: 2
+    hidden_dim: 8
+    output_dim: 2
+    activation: relu
+    lr: 0.01
+metrics:
+  - name: accuracy
+    params: {}
+adaptation:
+  name: width_growth
+  params:
+    every_n_epochs: 2
+    grow_by: 4
+    max_hidden_dim: 20
+trainer:
+  epochs: 6
+runtime:
+  seed: 42
