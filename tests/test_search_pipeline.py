@@ -1,6 +1,7 @@
 from dynanets.config import ExperimentConfig
 from dynanets.experiment import ExperimentBuilder, default_registries
 from dynanets.runners.search import SearchRunner
+from dynanets.search import MLPSearchSpace
 
 
 
@@ -45,4 +46,27 @@ def test_regularized_evolution_search_runs_end_to_end() -> None:
 
     assert result.best_score >= 0.0
     assert len(result.evaluation_history) == 3
-    assert result.best_model_params["hidden_dim"] in {4, 8}
+    assert result.best_model_params["hidden_dims"][0] in {4, 8}
+    assert "architecture_spec" in result.evaluation_history[0]["metadata"]
+
+
+
+def test_mlp_search_space_sampling_and_mutation() -> None:
+    import random
+
+    search_space = MLPSearchSpace(
+        input_dim=2,
+        output_dim=2,
+        hidden_dim_choices=[4, 8],
+        activation_choices=["relu", "tanh"],
+        lr_choices=[0.01, 0.02],
+    )
+    rng = random.Random(3)
+
+    proposal = search_space.sample(rng)
+    mutated = search_space.mutate(proposal, rng)
+
+    assert "architecture_spec" in proposal.metadata
+    assert proposal.model_overrides["hidden_dims"][0] in {4, 8}
+    assert mutated.model_overrides["hidden_dims"][0] in {4, 8}
+    assert mutated.model_overrides["lr"] in {0.01, 0.02}

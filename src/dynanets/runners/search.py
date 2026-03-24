@@ -7,7 +7,8 @@ from dynanets.config import ExperimentConfig
 from dynanets.experiment import Experiment
 from dynanets.models.base import DynamicNeuralModel
 from dynanets.runners.train import TrainingRunner, TrainingSummary
-from dynanets.search.base import CandidateEvaluation, SearchResult
+from dynanets.search import MLPSearchSpace
+from dynanets.search.base import CandidateEvaluation, SearchProposal, SearchResult
 
 
 @dataclass(slots=True)
@@ -32,10 +33,11 @@ class SearchRunner:
 
         dataset = experiment.dataset.build()
         trainer = TrainingRunner()
+        search_space = self._build_search_space(config)
 
-        def evaluate_candidate(model_overrides: dict[str, Any]) -> CandidateEvaluation:
+        def evaluate_candidate(proposal: SearchProposal) -> CandidateEvaluation:
             model_params = dict(config.model.params)
-            model_params.update(model_overrides)
+            model_params.update(proposal.model_overrides)
             model = registries["models"].build(config.model.name, **model_params)
             summary = trainer.run(
                 model=model,
@@ -45,17 +47,18 @@ class SearchRunner:
                 adaptation=experiment.adaptation,
             )
             score = self._score_summary(summary, metric_name=config.search.params.get("metric", "accuracy"))
-            metadata = {}
+            metadata = dict(proposal.metadata)
             if isinstance(model, DynamicNeuralModel):
                 metadata["final_hidden_dim"] = int(model.architecture_state().metadata.get("hidden_dim", 0))
             return CandidateEvaluation(
                 summary=summary,
                 score=score,
+                proposal=proposal,
                 model_params=model_params,
                 metadata=metadata,
             )
 
-        result: SearchResult = experiment.search.run(config, evaluate_candidate)
+        result: SearchResult = experiment.search.run(config, search_space, evaluate_candidate)
         final_hidden_dim = result.best_evaluation.metadata.get("final_hidden_dim")
         return SearchRunSummary(
             best_summary=result.best_evaluation.summary,
@@ -64,6 +67,17 @@ class SearchRunner:
             evaluation_history=result.history,
             metadata=result.metadata,
             final_hidden_dim=final_hidden_dim,
+        )
+
+    def _build_search_space(self, config: ExperimentConfig) -> MLPSearchSpace:
+        params = config.search.params
+        model_params = config.model.params
+        return MLPSearchSpace(
+            input_dim=int(model_params["input_dim"]),
+            output_dim=int(model_params["output_dim"]),
+            hidden_dim_choices=[int(value) for value in params["hidden_dim_choices"]],
+            activation_choices=[str(value) for value in params["activation_choices"]],
+            lr_choices=[float(value) for value in params["lr_choices"]],
         )
 
     def _score_summary(self, summary: TrainingSummary, metric_name: str) -> float:

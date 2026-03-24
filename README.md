@@ -12,6 +12,7 @@ The current system supports:
 - paper-inspired NAS through regularized evolution search
 - comparison reports with markdown, CSV/JSON, and plots
 - an explicit `MLPArchitectureSpec` for the current MLP family
+- an explicit `MLPSearchSpace` separate from the regularized evolution search algorithm
 
 ## Phase 1 Status
 
@@ -26,15 +27,15 @@ See [docs/adding-methods.md](docs/adding-methods.md) for the current extension w
 
 ## Phase 2 Status
 
-Phase 2 has started with explicit architecture representation for the current MLP family.
-
-Implemented so far:
+Phase 2 now includes:
 
 - `MLPArchitectureSpec` and layer specs in `src/dynanets/architecture/`
 - an MLP builder that materializes PyTorch networks from the spec
-- internal refactoring of current MLP models to hold and update an architecture spec
+- mutation primitives over MLP specs
+- dynamic MLP updates that use spec mutation as their structural source of truth
+- an explicit `MLPSearchSpace` used by regularized evolution
 
-This is the bridge toward future search spaces and mutation primitives.
+This means architecture representation, mutation, and search are now separated more cleanly for the current MLP family.
 
 ## Running Experiments
 
@@ -54,15 +55,15 @@ python -m dynanets.compare experiments/examples/fixed_mlp.yaml experiments/examp
 ## Current Limitations
 
 - Search and adaptation are separate experiment modes for now.
-- The architecture space is still narrow and centered on MLPs.
-- Dynamic mutations currently update model weights directly and only secondarily update the spec.
+- The architecture and search space are still narrow and centered on MLPs.
+- Dynamic mutations currently support only first-hidden-layer weight transfer logic.
 - Dataset support is still minimal.
-- Multi-layer MLP specs are represented, but the dynamic mutation methods only operate on the first hidden layer today.
+- Search spaces are implemented only for MLPs.
 
 ## Suggested Next Steps
 
-1. Add mutation primitives over architecture specs.
-2. Separate search space definitions from search algorithms.
-3. Let dynamic methods mutate specs first, then rebuild models from those mutations.
+1. Start Phase 3 by broadening dynamic adaptation events beyond width growth.
+2. Add pruning and layer insertion methods that operate over architecture specs.
+3. Generalize search-space support beyond MLPs.
 4. Add a real image dataset such as MNIST.
-5. Expand the method library with pruning and random search baselines.
+5. Expand reporting to render searched architecture specs more explicitly.

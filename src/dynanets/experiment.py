@@ -57,7 +57,7 @@ class ExperimentBuilder:
             adaptation = self.adaptations.build(config.adaptation.name, **config.adaptation.params)
         search = None
         if config.search is not None:
-            search = self.searches.build(config.search.name, **config.search.params)
+            search = self.searches.build(config.search.name, **self._search_method_params(config.search.params))
         self._validate_compatibility(config=config, model=model, adaptation=adaptation, search=search)
         return Experiment(
             config=config,
@@ -67,6 +67,10 @@ class ExperimentBuilder:
             adaptation=adaptation,
             search=search,
         )
+
+    def _search_method_params(self, params: dict[str, Any]) -> dict[str, Any]:
+        excluded = {"hidden_dim_choices", "activation_choices", "lr_choices"}
+        return {key: value for key, value in params.items() if key not in excluded}
 
     def _validate_compatibility(
         self,
