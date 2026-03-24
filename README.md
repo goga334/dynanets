@@ -11,12 +11,11 @@ The current system supports:
 - paper-inspired dynamic adaptation through Net2Wider-style widening
 - paper-inspired NAS through regularized evolution search
 - comparison reports with markdown, CSV/JSON, and plots
+- an explicit `MLPArchitectureSpec` for the current MLP family
 
 ## Phase 1 Status
 
-Phase 1 is about stabilizing the core before broadening the sandbox.
-
-Completed in this phase:
+Phase 1 stabilized the core with:
 
 - explicit config parsing and validation
 - build-time compatibility checks for unsupported component combinations
@@ -25,71 +24,19 @@ Completed in this phase:
 
 See [docs/adding-methods.md](docs/adding-methods.md) for the current extension workflow.
 
-## Goals
+## Phase 2 Status
 
-- Keep experiments modular: datasets, models, metrics, and adaptation/search methods should be swappable.
-- Support dynamic-structure neural networks as a first-class concept, not an afterthought.
-- Make research iteration easy: small configs, repeatable runs, clear extension points.
-- Avoid locking the project into one NAS strategy, training loop, or dataset format too early.
+Phase 2 has started with explicit architecture representation for the current MLP family.
 
-## Development Plan
+Implemented so far:
 
-### Phase 1: Research Sandbox Foundation
+- `MLPArchitectureSpec` and layer specs in `src/dynanets/architecture/`
+- an MLP builder that materializes PyTorch networks from the spec
+- internal refactoring of current MLP models to hold and update an architecture spec
 
-- Define stable interfaces for datasets, models, metrics, adaptation methods, and search algorithms.
-- Build experiment configuration and registration mechanisms.
-- Add a minimal training/evaluation runner that wires components together.
-- Keep implementation lightweight while the research workflow is still evolving.
-
-### Phase 2: Baseline Experiment Stack
-
-- Add standard supervised baselines for fixed-topology neural networks.
-- Add at least one dynamic-structure model family.
-- Add dataset adapters for tabular and image experiments.
-- Add baseline metrics and logging.
-
-### Phase 3: Dynamic Adaptation Layer
-
-- Formalize adaptation events such as grow, prune, rewire, or replace-block.
-- Track architecture state across training.
-- Make adaptation policies callable from the training loop and from search algorithms.
-
-### Phase 4: NAS Methods
-
-- Add search spaces for neural architectures.
-- Add search strategies such as random search, evolutionary search, and controller/policy-driven search.
-- Separate architecture proposal from training/evaluation so methods remain composable.
-
-### Phase 5: Experiment Management
-
-- Add reproducible config files for runs.
-- Add result serialization and run comparison.
-- Add test coverage around registries, configs, and experiment assembly.
-
-## Initial Structure
-
-```text
-src/dynanets/
-  adaptation/   # structure-change methods and policies
-  datasets/     # dataset adapters and loaders
-  metrics/      # evaluation metrics
-  models/       # fixed and dynamic neural network abstractions
-  runners/      # train/eval/search orchestration
-  search/       # NAS search algorithms
-  config.py     # experiment configuration models and validation
-  experiment.py # experiment assembly and compatibility checks
-  registry.py   # plugin registry
-experiments/
-  examples/
-docs/
-  adding-methods.md
-reports/
-tests/
-```
+This is the bridge toward future search spaces and mutation primitives.
 
 ## Running Experiments
-
-Install the package and run one of the example configs:
 
 ```bash
 pip install -e .[dev]
@@ -108,13 +55,14 @@ python -m dynanets.compare experiments/examples/fixed_mlp.yaml experiments/examp
 
 - Search and adaptation are separate experiment modes for now.
 - The architecture space is still narrow and centered on MLPs.
-- Dynamic mutations are implemented at model level rather than through a generic architecture spec.
+- Dynamic mutations currently update model weights directly and only secondarily update the spec.
 - Dataset support is still minimal.
+- Multi-layer MLP specs are represented, but the dynamic mutation methods only operate on the first hidden layer today.
 
 ## Suggested Next Steps
 
-1. Introduce an explicit `ArchitectureSpec`.
-2. Add mutation primitives over architecture specs.
-3. Separate search space definitions from search algorithms.
+1. Add mutation primitives over architecture specs.
+2. Separate search space definitions from search algorithms.
+3. Let dynamic methods mutate specs first, then rebuild models from those mutations.
 4. Add a real image dataset such as MNIST.
 5. Expand the method library with pruning and random search baselines.
