@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any
 
+from dynanets.adaptation.events import AdaptationEvent
+
 
 @dataclass(slots=True)
 class ArchitectureState:
@@ -44,6 +46,6 @@ class DynamicNeuralModel(NeuralModel, ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def apply_adaptation(self, adaptation: dict[str, Any]) -> None:
-        """Apply a structural mutation described by an adaptation payload."""
+    def apply_adaptation(self, event: AdaptationEvent) -> None:
+        """Apply a structured adaptation event to the model."""
         raise NotImplementedError

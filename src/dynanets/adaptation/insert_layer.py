@@ -7,11 +7,11 @@ from dynanets.models.base import ArchitectureState, DynamicNeuralModel
 
 
 @dataclass(slots=True)
-class Net2WiderAdaptation(AdaptationMethod):
+class LayerInsertionAdaptation(AdaptationMethod):
     every_n_epochs: int = 3
-    grow_by: int = 4
-    max_hidden_dim: int = 128
-    seed: int = 42
+    width: int = 8
+    max_layers: int = 3
+    layer_index: int = 1
 
     def maybe_adapt(
         self,
@@ -23,22 +23,24 @@ class Net2WiderAdaptation(AdaptationMethod):
         if self.every_n_epochs <= 0 or (epoch + 1) % self.every_n_epochs != 0:
             return AdaptationResult(applied=False, reason="schedule-not-reached")
 
-        current_hidden = int(state.metadata.get("hidden_dim", 0))
-        if current_hidden >= self.max_hidden_dim:
-            return AdaptationResult(applied=False, reason="max-hidden-reached")
+        hidden_dims = list(state.metadata.get("hidden_dims", []))
+        if len(hidden_dims) >= self.max_layers:
+            return AdaptationResult(applied=False, reason="max-layers-reached")
 
-        amount = min(self.grow_by, self.max_hidden_dim - current_hidden)
+        insertion_index = min(self.layer_index, len(hidden_dims))
         event = AdaptationEvent(
-            event_type="net2wider",
-            params={"amount": amount, "seed": self.seed + epoch},
+            event_type="insert_hidden_layer",
+            params={"layer_index": insertion_index, "width": self.width},
         )
         model.apply_adaptation(event)
+        updated_dims = list(hidden_dims)
+        updated_dims.insert(insertion_index, self.width)
         return AdaptationResult(
             applied=True,
             event=AppliedAdaptationEvent(
                 epoch=epoch,
                 event_type=event.event_type,
                 params=dict(event.params),
-                metadata={"hidden_dim": current_hidden + amount},
+                metadata={"hidden_dims": updated_dims, "num_hidden_layers": len(updated_dims)},
             ),
         )

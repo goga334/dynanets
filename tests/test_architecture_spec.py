@@ -6,8 +6,10 @@ from dynanets.architecture import (
     mlp_spec_from_params,
     remove_hidden_layer,
     replace_hidden_activation,
+    shrink_hidden_layer,
 )
 from dynanets.models.torch_mlp import DynamicMLPClassifier, TorchMLPClassifier
+from dynanets.adaptation import AdaptationEvent
 
 
 
@@ -50,11 +52,13 @@ def test_spec_mutation_primitives() -> None:
     spec = mlp_spec_from_params(input_dim=2, output_dim=2, hidden_dims=[4, 3], activation="relu")
 
     grown = grow_hidden_layer(spec, layer_index=1, amount=2)
+    shrunk = shrink_hidden_layer(spec, layer_index=0, amount=1, min_width=2)
     inserted = insert_hidden_layer(spec, layer_index=1, width=5)
     removed = remove_hidden_layer(spec, layer_index=1)
     changed_activation = replace_hidden_activation(spec, activation="tanh")
 
     assert grown.hidden_dims == [4, 5]
+    assert shrunk.hidden_dims == [3, 3]
     assert inserted.hidden_dims == [4, 5, 3]
     assert removed.hidden_dims == [4]
     assert changed_activation.hidden_activation == "tanh"
@@ -75,7 +79,25 @@ def test_torch_mlp_uses_architecture_spec() -> None:
 
 def test_dynamic_mlp_updates_architecture_spec_on_growth() -> None:
     model = DynamicMLPClassifier(input_dim=2, hidden_dim=4, output_dim=2, activation="relu", lr=0.01)
-    model.apply_adaptation({"action": "grow_hidden", "amount": 2})
+    model.apply_adaptation(AdaptationEvent(event_type="grow_hidden", params={"amount": 2}))
 
     assert model.architecture_spec().hidden_dims == [6]
     assert model.architecture_state().metadata["hidden_dims"] == [6]
+
+
+
+def test_dynamic_mlp_updates_architecture_spec_on_pruning() -> None:
+    model = DynamicMLPClassifier(input_dim=2, hidden_dim=6, output_dim=2, activation="relu", lr=0.01)
+    model.apply_adaptation(AdaptationEvent(event_type="prune_hidden", params={"amount": 2, "min_width": 4}))
+
+    assert model.architecture_spec().hidden_dims == [4]
+    assert model.architecture_state().metadata["hidden_dims"] == [4]
+
+
+
+def test_dynamic_mlp_updates_architecture_spec_on_layer_insertion() -> None:
+    model = DynamicMLPClassifier(input_dim=2, hidden_dim=4, output_dim=2, activation="relu", lr=0.01)
+    model.apply_adaptation(AdaptationEvent(event_type="insert_hidden_layer", params={"layer_index": 1, "width": 4}))
+
+    assert model.architecture_spec().hidden_dims == [4, 4]
+    assert model.architecture_state().metadata["num_hidden_layers"] == 2

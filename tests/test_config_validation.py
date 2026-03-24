@@ -65,3 +65,30 @@ def test_builder_rejects_adaptation_with_non_dynamic_model() -> None:
 
     with pytest.raises(ExperimentAssemblyError):
         builder.build(config)
+
+
+
+def test_builder_accepts_pruning_adaptation_with_dynamic_model() -> None:
+    config = ExperimentConfig.from_dict(
+        {
+            "name": "valid-prune-build",
+            "dataset": {"name": "gaussian_blobs", "params": {}},
+            "model": {"name": "dynamic_mlp_classifier", "params": {"input_dim": 2, "hidden_dim": 6, "output_dim": 2}},
+            "metrics": [{"name": "accuracy", "params": {}}],
+            "adaptation": {"name": "prune_hidden", "params": {"every_n_epochs": 1, "prune_by": 2, "min_hidden_dim": 4}},
+            "trainer": {"epochs": 1},
+        }
+    )
+
+    registries = default_registries()
+    builder = ExperimentBuilder(
+        datasets=registries["datasets"],
+        models=registries["models"],
+        metrics=registries["metrics"],
+        adaptations=registries["adaptations"],
+        searches=registries["searches"],
+    )
+
+    experiment = builder.build(config)
+
+    assert experiment.adaptation is not None

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from dynanets.adaptation.base import AdaptationMethod, AdaptationResult
+from dynanets.adaptation.base import AdaptationEvent, AdaptationMethod, AdaptationResult, AppliedAdaptationEvent
 from dynanets.models.base import ArchitectureState, DynamicNeuralModel
 
 
@@ -27,8 +27,14 @@ class WidthGrowthAdaptation(AdaptationMethod):
             return AdaptationResult(applied=False, reason="max-hidden-reached")
 
         amount = min(self.grow_by, self.max_hidden_dim - current_hidden)
-        model.apply_adaptation({"action": "grow_hidden", "amount": amount})
+        event = AdaptationEvent(event_type="grow_hidden", params={"amount": amount})
+        model.apply_adaptation(event)
         return AdaptationResult(
             applied=True,
-            changes={"action": "grow_hidden", "amount": amount, "hidden_dim": current_hidden + amount},
+            event=AppliedAdaptationEvent(
+                epoch=epoch,
+                event_type=event.event_type,
+                params=dict(event.params),
+                metadata={"hidden_dim": current_hidden + amount},
+            ),
         )

@@ -17,6 +17,30 @@ def grow_hidden_layer(spec: MLPArchitectureSpec, *, layer_index: int = 0, amount
 
 
 
+def shrink_hidden_layer(
+    spec: MLPArchitectureSpec,
+    *,
+    layer_index: int = 0,
+    amount: int,
+    min_width: int = 1,
+) -> MLPArchitectureSpec:
+    if amount <= 0:
+        raise ValueError("amount must be positive")
+    if min_width <= 0:
+        raise ValueError("min_width must be positive")
+    hidden_dims = list(spec.hidden_dims)
+    if layer_index < 0 or layer_index >= len(hidden_dims):
+        raise IndexError("layer_index is out of range")
+    new_width = hidden_dims[layer_index] - amount
+    if new_width < min_width:
+        raise ValueError("shrink would violate min_width")
+    hidden_dims[layer_index] = new_width
+    shrunk = spec.with_hidden_dims(hidden_dims)
+    shrunk.validate()
+    return shrunk
+
+
+
 def insert_hidden_layer(
     spec: MLPArchitectureSpec,
     *,

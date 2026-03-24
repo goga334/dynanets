@@ -5,6 +5,7 @@ from dynanets.architecture.mutations import (
     insert_hidden_layer,
     remove_hidden_layer,
     replace_hidden_activation,
+    shrink_hidden_layer,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "mlp_spec_from_params",
     "remove_hidden_layer",
     "replace_hidden_activation",
+    "shrink_hidden_layer",
 ]

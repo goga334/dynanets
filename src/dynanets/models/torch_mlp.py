@@ -1,11 +1,19 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import random
 
 import torch
 from torch import nn
 
-from dynanets.architecture import MLPArchitectureSpec, build_mlp_network, grow_hidden_layer, mlp_spec_from_params
+from dynanets.adaptation.events import AdaptationEvent
+from dynanets.architecture import (
+    MLPArchitectureSpec,
+    build_mlp_network,
+    grow_hidden_layer,
+    insert_hidden_layer,
+    mlp_spec_from_params,
+    shrink_hidden_layer,
+)
 from dynanets.models.base import ArchitectureState, DynamicNeuralModel, NeuralModel
 
 
@@ -80,6 +88,10 @@ class TorchMLPClassifier(NeuralModel):
     def _rebuild_from_spec(self) -> None:
         self.network = build_mlp_network(self.spec).to(self.device)
 
+    def _linear_layers(self, network: nn.Sequential | None = None) -> list[nn.Linear]:
+        active = network if network is not None else self.network
+        return [module for module in active if isinstance(module, nn.Linear)]
+
 
 class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
     def __init__(
@@ -102,7 +114,18 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         self._state = ArchitectureState(
             step=0,
             version=0,
-            metadata={"hidden_dim": self.hidden_dim, "hidden_dims": self.hidden_dims, "output_dim": output_dim},
+            metadata={
+                "hidden_dim": self.hidden_dim,
+                "hidden_dims": self.hidden_dims,
+                "output_dim": output_dim,
+                "num_hidden_layers": len(self.hidden_dims),
+                "supported_events": [
+                    "grow_hidden",
+                    "prune_hidden",
+                    "net2wider",
+                    "insert_hidden_layer",
+                ],
+            },
         )
 
     def training_step(self, batch: dict[str, torch.Tensor]) -> dict[str, float]:
@@ -113,19 +136,40 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
     def architecture_state(self) -> ArchitectureState:
         return self._state
 
-    def apply_adaptation(self, adaptation: dict[str, int]) -> None:
-        action = adaptation.get("action")
-        amount = int(adaptation.get("amount", 0))
-        if amount <= 0:
-            return
+    def apply_adaptation(self, event: AdaptationEvent) -> None:
+        action = event.event_type
+        amount = int(event.params.get("amount", 0))
 
         if action == "grow_hidden":
+            if amount <= 0:
+                return
             mutated_spec = grow_hidden_layer(self.spec, layer_index=0, amount=amount)
             self._apply_simple_growth(mutated_spec)
             return
+        if action == "prune_hidden":
+            if amount <= 0:
+                return
+            mutated_spec = shrink_hidden_layer(
+                self.spec,
+                layer_index=0,
+                amount=amount,
+                min_width=int(event.params.get("min_width", 1)),
+            )
+            self._apply_simple_pruning(mutated_spec)
+            return
         if action == "net2wider":
+            if amount <= 0:
+                return
             mutated_spec = grow_hidden_layer(self.spec, layer_index=0, amount=amount)
-            self._apply_net2wider(mutated_spec=mutated_spec, seed=int(adaptation.get("seed", 42)))
+            self._apply_net2wider(mutated_spec=mutated_spec, seed=int(event.params.get("seed", 42)))
+            return
+        if action == "insert_hidden_layer":
+            width = int(event.params.get("width", 0))
+            if width <= 0:
+                return
+            layer_index = int(event.params.get("layer_index", len(self.hidden_dims)))
+            mutated_spec = insert_hidden_layer(self.spec, layer_index=layer_index, width=width)
+            self._apply_layer_insertion(mutated_spec)
             return
         raise ValueError(f"Unsupported adaptation action '{action}'")
 
@@ -149,7 +193,24 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             nn.init.kaiming_uniform_(new_output.weight[:, old_hidden_dim:], a=5**0.5)
 
         self.spec = mutated_spec
-        self._replace_layers(new_input, new_output)
+        self._replace_two_layer_network(new_input, new_output)
+
+    def _apply_simple_pruning(self, mutated_spec: MLPArchitectureSpec) -> None:
+        new_hidden_dim = mutated_spec.hidden_dim
+        old_input = self.network[0]
+        old_output = self.network[-1]
+
+        new_input = nn.Linear(self.input_dim, new_hidden_dim).to(self.device)
+        new_output = nn.Linear(new_hidden_dim, self.output_dim).to(self.device)
+
+        with torch.no_grad():
+            new_input.weight.copy_(old_input.weight[:new_hidden_dim])
+            new_input.bias.copy_(old_input.bias[:new_hidden_dim])
+            new_output.weight.copy_(old_output.weight[:, :new_hidden_dim])
+            new_output.bias.copy_(old_output.bias)
+
+        self.spec = mutated_spec
+        self._replace_two_layer_network(new_input, new_output)
 
     def _apply_net2wider(self, mutated_spec: MLPArchitectureSpec, seed: int) -> None:
         old_hidden_dim = self.hidden_dim
@@ -179,12 +240,44 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             new_output.bias.copy_(old_output.bias)
 
         self.spec = mutated_spec
-        self._replace_layers(new_input, new_output)
+        self._replace_two_layer_network(new_input, new_output)
 
-    def _replace_layers(self, new_input: nn.Linear, new_output: nn.Linear) -> None:
+    def _apply_layer_insertion(self, mutated_spec: MLPArchitectureSpec) -> None:
+        old_network = self.network
+        self.spec = mutated_spec
+        new_network = build_mlp_network(self.spec).to(self.device)
+        self._copy_matching_linear_layers(old_network, new_network)
+        self.network = new_network
+        self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
+        self._update_architecture_state()
+
+    def _replace_two_layer_network(self, new_input: nn.Linear, new_output: nn.Linear) -> None:
         activation_module = build_mlp_network(self.spec)[1]
         self.network = nn.Sequential(new_input, activation_module, new_output).to(self.device)
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
+        self._update_architecture_state()
+
+    def _copy_matching_linear_layers(self, old_network: nn.Sequential, new_network: nn.Sequential) -> None:
+        old_linear_layers = self._linear_layers(old_network)
+        new_linear_layers = self._linear_layers(new_network)
+        used_old_indices: set[int] = set()
+        with torch.no_grad():
+            for new_layer in new_linear_layers:
+                for old_index, old_layer in enumerate(old_linear_layers):
+                    if old_index in used_old_indices:
+                        continue
+                    if (
+                        old_layer.in_features == new_layer.in_features
+                        and old_layer.out_features == new_layer.out_features
+                    ):
+                        new_layer.weight.copy_(old_layer.weight)
+                        if old_layer.bias is not None and new_layer.bias is not None:
+                            new_layer.bias.copy_(old_layer.bias)
+                        used_old_indices.add(old_index)
+                        break
+
+    def _update_architecture_state(self) -> None:
         self._state.version += 1
         self._state.metadata["hidden_dim"] = self.hidden_dim
         self._state.metadata["hidden_dims"] = self.hidden_dims
+        self._state.metadata["num_hidden_layers"] = len(self.hidden_dims)

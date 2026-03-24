@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any
@@ -49,9 +49,19 @@ class TrainingRunner:
                         "validation_metrics": metric_result,
                     },
                 )
-                summary.adaptation_history.append(
-                    {"epoch": epoch, "applied": result.applied, "changes": result.changes}
-                )
+                if result.event is not None:
+                    summary.adaptation_history.append(result.event.to_dict())
+                else:
+                    summary.adaptation_history.append(
+                        {
+                            "epoch": epoch,
+                            "event_type": None,
+                            "params": {},
+                            "metadata": dict(result.metadata),
+                            "applied": result.applied,
+                            "reason": result.reason,
+                        }
+                    )
 
         return summary
 

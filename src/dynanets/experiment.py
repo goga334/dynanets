@@ -5,7 +5,9 @@ from typing import Any
 
 from dynanets.adaptation.base import AdaptationMethod
 from dynanets.adaptation.grow import WidthGrowthAdaptation
+from dynanets.adaptation.insert_layer import LayerInsertionAdaptation
 from dynanets.adaptation.net2net import Net2WiderAdaptation
+from dynanets.adaptation.prune import WidthPruningAdaptation
 from dynanets.config import ExperimentConfig
 from dynanets.datasets.base import DatasetFactory
 from dynanets.datasets.synthetic import GaussianBlobsDatasetFactory
@@ -104,6 +106,8 @@ def default_registries() -> dict[str, Registry[Any]]:
     adaptations: Registry[Any] = Registry()
     adaptations.register("width_growth", WidthGrowthAdaptation)
     adaptations.register("net2wider", Net2WiderAdaptation)
+    adaptations.register("insert_layer", LayerInsertionAdaptation)
+    adaptations.register("prune_hidden", WidthPruningAdaptation)
 
     searches: Registry[Any] = Registry()
     searches.register("regularized_evolution", RegularizedEvolutionSearch)

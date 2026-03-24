@@ -7,11 +7,10 @@ from dynanets.models.base import ArchitectureState, DynamicNeuralModel
 
 
 @dataclass(slots=True)
-class Net2WiderAdaptation(AdaptationMethod):
+class WidthPruningAdaptation(AdaptationMethod):
     every_n_epochs: int = 3
-    grow_by: int = 4
-    max_hidden_dim: int = 128
-    seed: int = 42
+    prune_by: int = 2
+    min_hidden_dim: int = 4
 
     def maybe_adapt(
         self,
@@ -24,13 +23,13 @@ class Net2WiderAdaptation(AdaptationMethod):
             return AdaptationResult(applied=False, reason="schedule-not-reached")
 
         current_hidden = int(state.metadata.get("hidden_dim", 0))
-        if current_hidden >= self.max_hidden_dim:
-            return AdaptationResult(applied=False, reason="max-hidden-reached")
+        if current_hidden <= self.min_hidden_dim:
+            return AdaptationResult(applied=False, reason="min-hidden-reached")
 
-        amount = min(self.grow_by, self.max_hidden_dim - current_hidden)
+        amount = min(self.prune_by, current_hidden - self.min_hidden_dim)
         event = AdaptationEvent(
-            event_type="net2wider",
-            params={"amount": amount, "seed": self.seed + epoch},
+            event_type="prune_hidden",
+            params={"amount": amount, "min_width": self.min_hidden_dim},
         )
         model.apply_adaptation(event)
         return AdaptationResult(
@@ -39,6 +38,6 @@ class Net2WiderAdaptation(AdaptationMethod):
                 epoch=epoch,
                 event_type=event.event_type,
                 params=dict(event.params),
-                metadata={"hidden_dim": current_hidden + amount},
+                metadata={"hidden_dim": current_hidden - amount},
             ),
         )

@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any
 
+from dynanets.adaptation.events import AdaptationEvent, AppliedAdaptationEvent
 from dynanets.models.base import ArchitectureState, DynamicNeuralModel
 
 
@@ -12,8 +13,9 @@ class AdaptationResult:
     """Outcome of one adaptation decision within the training loop."""
 
     applied: bool
-    changes: dict[str, Any] = field(default_factory=dict)
+    event: AppliedAdaptationEvent | None = None
     reason: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class AdaptationMethod(ABC):
@@ -28,3 +30,11 @@ class AdaptationMethod(ABC):
     ) -> AdaptationResult:
         """Inspect training context and optionally apply a model adaptation."""
         raise NotImplementedError
+
+
+__all__ = [
+    "AdaptationEvent",
+    "AdaptationMethod",
+    "AdaptationResult",
+    "AppliedAdaptationEvent",
+]

@@ -19,7 +19,8 @@ def test_net2wider_preserves_outputs() -> None:
     inputs = torch.randn(16, 2)
 
     before = model.forward(inputs).detach().clone()
-    model.apply_adaptation({"action": "net2wider", "amount": 3, "seed": 7})
+    from dynanets.adaptation import AdaptationEvent
+    model.apply_adaptation(AdaptationEvent(event_type="net2wider", params={"amount": 3, "seed": 7}))
     after = model.forward(inputs).detach().clone()
 
     assert model.hidden_dim == 7
@@ -131,7 +132,10 @@ def test_reporting_outputs_are_consistent(tmp_path: Path) -> None:
             {
                 "train_history": [{"loss": 0.9, "accuracy": 0.5}, {"loss": 0.4, "accuracy": 0.8}],
                 "metric_history": [{"accuracy": 0.55}, {"accuracy": 0.82}],
-                "adaptation_history": [{"epoch": 0, "applied": False, "changes": {}}, {"epoch": 1, "applied": True, "changes": {"action": "net2wider"}}],
+                "adaptation_history": [
+                    {"epoch": 0, "event_type": None, "params": {}, "metadata": {}, "applied": False, "reason": "schedule-not-reached"},
+                    {"epoch": 1, "event_type": "net2wider", "params": {"amount": 2}, "metadata": {"hidden_dim": 10}, "applied": True, "reason": None},
+                ],
             },
         )(),
         final_hidden_dim=12,
@@ -149,6 +153,7 @@ def test_reporting_outputs_are_consistent(tmp_path: Path) -> None:
     markdown_text = (tmp_path / "comparison.md").read_text(encoding="utf-8")
 
     assert json_data[0]["final_val_accuracy"] == 0.82
+    assert json_data[0]["adaptation_history"][1]["event_type"] == "net2wider"
     assert "demo-experiment" in csv_text
     assert "0.8200" in markdown_text
     assert (tmp_path / "validation_accuracy.png").exists()
