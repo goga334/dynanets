@@ -1,6 +1,29 @@
-﻿# dynanets
+# dynanets
 
 Sandbox for experimenting with neural networks that can change structure over time, including NAS-style search and explicit adaptation methods.
+
+## Current Scope
+
+The current system supports:
+
+- YAML-defined experiments with pluggable datasets, models, metrics, adaptations, and search methods
+- fixed and dynamic MLP baselines in PyTorch
+- paper-inspired dynamic adaptation through Net2Wider-style widening
+- paper-inspired NAS through regularized evolution search
+- comparison reports with markdown, CSV/JSON, and plots
+
+## Phase 1 Status
+
+Phase 1 is about stabilizing the core before broadening the sandbox.
+
+Completed in this phase:
+
+- explicit config parsing and validation
+- build-time compatibility checks for unsupported component combinations
+- clearer code-level contracts for model, adaptation, and search interfaces
+- contributor documentation for adding a new paper-inspired method
+
+See [docs/adding-methods.md](docs/adding-methods.md) for the current extension workflow.
 
 ## Goals
 
@@ -51,57 +74,47 @@ src/dynanets/
   datasets/     # dataset adapters and loaders
   metrics/      # evaluation metrics
   models/       # fixed and dynamic neural network abstractions
-  runners/      # train/eval orchestration
-  search/       # NAS search spaces and algorithms
-  config.py     # experiment configuration models
-  experiment.py # experiment assembly
+  runners/      # train/eval/search orchestration
+  search/       # NAS search algorithms
+  config.py     # experiment configuration models and validation
+  experiment.py # experiment assembly and compatibility checks
   registry.py   # plugin registry
 experiments/
-  README.md
   examples/
+docs/
+  adding-methods.md
+reports/
 tests/
 ```
-
-## Core Design Choices
-
-- `DatasetFactory` creates train/validation/test splits from config.
-- `NeuralModel` is the common model interface.
-- `DynamicNeuralModel` extends the base model with architecture state and mutation hooks.
-- `Metric` calculates evaluation outputs independently of the runner.
-- `AdaptationMethod` decides how and when the structure changes during training.
-- `SearchMethod` proposes model/adaptation configurations to evaluate.
-
-This separation keeps dynamic adaptation and NAS connected, but not coupled:
-
-- adaptation methods can modify a running model,
-- search methods can choose architectures or adaptation policies,
-- the runner can stay mostly generic.
-
-## Baselines Implemented
-
-- `gaussian_blobs`: synthetic classification dataset with train/validation/test splits.
-- `torch_mlp_classifier`: fixed-topology PyTorch MLP classifier baseline.
-- `dynamic_mlp_classifier`: PyTorch MLP baseline with mutable hidden width.
-- `accuracy`: classification accuracy metric.
-- `width_growth`: first adaptation method that expands hidden width on a fixed epoch schedule.
 
 ## Running Experiments
 
 Install the package and run one of the example configs:
 
 ```bash
-pip install -e .
+pip install -e .[dev]
 python -m dynanets.cli experiments/examples/fixed_mlp.yaml
-python -m dynanets.cli experiments/examples/minimal.yaml
+python -m dynanets.cli experiments/examples/net2wider.yaml
+python -m dynanets.cli experiments/examples/regularized_evolution.yaml
 ```
 
-`fixed_mlp.yaml` runs the fixed-topology baseline.
-`minimal.yaml` runs the adaptive baseline with scheduled width growth.
+Generate a comparison report:
+
+```bash
+python -m dynanets.compare experiments/examples/fixed_mlp.yaml experiments/examples/net2wider.yaml experiments/examples/regularized_evolution.yaml --output-dir reports/paper_methods
+```
+
+## Current Limitations
+
+- Search and adaptation are separate experiment modes for now.
+- The architecture space is still narrow and centered on MLPs.
+- Dynamic mutations are implemented at model level rather than through a generic architecture spec.
+- Dataset support is still minimal.
 
 ## Suggested Next Steps
 
-1. Replace full-batch training with minibatch data loaders.
-2. Add a real dataset adapter such as MNIST or FashionMNIST.
-3. Add result serialization and per-epoch logging.
-4. Extend adaptation methods beyond width growth to pruning or rewiring.
-5. Introduce a compact NAS search space over hidden depth, width, and adaptation policy.
+1. Introduce an explicit `ArchitectureSpec`.
+2. Add mutation primitives over architecture specs.
+3. Separate search space definitions from search algorithms.
+4. Add a real image dataset such as MNIST.
+5. Expand the method library with pruning and random search baselines.

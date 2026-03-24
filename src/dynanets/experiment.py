@@ -11,11 +11,15 @@ from dynanets.datasets.base import DatasetFactory
 from dynanets.datasets.synthetic import GaussianBlobsDatasetFactory
 from dynanets.metrics.base import Metric
 from dynanets.metrics.classification import AccuracyMetric
-from dynanets.models.base import NeuralModel
+from dynanets.models.base import DynamicNeuralModel, NeuralModel
 from dynanets.models.torch_mlp import DynamicMLPClassifier, TorchMLPClassifier
 from dynanets.registry import Registry
 from dynanets.search.base import SearchMethod
 from dynanets.search.regularized_evolution import RegularizedEvolutionSearch
+
+
+class ExperimentAssemblyError(ValueError):
+    """Raised when a valid config requests an unsupported component combination."""
 
 
 @dataclass(slots=True)
@@ -44,6 +48,7 @@ class ExperimentBuilder:
         self.searches = searches
 
     def build(self, config: ExperimentConfig) -> Experiment:
+        config.validate()
         dataset = self.datasets.build(config.dataset.name, **config.dataset.params)
         model = self.models.build(config.model.name, **config.model.params)
         metrics = [self.metrics.build(item.name, **item.params) for item in config.metrics]
@@ -53,6 +58,7 @@ class ExperimentBuilder:
         search = None
         if config.search is not None:
             search = self.searches.build(config.search.name, **config.search.params)
+        self._validate_compatibility(config=config, model=model, adaptation=adaptation, search=search)
         return Experiment(
             config=config,
             dataset=dataset,
@@ -62,6 +68,22 @@ class ExperimentBuilder:
             search=search,
         )
 
+    def _validate_compatibility(
+        self,
+        *,
+        config: ExperimentConfig,
+        model: NeuralModel,
+        adaptation: AdaptationMethod | None,
+        search: SearchMethod | None,
+    ) -> None:
+        if adaptation is not None and not isinstance(model, DynamicNeuralModel):
+            raise ExperimentAssemblyError(
+                f"Adaptation '{config.adaptation.name}' requires a DynamicNeuralModel, got '{type(model).__name__}'"
+            )
+        if search is not None and config.adaptation is not None:
+            raise ExperimentAssemblyError(
+                "Search experiments and adaptation experiments must currently be run separately"
+            )
 
 
 def default_registries() -> dict[str, Registry[Any]]:
