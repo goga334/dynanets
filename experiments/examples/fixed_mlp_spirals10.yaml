@@ -1,0 +1,27 @@
+name: fixed-mlp-spirals10
+dataset:
+  name: two_spirals
+  params:
+    train_size: 3500
+    validation_size: 750
+    test_size: 750
+    input_dim: 10
+    turns: 2.0
+    noise: 0.16
+    feature_noise: 0.10
+    seed: 42
+model:
+  name: torch_mlp_classifier
+  params:
+    input_dim: 10
+    hidden_dim: 18
+    output_dim: 2
+    activation: relu
+    lr: 0.01
+metrics:
+  - name: accuracy
+    params: {}
+trainer:
+  epochs: 30
+runtime:
+  seed: 42

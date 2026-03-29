@@ -3,9 +3,8 @@ from __future__ import annotations
 import argparse
 
 from dynanets.config import ExperimentConfig
+from dynanets.execution import ExperimentExecutor
 from dynanets.experiment import ExperimentBuilder, default_registries
-from dynanets.runners.search import SearchRunner
-from dynanets.runners.train import TrainingRunner
 from dynanets.runtime import set_global_seed
 
 
@@ -24,32 +23,25 @@ def main() -> None:
         metrics=registries["metrics"],
         adaptations=registries["adaptations"],
         searches=registries["searches"],
+        workflows=registries["workflows"],
     )
     experiment = builder.build(config)
+    result = ExperimentExecutor().execute(config=config, experiment=experiment, registries=registries)
 
-    if experiment.search is not None:
-        summary = SearchRunner().run(config=config, experiment=experiment, registries=registries)
-        print(f"experiment={config.name}")
-        print(f"search_best_score={summary.best_score}")
-        print(f"search_best_model_params={summary.best_model_params}")
-        print(f"train_history={summary.best_summary.train_history}")
-        print(f"metric_history={summary.best_summary.metric_history}")
-        print(f"search_history={summary.evaluation_history}")
+    print(f"experiment={config.name}")
+    if result.mode == "search":
+        print(f"search_best_score={result.best_score}")
+        print(f"search_best_model_params={result.best_model_params}")
+        print(f"train_history={result.summary.train_history}")
+        print(f"metric_history={result.summary.metric_history}")
+        print(f"stage_history={result.summary.stage_history}")
+        print(f"search_history={result.search_history}")
         return
 
-    dataset = experiment.dataset.build()
-    runner = TrainingRunner()
-    summary = runner.run(
-        model=experiment.model,
-        dataset=dataset,
-        metrics=experiment.metrics,
-        epochs=int(config.trainer.get("epochs", 1)),
-        adaptation=experiment.adaptation,
-    )
-    print(f"experiment={config.name}")
-    print(f"train_history={summary.train_history}")
-    print(f"metric_history={summary.metric_history}")
-    print(f"adaptation_history={summary.adaptation_history}")
+    print(f"train_history={result.summary.train_history}")
+    print(f"metric_history={result.summary.metric_history}")
+    print(f"stage_history={result.summary.stage_history}")
+    print(f"adaptation_history={result.summary.adaptation_history}")
 
 
 if __name__ == "__main__":

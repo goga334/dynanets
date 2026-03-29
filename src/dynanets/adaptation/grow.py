@@ -12,6 +12,9 @@ class WidthGrowthAdaptation(AdaptationMethod):
     grow_by: int = 4
     max_hidden_dim: int = 128
 
+    def supported_event_types(self) -> set[str]:
+        return {"grow_hidden"}
+
     def maybe_adapt(
         self,
         model: DynamicNeuralModel,

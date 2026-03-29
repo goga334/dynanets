@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any
 
-from dynanets.adaptation.events import AdaptationEvent, AppliedAdaptationEvent
+from dynanets.adaptation.events import AdaptationEvent, AdaptationEventType, AppliedAdaptationEvent
 from dynanets.models.base import ArchitectureState, DynamicNeuralModel
 
 
@@ -20,6 +20,11 @@ class AdaptationResult:
 
 class AdaptationMethod(ABC):
     """Policy hook that may request a structural change on a DynamicNeuralModel."""
+
+    @abstractmethod
+    def supported_event_types(self) -> set[AdaptationEventType]:
+        """Return the event types this adaptation method may emit."""
+        raise NotImplementedError
 
     @abstractmethod
     def maybe_adapt(

@@ -1,0 +1,4 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim
+fixed-mlp-baseline,6,0.312082976102829,0.98046875,0.984375,0.984375,0,
+wide-fixed-mlp-baseline,6,0.46974337100982666,0.75,0.90625,0.90625,0,
+minimal-experiment,6,0.654205858707428,0.509765625,0.4765625,0.953125,3,20

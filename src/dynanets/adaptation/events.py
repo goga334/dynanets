@@ -9,6 +9,9 @@ AdaptationEventType = Literal[
     "prune_hidden",
     "net2wider",
     "insert_hidden_layer",
+    "remove_hidden_layer",
+    "merge_hidden_layers",
+    "apply_weight_mask",
 ]
 
 
@@ -28,6 +31,10 @@ class AppliedAdaptationEvent:
     event_type: AdaptationEventType
     params: dict[str, Any] = field(default_factory=dict)
     metadata: dict[str, Any] = field(default_factory=dict)
+    before_state: dict[str, Any] = field(default_factory=dict)
+    after_state: dict[str, Any] = field(default_factory=dict)
+    model_capabilities: dict[str, Any] = field(default_factory=dict)
+    effect_summary: dict[str, Any] = field(default_factory=dict)
     applied: bool = True
     reason: str | None = None
 

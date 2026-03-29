@@ -1,0 +1,459 @@
+[
+  {
+    "name": "dynamic-nodes-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=dynamic_nodes",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6306666612625123,
+    "std_final_val_accuracy": 0.05254753877889766,
+    "mean_best_val_accuracy": 0.6712000012397766,
+    "std_best_val_accuracy": 0.03268814217793955,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 12,
+    "best_seed": 23,
+    "best_seed_final_val_accuracy": 0.6853333115577698,
+    "best_seed_best_val_accuracy": 0.7146666646003723,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        12,
+        12
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6893333196640015,
+        "best_val_accuracy": 0.6893333196640015,
+        "adaptations_applied": 1
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5933333039283752,
+        "best_val_accuracy": 0.628000020980835,
+        "adaptations_applied": 1
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.6853333115577698,
+        "best_val_accuracy": 0.7146666646003723,
+        "adaptations_applied": 1
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6320000290870667,
+        "best_val_accuracy": 0.6386666893959045,
+        "adaptations_applied": 1
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5533333420753479,
+        "best_val_accuracy": 0.6853333115577698,
+        "adaptations_applied": 1
+      }
+    ]
+  },
+  {
+    "name": "edge-growth-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=edge_growth",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6293333292007446,
+    "std_final_val_accuracy": 0.04032754740869172,
+    "mean_best_val_accuracy": 0.6466666698455811,
+    "std_best_val_accuracy": 0.033804661563149624,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 16,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.6853333115577698,
+    "best_seed_best_val_accuracy": 0.6919999718666077,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        16,
+        12
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6520000100135803,
+        "best_val_accuracy": 0.6733333468437195,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6413333415985107,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5946666598320007,
+        "best_val_accuracy": 0.5946666598320007,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6853333115577698,
+        "best_val_accuracy": 0.6919999718666077,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5733333230018616,
+        "best_val_accuracy": 0.6320000290870667,
+        "adaptations_applied": 3
+      }
+    ]
+  },
+  {
+    "name": "nest-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=nest",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6216000080108642,
+    "std_final_val_accuracy": 0.0307696880988227,
+    "mean_best_val_accuracy": 0.6522666692733765,
+    "std_best_val_accuracy": 0.028960044389191503,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 12,
+    "best_seed": 11,
+    "best_seed_final_val_accuracy": 0.6706666946411133,
+    "best_seed_best_val_accuracy": 0.6866666674613953,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        12
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6119999885559082,
+        "best_val_accuracy": 0.671999990940094,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6706666946411133,
+        "best_val_accuracy": 0.6866666674613953,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5746666789054871,
+        "best_val_accuracy": 0.6026666760444641,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6240000128746033,
+        "best_val_accuracy": 0.6586666703224182,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6266666650772095,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 3
+      }
+    ]
+  },
+  {
+    "name": "gradmax-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=gradmax",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6130666613578797,
+    "std_final_val_accuracy": 0.04703020995917305,
+    "mean_best_val_accuracy": 0.665066659450531,
+    "std_best_val_accuracy": 0.018211593391490494,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 18,
+    "best_seed": 11,
+    "best_seed_final_val_accuracy": 0.6733333468437195,
+    "best_seed_best_val_accuracy": 0.6893333196640015,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5666666626930237,
+        "best_val_accuracy": 0.671999990940094,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6733333468437195,
+        "best_val_accuracy": 0.6893333196640015,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5666666626930237,
+        "best_val_accuracy": 0.6466666460037231,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6653333306312561,
+        "best_val_accuracy": 0.6759999990463257,
+        "adaptations_applied": 3
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5933333039283752,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 3
+      }
+    ]
+  },
+  {
+    "name": "den-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=den",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6032000064849854,
+    "std_final_val_accuracy": 0.0410926184676131,
+    "mean_best_val_accuracy": 0.6560000061988831,
+    "std_best_val_accuracy": 0.028372137751955684,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 16,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.6293333172798157,
+    "best_seed_best_val_accuracy": 0.6813333630561829,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        16
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5746666789054871,
+        "best_val_accuracy": 0.6800000071525574,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.671999990940094,
+        "best_val_accuracy": 0.6759999990463257,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5720000267028809,
+        "best_val_accuracy": 0.6226666569709778,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6293333172798157,
+        "best_val_accuracy": 0.6813333630561829,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5680000185966492,
+        "best_val_accuracy": 0.6200000047683716,
+        "adaptations_applied": 2
+      }
+    ]
+  },
+  {
+    "name": "fixed-mlp-spirals20",
+    "method_type": "baseline",
+    "notes": null,
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6023999810218811,
+    "std_final_val_accuracy": 0.040515784038731,
+    "mean_best_val_accuracy": 0.6362666726112366,
+    "std_best_val_accuracy": 0.019711714695887814,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.653333306312561,
+    "best_seed_best_val_accuracy": 0.6706666946411133,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        24
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6226666569709778,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6079999804496765,
+        "best_val_accuracy": 0.6200000047683716,
+        "adaptations_applied": 0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5973333120346069,
+        "best_val_accuracy": 0.6346666812896729,
+        "adaptations_applied": 0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.653333306312561,
+        "best_val_accuracy": 0.6706666946411133,
+        "adaptations_applied": 0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5306666493415833,
+        "best_val_accuracy": 0.6146666407585144,
+        "adaptations_applied": 0
+      }
+    ]
+  },
+  {
+    "name": "net2wider-spirals20",
+    "method_type": "dynamic",
+    "notes": "adaptation=net2wider",
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6016000032424926,
+    "std_final_val_accuracy": 0.04064720822035758,
+    "mean_best_val_accuracy": 0.6522666811943054,
+    "std_best_val_accuracy": 0.026336625898203916,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 20,
+    "best_seed": 11,
+    "best_seed_final_val_accuracy": 0.6653333306312561,
+    "best_seed_best_val_accuracy": 0.6880000233650208,
+    "representative_architecture_spec": {
+      "input_dim": 20,
+      "output_dim": 2,
+      "hidden_dims": [
+        20
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5986666679382324,
+        "best_val_accuracy": 0.6706666946411133,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6653333306312561,
+        "best_val_accuracy": 0.6880000233650208,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5706666707992554,
+        "best_val_accuracy": 0.6106666922569275,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6240000128746033,
+        "best_val_accuracy": 0.6506666541099548,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5493333339691162,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 2
+      }
+    ]
+  }
+]

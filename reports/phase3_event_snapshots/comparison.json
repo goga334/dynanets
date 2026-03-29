@@ -1,0 +1,1469 @@
+[
+  {
+    "name": "fixed-mlp-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.312082976102829,
+    "final_train_accuracy": 0.98046875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.335267573595047,
+        "accuracy": 0.962890625
+      },
+      {
+        "loss": 0.32321879267692566,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.312082976102829,
+        "accuracy": 0.98046875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9609375
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": [],
+    "metadata": {
+      "method_type": "baseline",
+      "notes": null
+    }
+  },
+  {
+    "name": "net2wider-dynamic-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.30460047721862793,
+    "final_train_accuracy": 0.982421875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 2,
+    "final_hidden_dim": 16,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.33312857151031494,
+        "accuracy": 0.962890625
+      },
+      {
+        "loss": 0.3191213309764862,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.30460047721862793,
+        "accuracy": 0.982421875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.9765625
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": "net2wider",
+        "params": {
+          "amount": 4,
+          "seed": 43
+        },
+        "metadata": {
+          "hidden_dim": 12
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": "net2wider",
+        "params": {
+          "amount": 4,
+          "seed": 45
+        },
+        "metadata": {
+          "hidden_dim": 16
+        },
+        "before_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 16,
+            "hidden_dims": [
+              16
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 16,
+            "hidden_dims": [
+              16
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 16,
+            "hidden_dims": [
+              16
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            16
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 16,
+            "hidden_dims": [
+              16
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 16,
+            "hidden_dims": [
+              16
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            16
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "max-hidden-reached"
+      }
+    ],
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=net2wider"
+    }
+  },
+  {
+    "name": "net2deeper-dynamic-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.2986275255680084,
+    "final_train_accuracy": 0.982421875,
+    "final_val_accuracy": 0.9921875,
+    "best_val_accuracy": 0.9921875,
+    "adaptations_applied": 2,
+    "final_hidden_dim": 8,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.33476710319519043,
+        "accuracy": 0.9609375
+      },
+      {
+        "loss": 0.3171199858188629,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.2986275255680084,
+        "accuracy": 0.982421875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9453125
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.984375
+      },
+      {
+        "accuracy": 0.9921875
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": "insert_hidden_layer",
+        "params": {
+          "layer_index": 1,
+          "width": 8,
+          "init_mode": "identity"
+        },
+        "metadata": {
+          "method": "net2deeper",
+          "hidden_dims": [
+            8,
+            8
+          ],
+          "num_hidden_layers": 2
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 2,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 2,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 2,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8,
+            8
+          ],
+          "current_num_hidden_layers": 2
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": "insert_hidden_layer",
+        "params": {
+          "layer_index": 1,
+          "width": 8,
+          "init_mode": "identity"
+        },
+        "metadata": {
+          "method": "net2deeper",
+          "hidden_dims": [
+            8,
+            8,
+            8
+          ],
+          "num_hidden_layers": 3
+        },
+        "before_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 2,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 3,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8,
+            8
+          ],
+          "current_num_hidden_layers": 2
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 3,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 3,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8,
+            8,
+            8
+          ],
+          "current_num_hidden_layers": 3
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 3,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8,
+              8,
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 3,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8,
+            8,
+            8
+          ],
+          "current_num_hidden_layers": 3
+        },
+        "applied": false,
+        "reason": "max-layers-reached"
+      }
+    ],
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=net2deeper"
+    }
+  },
+  {
+    "name": "width-pruning-dynamic-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.5149543285369873,
+    "final_train_accuracy": 0.962890625,
+    "final_val_accuracy": 0.9375,
+    "best_val_accuracy": 0.9375,
+    "adaptations_applied": 3,
+    "final_hidden_dim": 6,
+    "train_history": [
+      {
+        "loss": 0.8191450834274292,
+        "accuracy": 0.490234375
+      },
+      {
+        "loss": 0.7382825016975403,
+        "accuracy": 0.498046875
+      },
+      {
+        "loss": 0.6400642991065979,
+        "accuracy": 0.76953125
+      },
+      {
+        "loss": 0.5908795595169067,
+        "accuracy": 0.888671875
+      },
+      {
+        "loss": 0.5477417707443237,
+        "accuracy": 0.943359375
+      },
+      {
+        "loss": 0.5149543285369873,
+        "accuracy": 0.962890625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.5390625
+      },
+      {
+        "accuracy": 0.65625
+      },
+      {
+        "accuracy": 0.84375
+      },
+      {
+        "accuracy": 0.8984375
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9375
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": "prune_hidden",
+        "params": {
+          "amount": 2,
+          "min_width": 6
+        },
+        "metadata": {
+          "hidden_dim": 10
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": "prune_hidden",
+        "params": {
+          "amount": 2,
+          "min_width": 6
+        },
+        "metadata": {
+          "hidden_dim": 8
+        },
+        "before_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": "prune_hidden",
+        "params": {
+          "amount": 2,
+          "min_width": 6
+        },
+        "metadata": {
+          "hidden_dim": 6
+        },
+        "before_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 8,
+            "hidden_dims": [
+              8
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 3,
+          "metadata": {
+            "hidden_dim": 6,
+            "hidden_dims": [
+              6
+            ],
+            "output_dim": 2,
+            "num_hidden_layers": 1,
+            "supported_events": [
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supported_event_types": [
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion"
+          ],
+          "current_hidden_dims": [
+            8
+          ],
+          "current_num_hidden_layers": 1
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=prune_hidden"
+    }
+  }
+]

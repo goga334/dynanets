@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
-from dynanets.adaptation.events import AdaptationEvent
+from dynanets.adaptation.events import AdaptationEvent, AdaptationEventType
 
 
 @dataclass(slots=True)
@@ -18,6 +18,9 @@ class ArchitectureState:
     step: int = 0
     version: int = 0
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
 
 
 class NeuralModel(ABC):
@@ -43,6 +46,16 @@ class DynamicNeuralModel(NeuralModel, ABC):
 
     @abstractmethod
     def architecture_state(self) -> ArchitectureState:
+        raise NotImplementedError
+
+    @abstractmethod
+    def supported_event_types(self) -> set[AdaptationEventType]:
+        """Return the set of adaptation event types this model can apply."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def capabilities(self) -> dict[str, Any]:
+        """Return model capability metadata useful for adaptation planning and reporting."""
         raise NotImplementedError
 
     @abstractmethod

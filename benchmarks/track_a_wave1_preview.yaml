@@ -1,0 +1,28 @@
+name: track_a_wave1_preview
+track: synthetic
+description: >-
+  Wave 1 preview protocol for the synthetic track. Extends the growth-family comparison
+  set with AdaNet-style staged candidate selection and the Han-style weights-and-connections
+  pruning approximation.
+seeds: [7, 11, 23, 42, 99]
+required_metrics: [accuracy]
+budgets:
+  dataset: two_spirals_10d
+  epochs: 30
+  rows: 5000
+experiments:
+  - config: ../experiments/examples/fixed_mlp_spirals10.yaml
+    role: baseline
+    tags: [track_a, synthetic, baseline]
+  - config: ../experiments/examples/gradmax_spirals10.yaml
+    role: method
+    tags: [track_a, growth, v1_subset]
+  - config: ../experiments/examples/adanet_spirals10.yaml
+    role: method
+    tags: [track_a, staged, wave1_preview, v1_subset]
+  - config: ../experiments/examples/weights_connections_spirals10.yaml
+    role: method
+    tags: [track_a, pruning, wave1_preview, v1_subset]
+metadata:
+  roadmap_wave: wave_1_preview
+  roadmap_phase: phase_3_phase_4

@@ -1,0 +1,5290 @@
+[
+  {
+    "name": "fixed-mlp-spirals10",
+    "epochs": 30,
+    "final_train_loss": 0.6022860407829285,
+    "final_train_accuracy": 0.6194285750389099,
+    "final_val_accuracy": 0.6000000238418579,
+    "best_val_accuracy": 0.6480000019073486,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.7174343466758728,
+        "accuracy": 0.49542856216430664,
+        "grad_norm_input_layer": 0.2809053659439087
+      },
+      {
+        "loss": 0.7022646069526672,
+        "accuracy": 0.5122857093811035,
+        "grad_norm_input_layer": 0.16684553027153015
+      },
+      {
+        "loss": 0.6923749446868896,
+        "accuracy": 0.5091428756713867,
+        "grad_norm_input_layer": 0.14650630950927734
+      },
+      {
+        "loss": 0.6856029629707336,
+        "accuracy": 0.5371428728103638,
+        "grad_norm_input_layer": 0.09260629862546921
+      },
+      {
+        "loss": 0.682156503200531,
+        "accuracy": 0.5308571457862854,
+        "grad_norm_input_layer": 0.09735651314258575
+      },
+      {
+        "loss": 0.6787083745002747,
+        "accuracy": 0.5554285645484924,
+        "grad_norm_input_layer": 0.10219036042690277
+      },
+      {
+        "loss": 0.6743660569190979,
+        "accuracy": 0.5737142562866211,
+        "grad_norm_input_layer": 0.08632516115903854
+      },
+      {
+        "loss": 0.670009970664978,
+        "accuracy": 0.5962857007980347,
+        "grad_norm_input_layer": 0.07566589117050171
+      },
+      {
+        "loss": 0.6660025715827942,
+        "accuracy": 0.602571427822113,
+        "grad_norm_input_layer": 0.07158483564853668
+      },
+      {
+        "loss": 0.6620947122573853,
+        "accuracy": 0.6174286007881165,
+        "grad_norm_input_layer": 0.06546449661254883
+      },
+      {
+        "loss": 0.6582556366920471,
+        "accuracy": 0.6320000290870667,
+        "grad_norm_input_layer": 0.05546720698475838
+      },
+      {
+        "loss": 0.6546236276626587,
+        "accuracy": 0.6380000114440918,
+        "grad_norm_input_layer": 0.057855404913425446
+      },
+      {
+        "loss": 0.6511222124099731,
+        "accuracy": 0.6357142925262451,
+        "grad_norm_input_layer": 0.06803014874458313
+      },
+      {
+        "loss": 0.6475796699523926,
+        "accuracy": 0.6225714087486267,
+        "grad_norm_input_layer": 0.07047061622142792
+      },
+      {
+        "loss": 0.643975019454956,
+        "accuracy": 0.6148571372032166,
+        "grad_norm_input_layer": 0.06895837932825089
+      },
+      {
+        "loss": 0.6403018832206726,
+        "accuracy": 0.6054285764694214,
+        "grad_norm_input_layer": 0.060755860060453415
+      },
+      {
+        "loss": 0.6366474628448486,
+        "accuracy": 0.5962857007980347,
+        "grad_norm_input_layer": 0.05965062603354454
+      },
+      {
+        "loss": 0.6329753994941711,
+        "accuracy": 0.5937142968177795,
+        "grad_norm_input_layer": 0.06142072752118111
+      },
+      {
+        "loss": 0.6293464303016663,
+        "accuracy": 0.5928571224212646,
+        "grad_norm_input_layer": 0.060129810124635696
+      },
+      {
+        "loss": 0.6260426640510559,
+        "accuracy": 0.5994285941123962,
+        "grad_norm_input_layer": 0.05464513972401619
+      },
+      {
+        "loss": 0.6233088970184326,
+        "accuracy": 0.6097142696380615,
+        "grad_norm_input_layer": 0.0599786601960659
+      },
+      {
+        "loss": 0.6207041144371033,
+        "accuracy": 0.6134285926818848,
+        "grad_norm_input_layer": 0.05999068543314934
+      },
+      {
+        "loss": 0.6181125640869141,
+        "accuracy": 0.6142857074737549,
+        "grad_norm_input_layer": 0.058689337223768234
+      },
+      {
+        "loss": 0.6155566573143005,
+        "accuracy": 0.6122857332229614,
+        "grad_norm_input_layer": 0.05716092139482498
+      },
+      {
+        "loss": 0.6129592061042786,
+        "accuracy": 0.6142857074737549,
+        "grad_norm_input_layer": 0.053983647376298904
+      },
+      {
+        "loss": 0.6104894876480103,
+        "accuracy": 0.6200000047683716,
+        "grad_norm_input_layer": 0.04897971451282501
+      },
+      {
+        "loss": 0.6082632541656494,
+        "accuracy": 0.6205714344978333,
+        "grad_norm_input_layer": 0.04978208616375923
+      },
+      {
+        "loss": 0.6061490774154663,
+        "accuracy": 0.6225714087486267,
+        "grad_norm_input_layer": 0.05083368718624115
+      },
+      {
+        "loss": 0.6041637063026428,
+        "accuracy": 0.6211428642272949,
+        "grad_norm_input_layer": 0.04661010578274727
+      },
+      {
+        "loss": 0.6022860407829285,
+        "accuracy": 0.6194285750389099,
+        "grad_norm_input_layer": 0.040381669998168945
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.5733333230018616
+      },
+      {
+        "accuracy": 0.5559999942779541
+      },
+      {
+        "accuracy": 0.5613333582878113
+      },
+      {
+        "accuracy": 0.5239999890327454
+      },
+      {
+        "accuracy": 0.5413333177566528
+      },
+      {
+        "accuracy": 0.5519999861717224
+      },
+      {
+        "accuracy": 0.5799999833106995
+      },
+      {
+        "accuracy": 0.5839999914169312
+      },
+      {
+        "accuracy": 0.6026666760444641
+      },
+      {
+        "accuracy": 0.6333333253860474
+      },
+      {
+        "accuracy": 0.6480000019073486
+      },
+      {
+        "accuracy": 0.6480000019073486
+      },
+      {
+        "accuracy": 0.6346666812896729
+      },
+      {
+        "accuracy": 0.6293333172798157
+      },
+      {
+        "accuracy": 0.6173333525657654
+      },
+      {
+        "accuracy": 0.6053333282470703
+      },
+      {
+        "accuracy": 0.5960000157356262
+      },
+      {
+        "accuracy": 0.5933333039283752
+      },
+      {
+        "accuracy": 0.6039999723434448
+      },
+      {
+        "accuracy": 0.6146666407585144
+      },
+      {
+        "accuracy": 0.6146666407585144
+      },
+      {
+        "accuracy": 0.6133333444595337
+      },
+      {
+        "accuracy": 0.6133333444595337
+      },
+      {
+        "accuracy": 0.6119999885559082
+      },
+      {
+        "accuracy": 0.6053333282470703
+      },
+      {
+        "accuracy": 0.6106666922569275
+      },
+      {
+        "accuracy": 0.6066666841506958
+      },
+      {
+        "accuracy": 0.6013333201408386
+      },
+      {
+        "accuracy": 0.5973333120346069
+      },
+      {
+        "accuracy": 0.6000000238418579
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6194285750389099,
+        "final_val_accuracy": 0.6000000238418579,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-mlp-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cpu",
+        "torch_version": "2.10.0+cpu",
+        "torch_cuda_version": null,
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "cuda_device_name": null
+      }
+    }
+  },
+  {
+    "name": "gradmax-spirals10",
+    "epochs": 30,
+    "final_train_loss": 0.6135348677635193,
+    "final_train_accuracy": 0.6019999980926514,
+    "final_val_accuracy": 0.5799999833106995,
+    "best_val_accuracy": 0.6013333201408386,
+    "adaptations_applied": 2,
+    "final_hidden_dim": 14,
+    "train_history": [
+      {
+        "loss": 0.720988929271698,
+        "accuracy": 0.5,
+        "grad_norm_input_layer": 0.18808598816394806
+      },
+      {
+        "loss": 0.7061999440193176,
+        "accuracy": 0.5,
+        "grad_norm_input_layer": 0.11724133044481277
+      },
+      {
+        "loss": 0.6970937252044678,
+        "accuracy": 0.5,
+        "grad_norm_input_layer": 0.06786671280860901
+      },
+      {
+        "loss": 0.6920662522315979,
+        "accuracy": 0.4985714256763458,
+        "grad_norm_input_layer": 0.026410076767206192
+      },
+      {
+        "loss": 0.689531683921814,
+        "accuracy": 0.492000013589859,
+        "grad_norm_input_layer": 0.022207560017704964
+      },
+      {
+        "loss": 0.688235342502594,
+        "accuracy": 0.5168571472167969,
+        "grad_norm_input_layer": 0.025707600638270378
+      },
+      {
+        "loss": 0.6874347925186157,
+        "accuracy": 0.5405714511871338,
+        "grad_norm_input_layer": 0.0318322516977787
+      },
+      {
+        "loss": 0.6867523193359375,
+        "accuracy": 0.5602856874465942,
+        "grad_norm_input_layer": 0.037334538996219635
+      },
+      {
+        "loss": 0.6860711574554443,
+        "accuracy": 0.5782856941223145,
+        "grad_norm_input_layer": 0.028809191659092903
+      },
+      {
+        "loss": 0.6829193234443665,
+        "accuracy": 0.5734285712242126,
+        "grad_norm_input_layer": 0.03282652795314789
+      },
+      {
+        "loss": 0.679895281791687,
+        "accuracy": 0.5979999899864197,
+        "grad_norm_input_layer": 0.02878442406654358
+      },
+      {
+        "loss": 0.6773684024810791,
+        "accuracy": 0.590571403503418,
+        "grad_norm_input_layer": 0.022527620196342468
+      },
+      {
+        "loss": 0.6754692196846008,
+        "accuracy": 0.5954285860061646,
+        "grad_norm_input_layer": 0.031150562688708305
+      },
+      {
+        "loss": 0.673531174659729,
+        "accuracy": 0.5988571643829346,
+        "grad_norm_input_layer": 0.03862204775214195
+      },
+      {
+        "loss": 0.6713175773620605,
+        "accuracy": 0.5977143049240112,
+        "grad_norm_input_layer": 0.04114833474159241
+      },
+      {
+        "loss": 0.6688690185546875,
+        "accuracy": 0.5948571562767029,
+        "grad_norm_input_layer": 0.04135970026254654
+      },
+      {
+        "loss": 0.6663257479667664,
+        "accuracy": 0.5931428670883179,
+        "grad_norm_input_layer": 0.035634517669677734
+      },
+      {
+        "loss": 0.662308394908905,
+        "accuracy": 0.6100000143051147,
+        "grad_norm_input_layer": 0.035354286432266235
+      },
+      {
+        "loss": 0.658454179763794,
+        "accuracy": 0.6128571629524231,
+        "grad_norm_input_layer": 0.049102138727903366
+      },
+      {
+        "loss": 0.6539077162742615,
+        "accuracy": 0.6128571629524231,
+        "grad_norm_input_layer": 0.04209228605031967
+      },
+      {
+        "loss": 0.6494743227958679,
+        "accuracy": 0.6122857332229614,
+        "grad_norm_input_layer": 0.04502132907509804
+      },
+      {
+        "loss": 0.6449089646339417,
+        "accuracy": 0.6142857074737549,
+        "grad_norm_input_layer": 0.04331328719854355
+      },
+      {
+        "loss": 0.640677273273468,
+        "accuracy": 0.6085714101791382,
+        "grad_norm_input_layer": 0.04318631440401077
+      },
+      {
+        "loss": 0.6370474100112915,
+        "accuracy": 0.6051428318023682,
+        "grad_norm_input_layer": 0.04751128330826759
+      },
+      {
+        "loss": 0.6335296630859375,
+        "accuracy": 0.6034285426139832,
+        "grad_norm_input_layer": 0.054422084242105484
+      },
+      {
+        "loss": 0.6297389268875122,
+        "accuracy": 0.5997142791748047,
+        "grad_norm_input_layer": 0.0583043172955513
+      },
+      {
+        "loss": 0.6256698369979858,
+        "accuracy": 0.595714271068573,
+        "grad_norm_input_layer": 0.06430356204509735
+      },
+      {
+        "loss": 0.6213785409927368,
+        "accuracy": 0.5988571643829346,
+        "grad_norm_input_layer": 0.062094785273075104
+      },
+      {
+        "loss": 0.617176353931427,
+        "accuracy": 0.5997142791748047,
+        "grad_norm_input_layer": 0.053012244403362274
+      },
+      {
+        "loss": 0.6135348677635193,
+        "accuracy": 0.6019999980926514,
+        "grad_norm_input_layer": 0.04277679696679115
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.5
+      },
+      {
+        "accuracy": 0.5
+      },
+      {
+        "accuracy": 0.5013333559036255
+      },
+      {
+        "accuracy": 0.4946666657924652
+      },
+      {
+        "accuracy": 0.5040000081062317
+      },
+      {
+        "accuracy": 0.518666684627533
+      },
+      {
+        "accuracy": 0.5519999861717224
+      },
+      {
+        "accuracy": 0.5773333311080933
+      },
+      {
+        "accuracy": 0.5706666707992554
+      },
+      {
+        "accuracy": 0.5826666951179504
+      },
+      {
+        "accuracy": 0.5680000185966492
+      },
+      {
+        "accuracy": 0.5546666383743286
+      },
+      {
+        "accuracy": 0.5533333420753479
+      },
+      {
+        "accuracy": 0.5493333339691162
+      },
+      {
+        "accuracy": 0.5479999780654907
+      },
+      {
+        "accuracy": 0.5640000104904175
+      },
+      {
+        "accuracy": 0.5879999995231628
+      },
+      {
+        "accuracy": 0.5960000157356262
+      },
+      {
+        "accuracy": 0.5933333039283752
+      },
+      {
+        "accuracy": 0.5933333039283752
+      },
+      {
+        "accuracy": 0.6013333201408386
+      },
+      {
+        "accuracy": 0.5946666598320007
+      },
+      {
+        "accuracy": 0.5853333473205566
+      },
+      {
+        "accuracy": 0.581333339214325
+      },
+      {
+        "accuracy": 0.5920000076293945
+      },
+      {
+        "accuracy": 0.590666651725769
+      },
+      {
+        "accuracy": 0.5960000157356262
+      },
+      {
+        "accuracy": 0.5986666679382324
+      },
+      {
+        "accuracy": 0.5960000157356262
+      },
+      {
+        "accuracy": 0.5799999833106995
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 4,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 6,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 6,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 7,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 7,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 7,
+        "event_type": "net2wider",
+        "params": {
+          "amount": 2
+        },
+        "metadata": {
+          "hidden_dim": 12,
+          "trigger": "gradient_norm",
+          "grad_norm_input_layer": 0.037334538996219635,
+          "paper": "gradmax-approx"
+        },
+        "before_state": {
+          "step": 8,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 10,
+            "hidden_dims": [
+              10
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 132,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 132,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 8,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            10
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 132,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 132,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 2,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 26,
+          "nonzero_parameter_count_delta": 26,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 8,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 9,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 9,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 9,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 10,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 10,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 10,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 11,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 11,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 11,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 12,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 12,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 12,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 13,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 13,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 13,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 14,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 14,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 14,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 15,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 15,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 15,
+        "event_type": "net2wider",
+        "params": {
+          "amount": 2
+        },
+        "metadata": {
+          "hidden_dim": 14,
+          "trigger": "gradient_norm",
+          "grad_norm_input_layer": 0.04135970026254654,
+          "paper": "gradmax-approx"
+        },
+        "before_state": {
+          "step": 16,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 12,
+            "hidden_dims": [
+              12
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 158,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 158,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 16,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            12
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 158,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 158,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 2,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 26,
+          "nonzero_parameter_count_delta": 26,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 16,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 17,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 17,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 17,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 18,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 18,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 18,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 19,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 19,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 19,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 20,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 20,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 20,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 21,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 21,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 21,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 22,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 22,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 22,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 23,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 23,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 23,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 24,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 24,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "max-hidden-reached"
+      },
+      {
+        "epoch": 24,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 25,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 25,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 25,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 26,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 26,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 26,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 27,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 27,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 27,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 28,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 28,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 28,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 29,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 29,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 29,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 30,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 30,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 14,
+            "hidden_dims": [
+              14
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 184,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 184,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            14
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 184,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 184,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6019999980926514,
+        "final_val_accuracy": 0.5799999833106995,
+        "adaptations_applied": 2,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        14
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "gradmax-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (14)",
+          "op": "linear",
+          "params": {
+            "features": 14,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cpu",
+        "torch_version": "2.10.0+cpu",
+        "torch_cuda_version": null,
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "cuda_device_name": null
+      }
+    }
+  },
+  {
+    "name": "weights-connections-spirals10",
+    "epochs": 30,
+    "final_train_loss": 0.6628162264823914,
+    "final_train_accuracy": 0.590571403503418,
+    "final_val_accuracy": 0.6053333282470703,
+    "best_val_accuracy": 0.6106666922569275,
+    "adaptations_applied": 6,
+    "final_hidden_dim": 18,
+    "train_history": [
+      {
+        "loss": 0.7319684028625488,
+        "accuracy": 0.46371427178382874,
+        "grad_norm_input_layer": 0.2911769151687622
+      },
+      {
+        "loss": 0.7024620771408081,
+        "accuracy": 0.5157142877578735,
+        "grad_norm_input_layer": 0.14009827375411987
+      },
+      {
+        "loss": 0.690034031867981,
+        "accuracy": 0.5080000162124634,
+        "grad_norm_input_layer": 0.06658191978931427
+      },
+      {
+        "loss": 0.6898705959320068,
+        "accuracy": 0.5342857241630554,
+        "grad_norm_input_layer": 0.09253532439470291
+      },
+      {
+        "loss": 0.6899173259735107,
+        "accuracy": 0.5497142672538757,
+        "grad_norm_input_layer": 0.10953520983457565
+      },
+      {
+        "loss": 0.6871010661125183,
+        "accuracy": 0.5554285645484924,
+        "grad_norm_input_layer": 0.1146552711725235
+      },
+      {
+        "loss": 0.6823878288269043,
+        "accuracy": 0.5580000281333923,
+        "grad_norm_input_layer": 0.09226366132497787
+      },
+      {
+        "loss": 0.6783777475357056,
+        "accuracy": 0.5657142996788025,
+        "grad_norm_input_layer": 0.05665968358516693
+      },
+      {
+        "loss": 0.6761870980262756,
+        "accuracy": 0.5508571267127991,
+        "grad_norm_input_layer": 0.03999914601445198
+      },
+      {
+        "loss": 0.6750316023826599,
+        "accuracy": 0.5485714077949524,
+        "grad_norm_input_layer": 0.038576774299144745
+      },
+      {
+        "loss": 0.6735274791717529,
+        "accuracy": 0.551714301109314,
+        "grad_norm_input_layer": 0.0361456423997879
+      },
+      {
+        "loss": 0.6725241541862488,
+        "accuracy": 0.5545714497566223,
+        "grad_norm_input_layer": 0.03489071875810623
+      },
+      {
+        "loss": 0.6730080842971802,
+        "accuracy": 0.5494285821914673,
+        "grad_norm_input_layer": 0.049505285918712616
+      },
+      {
+        "loss": 0.6718807220458984,
+        "accuracy": 0.5545714497566223,
+        "grad_norm_input_layer": 0.04862211272120476
+      },
+      {
+        "loss": 0.6720229387283325,
+        "accuracy": 0.5702857375144958,
+        "grad_norm_input_layer": 0.07616540044546127
+      },
+      {
+        "loss": 0.670484185218811,
+        "accuracy": 0.5774285793304443,
+        "grad_norm_input_layer": 0.06840576231479645
+      },
+      {
+        "loss": 0.6730292439460754,
+        "accuracy": 0.5497142672538757,
+        "grad_norm_input_layer": 0.08917715400457382
+      },
+      {
+        "loss": 0.6708183884620667,
+        "accuracy": 0.5588571429252625,
+        "grad_norm_input_layer": 0.07444203644990921
+      },
+      {
+        "loss": 0.6687889695167542,
+        "accuracy": 0.5742856860160828,
+        "grad_norm_input_layer": 0.047058284282684326
+      },
+      {
+        "loss": 0.6677143573760986,
+        "accuracy": 0.574571430683136,
+        "grad_norm_input_layer": 0.049291208386421204
+      },
+      {
+        "loss": 0.6744307279586792,
+        "accuracy": 0.5617142915725708,
+        "grad_norm_input_layer": 0.0785028263926506
+      },
+      {
+        "loss": 0.6730291843414307,
+        "accuracy": 0.5602856874465942,
+        "grad_norm_input_layer": 0.07868315279483795
+      },
+      {
+        "loss": 0.6710098385810852,
+        "accuracy": 0.5597142577171326,
+        "grad_norm_input_layer": 0.07169433683156967
+      },
+      {
+        "loss": 0.6689324975013733,
+        "accuracy": 0.5597142577171326,
+        "grad_norm_input_layer": 0.05897851660847664
+      },
+      {
+        "loss": 0.6672461032867432,
+        "accuracy": 0.5671428442001343,
+        "grad_norm_input_layer": 0.047627948224544525
+      },
+      {
+        "loss": 0.6661094427108765,
+        "accuracy": 0.574571430683136,
+        "grad_norm_input_layer": 0.041255123913288116
+      },
+      {
+        "loss": 0.6652754545211792,
+        "accuracy": 0.579714298248291,
+        "grad_norm_input_layer": 0.04072802886366844
+      },
+      {
+        "loss": 0.6645095348358154,
+        "accuracy": 0.5817142724990845,
+        "grad_norm_input_layer": 0.040212638676166534
+      },
+      {
+        "loss": 0.6636650562286377,
+        "accuracy": 0.586571455001831,
+        "grad_norm_input_layer": 0.04104328900575638
+      },
+      {
+        "loss": 0.6628162264823914,
+        "accuracy": 0.590571403503418,
+        "grad_norm_input_layer": 0.039671897888183594
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.5333333611488342
+      },
+      {
+        "accuracy": 0.5346666574478149
+      },
+      {
+        "accuracy": 0.5519999861717224
+      },
+      {
+        "accuracy": 0.5666666626930237
+      },
+      {
+        "accuracy": 0.5640000104904175
+      },
+      {
+        "accuracy": 0.5693333148956299
+      },
+      {
+        "accuracy": 0.5973333120346069
+      },
+      {
+        "accuracy": 0.5920000076293945
+      },
+      {
+        "accuracy": 0.5879999995231628
+      },
+      {
+        "accuracy": 0.5839999914169312
+      },
+      {
+        "accuracy": 0.5866666436195374
+      },
+      {
+        "accuracy": 0.581333339214325
+      },
+      {
+        "accuracy": 0.5879999995231628
+      },
+      {
+        "accuracy": 0.5986666679382324
+      },
+      {
+        "accuracy": 0.6106666922569275
+      },
+      {
+        "accuracy": 0.5946666598320007
+      },
+      {
+        "accuracy": 0.5640000104904175
+      },
+      {
+        "accuracy": 0.5706666707992554
+      },
+      {
+        "accuracy": 0.562666654586792
+      },
+      {
+        "accuracy": 0.5613333582878113
+      },
+      {
+        "accuracy": 0.5559999942779541
+      },
+      {
+        "accuracy": 0.5573333501815796
+      },
+      {
+        "accuracy": 0.5680000185966492
+      },
+      {
+        "accuracy": 0.5759999752044678
+      },
+      {
+        "accuracy": 0.5826666951179504
+      },
+      {
+        "accuracy": 0.5826666951179504
+      },
+      {
+        "accuracy": 0.5920000076293945
+      },
+      {
+        "accuracy": 0.6000000238418579
+      },
+      {
+        "accuracy": 0.6039999723434448
+      },
+      {
+        "accuracy": 0.6053333282470703
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 8,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 9,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 236,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 9,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 236,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 236,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 9,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.027810515835881233,
+          "target_sparsity": 0.08
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.08,
+          "threshold": 0.027810515835881233
+        },
+        "before_state": {
+          "step": 10,
+          "version": 0,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 0,
+            "nonzero_parameter_count": 236,
+            "weight_sparsity": 0.0,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ]
+          }
+        },
+        "after_state": {
+          "step": 10,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 17,
+            "nonzero_parameter_count": 219,
+            "weight_sparsity": 0.0787037037037037,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.027810515835881233,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 236,
+          "weight_sparsity": 0.0,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.0787037037037037,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 10,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 11,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 17,
+            "nonzero_parameter_count": 219,
+            "weight_sparsity": 0.0787037037037037,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.027810515835881233,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "after_state": {
+          "step": 11,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 17,
+            "nonzero_parameter_count": 219,
+            "weight_sparsity": 0.0787037037037037,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.027810515835881233,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 17,
+          "nonzero_parameter_count": 219,
+          "weight_sparsity": 0.0787037037037037,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 11,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.049374934285879135,
+          "target_sparsity": 0.1587037037037037
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.1587,
+          "threshold": 0.049374934285879135
+        },
+        "before_state": {
+          "step": 12,
+          "version": 1,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 17,
+            "nonzero_parameter_count": 219,
+            "weight_sparsity": 0.0787037037037037,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.027810515835881233,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "after_state": {
+          "step": 12,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 34,
+            "nonzero_parameter_count": 202,
+            "weight_sparsity": 0.1574074074074074,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.049374934285879135,
+            "target_weight_sparsity": 0.1587037037037037
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 17,
+          "nonzero_parameter_count": 219,
+          "weight_sparsity": 0.0787037037037037,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.0787037037037037,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 12,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 13,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 34,
+            "nonzero_parameter_count": 202,
+            "weight_sparsity": 0.1574074074074074,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.049374934285879135,
+            "target_weight_sparsity": 0.1587037037037037
+          }
+        },
+        "after_state": {
+          "step": 13,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 34,
+            "nonzero_parameter_count": 202,
+            "weight_sparsity": 0.1574074074074074,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.049374934285879135,
+            "target_weight_sparsity": 0.1587037037037037
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 34,
+          "nonzero_parameter_count": 202,
+          "weight_sparsity": 0.1574074074074074,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 13,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.06899179518222809,
+          "target_sparsity": 0.2374074074074074
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.2374,
+          "threshold": 0.06899179518222809
+        },
+        "before_state": {
+          "step": 14,
+          "version": 2,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 34,
+            "nonzero_parameter_count": 202,
+            "weight_sparsity": 0.1574074074074074,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.049374934285879135,
+            "target_weight_sparsity": 0.1587037037037037
+          }
+        },
+        "after_state": {
+          "step": 14,
+          "version": 3,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 51,
+            "nonzero_parameter_count": 185,
+            "weight_sparsity": 0.2361111111111111,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.06899179518222809,
+            "target_weight_sparsity": 0.2374074074074074
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 34,
+          "nonzero_parameter_count": 202,
+          "weight_sparsity": 0.1574074074074074,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.07870370370370369,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 14,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 15,
+          "version": 3,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 51,
+            "nonzero_parameter_count": 185,
+            "weight_sparsity": 0.2361111111111111,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.06899179518222809,
+            "target_weight_sparsity": 0.2374074074074074
+          }
+        },
+        "after_state": {
+          "step": 15,
+          "version": 3,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 51,
+            "nonzero_parameter_count": 185,
+            "weight_sparsity": 0.2361111111111111,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.06899179518222809,
+            "target_weight_sparsity": 0.2374074074074074
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 51,
+          "nonzero_parameter_count": 185,
+          "weight_sparsity": 0.2361111111111111,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 15,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.09855222702026367,
+          "target_sparsity": 0.3161111111111111
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.3161,
+          "threshold": 0.09855222702026367
+        },
+        "before_state": {
+          "step": 16,
+          "version": 3,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 51,
+            "nonzero_parameter_count": 185,
+            "weight_sparsity": 0.2361111111111111,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.06899179518222809,
+            "target_weight_sparsity": 0.2374074074074074
+          }
+        },
+        "after_state": {
+          "step": 16,
+          "version": 4,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 68,
+            "nonzero_parameter_count": 168,
+            "weight_sparsity": 0.3148148148148148,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.09855222702026367,
+            "target_weight_sparsity": 0.3161111111111111
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 51,
+          "nonzero_parameter_count": 185,
+          "weight_sparsity": 0.2361111111111111,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.07870370370370372,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 16,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 17,
+          "version": 4,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 68,
+            "nonzero_parameter_count": 168,
+            "weight_sparsity": 0.3148148148148148,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.09855222702026367,
+            "target_weight_sparsity": 0.3161111111111111
+          }
+        },
+        "after_state": {
+          "step": 17,
+          "version": 4,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 68,
+            "nonzero_parameter_count": 168,
+            "weight_sparsity": 0.3148148148148148,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.09855222702026367,
+            "target_weight_sparsity": 0.3161111111111111
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 68,
+          "nonzero_parameter_count": 168,
+          "weight_sparsity": 0.3148148148148148,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 17,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.1196371465921402,
+          "target_sparsity": 0.39481481481481484
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.3948,
+          "threshold": 0.1196371465921402
+        },
+        "before_state": {
+          "step": 18,
+          "version": 4,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 68,
+            "nonzero_parameter_count": 168,
+            "weight_sparsity": 0.3148148148148148,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.09855222702026367,
+            "target_weight_sparsity": 0.3161111111111111
+          }
+        },
+        "after_state": {
+          "step": 18,
+          "version": 5,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 85,
+            "nonzero_parameter_count": 151,
+            "weight_sparsity": 0.39351851851851855,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.1196371465921402,
+            "target_weight_sparsity": 0.39481481481481484
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 68,
+          "nonzero_parameter_count": 168,
+          "weight_sparsity": 0.3148148148148148,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.07870370370370372,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 18,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 19,
+          "version": 5,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 85,
+            "nonzero_parameter_count": 151,
+            "weight_sparsity": 0.39351851851851855,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.1196371465921402,
+            "target_weight_sparsity": 0.39481481481481484
+          }
+        },
+        "after_state": {
+          "step": 19,
+          "version": 5,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 85,
+            "nonzero_parameter_count": 151,
+            "weight_sparsity": 0.39351851851851855,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.1196371465921402,
+            "target_weight_sparsity": 0.39481481481481484
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 85,
+          "nonzero_parameter_count": 151,
+          "weight_sparsity": 0.39351851851851855,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "hidden_dims_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 19,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.14212003350257874,
+          "target_sparsity": 0.47351851851851856
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.4735,
+          "threshold": 0.14212003350257874
+        },
+        "before_state": {
+          "step": 20,
+          "version": 5,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 85,
+            "nonzero_parameter_count": 151,
+            "weight_sparsity": 0.39351851851851855,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.1196371465921402,
+            "target_weight_sparsity": 0.39481481481481484
+          }
+        },
+        "after_state": {
+          "step": 20,
+          "version": 6,
+          "metadata": {
+            "hidden_dim": 18,
+            "hidden_dims": [
+              18
+            ],
+            "num_hidden_layers": 1,
+            "parameter_count": 236,
+            "masked_weight_count": 102,
+            "nonzero_parameter_count": 134,
+            "weight_sparsity": 0.4722222222222222,
+            "device": "cpu",
+            "supported_events": [
+              "apply_weight_mask",
+              "grow_hidden",
+              "insert_hidden_layer",
+              "net2wider",
+              "prune_hidden",
+              "remove_hidden_layer"
+            ],
+            "mask_threshold": 0.14212003350257874,
+            "target_weight_sparsity": 0.47351851851851856
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "mlp",
+          "supports_dynamic_structure": true,
+          "supports_weight_masks": true,
+          "supported_event_types": [
+            "apply_weight_mask",
+            "grow_hidden",
+            "insert_hidden_layer",
+            "net2wider",
+            "prune_hidden",
+            "remove_hidden_layer"
+          ],
+          "weight_transfer_strategies": [
+            "copy_prefix_growth",
+            "copy_prefix_pruning",
+            "net2wider_function_preserving",
+            "identity_layer_insertion",
+            "matching_layer_copy_removal",
+            "global_magnitude_mask_pruning"
+          ],
+          "current_hidden_dims": [
+            18
+          ],
+          "current_num_hidden_layers": 1,
+          "parameter_count": 236,
+          "masked_weight_count": 85,
+          "nonzero_parameter_count": 151,
+          "weight_sparsity": 0.39351851851851855,
+          "device": "cpu"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": 0,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -17,
+          "weight_sparsity_delta": 0.07870370370370366,
+          "hidden_dims_changed": false
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "dense_warmup",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5657142996788025,
+        "final_val_accuracy": 0.5920000076293945,
+        "adaptations_applied": 0,
+        "metadata": {}
+      },
+      {
+        "name": "prune",
+        "epochs": 12,
+        "epoch_start": 9,
+        "epoch_end": 20,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.574571430683136,
+        "final_val_accuracy": 0.5613333582878113,
+        "adaptations_applied": 6,
+        "metadata": {}
+      },
+      {
+        "name": "finetune",
+        "epochs": 10,
+        "epoch_start": 21,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.590571403503418,
+        "final_val_accuracy": 0.6053333282470703,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 3
+    },
+    "architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "weights-connections-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cpu",
+        "torch_version": "2.10.0+cpu",
+        "torch_cuda_version": null,
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "cuda_device_name": null
+      }
+    }
+  }
+]

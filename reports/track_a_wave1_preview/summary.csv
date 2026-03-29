@@ -1,0 +1,5 @@
+name,method_type,num_runs,mean_final_val_accuracy,std_final_val_accuracy,mean_best_val_accuracy,std_best_val_accuracy,mean_adaptations_applied,mean_final_hidden_dim,best_seed,notes
+adanet-spirals10,workflow,5,0.6226666688919067,0.050505018645004306,0.6664000153541565,0.019013919745828684,3,16.4,7,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+fixed-mlp-spirals10,baseline,5,0.6130666613578797,0.05158742342295086,0.660266661643982,0.022012516379632162,0,,99,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,dynamic,5,0.6045333266258239,0.03155919625421267,0.6293333292007446,0.03611341525847139,2,14,7,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,dynamic,5,0.5861333250999451,0.018791962056009925,0.5989333271980286,0.0191629290683273,6,18,7,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False

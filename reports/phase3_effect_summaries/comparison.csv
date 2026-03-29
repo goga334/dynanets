@@ -1,0 +1,5 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-baseline,6,0.312082976102829,0.98046875,0.984375,0.984375,0,,baseline,
+net2wider-dynamic-baseline,6,0.30460047721862793,0.982421875,0.984375,0.984375,2,16,dynamic,adaptation=net2wider
+net2deeper-dynamic-baseline,6,0.2986275255680084,0.982421875,0.9921875,0.9921875,2,8,dynamic,adaptation=net2deeper
+width-pruning-dynamic-baseline,6,0.5149543285369873,0.962890625,0.9375,0.9375,3,6,dynamic,adaptation=prune_hidden

@@ -25,10 +25,14 @@ def summarize_run(
     summary: Any,
     final_hidden_dim: int | None = None,
     metadata: dict[str, Any] | None = None,
+    architecture_spec: dict[str, Any] | None = None,
+    architecture_graph: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     train_history = summary.train_history
     metric_history = summary.metric_history
     adaptation_history = summary.adaptation_history
+    stage_history = getattr(summary, "stage_history", [])
+    workflow_metadata = getattr(summary, "workflow_metadata", {})
 
     final_train = train_history[-1] if train_history else {}
     final_metrics = metric_history[-1] if metric_history else {}
@@ -46,6 +50,10 @@ def summarize_run(
         "train_history": train_history,
         "metric_history": metric_history,
         "adaptation_history": adaptation_history,
+        "stage_history": stage_history,
+        "workflow_metadata": workflow_metadata,
+        "architecture_spec": architecture_spec,
+        "architecture_graph": architecture_graph,
         "metadata": metadata or {},
     }
 
@@ -121,7 +129,44 @@ def write_markdown(path: Path, data: list[dict[str, Any]]) -> None:
         if notes:
             lines.append(f"- `{item['name']}`: {notes}")
 
-    lines.extend(["", "## Validation Accuracy By Epoch", "", _mermaid_xychart(data), ""])
+    stage_items = [item for item in data if item.get("stage_history")]
+    if stage_items:
+        lines.extend(["", "## Workflow Stages", ""])
+        for item in stage_items:
+            lines.append(f"### {item['name']}")
+            for stage in item["stage_history"]:
+                lines.append(
+                    f"- {stage['name']}: epochs={stage['epochs']}, range={stage['epoch_start']}..{stage['epoch_end']}, adaptation_enabled={stage['adaptation_enabled']}, final_val={stage['final_val_accuracy']}"
+                )
+            if item.get("workflow_metadata"):
+                lines.append(f"- workflow_metadata={item['workflow_metadata']}")
+            lines.append("")
+
+    lines.extend(["", "## Adaptation Timeline", ""])
+    for item in data:
+        events = [event for event in item["adaptation_history"] if event.get("applied")]
+        if not events:
+            continue
+        lines.append(f"### {item['name']}")
+        for event in events:
+            before_metadata = event.get("before_state", {}).get("metadata", {})
+            after_metadata = event.get("after_state", {}).get("metadata", {})
+            capabilities = event.get("model_capabilities", {}).get("supported_event_types", [])
+            effect = event.get("effect_summary", {})
+            lines.append(
+                f"- epoch {event['epoch'] + 1}: `{event['event_type']}` params={event.get('params', {})} effect={effect} before={before_metadata} after={after_metadata} capabilities={capabilities}"
+            )
+        lines.append("")
+
+    graph_items = [item for item in data if item.get("architecture_graph") or item.get("architecture_spec")]
+    if graph_items:
+        lines.extend(["## Architecture Graphs", ""])
+        for item in graph_items:
+            lines.append(f"### {item['name']}")
+            lines.append(mermaid_architecture(item.get("architecture_graph"), item.get("architecture_spec"), item["name"]))
+            lines.append("")
+
+    lines.extend(["## Validation Accuracy By Epoch", "", _mermaid_xychart(data), ""])
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -213,3 +258,42 @@ def _mermaid_xychart(data: list[dict[str, Any]]) -> str:
         chart.append(f'    line "{item["name"]}" [{values}]')
     chart.append("```")
     return "\n".join(chart)
+
+
+def mermaid_architecture(
+    architecture_graph: dict[str, Any] | None,
+    architecture_spec: dict[str, Any] | None,
+    name: str,
+) -> str:
+    if architecture_graph is not None:
+        nodes = architecture_graph.get("nodes", [])
+        edges = architecture_graph.get("edges", [])
+        lines = ["```mermaid", "flowchart LR"]
+        safe_name = name.replace('"', "'")
+        lines.append(f'    title["{safe_name}"]')
+        for node in nodes:
+            node_id = str(node["id"]).replace("-", "_")
+            label = str(node.get("label", node["id"])).replace('"', "'")
+            lines.append(f'    {node_id}["{label}"]')
+        for edge in edges:
+            source = str(edge["source"]).replace("-", "_")
+            target = str(edge["target"]).replace("-", "_")
+            lines.append(f'    {source} --> {target}')
+        lines.append("```")
+        return "\n".join(lines)
+
+    hidden_dims = list((architecture_spec or {}).get("hidden_dims", []))
+    nodes = [("input", f"Input ({(architecture_spec or {}).get('input_dim')})")]
+    for index, width in enumerate(hidden_dims, start=1):
+        nodes.append((f"hidden{index}", f"Hidden {index} ({width})"))
+    nodes.append(("output", f"Output ({(architecture_spec or {}).get('output_dim')})"))
+
+    lines = ["```mermaid", "flowchart LR"]
+    safe_name = name.replace('"', "'")
+    lines.append(f'    title["{safe_name}"]')
+    for node_id, label in nodes:
+        lines.append(f'    {node_id}["{label}"]')
+    for left, right in zip(nodes, nodes[1:]):
+        lines.append(f'    {left[0]} --> {right[0]}')
+    lines.append("```")
+    return "\n".join(lines)

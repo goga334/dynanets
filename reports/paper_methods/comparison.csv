@@ -1,0 +1,4 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-baseline,6,0.312082976102829,0.98046875,0.984375,0.984375,0,,baseline,
+net2wider-dynamic-baseline,6,0.30460047721862793,0.982421875,0.984375,0.984375,2,16,dynamic,adaptation=net2wider
+regularized-evolution-search,6,0.18528372049331665,0.9921875,0.9921875,0.9921875,0,,search,"best model params={'input_dim': 2, 'hidden_dim': 8, 'output_dim': 2, 'activation': 'relu', 'lr': 0.02}; evaluations=6; search=regularized_evolution"

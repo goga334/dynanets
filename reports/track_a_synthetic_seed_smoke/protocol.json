@@ -1,0 +1,89 @@
+{
+  "name": "track_a_synthetic_seed",
+  "track": "synthetic",
+  "description": "Seed benchmark protocol for the current dynamic-growth method family on the 10D two_spirals task. This is the Wave 0 protocol that hardens the existing methods before the full v1 subset lands.",
+  "seeds": [
+    7,
+    11,
+    23,
+    42,
+    99
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/fixed_mlp_spirals10.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "synthetic",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/net2wider_spirals10.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "synthetic",
+        "dynamic_baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/gradmax_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "growth",
+        "v1_subset"
+      ]
+    },
+    {
+      "config": "../experiments/examples/den_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "growth",
+        "v1_subset"
+      ]
+    },
+    {
+      "config": "../experiments/examples/nest_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "grow_prune",
+        "v1_subset"
+      ]
+    },
+    {
+      "config": "../experiments/examples/dynamic_nodes_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "growth",
+        "v1_subset"
+      ]
+    },
+    {
+      "config": "../experiments/examples/edge_growth_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "growth",
+        "v1_subset"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "two_spirals_10d",
+    "epochs": 12,
+    "rows": 5000
+  },
+  "metadata": {
+    "roadmap_wave": "wave_0",
+    "roadmap_phase": "phase_3_phase_4"
+  }
+}

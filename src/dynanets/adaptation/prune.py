@@ -12,6 +12,9 @@ class WidthPruningAdaptation(AdaptationMethod):
     prune_by: int = 2
     min_hidden_dim: int = 4
 
+    def supported_event_types(self) -> set[str]:
+        return {"prune_hidden"}
+
     def maybe_adapt(
         self,
         model: DynamicNeuralModel,
@@ -27,10 +30,7 @@ class WidthPruningAdaptation(AdaptationMethod):
             return AdaptationResult(applied=False, reason="min-hidden-reached")
 
         amount = min(self.prune_by, current_hidden - self.min_hidden_dim)
-        event = AdaptationEvent(
-            event_type="prune_hidden",
-            params={"amount": amount, "min_width": self.min_hidden_dim},
-        )
+        event = AdaptationEvent(event_type="prune_hidden", params={"amount": amount, "min_width": self.min_hidden_dim})
         model.apply_adaptation(event)
         return AdaptationResult(
             applied=True,

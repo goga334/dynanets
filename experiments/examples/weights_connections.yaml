@@ -1,0 +1,43 @@
+name: weights-connections-baseline
+dataset:
+  name: gaussian_blobs
+  params:
+    train_size: 256
+    validation_size: 128
+    test_size: 128
+    seed: 42
+model:
+  name: dynamic_mlp_classifier
+  params:
+    input_dim: 2
+    hidden_dim: 12
+    output_dim: 2
+    activation: relu
+    lr: 0.02
+metrics:
+  - name: accuracy
+    params: {}
+adaptation:
+  name: weights_connections
+  params:
+    start_epoch: 2
+    prune_every_n_epochs: 1
+    prune_fraction: 0.12
+    max_sparsity: 0.55
+workflow:
+  name: scheduled
+  params:
+    stages:
+      - name: dense_warmup
+        epochs: 2
+        adaptation_enabled: false
+      - name: prune
+        epochs: 2
+        adaptation_enabled: true
+      - name: finetune
+        epochs: 2
+        adaptation_enabled: false
+trainer:
+  epochs: 6
+runtime:
+  seed: 42

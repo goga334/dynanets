@@ -44,6 +44,7 @@ class ExperimentConfig:
     metrics: list[ComponentConfig] = field(default_factory=list)
     adaptation: ComponentConfig | None = None
     search: ComponentConfig | None = None
+    workflow: ComponentConfig | None = None
     trainer: dict[str, Any] = field(default_factory=dict)
     runtime: dict[str, Any] = field(default_factory=dict)
 
@@ -66,6 +67,10 @@ class ExperimentConfig:
         seed = self.runtime.get("seed")
         if seed is not None and not isinstance(seed, int):
             raise ConfigValidationError("Field 'runtime.seed' must be an integer when provided")
+
+        device = self.runtime.get("device")
+        if device is not None and (not isinstance(device, str) or not device.strip()):
+            raise ConfigValidationError("Field 'runtime.device' must be a non-empty string when provided")
 
         if self.search is not None and self.adaptation is not None:
             raise ConfigValidationError(
@@ -92,6 +97,7 @@ class ExperimentConfig:
             metrics=[ComponentConfig.from_dict(item, section=f"metrics[{index}]") for index, item in enumerate(metrics_data)],
             adaptation=ComponentConfig.from_dict(data["adaptation"], section="adaptation") if data.get("adaptation") else None,
             search=ComponentConfig.from_dict(data["search"], section="search") if data.get("search") else None,
+            workflow=ComponentConfig.from_dict(data["workflow"], section="workflow") if data.get("workflow") else None,
             trainer=data.get("trainer", {}),
             runtime=data.get("runtime", {}),
         )

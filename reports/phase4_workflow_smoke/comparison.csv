@@ -1,0 +1,2 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+nest-staged-baseline,6,0.25582045316696167,0.9921875,1.0,1.0,4,13,dynamic,adaptation=nest; workflow=scheduled

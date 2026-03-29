@@ -1,0 +1,8 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-spirals,30,0.6651051044464111,0.5673828125,0.60546875,0.609375,0,,baseline,
+net2wider-spirals,30,0.662632405757904,0.5556640625,0.546875,0.55859375,2,16,dynamic,adaptation=net2wider
+gradmax-spirals,30,0.6609936356544495,0.5927734375,0.58203125,0.6171875,3,14,dynamic,adaptation=gradmax
+den-spirals,30,0.6643222570419312,0.5576171875,0.56640625,0.56640625,2,12,dynamic,adaptation=den
+nest-spirals,30,0.6627721786499023,0.5966796875,0.56640625,0.59375,3,8,dynamic,adaptation=nest
+dynamic-nodes-spirals,30,0.6603584885597229,0.5986328125,0.6171875,0.6171875,1,8,dynamic,adaptation=dynamic_nodes
+edge-growth-spirals,30,0.6701651811599731,0.5791015625,0.56640625,0.578125,3,12,dynamic,adaptation=edge_growth

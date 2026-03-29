@@ -13,6 +13,9 @@ class Net2WiderAdaptation(AdaptationMethod):
     max_hidden_dim: int = 128
     seed: int = 42
 
+    def supported_event_types(self) -> set[str]:
+        return {"net2wider"}
+
     def maybe_adapt(
         self,
         model: DynamicNeuralModel,

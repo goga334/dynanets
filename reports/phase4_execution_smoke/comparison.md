@@ -1,0 +1,59 @@
+# Baseline Comparison
+
+| Experiment | Type | Epochs | Final train acc | Final val acc | Best val acc | Adaptations | Final hidden dim |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| fixed-mlp-baseline | baseline | 6 | 0.9805 | 0.9844 | 0.9844 | 0 | - |
+| random-search-baseline | search | 6 | 0.9922 | 0.9922 | 0.9922 | 0 | - |
+
+## Validation Accuracy
+
+![Validation accuracy](validation_accuracy.png)
+
+## Training Accuracy
+
+![Training accuracy](training_accuracy.png)
+
+## Training Loss
+
+![Training loss](training_loss.png)
+
+## Experiment Notes
+
+- `random-search-baseline`: best model params={'input_dim': 2, 'hidden_dim': 8, 'output_dim': 2, 'activation': 'relu', 'lr': 0.02, 'hidden_dims': [8]}; evaluations=6; search=random_search
+
+## Adaptation Timeline
+
+## Architecture Graphs
+
+### fixed-mlp-baseline
+```mermaid
+flowchart LR
+    title["fixed-mlp-baseline"]
+    input["Input (2)"]
+    hidden_1["Hidden 1 (8)"]
+    output["Output (2)"]
+    input --> hidden_1
+    hidden_1 --> output
+```
+
+### random-search-baseline
+```mermaid
+flowchart LR
+    title["random-search-baseline"]
+    input["Input (2)"]
+    hidden_1["Hidden 1 (8)"]
+    output["Output (2)"]
+    input --> hidden_1
+    hidden_1 --> output
+```
+
+## Validation Accuracy By Epoch
+
+```mermaid
+xychart-beta
+    title "Validation Accuracy Comparison"
+    x-axis "Epoch" [1, 2, 3, 4, 5, 6]
+    y-axis "Accuracy" 0 --> 1.04
+    line "fixed-mlp-baseline" [0.9062, 0.9141, 0.9609, 0.9688, 0.9688, 0.9844]
+    line "random-search-baseline" [0.9062, 0.9844, 0.9922, 0.9922, 0.9844, 0.9922]
+```

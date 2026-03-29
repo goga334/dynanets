@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+from dynanets.architecture.graph import ArchitectureEdge, ArchitectureGraph, ArchitectureNode
+
 
 @dataclass(slots=True)
 class DenseLayerSpec:
@@ -64,6 +66,41 @@ class MLPArchitectureSpec:
                 )
             )
         return layers
+
+    def to_graph(self, name: str = "mlp") -> ArchitectureGraph:
+        self.validate()
+        nodes: list[ArchitectureNode] = [
+            ArchitectureNode(
+                id="input",
+                label=f"Input ({self.input_dim})",
+                op="input",
+                params={"features": self.input_dim},
+            )
+        ]
+        for index, width in enumerate(self.hidden_dims, start=1):
+            nodes.append(
+                ArchitectureNode(
+                    id=f"hidden_{index}",
+                    label=f"Hidden {index} ({width})",
+                    op="linear",
+                    params={"features": width, "activation": self.hidden_activation, "bias": self.bias},
+                )
+            )
+        nodes.append(
+            ArchitectureNode(
+                id="output",
+                label=f"Output ({self.output_dim})",
+                op="linear",
+                params={"features": self.output_dim, "activation": self.output_activation, "bias": self.bias},
+            )
+        )
+        edges = [ArchitectureEdge(source=left.id, target=right.id) for left, right in zip(nodes, nodes[1:])]
+        return ArchitectureGraph(
+            name=name,
+            nodes=nodes,
+            edges=edges,
+            metadata={"family": "mlp", **dict(self.metadata)},
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

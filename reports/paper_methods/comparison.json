@@ -1,0 +1,224 @@
+[
+  {
+    "name": "fixed-mlp-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.312082976102829,
+    "final_train_accuracy": 0.98046875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.335267573595047,
+        "accuracy": 0.962890625
+      },
+      {
+        "loss": 0.32321879267692566,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.312082976102829,
+        "accuracy": 0.98046875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9609375
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": [],
+    "metadata": {
+      "method_type": "baseline",
+      "notes": null
+    }
+  },
+  {
+    "name": "net2wider-dynamic-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.30460047721862793,
+    "final_train_accuracy": 0.982421875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 2,
+    "final_hidden_dim": 16,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.33312857151031494,
+        "accuracy": 0.962890625
+      },
+      {
+        "loss": 0.3191213309764862,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.30460047721862793,
+        "accuracy": 0.982421875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.9765625
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 1,
+        "applied": true,
+        "changes": {
+          "action": "net2wider",
+          "amount": 4,
+          "hidden_dim": 12
+        }
+      },
+      {
+        "epoch": 2,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 3,
+        "applied": true,
+        "changes": {
+          "action": "net2wider",
+          "amount": 4,
+          "hidden_dim": 16
+        }
+      },
+      {
+        "epoch": 4,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 5,
+        "applied": false,
+        "changes": {}
+      }
+    ],
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=net2wider"
+    }
+  },
+  {
+    "name": "regularized-evolution-search",
+    "epochs": 6,
+    "final_train_loss": 0.18528372049331665,
+    "final_train_accuracy": 0.9921875,
+    "final_val_accuracy": 0.9921875,
+    "best_val_accuracy": 0.9921875,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.5299224853515625,
+        "accuracy": 0.693359375
+      },
+      {
+        "loss": 0.4253596365451813,
+        "accuracy": 0.900390625
+      },
+      {
+        "loss": 0.34149301052093506,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.27569612860679626,
+        "accuracy": 0.98828125
+      },
+      {
+        "loss": 0.22485947608947754,
+        "accuracy": 0.9921875
+      },
+      {
+        "loss": 0.18528372049331665,
+        "accuracy": 0.9921875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.984375
+      },
+      {
+        "accuracy": 0.9921875
+      },
+      {
+        "accuracy": 0.9921875
+      },
+      {
+        "accuracy": 0.984375
+      },
+      {
+        "accuracy": 0.9921875
+      }
+    ],
+    "adaptation_history": [],
+    "metadata": {
+      "method_type": "search",
+      "notes": "best model params={'input_dim': 2, 'hidden_dim': 8, 'output_dim': 2, 'activation': 'relu', 'lr': 0.02}; evaluations=6; search=regularized_evolution"
+    }
+  }
+]

@@ -51,6 +51,48 @@ def test_regularized_evolution_search_runs_end_to_end() -> None:
 
 
 
+def test_random_search_runs_end_to_end() -> None:
+    config = ExperimentConfig.from_dict(
+        {
+            "name": "random-search-test",
+            "dataset": {"name": "gaussian_blobs", "params": {"train_size": 64, "validation_size": 32}},
+            "model": {
+                "name": "torch_mlp_classifier",
+                "params": {"input_dim": 2, "hidden_dim": 4, "output_dim": 2, "lr": 0.01},
+            },
+            "metrics": [{"name": "accuracy", "params": {}}],
+            "search": {
+                "name": "random_search",
+                "params": {
+                    "hidden_dim_choices": [4, 8],
+                    "activation_choices": ["relu", "tanh"],
+                    "lr_choices": [0.01],
+                    "cycles": 3,
+                    "seed": 9,
+                    "metric": "accuracy",
+                },
+            },
+            "trainer": {"epochs": 2},
+        }
+    )
+
+    registries = default_registries()
+    builder = ExperimentBuilder(
+        datasets=registries["datasets"],
+        models=registries["models"],
+        metrics=registries["metrics"],
+        adaptations=registries["adaptations"],
+        searches=registries["searches"],
+    )
+    experiment = builder.build(config)
+
+    result = SearchRunner().run(config=config, experiment=experiment, registries=registries)
+
+    assert result.best_score >= 0.0
+    assert len(result.evaluation_history) == 3
+
+
+
 def test_mlp_search_space_sampling_and_mutation() -> None:
     import random
 

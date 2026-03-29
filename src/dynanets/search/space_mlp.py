@@ -27,7 +27,7 @@ class MLPSearchSpace(SearchSpace):
         )
         return SearchProposal(
             model_overrides={"hidden_dims": list(spec.hidden_dims), "activation": spec.hidden_activation, "lr": lr},
-            metadata={"architecture_spec": spec.to_dict(), "lr": lr},
+            metadata={"architecture_spec": spec.to_dict(), "architecture_graph": spec.to_graph(name="mlp_search_candidate").to_dict(), "lr": lr},
         )
 
     def mutate(self, proposal: SearchProposal, rng: Any) -> SearchProposal:
@@ -60,5 +60,5 @@ class MLPSearchSpace(SearchSpace):
         )
         return SearchProposal(
             model_overrides={"hidden_dims": list(spec.hidden_dims), "activation": spec.hidden_activation, "lr": lr},
-            metadata={"architecture_spec": spec.to_dict(), "lr": lr},
+            metadata={"architecture_spec": spec.to_dict(), "architecture_graph": spec.to_graph(name="mlp_search_candidate").to_dict(), "lr": lr},
         )

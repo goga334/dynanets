@@ -1,0 +1,192 @@
+[
+  {
+    "name": "gradmax-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=gradmax",
+    "num_runs": 2,
+    "seeds": [
+      7,
+      11
+    ],
+    "mean_final_val_accuracy": 0.6153333485126495,
+    "std_final_val_accuracy": 0.044666677713394165,
+    "mean_best_val_accuracy": 0.6533333361148834,
+    "std_best_val_accuracy": 0.04133334755897522,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 14,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6600000262260437,
+    "best_seed_best_val_accuracy": 0.6946666836738586,
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        14
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "gradmax-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (14)",
+          "op": "linear",
+          "params": {
+            "features": 14,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6600000262260437,
+        "best_val_accuracy": 0.6946666836738586,
+        "adaptations_applied": 2
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5706666707992554,
+        "best_val_accuracy": 0.6119999885559082,
+        "adaptations_applied": 2
+      }
+    ]
+  },
+  {
+    "name": "fixed-mlp-spirals10",
+    "method_type": "baseline",
+    "notes": null,
+    "num_runs": 2,
+    "seeds": [
+      7,
+      11
+    ],
+    "mean_final_val_accuracy": 0.6119999885559082,
+    "std_final_val_accuracy": 0.01466667652130127,
+    "mean_best_val_accuracy": 0.6539999842643738,
+    "std_best_val_accuracy": 0.013999998569488525,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.5973333120346069,
+    "best_seed_best_val_accuracy": 0.6679999828338623,
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "fixed-mlp-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5973333120346069,
+        "best_val_accuracy": 0.6679999828338623,
+        "adaptations_applied": 0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6266666650772095,
+        "best_val_accuracy": 0.6399999856948853,
+        "adaptations_applied": 0
+      }
+    ]
+  }
+]

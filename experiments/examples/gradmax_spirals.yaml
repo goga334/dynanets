@@ -1,0 +1,33 @@
+name: gradmax-spirals
+dataset:
+  name: two_spirals
+  params:
+    train_size: 1024
+    validation_size: 256
+    test_size: 256
+    turns: 2.0
+    noise: 0.16
+    seed: 42
+model:
+  name: dynamic_mlp_classifier
+  params:
+    input_dim: 2
+    hidden_dim: 8
+    output_dim: 2
+    activation: relu
+    lr: 0.01
+metrics:
+  - name: accuracy
+    params: {}
+adaptation:
+  name: gradmax
+  params:
+    every_n_epochs: 8
+    grow_by: 2
+    max_hidden_dim: 14
+    grad_norm_threshold: 0.01
+    min_epochs_between_growth: 8
+trainer:
+  epochs: 30
+runtime:
+  seed: 42

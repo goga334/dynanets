@@ -13,6 +13,9 @@ class LayerInsertionAdaptation(AdaptationMethod):
     max_layers: int = 3
     layer_index: int = 1
 
+    def supported_event_types(self) -> set[str]:
+        return {"insert_hidden_layer"}
+
     def maybe_adapt(
         self,
         model: DynamicNeuralModel,
@@ -28,10 +31,7 @@ class LayerInsertionAdaptation(AdaptationMethod):
             return AdaptationResult(applied=False, reason="max-layers-reached")
 
         insertion_index = min(self.layer_index, len(hidden_dims))
-        event = AdaptationEvent(
-            event_type="insert_hidden_layer",
-            params={"layer_index": insertion_index, "width": self.width},
-        )
+        event = AdaptationEvent(event_type="insert_hidden_layer", params={"layer_index": insertion_index, "width": self.width})
         model.apply_adaptation(event)
         updated_dims = list(hidden_dims)
         updated_dims.insert(insertion_index, self.width)

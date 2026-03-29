@@ -15,12 +15,15 @@ class Registry(Generic[T]):
             raise ValueError(f"'{name}' is already registered")
         self._items[name] = factory
 
-    def build(self, name: str, **params: object) -> T:
+    def get(self, name: str) -> Callable[..., T]:
         try:
-            factory = self._items[name]
+            return self._items[name]
         except KeyError as exc:
             available = ", ".join(sorted(self._items)) or "<empty>"
             raise KeyError(f"Unknown component '{name}'. Available: {available}") from exc
+
+    def build(self, name: str, **params: object) -> T:
+        factory = self.get(name)
         return factory(**params)
 
     def names(self) -> list[str]:

@@ -1,0 +1,33 @@
+name: edge-growth-circles
+dataset:
+  name: concentric_circles
+  params:
+    train_size: 1024
+    validation_size: 256
+    test_size: 256
+    radial_noise: 0.18
+    seed: 42
+model:
+  name: dynamic_mlp_classifier
+  params:
+    input_dim: 2
+    hidden_dim: 8
+    output_dim: 2
+    activation: relu
+    lr: 0.01
+metrics:
+  - name: accuracy
+    params: {}
+adaptation:
+  name: edge_growth
+  params:
+    accuracy_floor: 0.93
+    grow_by: 2
+    max_hidden_dim: 12
+    max_layers: 2
+    low_accuracy_patience: 4
+    layer_width: 8
+trainer:
+  epochs: 30
+runtime:
+  seed: 42

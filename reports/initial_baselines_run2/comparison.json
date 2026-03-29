@@ -1,0 +1,159 @@
+[
+  {
+    "name": "fixed-mlp-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.312082976102829,
+    "final_train_accuracy": 0.98046875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625
+      },
+      {
+        "loss": 0.335267573595047,
+        "accuracy": 0.962890625
+      },
+      {
+        "loss": 0.32321879267692566,
+        "accuracy": 0.974609375
+      },
+      {
+        "loss": 0.312082976102829,
+        "accuracy": 0.98046875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9609375
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": []
+  },
+  {
+    "name": "minimal-experiment",
+    "epochs": 6,
+    "final_train_loss": 0.654205858707428,
+    "final_train_accuracy": 0.509765625,
+    "final_val_accuracy": 0.4765625,
+    "best_val_accuracy": 0.953125,
+    "adaptations_applied": 3,
+    "final_hidden_dim": 20,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125
+      },
+      {
+        "loss": 0.4092505872249603,
+        "accuracy": 0.671875
+      },
+      {
+        "loss": 0.3656502664089203,
+        "accuracy": 0.873046875
+      },
+      {
+        "loss": 0.7558063268661499,
+        "accuracy": 0.509765625
+      },
+      {
+        "loss": 0.654205858707428,
+        "accuracy": 0.509765625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.8828125
+      },
+      {
+        "accuracy": 0.953125
+      },
+      {
+        "accuracy": 0.4765625
+      },
+      {
+        "accuracy": 0.4765625
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 1,
+        "applied": true,
+        "changes": {
+          "action": "grow_hidden",
+          "amount": 4,
+          "hidden_dim": 12
+        }
+      },
+      {
+        "epoch": 2,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 3,
+        "applied": true,
+        "changes": {
+          "action": "grow_hidden",
+          "amount": 4,
+          "hidden_dim": 16
+        }
+      },
+      {
+        "epoch": 4,
+        "applied": false,
+        "changes": {}
+      },
+      {
+        "epoch": 5,
+        "applied": true,
+        "changes": {
+          "action": "grow_hidden",
+          "amount": 4,
+          "hidden_dim": 20
+        }
+      }
+    ]
+  }
+]

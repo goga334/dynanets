@@ -133,13 +133,36 @@ def test_reporting_outputs_are_consistent(tmp_path: Path) -> None:
                 "train_history": [{"loss": 0.9, "accuracy": 0.5}, {"loss": 0.4, "accuracy": 0.8}],
                 "metric_history": [{"accuracy": 0.55}, {"accuracy": 0.82}],
                 "adaptation_history": [
-                    {"epoch": 0, "event_type": None, "params": {}, "metadata": {}, "applied": False, "reason": "schedule-not-reached"},
-                    {"epoch": 1, "event_type": "net2wider", "params": {"amount": 2}, "metadata": {"hidden_dim": 10}, "applied": True, "reason": None},
+                    {
+                        "epoch": 0,
+                        "event_type": None,
+                        "params": {},
+                        "metadata": {},
+                        "before_state": {"step": 1, "version": 0, "metadata": {"hidden_dim": 8, "hidden_dims": [8], "num_hidden_layers": 1}},
+                        "after_state": {"step": 1, "version": 0, "metadata": {"hidden_dim": 8, "hidden_dims": [8], "num_hidden_layers": 1}},
+                        "model_capabilities": {"supported_event_types": ["net2wider"]},
+                        "effect_summary": {"version_delta": 0, "hidden_dim_delta": 0, "num_hidden_layers_delta": 0, "structural_change": False},
+                        "applied": False,
+                        "reason": "schedule-not-reached",
+                    },
+                    {
+                        "epoch": 1,
+                        "event_type": "net2wider",
+                        "params": {"amount": 2},
+                        "metadata": {"hidden_dim": 10},
+                        "before_state": {"step": 2, "version": 0, "metadata": {"hidden_dim": 8, "hidden_dims": [8], "num_hidden_layers": 1}},
+                        "after_state": {"step": 2, "version": 1, "metadata": {"hidden_dim": 10, "hidden_dims": [10], "num_hidden_layers": 1}},
+                        "model_capabilities": {"supported_event_types": ["net2wider", "grow_hidden"]},
+                        "effect_summary": {"version_delta": 1, "hidden_dim_delta": 2, "num_hidden_layers_delta": 0, "structural_change": True},
+                        "applied": True,
+                        "reason": None,
+                    },
                 ],
             },
         )(),
         final_hidden_dim=12,
         metadata={"method_type": "dynamic", "notes": "demo notes"},
+        architecture_spec={"input_dim": 2, "hidden_dims": [10], "output_dim": 2},
     )
     data = [report]
 
@@ -154,8 +177,66 @@ def test_reporting_outputs_are_consistent(tmp_path: Path) -> None:
 
     assert json_data[0]["final_val_accuracy"] == 0.82
     assert json_data[0]["adaptation_history"][1]["event_type"] == "net2wider"
+    assert json_data[0]["adaptation_history"][1]["before_state"]["metadata"]["hidden_dim"] == 8
+    assert json_data[0]["adaptation_history"][1]["after_state"]["metadata"]["hidden_dim"] == 10
+    assert json_data[0]["adaptation_history"][1]["effect_summary"]["hidden_dim_delta"] == 2
     assert "demo-experiment" in csv_text
     assert "0.8200" in markdown_text
+    assert "effect={'version_delta': 1, 'hidden_dim_delta': 2" in markdown_text
+    assert "## Architecture Graphs" in markdown_text
+    assert "Hidden 1 (10)" in markdown_text
+    assert "before={'hidden_dim': 8, 'hidden_dims': [8], 'num_hidden_layers': 1}" in markdown_text
+    assert "after={'hidden_dim': 10, 'hidden_dims': [10], 'num_hidden_layers': 1}" in markdown_text
     assert (tmp_path / "validation_accuracy.png").exists()
     assert (tmp_path / "training_accuracy.png").exists()
     assert (tmp_path / "training_loss.png").exists()
+
+
+
+def test_training_summary_records_architecture_snapshots_capabilities_and_effects() -> None:
+    config = ExperimentConfig.from_dict(
+        {
+            "name": "timeline-run",
+            "dataset": {"name": "gaussian_blobs", "params": {"train_size": 64, "validation_size": 32, "seed": 11}},
+            "model": {
+                "name": "dynamic_mlp_classifier",
+                "params": {"input_dim": 2, "hidden_dim": 4, "output_dim": 2, "lr": 0.01},
+            },
+            "metrics": [{"name": "accuracy", "params": {}}],
+            "adaptation": {
+                "name": "net2wider",
+                "params": {"every_n_epochs": 1, "grow_by": 2, "max_hidden_dim": 6, "seed": 5},
+            },
+            "trainer": {"epochs": 2},
+            "runtime": {"seed": 99},
+        }
+    )
+
+    set_global_seed(config.runtime["seed"])
+    registries = default_registries()
+    builder = ExperimentBuilder(
+        datasets=registries["datasets"],
+        models=registries["models"],
+        metrics=registries["metrics"],
+        adaptations=registries["adaptations"],
+        searches=registries["searches"],
+    )
+    experiment = builder.build(config)
+    dataset = experiment.dataset.build()
+    summary = TrainingRunner().run(
+        model=experiment.model,
+        dataset=dataset,
+        metrics=experiment.metrics,
+        epochs=2,
+        adaptation=experiment.adaptation,
+    )
+
+    first_event = next(event for event in summary.adaptation_history if event["applied"])
+    assert first_event["before_state"]["metadata"]["hidden_dim"] == 4
+    assert first_event["after_state"]["metadata"]["hidden_dim"] == 6
+    assert first_event["after_state"]["version"] == 1
+    assert first_event["model_capabilities"]["architecture_family"] == "mlp"
+    assert "net2wider" in first_event["model_capabilities"]["supported_event_types"]
+    assert first_event["effect_summary"]["structural_change"] is True
+    assert first_event["effect_summary"]["hidden_dim_delta"] == 2
+    assert first_event["effect_summary"]["num_hidden_layers_delta"] == 0

@@ -1,0 +1,21 @@
+name,seed,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-spirals10,7,0.5973333120346069,0.6679999828338623,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+fixed-mlp-spirals10,11,0.6266666650772095,0.6399999856948853,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+fixed-mlp-spirals10,23,0.5413333177566528,0.6453333497047424,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+fixed-mlp-spirals10,42,0.6000000238418579,0.6480000019073486,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+fixed-mlp-spirals10,99,0.699999988079071,0.699999988079071,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,7,0.6600000262260437,0.6946666836738586,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,11,0.5706666707992554,0.6119999885559082,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,23,0.5973333120346069,0.5973333120346069,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,42,0.5799999833106995,0.6013333201408386,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,99,0.6146666407585144,0.6413333415985107,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,7,0.6986666917800903,0.6986666917800903,3,18,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,11,0.6413333415985107,0.6506666541099548,3,18,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,23,0.5479999780654907,0.656000018119812,3,14,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,42,0.6333333253860474,0.6493333578109741,3,18,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,99,0.5920000076293945,0.6773333549499512,3,14,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,7,0.6079999804496765,0.625333309173584,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,11,0.5733333230018616,0.5879999995231628,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,23,0.5586666464805603,0.5693333148956299,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,42,0.6053333282470703,0.6106666922569275,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,99,0.5853333473205566,0.6013333201408386,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False

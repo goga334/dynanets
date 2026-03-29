@@ -1,0 +1,260 @@
+[
+  {
+    "name": "fixed-mlp-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.312082976102829,
+    "final_train_accuracy": 0.98046875,
+    "final_val_accuracy": 0.984375,
+    "best_val_accuracy": 0.984375,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.37908175587654114,
+        "accuracy": 0.861328125,
+        "grad_norm_input_layer": 0.22639970481395721
+      },
+      {
+        "loss": 0.3629073202610016,
+        "accuracy": 0.908203125,
+        "grad_norm_input_layer": 0.19697672128677368
+      },
+      {
+        "loss": 0.34839850664138794,
+        "accuracy": 0.947265625,
+        "grad_norm_input_layer": 0.17067985236644745
+      },
+      {
+        "loss": 0.335267573595047,
+        "accuracy": 0.962890625,
+        "grad_norm_input_layer": 0.1478898525238037
+      },
+      {
+        "loss": 0.32321879267692566,
+        "accuracy": 0.974609375,
+        "grad_norm_input_layer": 0.1284264773130417
+      },
+      {
+        "loss": 0.312082976102829,
+        "accuracy": 0.98046875,
+        "grad_norm_input_layer": 0.111709363758564
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.9140625
+      },
+      {
+        "accuracy": 0.9609375
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.96875
+      },
+      {
+        "accuracy": 0.984375
+      }
+    ],
+    "adaptation_history": [],
+    "architecture_spec": {
+      "input_dim": 2,
+      "output_dim": 2,
+      "hidden_dims": [
+        8
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-mlp-baseline",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (2)",
+          "op": "input",
+          "params": {
+            "features": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (8)",
+          "op": "linear",
+          "params": {
+            "features": 8,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": null
+    }
+  },
+  {
+    "name": "random-search-baseline",
+    "epochs": 6,
+    "final_train_loss": 0.18528372049331665,
+    "final_train_accuracy": 0.9921875,
+    "final_val_accuracy": 0.9921875,
+    "best_val_accuracy": 0.9921875,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.5299224853515625,
+        "accuracy": 0.693359375,
+        "grad_norm_input_layer": 0.3428433835506439
+      },
+      {
+        "loss": 0.4253596365451813,
+        "accuracy": 0.900390625,
+        "grad_norm_input_layer": 0.3015727996826172
+      },
+      {
+        "loss": 0.34149301052093506,
+        "accuracy": 0.974609375,
+        "grad_norm_input_layer": 0.2661994695663452
+      },
+      {
+        "loss": 0.27569612860679626,
+        "accuracy": 0.98828125,
+        "grad_norm_input_layer": 0.23586034774780273
+      },
+      {
+        "loss": 0.22485947608947754,
+        "accuracy": 0.9921875,
+        "grad_norm_input_layer": 0.21170619130134583
+      },
+      {
+        "loss": 0.18528372049331665,
+        "accuracy": 0.9921875,
+        "grad_norm_input_layer": 0.19019581377506256
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.90625
+      },
+      {
+        "accuracy": 0.984375
+      },
+      {
+        "accuracy": 0.9921875
+      },
+      {
+        "accuracy": 0.9921875
+      },
+      {
+        "accuracy": 0.984375
+      },
+      {
+        "accuracy": 0.9921875
+      }
+    ],
+    "adaptation_history": [],
+    "architecture_spec": {
+      "input_dim": 2,
+      "output_dim": 2,
+      "hidden_dims": [
+        8
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "random-search-baseline",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (2)",
+          "op": "input",
+          "params": {
+            "features": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (8)",
+          "op": "linear",
+          "params": {
+            "features": 8,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "metadata": {
+      "method_type": "search",
+      "notes": "best model params={'input_dim': 2, 'hidden_dim': 8, 'output_dim': 2, 'activation': 'relu', 'lr': 0.02, 'hidden_dims': [8]}; evaluations=6; search=random_search"
+    }
+  }
+]

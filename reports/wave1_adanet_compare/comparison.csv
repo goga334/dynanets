@@ -1,0 +1,5 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-spirals10,30,0.6022860407829285,0.6194285750389099,0.6000000238418579,0.6480000019073486,0,,baseline,device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+gradmax-spirals10,30,0.6135348677635193,0.6019999980926514,0.5799999833106995,0.6013333201408386,2,14,dynamic,adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+adanet-spirals10,30,0.6264661550521851,0.6385714411735535,0.6333333253860474,0.6493333578109741,3,18,workflow,workflow=adanet_rounds; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False
+weights-connections-spirals10,30,0.6628162264823914,0.590571403503418,0.6053333282470703,0.6106666922569275,6,18,dynamic,adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False

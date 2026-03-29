@@ -1,0 +1,46 @@
+name: adanet-spirals10
+
+dataset:
+  name: two_spirals
+  params:
+    train_size: 3500
+    validation_size: 750
+    test_size: 750
+    input_dim: 10
+    turns: 2.0
+    noise: 0.16
+    feature_noise: 0.10
+    seed: 42
+
+model:
+  name: dynamic_mlp_classifier
+  params:
+    input_dim: 10
+    hidden_dim: 10
+    output_dim: 2
+    activation: relu
+    lr: 0.01
+
+metrics:
+  - name: accuracy
+    params: {}
+
+workflow:
+  name: adanet_rounds
+  params:
+    warmup_epochs: 6
+    rounds: 3
+    candidate_epochs: 6
+    finetune_epochs: 6
+    grow_by: 4
+    insert_width: 10
+    max_hidden_dim: 18
+    max_hidden_layers: 3
+    complexity_penalty: 0.03
+    include_identity_candidate: false
+
+trainer:
+  epochs: 30
+
+runtime:
+  seed: 42

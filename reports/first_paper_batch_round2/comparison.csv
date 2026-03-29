@@ -1,0 +1,8 @@
+name,epochs,final_train_loss,final_train_accuracy,final_val_accuracy,best_val_accuracy,adaptations_applied,final_hidden_dim,method_type,notes
+fixed-mlp-baseline,6,0.312082976102829,0.98046875,0.984375,0.984375,0,,baseline,
+net2wider-dynamic-baseline,6,0.30460047721862793,0.982421875,0.984375,0.984375,2,16,dynamic,adaptation=net2wider
+gradmax-dynamic-baseline,6,0.3070559501647949,0.98046875,0.9765625,0.9765625,2,12,dynamic,adaptation=gradmax
+den-dynamic-baseline,6,0.31208300590515137,0.98046875,0.984375,0.984375,1,10,dynamic,adaptation=den
+nest-dynamic-baseline,6,0.3294924795627594,0.98046875,0.9765625,0.9765625,2,9,dynamic,adaptation=nest
+dynamic-nodes-dynamic-baseline,6,0.489230215549469,0.990234375,0.9921875,0.9921875,1,8,dynamic,adaptation=dynamic_nodes
+edge-growth-dynamic-baseline,6,0.5463322997093201,0.990234375,0.9921875,0.9921875,2,10,dynamic,adaptation=edge_growth
