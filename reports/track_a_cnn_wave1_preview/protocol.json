@@ -1,0 +1,61 @@
+{
+  "name": "track_a_cnn_wave1_preview",
+  "track": "synthetic",
+  "description": "Synthetic-image Wave 1 preview protocol for CNN methods. Compares fixed and batch-normalized CNN baselines with the Network Slimming approximation on the shared synthetic image patterns benchmark.",
+  "seeds": [
+    7,
+    11,
+    23,
+    42,
+    99
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/fixed_cnn_patterns.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "synthetic",
+        "cnn",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/wide_cnn_patterns_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "synthetic",
+        "cnn",
+        "baseline",
+        "batch_norm"
+      ]
+    },
+    {
+      "config": "../experiments/examples/network_slimming_patterns.yaml",
+      "role": "method",
+      "tags": [
+        "track_a",
+        "synthetic",
+        "cnn",
+        "pruning",
+        "v1_subset"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "synthetic_image_patterns",
+    "epochs": 30,
+    "train_size": 1600,
+    "validation_size": 400,
+    "test_size": 400
+  },
+  "metadata": {
+    "roadmap_wave": "wave_1",
+    "roadmap_phase": "phase_5",
+    "benchmark_family": "synthetic_images"
+  }
+}

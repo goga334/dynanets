@@ -27,6 +27,7 @@ def summarize_run(
     metadata: dict[str, Any] | None = None,
     architecture_spec: dict[str, Any] | None = None,
     architecture_graph: dict[str, Any] | None = None,
+    constraints: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     train_history = summary.train_history
     metric_history = summary.metric_history
@@ -54,6 +55,7 @@ def summarize_run(
         "workflow_metadata": workflow_metadata,
         "architecture_spec": architecture_spec,
         "architecture_graph": architecture_graph,
+        "constraints": constraints or {},
         "metadata": metadata or {},
     }
 
@@ -73,6 +75,11 @@ def write_csv(path: Path, data: list[dict[str, Any]]) -> None:
             "best_val_accuracy": item["best_val_accuracy"],
             "adaptations_applied": item["adaptations_applied"],
             "final_hidden_dim": item["final_hidden_dim"],
+            "parameter_count": item["constraints"].get("parameter_count"),
+            "nonzero_parameter_count": item["constraints"].get("nonzero_parameter_count"),
+            "weight_sparsity": item["constraints"].get("weight_sparsity"),
+            "forward_flop_proxy": item["constraints"].get("forward_flop_proxy"),
+            "activation_elements": item["constraints"].get("activation_elements"),
             "method_type": item["metadata"].get("method_type", "train"),
             "notes": item["metadata"].get("notes", ""),
         }
@@ -128,6 +135,43 @@ def write_markdown(path: Path, data: list[dict[str, Any]]) -> None:
         notes = item["metadata"].get("notes")
         if notes:
             lines.append(f"- `{item['name']}`: {notes}")
+
+    route_items = [item for item in data if item["metadata"].get("route_summary") or item["metadata"].get("route_trace")]
+    if route_items:
+        lines.extend(["", "## Routing Details", ""])
+        for item in route_items:
+            lines.append(f"### {item['name']}")
+            route_summary = item["metadata"].get("route_summary")
+            if route_summary:
+                lines.append(f"- route_summary={route_summary}")
+            route_trace = item["metadata"].get("route_trace")
+            if route_trace:
+                lines.append(f"- route_trace={route_trace}")
+            lines.append("")
+
+    constraint_items = [item for item in data if item.get("constraints")]
+    if constraint_items:
+        lines.extend(
+            [
+                "",
+                "## Constraint Summary",
+                "",
+                "| Experiment | Params | Nonzero params | Weight sparsity | FLOP proxy | Activation elems |",
+                "| --- | ---: | ---: | ---: | ---: | ---: |",
+            ]
+        )
+        for item in constraint_items:
+            constraints = item["constraints"]
+            lines.append(
+                "| {name} | {parameter_count} | {nonzero_parameter_count} | {weight_sparsity:.4f} | {forward_flop_proxy} | {activation_elements} |".format(
+                    name=item["name"],
+                    parameter_count=_format_int(constraints.get("parameter_count")),
+                    nonzero_parameter_count=_format_int(constraints.get("nonzero_parameter_count")),
+                    weight_sparsity=float(constraints.get("weight_sparsity", 0.0)),
+                    forward_flop_proxy=_format_int(constraints.get("forward_flop_proxy")),
+                    activation_elements=_format_int(constraints.get("activation_elements")),
+                )
+            )
 
     stage_items = [item for item in data if item.get("stage_history")]
     if stage_items:
@@ -297,3 +341,10 @@ def mermaid_architecture(
         lines.append(f'    {left[0]} --> {right[0]}')
     lines.append("```")
     return "\n".join(lines)
+
+
+def _format_int(value: Any) -> str:
+    if value is None:
+        return "-"
+    return str(int(value))
+

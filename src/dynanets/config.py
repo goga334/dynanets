@@ -64,6 +64,14 @@ class ExperimentConfig:
         if not isinstance(epochs, int) or epochs <= 0:
             raise ConfigValidationError("Field 'trainer.epochs' must be a positive integer")
 
+        batch_size = self.trainer.get("batch_size")
+        if batch_size is not None and (not isinstance(batch_size, int) or batch_size <= 0):
+            raise ConfigValidationError("Field 'trainer.batch_size' must be a positive integer when provided")
+
+        eval_batch_size = self.trainer.get("eval_batch_size")
+        if eval_batch_size is not None and (not isinstance(eval_batch_size, int) or eval_batch_size <= 0):
+            raise ConfigValidationError("Field 'trainer.eval_batch_size' must be a positive integer when provided")
+
         seed = self.runtime.get("seed")
         if seed is not None and not isinstance(seed, int):
             raise ConfigValidationError("Field 'runtime.seed' must be an integer when provided")
@@ -109,3 +117,5 @@ class ExperimentConfig:
         with Path(path).open("r", encoding="utf-8") as handle:
             data = yaml.safe_load(handle)
         return cls.from_dict(data)
+
+

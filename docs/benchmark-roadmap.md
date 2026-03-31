@@ -37,9 +37,14 @@ Included today:
 - Edge Growth
 - Han-style "Learning both Weights and Connections" approximation
 - AdaNet-style staged workflow on the Wave 1 preview track
+- Network Slimming on the synthetic-image CNN preview track
 
-The active Wave 1 preview protocol is [benchmarks/track_a_wave1_preview.yaml](../benchmarks/track_a_wave1_preview.yaml).
-It currently compares fixed MLP, GradMax, AdaNet, and weights-connections on the 10D two-spirals track.
+Active preview protocols:
+
+- [benchmarks/track_a_wave1_preview.yaml](../benchmarks/track_a_wave1_preview.yaml) for MLP-based Wave 1 methods on 10D two-spirals
+- [benchmarks/track_a_cnn_wave1_preview.yaml](../benchmarks/track_a_cnn_wave1_preview.yaml) for CNN plus Network Slimming on synthetic image patterns
+- [benchmarks/track_b_mnist_wave1_preview.yaml](../benchmarks/track_b_mnist_wave1_preview.yaml) for the MNIST-ready CNN Wave 1 preview once `torchvision` is installed
+- [benchmarks/track_b_mnist_phase7_preview.yaml](../benchmarks/track_b_mnist_phase7_preview.yaml) for the first routed-CNN routing preview on MNIST with 5 seeds
 
 ## Phase Status
 
@@ -78,18 +83,69 @@ Landed in this phase so far:
 
 - `scheduled` workflow for staged adaptation and finetune runs
 - `adanet_rounds` workflow for AdaNet-style candidate selection rounds
+- `network_slimming` workflow for sparse-train, prune, and finetune execution
 - protocol-driven Wave 1 preview benchmarking
 
-### Phases 5-8
+### Phase 5
+
+Started.
+
+Current implementation focus:
+
+- `CNNArchitectureSpec` and CNN graph export
+- fixed and batch-normalized CNN baselines
+- a runnable synthetic image benchmark for CNN smoke tests
+- a `Network Slimming` approximation on top of the CNN path
+- synthetic-image and MNIST-ready protocol manifests for CNN Wave 1 methods
+- an optional MNIST dataset adapter gated by `torchvision`
+
+Next unlocks inside this phase:
+
+- broader dynamic CNN-capable methods
+- real MNIST execution in environments with `torchvision`
+- compact CIFAR-ready CNN families
+
+### Phase 6
+
+Started.
+
+Current implementation focus:
+
+- shared sparsity and constraint evaluation across MLP and CNN families
+- constraint-aware compare and benchmark artifacts
+- constraint deltas in adaptation and workflow event histories
+- groundwork for first-class pruning and compression methods beyond one-off approximations
+
+Next unlocks inside this phase:
+
+- reusable mask-aware sparsity state
+- structured pruning primitives for channels, neurons, and layers
+- richer constraint evaluators for FLOPs, activation cost, and latency proxies
+
+### Phase 7
+
+Started.
+
+Current implementation focus:
+
+- routed CNN execution with route-aware metadata and cost summaries
+- first routing-family workflow approximations for Dynamic Slimmable and Conditional Computation
+- MNIST protocol previews with expanded 5-seed evaluation for routing methods
+
+Next unlocks inside this phase:
+
+- richer gate modules and route objectives
+- per-sample route accounting in benchmark artifacts
+- additional routing papers such as Channel Gating and SkipNet
+
+### Phase 8
 
 Planned.
 
 Next major unlocks:
 
-- CNN and block architecture specs
-- sparsity and compression engine
-- routed execution and conditional computation
 - official benchmark protocols for Synthetic, MNIST, and CIFAR tracks
+- stricter stadium-style reproducibility and acceptance checks
 
 ## Wave Plan
 
@@ -105,9 +161,12 @@ Current landing order:
 
 - Han-style pruning is now in place as `weights_connections`
 - AdaNet is now in place as the first staged workflow method
-- Network Slimming follows once the first CNN/block path lands
+- the first CNN/block path is now in place
+- Network Slimming is now in place on the CNN path
+- Runtime Neural Pruning, MorphNet, ASFP, and PruneTrain approximations are now extending the CNN pruning track
+- the official v1 subset is code-complete at the method/config level
 
-Wave 1 closes when the official v1 subset is usable on Synthetic + MNIST through protocol manifests.
+Wave 1 closes operationally when the official v1 subset is runnable on both Synthetic and MNIST protocol tracks in an environment with `torchvision` and CUDA-enabled PyTorch.
 
 ### Wave 2
 
@@ -115,8 +174,19 @@ Add deeper pruning/compression methods once CNN and sparsity support are ready.
 
 ### Wave 3
 
-Add routing and conditional-computation families.
+In progress.
+
+Current landing order:
+
+- routed CNN execution and route-aware metadata are now in place
+- Dynamic Slimmable and Conditional Computation MNIST previews are now runnable
+- the routing benchmark preview now uses 5 seeds for a more stable view
 
 ### Wave 4
 
 Add LayerMerge and tighten protocol outputs into publication-ready benchmark artifacts.
+
+
+
+
+

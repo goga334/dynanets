@@ -16,8 +16,16 @@ from dynanets.architecture import (
     remove_hidden_layer,
     shrink_hidden_layer,
 )
+from dynanets.constraints import ConstraintEvaluator
 from dynanets.models.base import ArchitectureState, DynamicNeuralModel, NeuralModel
 from dynanets.runtime import resolve_device
+from dynanets.sparsity import (
+    MaskAwareSparsityState,
+    linear_neuron_importance,
+    magnitude_mask,
+    resolve_keep_count,
+    select_topk_indices,
+)
 
 
 class TorchMLPClassifier(NeuralModel):
@@ -144,8 +152,8 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             hidden_dims=hidden_dims,
             device=device,
         )
-        self._weight_masks: list[torch.Tensor] = []
-        self._reset_weight_masks()
+        self._sparsity_state = MaskAwareSparsityState()
+        self._sync_weight_masks()
         self._state = ArchitectureState(step=0, version=0, metadata={})
         self._refresh_architecture_state_metadata()
 
@@ -162,7 +170,8 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         clone = DynamicMLPClassifier(**self.init_params())
         clone.network.load_state_dict(self.network.state_dict())
         clone.optimizer = torch.optim.Adam(clone.network.parameters(), lr=self._lr)
-        clone._weight_masks = [mask.clone().to(clone.device) for mask in self._weight_masks]
+        clone._sparsity_state = self._sparsity_state.clone(device=clone.device)
+        clone._sync_weight_masks()
         clone._apply_active_weight_masks()
         clone._state = ArchitectureState(
             step=self._state.step,
@@ -177,7 +186,8 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         self._rebuild_from_spec()
         self.network.load_state_dict(other.network.state_dict())
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
-        self._weight_masks = [mask.clone().to(self.device) for mask in other._weight_masks]
+        self._sparsity_state = other._sparsity_state.clone(device=self.device)
+        self._sync_weight_masks()
         self._apply_active_weight_masks()
         self._state = ArchitectureState(
             step=other._state.step,
@@ -189,6 +199,7 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         return {
             "grow_hidden",
             "prune_hidden",
+            "prune_neurons",
             "net2wider",
             "insert_hidden_layer",
             "remove_hidden_layer",
@@ -201,6 +212,8 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             "architecture_family": "mlp",
             "supports_dynamic_structure": True,
             "supports_weight_masks": True,
+            "supports_mask_aware_sparsity_state": True,
+            "structured_pruning_primitives": ["prune_hidden", "prune_neurons"],
             "supported_event_types": sorted(self.supported_event_types()),
             "weight_transfer_strategies": [
                 "copy_prefix_growth",
@@ -209,6 +222,7 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
                 "identity_layer_insertion",
                 "matching_layer_copy_removal",
                 "global_magnitude_mask_pruning",
+                "magnitude_neuron_pruning",
             ],
             "current_hidden_dims": self.hidden_dims,
             "current_num_hidden_layers": len(self.hidden_dims),
@@ -222,7 +236,7 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
     def global_weight_threshold(self, target_sparsity: float) -> float:
         if not 0.0 <= target_sparsity < 1.0:
             raise ValueError("target_sparsity must be in [0.0, 1.0)")
-        magnitudes = torch.cat([layer.weight.detach().abs().flatten() for layer in self._linear_layers()])
+        magnitudes = torch.cat([tensor.detach().abs().flatten() for tensor in self._named_linear_weights().values()])
         total = magnitudes.numel()
         prune_count = int(total * target_sparsity)
         if prune_count <= 0:
@@ -231,6 +245,29 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             prune_count = total - 1
         values, _ = torch.sort(magnitudes)
         return float(values[prune_count - 1].item())
+
+    def layerwise_weight_thresholds(self, prune_fraction: float) -> dict[str, float]:
+        if not 0.0 <= prune_fraction < 1.0:
+            raise ValueError("prune_fraction must be in [0.0, 1.0)")
+        self._sync_weight_masks()
+        thresholds: dict[str, float] = {}
+        for name, weight in self._named_linear_weights().items():
+            mask = self._sparsity_state.masks.get(name)
+            active = weight.detach().abs()
+            if mask is not None:
+                active = active[mask > 0]
+            else:
+                active = active.flatten()
+            total = active.numel()
+            prune_count = int(total * prune_fraction)
+            if prune_count <= 0 or total == 0:
+                thresholds[name] = -1.0
+                continue
+            if prune_count >= total:
+                prune_count = total - 1
+            values, _ = torch.sort(active.flatten())
+            thresholds[name] = float(values[prune_count - 1].item())
+        return thresholds
 
     def apply_adaptation(self, event: AdaptationEvent) -> None:
         action = event.event_type
@@ -252,6 +289,23 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
                 min_width=int(event.params.get("min_width", 1)),
             )
             self._apply_simple_pruning(mutated_spec)
+            return
+        if action == "prune_neurons":
+            self._apply_neuron_pruning(
+                layer_index=int(event.params.get("layer_index", 0)),
+                amount=int(event.params.get("amount", 0)),
+                prune_fraction=(
+                    float(event.params["prune_fraction"])
+                    if "prune_fraction" in event.params
+                    else None
+                ),
+                keep_count=(
+                    int(event.params["keep_count"])
+                    if "keep_count" in event.params
+                    else None
+                ),
+                min_width=int(event.params.get("min_width", 1)),
+            )
             return
         if action == "net2wider":
             if amount <= 0:
@@ -277,47 +331,71 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         if action == "apply_weight_mask":
             threshold = float(event.params.get("threshold", -1.0))
             target_sparsity = float(event.params.get("target_sparsity", 0.0))
-            self._apply_weight_mask(threshold=threshold, target_sparsity=target_sparsity)
+            thresholds_by_name = (
+                {str(name): float(value) for name, value in event.params.get("thresholds_by_name", {}).items()}
+                if "thresholds_by_name" in event.params
+                else None
+            )
+            self._apply_weight_mask(
+                threshold=threshold,
+                target_sparsity=target_sparsity,
+                thresholds_by_name=thresholds_by_name,
+            )
             return
         raise ValueError(f"Unsupported adaptation action '{action}'")
 
     def _after_optimizer_step(self) -> None:
         self._apply_active_weight_masks()
 
-    def _reset_weight_masks(self) -> None:
-        self._weight_masks = [torch.ones_like(layer.weight, device=self.device) for layer in self._linear_layers()]
+    def _named_linear_weights(self, network: nn.Sequential | None = None) -> dict[str, torch.Tensor]:
+        linear_layers = self._linear_layers(network)
+        return {
+            f"linear_{index}.weight": layer.weight
+            for index, layer in enumerate(linear_layers)
+        }
+
+    def _sync_weight_masks(self) -> None:
+        self._sparsity_state.sync(self._named_linear_weights())
 
     def _apply_active_weight_masks(self) -> None:
-        if not self._weight_masks:
-            return
-        with torch.no_grad():
-            for layer, mask in zip(self._linear_layers(), self._weight_masks):
-                layer.weight.mul_(mask)
+        self._sync_weight_masks()
+        self._sparsity_state.apply_(self._named_linear_weights())
 
-    def _apply_weight_mask(self, *, threshold: float, target_sparsity: float) -> None:
-        if not self._weight_masks:
-            self._reset_weight_masks()
-        with torch.no_grad():
-            for layer, mask in zip(self._linear_layers(), self._weight_masks):
-                candidate = (layer.weight.detach().abs() > threshold).to(layer.weight.dtype)
-                mask.mul_(candidate)
-                layer.weight.mul_(mask)
+    def _apply_weight_mask(
+        self,
+        *,
+        threshold: float,
+        target_sparsity: float,
+        thresholds_by_name: dict[str, float] | None = None,
+    ) -> None:
+        self._sync_weight_masks()
+        named_weights = self._named_linear_weights()
+        candidate_masks = {
+            name: magnitude_mask(weight, thresholds_by_name.get(name, threshold) if thresholds_by_name is not None else threshold)
+            for name, weight in named_weights.items()
+        }
+        self._sparsity_state.multiply_(candidate_masks)
+        self._apply_active_weight_masks()
         self._update_architecture_state()
-        self._state.metadata["mask_threshold"] = threshold
+        if thresholds_by_name is None:
+            self._state.metadata["mask_threshold"] = threshold
+        else:
+            self._state.metadata["mask_threshold"] = None
+            self._state.metadata["mask_thresholds_by_name"] = {
+                name: round(value, 8) for name, value in thresholds_by_name.items()
+            }
         self._state.metadata["target_weight_sparsity"] = target_sparsity
 
     def _weight_mask_statistics(self) -> tuple[int, int, float]:
-        linear_layers = self._linear_layers()
-        if not linear_layers or not self._weight_masks:
+        named_weights = self._named_linear_weights()
+        if not named_weights:
             total_params = self._parameter_count()
             return 0, total_params, 0.0
-        total_weight_params = sum(layer.weight.numel() for layer in linear_layers)
-        active_weight_params = sum(int(mask.sum().item()) for mask in self._weight_masks)
-        masked_weight_count = total_weight_params - active_weight_params
+        self._sync_weight_masks()
+        statistics = self._sparsity_state.statistics(named_weights)
         total_params = self._parameter_count()
-        nonzero_parameter_count = total_params - masked_weight_count
-        weight_sparsity = (masked_weight_count / total_weight_params) if total_weight_params else 0.0
-        return masked_weight_count, nonzero_parameter_count, weight_sparsity
+        nonzero_parameter_count = total_params - statistics.masked_params
+        return statistics.masked_params, nonzero_parameter_count, statistics.weight_sparsity
 
     def _apply_simple_growth(self, mutated_spec: MLPArchitectureSpec) -> None:
         old_hidden_dim = self.hidden_dim
@@ -358,6 +436,78 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         self.spec = mutated_spec
         self._replace_two_layer_network(new_input, new_output)
 
+    def _apply_neuron_pruning(
+        self,
+        *,
+        layer_index: int,
+        amount: int,
+        prune_fraction: float | None,
+        keep_count: int | None,
+        min_width: int,
+    ) -> None:
+        if layer_index < 0 or layer_index >= len(self.hidden_dims):
+            raise ValueError("layer_index is out of range for hidden layers")
+        current_width = self.hidden_dims[layer_index]
+        resolved_keep_count = resolve_keep_count(
+            current_width,
+            amount=amount if amount > 0 else None,
+            prune_fraction=prune_fraction,
+            keep_count=keep_count,
+            min_count=min_width,
+        )
+        if resolved_keep_count >= current_width:
+            return
+
+        linear_layers = self._linear_layers()
+        incoming_layer = linear_layers[layer_index]
+        outgoing_layer = linear_layers[layer_index + 1]
+        importance = linear_neuron_importance(
+            incoming_layer.weight.detach(),
+            outgoing_layer.weight.detach(),
+        )
+        keep_indices = select_topk_indices(importance, resolved_keep_count)
+        mutated_spec = shrink_hidden_layer(
+            self.spec,
+            layer_index=layer_index,
+            amount=current_width - resolved_keep_count,
+            min_width=resolved_keep_count,
+        )
+        self._apply_selected_neuron_pruning(mutated_spec, layer_index=layer_index, keep_indices=keep_indices)
+
+    def _apply_selected_neuron_pruning(
+        self,
+        mutated_spec: MLPArchitectureSpec,
+        *,
+        layer_index: int,
+        keep_indices: torch.Tensor,
+    ) -> None:
+        old_network = self.network
+        old_linear_layers = self._linear_layers(old_network)
+
+        self.spec = mutated_spec
+        new_network = build_mlp_network(self.spec).to(self.device)
+        new_linear_layers = self._linear_layers(new_network)
+
+        with torch.no_grad():
+            for index, (old_layer, new_layer) in enumerate(zip(old_linear_layers, new_linear_layers)):
+                if index == layer_index:
+                    new_layer.weight.copy_(old_layer.weight[keep_indices])
+                    if old_layer.bias is not None and new_layer.bias is not None:
+                        new_layer.bias.copy_(old_layer.bias[keep_indices])
+                elif index == layer_index + 1:
+                    new_layer.weight.copy_(old_layer.weight[:, keep_indices])
+                    if old_layer.bias is not None and new_layer.bias is not None:
+                        new_layer.bias.copy_(old_layer.bias)
+                else:
+                    new_layer.weight.copy_(old_layer.weight)
+                    if old_layer.bias is not None and new_layer.bias is not None:
+                        new_layer.bias.copy_(old_layer.bias)
+
+        self.network = new_network
+        self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
+        self._sync_weight_masks()
+        self._update_architecture_state()
+
     def _apply_net2wider(self, mutated_spec: MLPArchitectureSpec, seed: int) -> None:
         old_hidden_dim = self.hidden_dim
         new_hidden_dim = mutated_spec.hidden_dim
@@ -397,7 +547,7 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
             self._initialize_inserted_identity(new_network)
         self.network = new_network
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
-        self._reset_weight_masks()
+        self._sync_weight_masks()
         self._update_architecture_state()
 
     def _apply_layer_removal(self, mutated_spec: MLPArchitectureSpec) -> None:
@@ -407,14 +557,14 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         self._copy_matching_linear_layers(old_network, new_network)
         self.network = new_network
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
-        self._reset_weight_masks()
+        self._sync_weight_masks()
         self._update_architecture_state()
 
     def _replace_two_layer_network(self, new_input: nn.Linear, new_output: nn.Linear) -> None:
         activation_module = build_mlp_network(self.spec)[1]
         self.network = nn.Sequential(new_input, activation_module, new_output).to(self.device)
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
-        self._reset_weight_masks()
+        self._sync_weight_masks()
         self._update_architecture_state()
 
     def _copy_matching_linear_layers(self, old_network: nn.Sequential, new_network: nn.Sequential) -> None:
@@ -454,13 +604,37 @@ class DynamicMLPClassifier(TorchMLPClassifier, DynamicNeuralModel):
         self._state.metadata["hidden_dim"] = self.hidden_dim
         self._state.metadata["hidden_dims"] = self.hidden_dims
         self._state.metadata["num_hidden_layers"] = len(self.hidden_dims)
-        self._state.metadata["parameter_count"] = self._parameter_count()
         self._state.metadata["masked_weight_count"] = masked_weight_count
         self._state.metadata["nonzero_parameter_count"] = nonzero_parameter_count
         self._state.metadata["weight_sparsity"] = weight_sparsity
         self._state.metadata["device"] = str(self.device)
         self._state.metadata["supported_events"] = sorted(self.supported_event_types())
+        self._state.metadata["mask_state_names"] = self._sparsity_state.named_mask_keys()
+        constraint_summary = ConstraintEvaluator().evaluate(
+            architecture_spec=self.spec,
+            metadata=self._state.metadata,
+        )
+        self._state.metadata.update(constraint_summary.to_dict())
 
     def _update_architecture_state(self) -> None:
         self._state.version += 1
         self._refresh_architecture_state_metadata()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

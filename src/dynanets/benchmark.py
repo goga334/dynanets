@@ -115,6 +115,27 @@ def aggregate_benchmark_runs(runs: list[dict[str, Any]]) -> list[dict[str, Any]]
         best_scores = [float(item["best_val_accuracy"]) for item in group]
         adaptations = [int(item["adaptations_applied"]) for item in group]
         hidden_dims = [item["final_hidden_dim"] for item in group if item["final_hidden_dim"] is not None]
+        parameter_counts = [int(item["constraints"]["parameter_count"]) for item in group if item.get("constraints")]
+        nonzero_parameter_counts = [
+            int(item["constraints"]["nonzero_parameter_count"])
+            for item in group
+            if item.get("constraints")
+        ]
+        weight_sparsities = [
+            float(item["constraints"]["weight_sparsity"])
+            for item in group
+            if item.get("constraints")
+        ]
+        forward_flop_proxies = [
+            int(item["constraints"]["forward_flop_proxy"])
+            for item in group
+            if item.get("constraints")
+        ]
+        activation_elements = [
+            int(item["constraints"]["activation_elements"])
+            for item in group
+            if item.get("constraints")
+        ]
         aggregate.append(
             {
                 "name": name,
@@ -129,11 +150,17 @@ def aggregate_benchmark_runs(runs: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "std_best_val_accuracy": pstdev(best_scores) if len(best_scores) > 1 else 0.0,
                 "mean_adaptations_applied": mean(adaptations),
                 "mean_final_hidden_dim": mean(hidden_dims) if hidden_dims else None,
+                "mean_parameter_count": mean(parameter_counts) if parameter_counts else None,
+                "mean_nonzero_parameter_count": mean(nonzero_parameter_counts) if nonzero_parameter_counts else None,
+                "mean_weight_sparsity": mean(weight_sparsities) if weight_sparsities else None,
+                "mean_forward_flop_proxy": mean(forward_flop_proxies) if forward_flop_proxies else None,
+                "mean_activation_elements": mean(activation_elements) if activation_elements else None,
                 "best_seed": int(representative["benchmark_seed"]),
                 "best_seed_final_val_accuracy": float(representative["final_val_accuracy"]),
                 "best_seed_best_val_accuracy": float(representative["best_val_accuracy"]),
                 "representative_architecture_spec": representative.get("architecture_spec"),
                 "representative_architecture_graph": representative.get("architecture_graph"),
+                "representative_constraints": representative.get("constraints", {}),
                 "representative_stage_history": representative.get("stage_history", []),
                 "seed_runs": [
                     {
@@ -141,6 +168,9 @@ def aggregate_benchmark_runs(runs: list[dict[str, Any]]) -> list[dict[str, Any]]
                         "final_val_accuracy": float(item["final_val_accuracy"]),
                         "best_val_accuracy": float(item["best_val_accuracy"]),
                         "adaptations_applied": int(item["adaptations_applied"]),
+                        "parameter_count": item.get("constraints", {}).get("parameter_count"),
+                        "nonzero_parameter_count": item.get("constraints", {}).get("nonzero_parameter_count"),
+                        "weight_sparsity": item.get("constraints", {}).get("weight_sparsity"),
                     }
                     for item in sorted(group, key=lambda item: int(item["benchmark_seed"]))
                 ],
@@ -164,6 +194,11 @@ def write_runs_csv(path: Path, runs: list[dict[str, Any]]) -> None:
             "best_val_accuracy": item["best_val_accuracy"],
             "adaptations_applied": item["adaptations_applied"],
             "final_hidden_dim": item["final_hidden_dim"],
+            "parameter_count": item.get("constraints", {}).get("parameter_count"),
+            "nonzero_parameter_count": item.get("constraints", {}).get("nonzero_parameter_count"),
+            "weight_sparsity": item.get("constraints", {}).get("weight_sparsity"),
+            "forward_flop_proxy": item.get("constraints", {}).get("forward_flop_proxy"),
+            "activation_elements": item.get("constraints", {}).get("activation_elements"),
             "method_type": item["metadata"].get("method_type", "train"),
             "notes": item["metadata"].get("notes", ""),
         }
@@ -191,6 +226,11 @@ def write_aggregate_csv(path: Path, aggregate: list[dict[str, Any]]) -> None:
             "std_best_val_accuracy": item["std_best_val_accuracy"],
             "mean_adaptations_applied": item["mean_adaptations_applied"],
             "mean_final_hidden_dim": item["mean_final_hidden_dim"],
+            "mean_parameter_count": item["mean_parameter_count"],
+            "mean_nonzero_parameter_count": item["mean_nonzero_parameter_count"],
+            "mean_weight_sparsity": item["mean_weight_sparsity"],
+            "mean_forward_flop_proxy": item["mean_forward_flop_proxy"],
+            "mean_activation_elements": item["mean_activation_elements"],
             "best_seed": item["best_seed"],
             "notes": item["notes"],
         }
@@ -232,6 +272,29 @@ def write_aggregate_markdown(path: Path, aggregate: list[dict[str, Any]], seeds:
             )
         )
 
+    constraint_items = [item for item in aggregate if item.get("mean_parameter_count") is not None]
+    if constraint_items:
+        lines.extend(
+            [
+                "",
+                "## Constraint Summary",
+                "",
+                "| Experiment | Mean params | Mean nonzero params | Mean weight sparsity | Mean FLOP proxy | Mean activation elems |",
+                "| --- | ---: | ---: | ---: | ---: | ---: |",
+            ]
+        )
+        for item in constraint_items:
+            lines.append(
+                "| {name} | {mean_parameter_count} | {mean_nonzero_parameter_count} | {mean_weight_sparsity:.4f} | {mean_forward_flop_proxy} | {mean_activation_elements} |".format(
+                    name=item["name"],
+                    mean_parameter_count=_format_number(item["mean_parameter_count"]),
+                    mean_nonzero_parameter_count=_format_number(item["mean_nonzero_parameter_count"]),
+                    mean_weight_sparsity=float(item["mean_weight_sparsity"] or 0.0),
+                    mean_forward_flop_proxy=_format_number(item["mean_forward_flop_proxy"]),
+                    mean_activation_elements=_format_number(item["mean_activation_elements"]),
+                )
+            )
+
     notes_items = [item for item in aggregate if item.get("notes")]
     if notes_items:
         lines.extend(["", "## Experiment Notes", ""])
@@ -243,7 +306,7 @@ def write_aggregate_markdown(path: Path, aggregate: list[dict[str, Any]], seeds:
         lines.append(f"### {item['name']}")
         for run in item["seed_runs"]:
             lines.append(
-                f"- seed {run['seed']}: final={run['final_val_accuracy']:.4f}, best={run['best_val_accuracy']:.4f}, adaptations={run['adaptations_applied']}"
+                f"- seed {run['seed']}: final={run['final_val_accuracy']:.4f}, best={run['best_val_accuracy']:.4f}, adaptations={run['adaptations_applied']}, params={run.get('parameter_count')}, nonzero={run.get('nonzero_parameter_count')}, sparsity={_format_sparsity(run.get('weight_sparsity'))}"
             )
         lines.append("")
 
@@ -314,6 +377,18 @@ def _write_per_seed_plot(path: Path, aggregate: list[dict[str, Any]]) -> None:
     ax.legend(loc="best", fontsize=8)
     fig.savefig(path, dpi=160)
     plt.close(fig)
+
+
+def _format_number(value: Any) -> str:
+    if value is None:
+        return "-"
+    return str(int(round(float(value))))
+
+
+def _format_sparsity(value: Any) -> str:
+    if value is None:
+        return "-"
+    return f"{float(value):.4f}"
 
 
 if __name__ == "__main__":

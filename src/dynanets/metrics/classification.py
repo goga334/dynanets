@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import torch
 
@@ -12,4 +12,5 @@ class AccuracyMetric(Metric):
 
     def compute(self, predictions: torch.Tensor, targets: torch.Tensor) -> float:
         predicted_labels = predictions.argmax(dim=1)
-        return float((predicted_labels == targets).float().mean().item())
+        aligned_targets = targets.to(predicted_labels.device)
+        return float((predicted_labels == aligned_targets).float().mean().item())

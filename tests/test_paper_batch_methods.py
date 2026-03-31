@@ -25,6 +25,7 @@ def _run_training(config: ExperimentConfig):
         training_runner=TrainingRunner(),
         adaptation=experiment.adaptation,
         epochs=int(config.trainer.get("epochs", 1)),
+        trainer_config=dict(config.trainer),
     )
 
 
@@ -224,3 +225,4 @@ def test_weights_connections_emits_mask_event() -> None:
     assert applied_events[0]["metadata"]["paper"] == "weights-connections-approx"
     assert applied_events[0]["effect_summary"]["weight_sparsity_delta"] is not None
     assert summary.stage_history[0]["name"] == "prune"
+

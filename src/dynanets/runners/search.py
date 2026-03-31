@@ -52,6 +52,7 @@ class SearchRunner:
                 training_runner=trainer,
                 adaptation=experiment.adaptation,
                 epochs=int(config.trainer.get("epochs", 1)),
+                trainer_config=dict(config.trainer),
             )
             score = self._score_summary(summary, metric_name=config.search.params.get("metric", "accuracy"))
             metadata = dict(proposal.metadata)
@@ -103,3 +104,5 @@ class SearchRunner:
         if not values:
             raise ValueError(f"Metric '{metric_name}' was not found in the validation history")
         return max(values)
+
+

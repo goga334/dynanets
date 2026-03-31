@@ -1,0 +1,31 @@
+name: track_a_cnn_phase6_preview
+track: synthetic
+description: >-
+  Synthetic-image Phase 6 preview protocol for CNN pruning methods. Compares
+  fixed and batch-normalized CNN baselines with generic channel pruning and the
+  Network Slimming approximation on the shared synthetic image patterns benchmark.
+seeds: [7, 11, 42]
+required_metrics: [accuracy]
+budgets:
+  dataset: synthetic_image_patterns
+  epochs: 30
+  train_size: 1600
+  validation_size: 400
+  test_size: 400
+experiments:
+  - config: ../experiments/examples/fixed_cnn_patterns.yaml
+    role: baseline
+    tags: [track_a, synthetic, cnn, baseline]
+  - config: ../experiments/examples/wide_cnn_patterns_bn.yaml
+    role: baseline
+    tags: [track_a, synthetic, cnn, baseline, batch_norm]
+  - config: ../experiments/examples/channel_pruning_patterns.yaml
+    role: method
+    tags: [track_a, synthetic, cnn, pruning, phase_6_preview]
+  - config: ../experiments/examples/network_slimming_patterns.yaml
+    role: method
+    tags: [track_a, synthetic, cnn, pruning, v1_subset]
+metadata:
+  roadmap_wave: wave_1
+  roadmap_phase: phase_6
+  benchmark_family: synthetic_images

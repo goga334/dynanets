@@ -1,0 +1,56 @@
+name: instance-wise-sparsity-mnist
+
+dataset:
+  name: mnist
+  params:
+    data_dir: data
+    validation_size: 5000
+    train_size: 10000
+    test_size: 2000
+    download: true
+    seed: 42
+
+model:
+  name: torch_routed_cnn_classifier
+  params:
+    input_channels: 1
+    input_size: [28, 28]
+    num_classes: 10
+    conv_channels: [24, 48]
+    activation: relu
+    lr: 0.001
+    width_multipliers: [1.0, 0.75, 0.5]
+    eval_width_multipliers: [0.5, 0.75, 1.0]
+    routing_policy: dynamic_width
+    gate_mode: learned
+    confidence_threshold: 0.80
+    min_confidence_threshold: 0.35
+    gate_metric: margin
+    gate_temperature: 0.18
+    gate_budget_weight: 0.10
+    target_cost_ratio: 0.72
+    distillation_weight: 0.40
+    gate_supervision_weight: 0.55
+    teacher_confidence_floor: 0.45
+    gate_entropy_weight: 0.02
+    target_accept_rate: 0.42
+    route_trace_limit: 8
+
+metrics:
+  - name: accuracy
+    params: {}
+
+workflow:
+  name: instance_wise_sparsity
+  params:
+    warmup_epochs: 2
+    consolidation_epochs: 2
+
+trainer:
+  epochs: 8
+  batch_size: 128
+  eval_batch_size: 256
+
+runtime:
+  seed: 42
+  device: auto

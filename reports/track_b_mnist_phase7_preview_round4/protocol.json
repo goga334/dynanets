@@ -1,0 +1,112 @@
+{
+  "name": "track_b_mnist_phase7_preview",
+  "track": "mnist",
+  "description": "MNIST Phase 7 preview protocol for routed CNN methods. Compares a fixed CNN baseline, a wide CNN baseline, and the first routing-family approximations for dynamic slimmable execution and conditional computation.",
+  "seeds": [
+    7,
+    11,
+    23,
+    42,
+    99
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/fixed_cnn_mnist.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/wide_cnn_mnist_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "baseline",
+        "wide"
+      ]
+    },
+    {
+      "config": "../experiments/examples/dynamic_slimmable_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "routing",
+        "slimmable",
+        "phase7"
+      ]
+    },
+    {
+      "config": "../experiments/examples/conditional_computation_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "routing",
+        "conditional",
+        "phase7"
+      ]
+    },
+    {
+      "config": "../experiments/examples/channel_gating_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "routing",
+        "channel_gating",
+        "phase7"
+      ]
+    },
+    {
+      "config": "../experiments/examples/skipnet_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "routing",
+        "skipnet",
+        "phase7"
+      ]
+    },
+    {
+      "config": "../experiments/examples/network_slimming_mnist.yaml",
+      "role": "reference",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "reference"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "mnist",
+    "epochs": 8,
+    "train_size": 10000,
+    "validation_size": 5000,
+    "test_size": 2000
+  },
+  "metadata": {
+    "roadmap_wave": "wave_3",
+    "roadmap_phase": "phase_7",
+    "requires": [
+      "torchvision",
+      "cuda"
+    ]
+  }
+}

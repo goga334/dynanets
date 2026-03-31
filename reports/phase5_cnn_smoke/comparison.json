@@ -1,0 +1,750 @@
+[
+  {
+    "name": "fixed-cnn-patterns",
+    "epochs": 25,
+    "final_train_loss": 1.7678810358047485,
+    "final_train_accuracy": 0.21125000715255737,
+    "final_val_accuracy": 0.21250000596046448,
+    "best_val_accuracy": 0.21250000596046448,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 2.30318284034729,
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "loss": 2.2940282821655273,
+        "accuracy": 0.21250000596046448
+      },
+      {
+        "loss": 2.285487413406372,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2754905223846436,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2636451721191406,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.250176191329956,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.235372543334961,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.219050645828247,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2013230323791504,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.1816518306732178,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.159618377685547,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.1359217166900635,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.1096322536468506,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.0817394256591797,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.0527946949005127,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.0245842933654785,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.9972479343414307,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.9703024625778198,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.9435924291610718,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.9165558815002441,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.8887200355529785,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 1.8597313165664673,
+        "accuracy": 0.21125000715255737
+      },
+      {
+        "loss": 1.8302477598190308,
+        "accuracy": 0.21125000715255737
+      },
+      {
+        "loss": 1.7996132373809814,
+        "accuracy": 0.21125000715255737
+      },
+      {
+        "loss": 1.7678810358047485,
+        "accuracy": 0.21125000715255737
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.20749999582767487
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.21250000596046448
+      },
+      {
+        "accuracy": 0.21250000596046448
+      },
+      {
+        "accuracy": 0.21250000596046448
+      },
+      {
+        "accuracy": 0.21250000596046448
+      },
+      {
+        "accuracy": 0.21250000596046448
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.21125000715255737,
+        "final_val_accuracy": 0.21250000596046448,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 25,
+      "executed_total_epochs": 25,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cpu",
+        "torch_version": "2.10.0+cpu",
+        "torch_cuda_version": null,
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "cuda_device_name": null
+      }
+    }
+  },
+  {
+    "name": "wide-cnn-patterns",
+    "epochs": 25,
+    "final_train_loss": 1.3465721607208252,
+    "final_train_accuracy": 0.6006249785423279,
+    "final_val_accuracy": 0.5099999904632568,
+    "best_val_accuracy": 0.637499988079071,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 2.3114256858825684,
+        "accuracy": 0.09187500178813934
+      },
+      {
+        "loss": 2.298255681991577,
+        "accuracy": 0.09187500178813934
+      },
+      {
+        "loss": 2.288846492767334,
+        "accuracy": 0.2043749988079071
+      },
+      {
+        "loss": 2.2778894901275635,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2646219730377197,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2484185695648193,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.229098320007324,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.2045819759368896,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.174830913543701,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.139183521270752,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.097965955734253,
+        "accuracy": 0.11249999701976776
+      },
+      {
+        "loss": 2.052689552307129,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 2.003761053085327,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 1.95159113407135,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 1.8984681367874146,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 1.843084692955017,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 1.7885632514953613,
+        "accuracy": 0.21562500298023224
+      },
+      {
+        "loss": 1.731677532196045,
+        "accuracy": 0.31437501311302185
+      },
+      {
+        "loss": 1.6730352640151978,
+        "accuracy": 0.31437501311302185
+      },
+      {
+        "loss": 1.6157543659210205,
+        "accuracy": 0.42250001430511475
+      },
+      {
+        "loss": 1.5585739612579346,
+        "accuracy": 0.5218750238418579
+      },
+      {
+        "loss": 1.5026148557662964,
+        "accuracy": 0.5218750238418579
+      },
+      {
+        "loss": 1.4486180543899536,
+        "accuracy": 0.5793750286102295
+      },
+      {
+        "loss": 1.3969886302947998,
+        "accuracy": 0.6118749976158142
+      },
+      {
+        "loss": 1.3465721607208252,
+        "accuracy": 0.6006249785423279
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.07999999821186066
+      },
+      {
+        "accuracy": 0.18000000715255737
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.10000000149011612
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.20499999821186066
+      },
+      {
+        "accuracy": 0.3174999952316284
+      },
+      {
+        "accuracy": 0.3174999952316284
+      },
+      {
+        "accuracy": 0.4099999964237213
+      },
+      {
+        "accuracy": 0.5074999928474426
+      },
+      {
+        "accuracy": 0.5074999928474426
+      },
+      {
+        "accuracy": 0.5899999737739563
+      },
+      {
+        "accuracy": 0.637499988079071
+      },
+      {
+        "accuracy": 0.5924999713897705
+      },
+      {
+        "accuracy": 0.5099999904632568
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6006249785423279,
+        "final_val_accuracy": 0.5099999904632568,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 25,
+      "executed_total_epochs": 25,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cpu",
+        "torch_version": "2.10.0+cpu",
+        "torch_cuda_version": null,
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "cuda_device_name": null
+      }
+    }
+  }
+]

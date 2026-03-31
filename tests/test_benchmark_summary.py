@@ -3,6 +3,7 @@ from pathlib import Path
 from dynanets.benchmark import aggregate_benchmark_runs, write_aggregate_markdown, write_benchmark_plots
 
 
+
 def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path: Path) -> None:
     runs = [
         {
@@ -25,6 +26,14 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
                     {"source": "hidden_1", "target": "output", "metadata": {}},
                 ],
                 "metadata": {"family": "mlp"},
+            },
+            "constraints": {
+                "parameter_count": 232,
+                "nonzero_parameter_count": 180,
+                "masked_weight_count": 52,
+                "weight_sparsity": 0.2241,
+                "forward_flop_proxy": 420,
+                "activation_elements": 12,
             },
             "stage_history": [{"name": "adapt", "epochs": 2, "epoch_start": 1, "epoch_end": 2, "adaptation_enabled": True, "final_val_accuracy": 0.62}],
             "metadata": {
@@ -54,6 +63,14 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
                 ],
                 "metadata": {"family": "mlp"},
             },
+            "constraints": {
+                "parameter_count": 274,
+                "nonzero_parameter_count": 190,
+                "masked_weight_count": 84,
+                "weight_sparsity": 0.3066,
+                "forward_flop_proxy": 504,
+                "activation_elements": 14,
+            },
             "stage_history": [{"name": "adapt", "epochs": 2, "epoch_start": 1, "epoch_end": 2, "adaptation_enabled": True, "final_val_accuracy": 0.74}],
             "metadata": {
                 "method_type": "dynamic",
@@ -73,6 +90,9 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
     assert item["representative_architecture_graph"]["nodes"][1]["label"] == "Hidden 1 (12)"
     assert item["representative_stage_history"][0]["name"] == "adapt"
     assert item["runtime_environment"]["resolved_device"] == "cpu"
+    assert item["mean_parameter_count"] == 253
+    assert item["mean_nonzero_parameter_count"] == 185
+    assert abs(item["mean_weight_sparsity"] - 0.26535) < 1e-9
 
     write_benchmark_plots(tmp_path, aggregate)
     assert (tmp_path / "mean_final_val_accuracy.png").exists()
@@ -84,8 +104,10 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
 
     assert "Seeds: 7, 11" in text
     assert "Mean final validation accuracy" in text
+    assert "Constraint Summary" in text
     assert "Experiment Notes" in text
     assert "Representative Stage Histories" in text
     assert "Representative Architectures" in text
     assert "Hidden 1 (12)" in text
     assert "requested_device=auto" in text
+    assert "Mean nonzero params" in text

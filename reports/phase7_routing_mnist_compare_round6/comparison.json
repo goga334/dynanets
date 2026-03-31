@@ -1,0 +1,5357 @@
+[
+  {
+    "name": "fixed-cnn-mnist",
+    "epochs": 8,
+    "final_train_loss": 1.4340349605560303,
+    "final_train_accuracy": 0.4566,
+    "final_val_accuracy": 0.46959999203681946,
+    "best_val_accuracy": 0.46959999203681946,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.277383335876465,
+        "regularized_loss": 2.277383335876465,
+        "accuracy": 0.1347,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.058388464927673,
+        "regularized_loss": 2.058388464927673,
+        "accuracy": 0.2368,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.8743918968200683,
+        "regularized_loss": 1.8743918968200683,
+        "accuracy": 0.2952,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.718288932800293,
+        "regularized_loss": 1.718288932800293,
+        "accuracy": 0.3445,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.6052996952056884,
+        "regularized_loss": 1.6052996952056884,
+        "accuracy": 0.3793,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.5449815715789794,
+        "regularized_loss": 1.5449815715789794,
+        "accuracy": 0.3985,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.490123051071167,
+        "regularized_loss": 1.490123051071167,
+        "accuracy": 0.4267,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 1.4340349605560303,
+        "regularized_loss": 1.4340349605560303,
+        "accuracy": 0.4566,
+        "bn_scale_l1": 0.0
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.21379999816417694
+      },
+      {
+        "accuracy": 0.28060001134872437
+      },
+      {
+        "accuracy": 0.30880001187324524
+      },
+      {
+        "accuracy": 0.3707999885082245
+      },
+      {
+        "accuracy": 0.39579999446868896
+      },
+      {
+        "accuracy": 0.4142000079154968
+      },
+      {
+        "accuracy": 0.44279998540878296
+      },
+      {
+        "accuracy": 0.46959999203681946
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.4566,
+        "final_val_accuracy": 0.46959999203681946,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-cnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 7562,
+      "nonzero_parameter_count": 7562,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2061098,
+      "activation_elements": 4810
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    }
+  },
+  {
+    "name": "wide-cnn-mnist-bn",
+    "epochs": 8,
+    "final_train_loss": 0.5084869261741638,
+    "final_train_accuracy": 0.8703,
+    "final_val_accuracy": 0.8501999974250793,
+    "best_val_accuracy": 0.8501999974250793,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9675497035980225,
+        "regularized_loss": 1.9675497035980225,
+        "accuracy": 0.3308,
+        "bn_scale_l1": 73.01135297851563
+      },
+      {
+        "loss": 1.372111004638672,
+        "regularized_loss": 1.372111004638672,
+        "accuracy": 0.5377,
+        "bn_scale_l1": 76.17360498046875
+      },
+      {
+        "loss": 1.1142012056350707,
+        "regularized_loss": 1.1142012056350707,
+        "accuracy": 0.6325,
+        "bn_scale_l1": 78.31550998535157
+      },
+      {
+        "loss": 0.9585325998306274,
+        "regularized_loss": 0.9585325998306274,
+        "accuracy": 0.6926,
+        "bn_scale_l1": 79.78850776367187
+      },
+      {
+        "loss": 0.811900609779358,
+        "regularized_loss": 0.811900609779358,
+        "accuracy": 0.7573,
+        "bn_scale_l1": 81.03221657714843
+      },
+      {
+        "loss": 0.7044633885383605,
+        "regularized_loss": 0.7044633885383605,
+        "accuracy": 0.799,
+        "bn_scale_l1": 82.17008181152343
+      },
+      {
+        "loss": 0.5961982714653015,
+        "regularized_loss": 0.5961982714653015,
+        "accuracy": 0.8384,
+        "bn_scale_l1": 83.13235446777344
+      },
+      {
+        "loss": 0.5084869261741638,
+        "regularized_loss": 0.5084869261741638,
+        "accuracy": 0.8703,
+        "bn_scale_l1": 83.98283056640625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.35659998655319214
+      },
+      {
+        "accuracy": 0.46939998865127563
+      },
+      {
+        "accuracy": 0.5874000191688538
+      },
+      {
+        "accuracy": 0.6740000247955322
+      },
+      {
+        "accuracy": 0.6345999836921692
+      },
+      {
+        "accuracy": 0.7842000126838684
+      },
+      {
+        "accuracy": 0.84579998254776
+      },
+      {
+        "accuracy": 0.8501999974250793
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.8703,
+        "final_val_accuracy": 0.8501999974250793,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-mnist-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    }
+  },
+  {
+    "name": "dynamic-slimmable-mnist",
+    "epochs": 8,
+    "final_train_loss": 1.119953032684326,
+    "final_train_accuracy": 0.5843,
+    "final_val_accuracy": 0.590399980545044,
+    "best_val_accuracy": 0.590399980545044,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.8233626947402954,
+        "accuracy": 0.1562,
+        "route_mean_width": 0.984731353187561,
+        "route_mean_cost_ratio": 0.9760408624649047,
+        "gate_threshold": 0.7800000000000007,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.6794099925994872,
+        "accuracy": 0.2805,
+        "route_mean_width": 0.9796409666061401,
+        "route_mean_cost_ratio": 0.9679185321807862,
+        "gate_threshold": 0.7328571428571424,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.5301508962631225,
+        "accuracy": 0.337,
+        "route_mean_width": 0.9672003462791443,
+        "route_mean_cost_ratio": 0.947812990951538,
+        "gate_threshold": 0.685714285714285,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.4265762811660767,
+        "accuracy": 0.3936,
+        "route_mean_width": 0.9485519477844239,
+        "route_mean_cost_ratio": 0.9184165179252625,
+        "gate_threshold": 0.6385714285714292,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.3371583784103394,
+        "accuracy": 0.447,
+        "route_mean_width": 0.930995804977417,
+        "route_mean_cost_ratio": 0.8913869606018067,
+        "gate_threshold": 0.591428571428572,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.2603110687255858,
+        "accuracy": 0.4985,
+        "route_mean_width": 0.9118392008781433,
+        "route_mean_cost_ratio": 0.8618507356643677,
+        "gate_threshold": 0.5442857142857138,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.188546416091919,
+        "accuracy": 0.5496,
+        "route_mean_width": 0.8904085547447205,
+        "route_mean_cost_ratio": 0.8287410680770874,
+        "gate_threshold": 0.49714285714285705,
+        "gate_loss": 0.0
+      },
+      {
+        "loss": 1.119953032684326,
+        "accuracy": 0.5843,
+        "route_mean_width": 0.8655282075881958,
+        "route_mean_cost_ratio": 0.7901031113624573,
+        "gate_threshold": 0.44999999999999973,
+        "gate_loss": 0.0
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.27399998903274536
+      },
+      {
+        "accuracy": 0.3425999879837036
+      },
+      {
+        "accuracy": 0.3905999958515167
+      },
+      {
+        "accuracy": 0.446399986743927
+      },
+      {
+        "accuracy": 0.48399999737739563
+      },
+      {
+        "accuracy": 0.5138000249862671
+      },
+      {
+        "accuracy": 0.5717999935150146
+      },
+      {
+        "accuracy": 0.590399980545044
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "dynamic_slimmable_train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5843,
+        "final_val_accuracy": 0.590399980545044,
+        "adaptations_applied": 0,
+        "metadata": {
+          "routing_policy": "dynamic_width",
+          "width_multipliers": [
+            1.0,
+            0.75,
+            0.5
+          ],
+          "gate_mode": "metric"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "dynamic_slimmable",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1,
+      "routing_policy": "dynamic_width",
+      "gate_mode": "metric",
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "metric",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.45,
+        "target_cost_ratio": 0.82,
+        "target_accept_rate": null,
+        "route_counts": {
+          "0.5": 18,
+          "0.75": 7,
+          "1.0": 111
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.921,
+        "mean_cost_ratio": 0.8791
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "dynamic-slimmable-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=dynamic_slimmable; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'metric', 'gate_metric': 'margin', 'confidence_threshold': 0.45, 'target_cost_ratio': 0.82, 'target_accept_rate': None, 'route_counts': {'0.5': 18, '0.75': 7, '1.0': 111}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 0.5}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 0.5}, {'sample': 7, 'width': 1.0}], 'mean_width': 0.921, 'mean_cost_ratio': 0.8791}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "metric",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.45,
+        "target_cost_ratio": 0.82,
+        "target_accept_rate": null,
+        "route_counts": {
+          "0.5": 18,
+          "0.75": 7,
+          "1.0": 111
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.921,
+        "mean_cost_ratio": 0.8791
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.45,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "conditional-computation-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.9112881284713745,
+    "final_train_accuracy": 0.6167,
+    "final_val_accuracy": 0.5917999744415283,
+    "best_val_accuracy": 0.6021999716758728,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.1482523849487305,
+        "accuracy": 0.1417,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.880445970916748,
+        "gate_threshold": 0.8200000000000002,
+        "gate_loss": 0.5510661855220794
+      },
+      {
+        "loss": 1.0687020921707153,
+        "accuracy": 0.2761,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9326852635383606,
+        "gate_threshold": 0.7814285714285707,
+        "gate_loss": 0.29861119499206545
+      },
+      {
+        "loss": 1.0101212354660034,
+        "accuracy": 0.3387,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9575157991409302,
+        "gate_threshold": 0.742857142857142,
+        "gate_loss": 0.16121664874553682
+      },
+      {
+        "loss": 0.9867786761283874,
+        "accuracy": 0.4063,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9598260951042176,
+        "gate_threshold": 0.7042857142857154,
+        "gate_loss": 0.2501042918682098
+      },
+      {
+        "loss": 0.9654050649642945,
+        "accuracy": 0.4721,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9531213706970215,
+        "gate_threshold": 0.6657142857142867,
+        "gate_loss": 0.31029123998880387
+      },
+      {
+        "loss": 0.9476038540840149,
+        "accuracy": 0.524,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9416458740234375,
+        "gate_threshold": 0.6271428571428572,
+        "gate_loss": 0.35196970624923707
+      },
+      {
+        "loss": 0.9285627263069153,
+        "accuracy": 0.5814,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9215732645988465,
+        "gate_threshold": 0.5885714285714279,
+        "gate_loss": 0.37928938207626345
+      },
+      {
+        "loss": 0.9112881284713745,
+        "accuracy": 0.6167,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8941840879440308,
+        "gate_threshold": 0.5499999999999996,
+        "gate_loss": 0.4001673059463501
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.27320000529289246
+      },
+      {
+        "accuracy": 0.3294000029563904
+      },
+      {
+        "accuracy": 0.3944000005722046
+      },
+      {
+        "accuracy": 0.4422000050544739
+      },
+      {
+        "accuracy": 0.506600022315979
+      },
+      {
+        "accuracy": 0.5490000247955322
+      },
+      {
+        "accuracy": 0.6021999716758728
+      },
+      {
+        "accuracy": 0.5917999744415283
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "conditional_computation_train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6167,
+        "final_val_accuracy": 0.5917999744415283,
+        "adaptations_applied": 0,
+        "metadata": {
+          "routing_policy": "early_exit",
+          "confidence_threshold": 0.82,
+          "gate_mode": "learned"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "conditional_computation",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1,
+      "routing_policy": "early_exit",
+      "gate_mode": "learned",
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.55,
+        "target_cost_ratio": 0.8,
+        "target_accept_rate": null,
+        "early_exit_fraction": 0.0,
+        "full_path_fraction": 1.0,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 1.0
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "conditional-computation-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=conditional_computation; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.55, 'target_cost_ratio': 0.8, 'target_accept_rate': None, 'early_exit_fraction': 0.0, 'full_path_fraction': 1.0, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'full'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'full'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 1.0}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.55,
+        "target_cost_ratio": 0.8,
+        "target_accept_rate": null,
+        "early_exit_fraction": 0.0,
+        "full_path_fraction": 1.0,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 1.0
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.55,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "channel-gating-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.9933438121795655,
+    "final_train_accuracy": 0.5164,
+    "final_val_accuracy": 0.5228000283241272,
+    "best_val_accuracy": 0.5228000283241272,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.3587187759399415,
+        "accuracy": 0.1366,
+        "route_mean_width": 0.9650037501335144,
+        "route_mean_cost_ratio": 0.9457142436981201,
+        "gate_threshold": 0.9200000000000013,
+        "gate_loss": 0.61562233928442
+      },
+      {
+        "loss": 1.2555852043151856,
+        "accuracy": 0.2341,
+        "route_mean_width": 0.9919648958206176,
+        "route_mean_cost_ratio": 0.987418097114563,
+        "gate_threshold": 0.9200000000000013,
+        "gate_loss": 0.08411335021555423
+      },
+      {
+        "loss": 1.2114889671325684,
+        "accuracy": 0.2851,
+        "route_mean_width": 0.9906247929573059,
+        "route_mean_cost_ratio": 0.9853255738258362,
+        "gate_threshold": 0.9200000000000013,
+        "gate_loss": 0.45340097742080687
+      },
+      {
+        "loss": 1.1671700511932372,
+        "accuracy": 0.3336,
+        "route_mean_width": 0.9403941799163819,
+        "route_mean_cost_ratio": 0.9063043601989746,
+        "gate_threshold": 0.5957142857142864,
+        "gate_loss": 0.5740050174713135
+      },
+      {
+        "loss": 1.1214231885910033,
+        "accuracy": 0.379,
+        "route_mean_width": 0.9071980144500732,
+        "route_mean_cost_ratio": 0.8542076609611511,
+        "gate_threshold": 0.5342857142857149,
+        "gate_loss": 0.6702235096454621
+      },
+      {
+        "loss": 1.0770875701904297,
+        "accuracy": 0.4292,
+        "route_mean_width": 0.8748162511825561,
+        "route_mean_cost_ratio": 0.804395516204834,
+        "gate_threshold": 0.4728571428571435,
+        "gate_loss": 0.7916277021408081
+      },
+      {
+        "loss": 1.0335658307075501,
+        "accuracy": 0.4783,
+        "route_mean_width": 0.8275116728782654,
+        "route_mean_cost_ratio": 0.7316039531707764,
+        "gate_threshold": 0.41142857142857203,
+        "gate_loss": 0.9312056533813476
+      },
+      {
+        "loss": 0.9933438121795655,
+        "accuracy": 0.5164,
+        "route_mean_width": 0.7650672059059143,
+        "route_mean_cost_ratio": 0.636004041004181,
+        "gate_threshold": 0.3500000000000005,
+        "gate_loss": 1.0614658990859986
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.2029999941587448
+      },
+      {
+        "accuracy": 0.30959999561309814
+      },
+      {
+        "accuracy": 0.298799991607666
+      },
+      {
+        "accuracy": 0.3384000062942505
+      },
+      {
+        "accuracy": 0.4244000017642975
+      },
+      {
+        "accuracy": 0.42260000109672546
+      },
+      {
+        "accuracy": 0.4952000081539154
+      },
+      {
+        "accuracy": 0.5228000283241272
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "channel_gating_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2851,
+        "final_val_accuracy": 0.298799991607666,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "threshold": 0.92,
+          "min_threshold": 0.92
+        }
+      },
+      {
+        "name": "channel_gating_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5164,
+        "final_val_accuracy": 0.5228000283241272,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "dynamic_width",
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.76
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "channel_gating",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 2,
+      "routing_policy": "dynamic_width",
+      "gate_mode": "learned",
+      "warmup_epochs": 3,
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.35,
+        "target_cost_ratio": 0.76,
+        "target_accept_rate": null,
+        "route_counts": {
+          "0.5": 27,
+          "0.75": 17,
+          "1.0": 92
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.8695,
+        "mean_cost_ratio": 0.7979
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.75
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "channel-gating-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=channel_gating; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.35, 'target_cost_ratio': 0.76, 'target_accept_rate': None, 'route_counts': {'0.5': 27, '0.75': 17, '1.0': 92}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 0.5}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 0.5}, {'sample': 7, 'width': 1.0}], 'mean_width': 0.8695, 'mean_cost_ratio': 0.7979}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.35,
+        "target_cost_ratio": 0.76,
+        "target_accept_rate": null,
+        "route_counts": {
+          "0.5": 27,
+          "0.75": 17,
+          "1.0": 92
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.8695,
+        "mean_cost_ratio": 0.7979
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.75
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "skipnet-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.977314638710022,
+    "final_train_accuracy": 0.6397,
+    "final_val_accuracy": 0.6146000027656555,
+    "best_val_accuracy": 0.621399998664856,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.2193787139892578,
+        "accuracy": 0.1411,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9338778681755066,
+        "gate_threshold": 0.9500000000000015,
+        "gate_loss": 0.5492856023788452
+      },
+      {
+        "loss": 1.1334469959259033,
+        "accuracy": 0.2736,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9702171582221985,
+        "gate_threshold": 0.9500000000000015,
+        "gate_loss": 0.2951779786586761
+      },
+      {
+        "loss": 1.0733382452011109,
+        "accuracy": 0.3392,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9846137590408325,
+        "gate_threshold": 0.9500000000000015,
+        "gate_loss": 0.18418414797782898
+      },
+      {
+        "loss": 1.056194051361084,
+        "accuracy": 0.4135,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8722078598022461,
+        "gate_threshold": 0.4600000000000005,
+        "gate_loss": 0.3179582945346832
+      },
+      {
+        "loss": 1.0355268041610717,
+        "accuracy": 0.4801,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.845188461971283,
+        "gate_threshold": 0.4200000000000008,
+        "gate_loss": 0.3865323928356171
+      },
+      {
+        "loss": 1.0157397499084473,
+        "accuracy": 0.5331,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8013454746246338,
+        "gate_threshold": 0.3799999999999997,
+        "gate_loss": 0.41941252751350405
+      },
+      {
+        "loss": 0.9948924736022949,
+        "accuracy": 0.6031,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.7369132564544678,
+        "gate_threshold": 0.3399999999999999,
+        "gate_loss": 0.44490804057121275
+      },
+      {
+        "loss": 0.977314638710022,
+        "accuracy": 0.6397,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.6651215093612671,
+        "gate_threshold": 0.30000000000000043,
+        "gate_loss": 0.4707794425010681
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.272599995136261
+      },
+      {
+        "accuracy": 0.32739999890327454
+      },
+      {
+        "accuracy": 0.4068000018596649
+      },
+      {
+        "accuracy": 0.4458000063896179
+      },
+      {
+        "accuracy": 0.5252000093460083
+      },
+      {
+        "accuracy": 0.5745999813079834
+      },
+      {
+        "accuracy": 0.621399998664856
+      },
+      {
+        "accuracy": 0.6146000027656555
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "skipnet_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.3392,
+        "final_val_accuracy": 0.4068000018596649,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "threshold": 0.95,
+          "min_threshold": 0.95
+        }
+      },
+      {
+        "name": "skipnet_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6397,
+        "final_val_accuracy": 0.6146000027656555,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "early_exit",
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.82
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "skipnet",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 2,
+      "routing_policy": "early_exit",
+      "gate_mode": "learned",
+      "warmup_epochs": 3,
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.3,
+        "target_cost_ratio": 0.82,
+        "target_accept_rate": null,
+        "early_exit_fraction": 0.0074,
+        "full_path_fraction": 0.9926,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 0.9928
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "skipnet-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=skipnet; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.3, 'target_cost_ratio': 0.82, 'target_accept_rate': None, 'early_exit_fraction': 0.0074, 'full_path_fraction': 0.9926, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'full'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'full'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 0.9928}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.3,
+        "target_cost_ratio": 0.82,
+        "target_accept_rate": null,
+        "early_exit_fraction": 0.0074,
+        "full_path_fraction": 0.9926,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 0.9928
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.3,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "instance-wise-sparsity-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.7787152885437012,
+    "final_train_accuracy": 0.5126,
+    "final_val_accuracy": 0.5260000228881836,
+    "best_val_accuracy": 0.5260000228881836,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.1891108165740967,
+        "accuracy": 0.1362,
+        "route_mean_width": 0.9733899711608887,
+        "route_mean_cost_ratio": 0.9587318328857422,
+        "gate_threshold": 0.9200000000000013,
+        "gate_loss": 0.6145556752443314
+      },
+      {
+        "loss": 1.0986951105117797,
+        "accuracy": 0.234,
+        "route_mean_width": 0.995107688999176,
+        "route_mean_cost_ratio": 0.99234114112854,
+        "gate_threshold": 0.9200000000000013,
+        "gate_loss": 0.0840637920677662
+      },
+      {
+        "loss": 0.9457234091758728,
+        "accuracy": 0.2821,
+        "route_mean_width": 0.9709921624183655,
+        "route_mean_cost_ratio": 0.954660376739502,
+        "gate_threshold": 0.6199999999999993,
+        "gate_loss": 0.44872987179756163
+      },
+      {
+        "loss": 0.9115710885047913,
+        "accuracy": 0.3335,
+        "route_mean_width": 0.9355062630653381,
+        "route_mean_cost_ratio": 0.898633418083191,
+        "gate_threshold": 0.5300000000000006,
+        "gate_loss": 0.5580701335906982
+      },
+      {
+        "loss": 0.8777705493927002,
+        "accuracy": 0.3767,
+        "route_mean_width": 0.883103630065918,
+        "route_mean_cost_ratio": 0.8167569696426391,
+        "gate_threshold": 0.4400000000000003,
+        "gate_loss": 0.6627946756362915
+      },
+      {
+        "loss": 0.8436971835136413,
+        "accuracy": 0.4237,
+        "route_mean_width": 0.8281689777374267,
+        "route_mean_cost_ratio": 0.7329635378837586,
+        "gate_threshold": 0.3500000000000005,
+        "gate_loss": 0.7705462940216065
+      },
+      {
+        "loss": 0.8099700218200684,
+        "accuracy": 0.4747,
+        "route_mean_width": 0.8074210264205932,
+        "route_mean_cost_ratio": 0.7013042303085327,
+        "gate_threshold": 0.3500000000000005,
+        "gate_loss": 0.9083829942703248
+      },
+      {
+        "loss": 0.7787152885437012,
+        "accuracy": 0.5126,
+        "route_mean_width": 0.7793377381324768,
+        "route_mean_cost_ratio": 0.658013749885559,
+        "gate_threshold": 0.3500000000000005,
+        "gate_loss": 1.0395335218429564
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.20239999890327454
+      },
+      {
+        "accuracy": 0.30399999022483826
+      },
+      {
+        "accuracy": 0.3012000024318695
+      },
+      {
+        "accuracy": 0.3353999853134155
+      },
+      {
+        "accuracy": 0.4228000044822693
+      },
+      {
+        "accuracy": 0.4083999991416931
+      },
+      {
+        "accuracy": 0.4867999851703644
+      },
+      {
+        "accuracy": 0.5260000228881836
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "instance_wise_sparsity_warmup",
+        "epochs": 2,
+        "epoch_start": 1,
+        "epoch_end": 2,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.234,
+        "final_val_accuracy": 0.30399999022483826,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.92,
+          "min_threshold": 0.92
+        }
+      },
+      {
+        "name": "instance_wise_sparsity_routing",
+        "epochs": 4,
+        "epoch_start": 3,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.4237,
+        "final_val_accuracy": 0.4083999991416931,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "target_cost_ratio": 0.72,
+          "target_accept_rate": 0.42
+        }
+      },
+      {
+        "name": "instance_wise_sparsity_consolidation",
+        "epochs": 2,
+        "epoch_start": 7,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5126,
+        "final_val_accuracy": 0.5260000228881836,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "consolidation",
+          "target_cost_ratio": 0.68,
+          "target_accept_rate": 0.4,
+          "threshold": 0.35,
+          "min_threshold": 0.35
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "instance_wise_sparsity",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 3,
+      "routing_policy": "dynamic_width",
+      "gate_mode": "learned",
+      "warmup_epochs": 2,
+      "consolidation_epochs": 2,
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.35,
+        "target_cost_ratio": 0.68,
+        "target_accept_rate": 0.4,
+        "route_counts": {
+          "0.5": 31,
+          "0.75": 18,
+          "1.0": 87
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.8529,
+        "mean_cost_ratio": 0.7728
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 0.75
+            },
+            {
+              "sample": 2,
+              "width": 0.75
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 0.75
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 0.75
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "instance-wise-sparsity-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=instance_wise_sparsity; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.35, 'target_cost_ratio': 0.68, 'target_accept_rate': 0.4, 'route_counts': {'0.5': 31, '0.75': 18, '1.0': 87}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 0.5}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 0.5}, {'sample': 7, 'width': 1.0}], 'mean_width': 0.8529, 'mean_cost_ratio': 0.7728}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "dynamic_width",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.35,
+        "target_cost_ratio": 0.68,
+        "target_accept_rate": 0.4,
+        "route_counts": {
+          "0.5": 31,
+          "0.75": 18,
+          "1.0": 87
+        },
+        "trace_samples": [
+          {
+            "sample": 0,
+            "width": 1.0
+          },
+          {
+            "sample": 1,
+            "width": 1.0
+          },
+          {
+            "sample": 2,
+            "width": 0.5
+          },
+          {
+            "sample": 3,
+            "width": 1.0
+          },
+          {
+            "sample": 4,
+            "width": 1.0
+          },
+          {
+            "sample": 5,
+            "width": 1.0
+          },
+          {
+            "sample": 6,
+            "width": 0.5
+          },
+          {
+            "sample": 7,
+            "width": 1.0
+          }
+        ],
+        "mean_width": 0.8529,
+        "mean_cost_ratio": 0.7728
+      },
+      "route_trace": [
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 0.75
+            },
+            {
+              "sample": 2,
+              "width": 0.75
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 1.0
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 0.75
+            },
+            {
+              "sample": 2,
+              "width": 1.0
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 0.75
+            }
+          ]
+        },
+        {
+          "policy": "dynamic_width",
+          "mode": "eval",
+          "threshold": 0.35,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "width": 1.0
+            },
+            {
+              "sample": 1,
+              "width": 1.0
+            },
+            {
+              "sample": 2,
+              "width": 0.5
+            },
+            {
+              "sample": 3,
+              "width": 1.0
+            },
+            {
+              "sample": 4,
+              "width": 1.0
+            },
+            {
+              "sample": 5,
+              "width": 1.0
+            },
+            {
+              "sample": 6,
+              "width": 0.5
+            },
+            {
+              "sample": 7,
+              "width": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "iamnn-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.6661907626152038,
+    "final_train_accuracy": 0.6157,
+    "final_val_accuracy": 0.5925999879837036,
+    "best_val_accuracy": 0.5965999960899353,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 0.9759698428153992,
+        "accuracy": 0.141,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.9521887085914612,
+        "gate_threshold": 0.9599999999999999,
+        "gate_loss": 0.5492975739479065
+      },
+      {
+        "loss": 0.9078831581115723,
+        "accuracy": 0.2741,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.980508724308014,
+        "gate_threshold": 0.9599999999999999,
+        "gate_loss": 0.2941131113290787
+      },
+      {
+        "loss": 0.7195167957305908,
+        "accuracy": 0.3392,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8825821697235108,
+        "gate_threshold": 0.48400000000000093,
+        "gate_loss": 0.17677533226013184
+      },
+      {
+        "loss": 0.709108825302124,
+        "accuracy": 0.4074,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8669120735168457,
+        "gate_threshold": 0.41600000000000026,
+        "gate_loss": 0.2934515570878983
+      },
+      {
+        "loss": 0.6984037649154663,
+        "accuracy": 0.4756,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.8183234408378601,
+        "gate_threshold": 0.34799999999999975,
+        "gate_loss": 0.3765380783081055
+      },
+      {
+        "loss": 0.6873975284576416,
+        "accuracy": 0.5237,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.7399465091705322,
+        "gate_threshold": 0.28000000000000014,
+        "gate_loss": 0.41025345380306244
+      },
+      {
+        "loss": 0.676414345741272,
+        "accuracy": 0.586,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.7075731132507325,
+        "gate_threshold": 0.28000000000000014,
+        "gate_loss": 0.4398773687839508
+      },
+      {
+        "loss": 0.6661907626152038,
+        "accuracy": 0.6157,
+        "route_mean_width": 1.0,
+        "route_mean_cost_ratio": 0.6749367420196534,
+        "gate_threshold": 0.28000000000000014,
+        "gate_loss": 0.45950550899505616
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.27140000462532043
+      },
+      {
+        "accuracy": 0.3287999927997589
+      },
+      {
+        "accuracy": 0.3984000086784363
+      },
+      {
+        "accuracy": 0.44179999828338623
+      },
+      {
+        "accuracy": 0.5138000249862671
+      },
+      {
+        "accuracy": 0.5565999746322632
+      },
+      {
+        "accuracy": 0.5965999960899353
+      },
+      {
+        "accuracy": 0.5925999879837036
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "iamnn_warmup",
+        "epochs": 2,
+        "epoch_start": 1,
+        "epoch_end": 2,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2741,
+        "final_val_accuracy": 0.3287999927997589,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.96,
+          "min_threshold": 0.96
+        }
+      },
+      {
+        "name": "iamnn_routing",
+        "epochs": 4,
+        "epoch_start": 3,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5237,
+        "final_val_accuracy": 0.5565999746322632,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "target_cost_ratio": 0.76,
+          "target_accept_rate": 0.32
+        }
+      },
+      {
+        "name": "iamnn_consolidation",
+        "epochs": 2,
+        "epoch_start": 7,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6157,
+        "final_val_accuracy": 0.5925999879837036,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "consolidation",
+          "target_cost_ratio": 0.72,
+          "target_accept_rate": 0.3,
+          "threshold": 0.28,
+          "min_threshold": 0.28
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "iamnn",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 3,
+      "routing_policy": "early_exit",
+      "gate_mode": "learned",
+      "warmup_epochs": 2,
+      "consolidation_epochs": 2,
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.28,
+        "target_cost_ratio": 0.72,
+        "target_accept_rate": 0.3,
+        "early_exit_fraction": 0.0147,
+        "full_path_fraction": 0.9853,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 0.9856
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "architecture_graph": {
+      "name": "iamnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 11146,
+      "nonzero_parameter_count": 11146,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4439194,
+      "activation_elements": 7114
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=iamnn; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.28, 'target_cost_ratio': 0.72, 'target_accept_rate': 0.3, 'early_exit_fraction': 0.0147, 'full_path_fraction': 0.9853, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'full'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'full'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 0.9856}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": {
+        "policy": "early_exit",
+        "mode": "eval",
+        "gate_mode": "learned",
+        "gate_metric": "margin",
+        "confidence_threshold": 0.28,
+        "target_cost_ratio": 0.72,
+        "target_accept_rate": 0.3,
+        "early_exit_fraction": 0.0147,
+        "full_path_fraction": 0.9853,
+        "trace_samples": [
+          {
+            "sample": 0,
+            "path": "full"
+          },
+          {
+            "sample": 1,
+            "path": "full"
+          },
+          {
+            "sample": 2,
+            "path": "full"
+          },
+          {
+            "sample": 3,
+            "path": "full"
+          },
+          {
+            "sample": 4,
+            "path": "full"
+          },
+          {
+            "sample": 5,
+            "path": "full"
+          },
+          {
+            "sample": 6,
+            "path": "full"
+          },
+          {
+            "sample": 7,
+            "path": "full"
+          }
+        ],
+        "mean_width": 1.0,
+        "mean_cost_ratio": 0.9856
+      },
+      "route_trace": [
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        },
+        {
+          "policy": "early_exit",
+          "mode": "eval",
+          "threshold": 0.28,
+          "trace_samples": [
+            {
+              "sample": 0,
+              "path": "full"
+            },
+            {
+              "sample": 1,
+              "path": "full"
+            },
+            {
+              "sample": 2,
+              "path": "full"
+            },
+            {
+              "sample": 3,
+              "path": "full"
+            },
+            {
+              "sample": 4,
+              "path": "full"
+            },
+            {
+              "sample": 5,
+              "path": "full"
+            },
+            {
+              "sample": 6,
+              "path": "full"
+            },
+            {
+              "sample": 7,
+              "path": "full"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "network-slimming-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.6281659507751465,
+    "final_train_accuracy": 0.8281,
+    "final_val_accuracy": 0.8227999806404114,
+    "best_val_accuracy": 0.8227999806404114,
+    "adaptations_applied": 1,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9678432764053344,
+        "regularized_loss": 1.982396863937378,
+        "accuracy": 0.3311,
+        "bn_scale_l1": 72.76794818115235
+      },
+      {
+        "loss": 1.3724594142913817,
+        "regularized_loss": 1.3875994432449341,
+        "accuracy": 0.537,
+        "bn_scale_l1": 75.70016782226563
+      },
+      {
+        "loss": 1.1145403541564942,
+        "regularized_loss": 1.130083844947815,
+        "accuracy": 0.633,
+        "bn_scale_l1": 77.71745894775391
+      },
+      {
+        "loss": 0.9630010201454162,
+        "regularized_loss": 0.9788213596343994,
+        "accuracy": 0.6914,
+        "bn_scale_l1": 79.10171950683593
+      },
+      {
+        "loss": 0.8153056029319763,
+        "regularized_loss": 0.8313587287902832,
+        "accuracy": 0.7573,
+        "bn_scale_l1": 80.26563706054688
+      },
+      {
+        "loss": 0.9018692745208741,
+        "regularized_loss": 0.9018692745208741,
+        "accuracy": 0.7299,
+        "bn_scale_l1": 67.192951953125
+      },
+      {
+        "loss": 0.7135936912536621,
+        "regularized_loss": 0.7135936912536621,
+        "accuracy": 0.7995,
+        "bn_scale_l1": 67.74132277832031
+      },
+      {
+        "loss": 0.6281659507751465,
+        "regularized_loss": 0.6281659507751465,
+        "accuracy": 0.8281,
+        "bn_scale_l1": 68.32652982177734
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.37040001153945923
+      },
+      {
+        "accuracy": 0.4819999933242798
+      },
+      {
+        "accuracy": 0.5609999895095825
+      },
+      {
+        "accuracy": 0.7131999731063843
+      },
+      {
+        "accuracy": 0.6582000255584717
+      },
+      {
+        "accuracy": 0.722599983215332
+      },
+      {
+        "accuracy": 0.7527999877929688
+      },
+      {
+        "accuracy": 0.8227999806404114
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 4,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.2,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "network-slimming-approx",
+          "before_conv_channels": [
+            24,
+            48
+          ],
+          "after_conv_channels": [
+            20,
+            39
+          ],
+          "kept_channels": [
+            20,
+            39
+          ]
+        },
+        "before_state": {
+          "step": 395,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 395,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              20,
+              39
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12187,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12187,
+            "forward_flop_proxy": 3119397,
+            "activation_elements": 5976,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning",
+            "layerwise_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            20,
+            39
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 12187,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 12187,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "parameter_count_delta": -4287,
+          "nonzero_parameter_count_delta": -4287,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -1386517,
+          "activation_elements_delta": -1234,
+          "num_conv_blocks_delta": 0,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            20,
+            39
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "network_slimming_sparse_train",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7573,
+        "final_val_accuracy": 0.6582000255584717,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "sparse_train",
+          "sparsity_strength": 0.0002
+        }
+      },
+      {
+        "name": "network_slimming_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.8281,
+        "final_val_accuracy": 0.8227999806404114,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "network_slimming",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 2,
+      "prune_fraction": 0.2,
+      "min_channels_per_block": 12,
+      "before_conv_channels": [
+        24,
+        48
+      ],
+      "after_conv_channels": [
+        20,
+        39
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 20,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 39,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "network-slimming-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (20, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 20,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (39, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 39,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 12187,
+      "nonzero_parameter_count": 12187,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 3119397,
+      "activation_elements": 5976
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=network_slimming; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    }
+  }
+]

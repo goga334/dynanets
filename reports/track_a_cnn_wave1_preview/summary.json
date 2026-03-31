@@ -1,0 +1,792 @@
+[
+  {
+    "name": "wide-cnn-patterns-bn",
+    "method_type": "baseline",
+    "notes": "device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cpu",
+      "torch_version": "2.11.0+cpu",
+      "torch_cuda_version": null,
+      "cuda_available": false,
+      "cuda_device_count": 0,
+      "cuda_device_name": null
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.5565000057220459,
+    "std_final_val_accuracy": 0.16224673077444615,
+    "mean_best_val_accuracy": 0.5605000078678131,
+    "std_best_val_accuracy": 0.1578480310276785,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 16474,
+    "mean_nonzero_parameter_count": 16474,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_activation_elements": 7210,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.7975000143051147,
+    "best_seed_best_val_accuracy": 0.7975000143051147,
+    "representative_architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "wide-cnn-patterns-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7712500095367432,
+        "final_val_accuracy": 0.7975000143051147,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.7975000143051147,
+        "best_val_accuracy": 0.7975000143051147,
+        "adaptations_applied": 0,
+        "parameter_count": 16474,
+        "nonzero_parameter_count": 16474,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.3774999976158142,
+        "best_val_accuracy": 0.3774999976158142,
+        "adaptations_applied": 0,
+        "parameter_count": 16474,
+        "nonzero_parameter_count": 16474,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.6274999976158142,
+        "best_val_accuracy": 0.6274999976158142,
+        "adaptations_applied": 0,
+        "parameter_count": 16474,
+        "nonzero_parameter_count": 16474,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.3725000023841858,
+        "best_val_accuracy": 0.39250001311302185,
+        "adaptations_applied": 0,
+        "parameter_count": 16474,
+        "nonzero_parameter_count": 16474,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6075000166893005,
+        "best_val_accuracy": 0.6075000166893005,
+        "adaptations_applied": 0,
+        "parameter_count": 16474,
+        "nonzero_parameter_count": 16474,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "network-slimming-patterns",
+    "method_type": "workflow",
+    "notes": "workflow=network_slimming; device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cpu",
+      "torch_version": "2.11.0+cpu",
+      "torch_cuda_version": null,
+      "cuda_available": false,
+      "cuda_device_count": 0,
+      "cuda_device_name": null
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.5534999966621399,
+    "std_final_val_accuracy": 0.10993861642761908,
+    "mean_best_val_accuracy": 0.5534999966621399,
+    "std_best_val_accuracy": 0.10993861642761908,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 9838,
+    "mean_nonzero_parameter_count": 9838,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 2352616,
+    "mean_activation_elements": 5138,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6899999976158142,
+    "best_seed_best_val_accuracy": 0.6899999976158142,
+    "representative_architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 17,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 34,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "network-slimming-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (17, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 17,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (34, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 34,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 9838,
+      "nonzero_parameter_count": 9838,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2352616,
+      "activation_elements": 5138
+    },
+    "representative_stage_history": [
+      {
+        "name": "network_slimming_sparse_train",
+        "epochs": 18,
+        "epoch_start": 1,
+        "epoch_end": 18,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6112499833106995,
+        "final_val_accuracy": 0.47749999165534973,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "sparse_train",
+          "sparsity_strength": 0.0003
+        }
+      },
+      {
+        "name": "network_slimming_finetune",
+        "epochs": 12,
+        "epoch_start": 19,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6650000214576721,
+        "final_val_accuracy": 0.6899999976158142,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6899999976158142,
+        "best_val_accuracy": 0.6899999976158142,
+        "adaptations_applied": 1,
+        "parameter_count": 9838,
+        "nonzero_parameter_count": 9838,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.3774999976158142,
+        "best_val_accuracy": 0.3774999976158142,
+        "adaptations_applied": 1,
+        "parameter_count": 9838,
+        "nonzero_parameter_count": 9838,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.6274999976158142,
+        "best_val_accuracy": 0.6274999976158142,
+        "adaptations_applied": 1,
+        "parameter_count": 9838,
+        "nonzero_parameter_count": 9838,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5849999785423279,
+        "best_val_accuracy": 0.5849999785423279,
+        "adaptations_applied": 1,
+        "parameter_count": 9838,
+        "nonzero_parameter_count": 9838,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.48750001192092896,
+        "best_val_accuracy": 0.48750001192092896,
+        "adaptations_applied": 1,
+        "parameter_count": 9838,
+        "nonzero_parameter_count": 9838,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "fixed-cnn-patterns",
+    "method_type": "baseline",
+    "notes": "device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cpu",
+      "torch_version": "2.11.0+cpu",
+      "torch_cuda_version": null,
+      "cuda_available": false,
+      "cuda_device_count": 0,
+      "cuda_device_name": null
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.15250000208616257,
+    "std_final_val_accuracy": 0.0469840407852805,
+    "mean_best_val_accuracy": 0.21249999701976777,
+    "std_best_val_accuracy": 0.04280770461520767,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 7562,
+    "mean_nonzero_parameter_count": 7562,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 2061098,
+    "mean_activation_elements": 4810,
+    "best_seed": 23,
+    "best_seed_final_val_accuracy": 0.20000000298023224,
+    "best_seed_best_val_accuracy": 0.29499998688697815,
+    "representative_architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "fixed-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 7562,
+      "nonzero_parameter_count": 7562,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2061098,
+      "activation_elements": 4810
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2018750011920929,
+        "final_val_accuracy": 0.20000000298023224,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.17249999940395355,
+        "best_val_accuracy": 0.17249999940395355,
+        "adaptations_applied": 0,
+        "parameter_count": 7562,
+        "nonzero_parameter_count": 7562,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.0925000011920929,
+        "best_val_accuracy": 0.1899999976158142,
+        "adaptations_applied": 0,
+        "parameter_count": 7562,
+        "nonzero_parameter_count": 7562,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.20000000298023224,
+        "best_val_accuracy": 0.29499998688697815,
+        "adaptations_applied": 0,
+        "parameter_count": 7562,
+        "nonzero_parameter_count": 7562,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.10000000149011612,
+        "best_val_accuracy": 0.20749999582767487,
+        "adaptations_applied": 0,
+        "parameter_count": 7562,
+        "nonzero_parameter_count": 7562,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.19750000536441803,
+        "best_val_accuracy": 0.19750000536441803,
+        "adaptations_applied": 0,
+        "parameter_count": 7562,
+        "nonzero_parameter_count": 7562,
+        "weight_sparsity": 0.0
+      }
+    ]
+  }
+]

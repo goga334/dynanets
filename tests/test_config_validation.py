@@ -224,3 +224,32 @@ def test_scheduled_workflow_rejects_epoch_mismatch() -> None:
 
     with pytest.raises(ValueError):
         ExperimentExecutor().execute(config=config, experiment=experiment, registries=registries)
+
+
+def test_config_rejects_non_positive_batch_size() -> None:
+    with pytest.raises(ConfigValidationError):
+        ExperimentConfig.from_dict(
+            {
+                "name": "invalid-batch-size",
+                "dataset": {"name": "gaussian_blobs", "params": {}},
+                "model": {"name": "torch_mlp_classifier", "params": {"input_dim": 2, "hidden_dim": 4, "output_dim": 2}},
+                "metrics": [{"name": "accuracy", "params": {}}],
+                "trainer": {"epochs": 1, "batch_size": 0},
+            }
+        )
+
+
+
+def test_config_accepts_positive_eval_batch_size() -> None:
+    config = ExperimentConfig.from_dict(
+        {
+            "name": "valid-eval-batch-size",
+            "dataset": {"name": "gaussian_blobs", "params": {}},
+            "model": {"name": "torch_mlp_classifier", "params": {"input_dim": 2, "hidden_dim": 4, "output_dim": 2}},
+            "metrics": [{"name": "accuracy", "params": {}}],
+            "trainer": {"epochs": 1, "batch_size": 8, "eval_batch_size": 16},
+        }
+    )
+
+    assert config.trainer["batch_size"] == 8
+    assert config.trainer["eval_batch_size"] == 16

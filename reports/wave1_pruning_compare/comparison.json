@@ -333,13 +333,22 @@
         "family": "mlp"
       }
     },
+    "constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 236,
+      "nonzero_parameter_count": 236,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 452,
+      "activation_elements": 20
+    },
     "metadata": {
       "method_type": "baseline",
-      "notes": "device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "notes": "device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
       "runtime_environment": {
         "requested_device": "auto",
         "resolved_device": "cpu",
-        "torch_version": "2.10.0+cpu",
+        "torch_version": "2.11.0+cpu",
         "torch_cuda_version": null,
         "cuda_available": false,
         "cuda_device_count": 0,
@@ -615,7 +624,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -626,8 +634,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -639,7 +656,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -650,20 +666,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -672,7 +703,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -694,6 +726,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -713,7 +747,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -724,8 +757,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -737,7 +779,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -748,20 +789,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -770,7 +826,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -792,6 +849,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -811,7 +870,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -822,8 +880,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -835,7 +902,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -846,20 +912,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -868,7 +949,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -890,6 +972,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -909,7 +993,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -920,8 +1003,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -933,7 +1025,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -944,20 +1035,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -966,7 +1072,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -988,6 +1095,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1007,7 +1116,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1018,8 +1126,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -1031,7 +1148,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1042,20 +1158,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1064,7 +1195,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -1086,6 +1218,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1105,7 +1239,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1116,8 +1249,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -1129,7 +1271,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1140,20 +1281,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1162,7 +1318,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -1184,6 +1341,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1203,7 +1362,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1214,8 +1372,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -1227,7 +1394,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1238,20 +1404,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1260,7 +1441,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -1282,6 +1464,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1308,7 +1492,6 @@
               10
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 132,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 132,
             "weight_sparsity": 0.0,
@@ -1319,8 +1502,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 132,
+            "forward_flop_proxy": 252,
+            "activation_elements": 12
           }
         },
         "after_state": {
@@ -1332,7 +1524,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1343,20 +1534,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1365,7 +1571,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             10
@@ -1387,6 +1594,8 @@
           "parameter_count_delta": 26,
           "nonzero_parameter_count_delta": 26,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 50,
+          "activation_elements_delta": 2,
           "hidden_dims_changed": true
         },
         "applied": true,
@@ -1406,7 +1615,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1417,8 +1625,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1430,7 +1647,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1441,20 +1657,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1463,7 +1694,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1485,6 +1717,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1504,7 +1738,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1515,8 +1748,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1528,7 +1770,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1539,20 +1780,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1561,7 +1817,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1583,6 +1840,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1602,7 +1861,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1613,8 +1871,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1626,7 +1893,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1637,20 +1903,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1659,7 +1940,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1681,6 +1963,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1700,7 +1984,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1711,8 +1994,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1724,7 +2016,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1735,20 +2026,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1757,7 +2063,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1779,6 +2086,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1798,7 +2107,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1809,8 +2117,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1822,7 +2139,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1833,20 +2149,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1855,7 +2186,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1877,6 +2209,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1896,7 +2230,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1907,8 +2240,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -1920,7 +2262,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -1931,20 +2272,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -1953,7 +2309,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -1975,6 +2332,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -1994,7 +2353,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -2005,8 +2363,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -2018,7 +2385,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -2029,20 +2395,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2051,7 +2432,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -2073,6 +2455,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2099,7 +2483,6 @@
               12
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 158,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 158,
             "weight_sparsity": 0.0,
@@ -2110,8 +2493,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 158,
+            "forward_flop_proxy": 302,
+            "activation_elements": 14
           }
         },
         "after_state": {
@@ -2123,7 +2515,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2134,20 +2525,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2156,7 +2562,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             12
@@ -2178,6 +2585,8 @@
           "parameter_count_delta": 26,
           "nonzero_parameter_count_delta": 26,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 50,
+          "activation_elements_delta": 2,
           "hidden_dims_changed": true
         },
         "applied": true,
@@ -2197,7 +2606,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2208,8 +2616,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2221,7 +2638,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2232,20 +2648,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2254,7 +2685,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2276,6 +2708,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2295,7 +2729,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2306,8 +2739,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2319,7 +2761,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2330,20 +2771,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2352,7 +2808,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2374,6 +2831,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2393,7 +2852,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2404,8 +2862,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2417,7 +2884,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2428,20 +2894,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2450,7 +2931,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2472,6 +2954,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2491,7 +2975,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2502,8 +2985,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2515,7 +3007,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2526,20 +3017,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2548,7 +3054,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2570,6 +3077,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2589,7 +3098,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2600,8 +3108,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2613,7 +3130,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2624,20 +3140,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2646,7 +3177,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2668,6 +3200,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2687,7 +3221,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2698,8 +3231,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2711,7 +3253,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2722,20 +3263,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2744,7 +3300,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2766,6 +3323,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2785,7 +3344,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2796,8 +3354,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2809,7 +3376,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2820,20 +3386,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2842,7 +3423,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2864,6 +3446,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2883,7 +3467,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2894,8 +3477,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -2907,7 +3499,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2918,20 +3509,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -2940,7 +3546,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -2962,6 +3569,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -2981,7 +3590,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -2992,8 +3600,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3005,7 +3622,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3016,20 +3632,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3038,7 +3669,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3060,6 +3692,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3079,7 +3713,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3090,8 +3723,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3103,7 +3745,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3114,20 +3755,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3136,7 +3792,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3158,6 +3815,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3177,7 +3836,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3188,8 +3846,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3201,7 +3868,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3212,20 +3878,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3234,7 +3915,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3256,6 +3938,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3275,7 +3959,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3286,8 +3969,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3299,7 +3991,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3310,20 +4001,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3332,7 +4038,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3354,6 +4061,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3373,7 +4082,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3384,8 +4092,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3397,7 +4114,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3408,20 +4124,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3430,7 +4161,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3452,6 +4184,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3471,7 +4205,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3482,8 +4215,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "after_state": {
@@ -3495,7 +4237,6 @@
               14
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 184,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 184,
             "weight_sparsity": 0.0,
@@ -3506,20 +4247,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 184,
+            "forward_flop_proxy": 352,
+            "activation_elements": 16
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3528,7 +4284,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             14
@@ -3550,6 +4307,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -3636,13 +4395,22 @@
         "family": "mlp"
       }
     },
+    "constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 184,
+      "nonzero_parameter_count": 184,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 352,
+      "activation_elements": 16
+    },
     "metadata": {
       "method_type": "dynamic",
-      "notes": "adaptation=gradmax; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "notes": "adaptation=gradmax; device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
       "runtime_environment": {
         "requested_device": "auto",
         "resolved_device": "cpu",
-        "torch_version": "2.10.0+cpu",
+        "torch_version": "2.11.0+cpu",
         "torch_cuda_version": null,
         "cuda_available": false,
         "cuda_device_count": 0,
@@ -3918,7 +4686,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 236,
             "weight_sparsity": 0.0,
@@ -3929,8 +4696,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20
           }
         },
         "after_state": {
@@ -3942,7 +4718,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 236,
             "weight_sparsity": 0.0,
@@ -3953,20 +4728,35 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20
           }
         },
         "model_capabilities": {
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -3975,7 +4765,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -3997,6 +4788,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -4024,7 +4817,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 0,
             "nonzero_parameter_count": 236,
             "weight_sparsity": 0.0,
@@ -4035,8 +4827,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
-            ]
+            ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20
           }
         },
         "after_state": {
@@ -4048,7 +4849,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 17,
             "nonzero_parameter_count": 219,
             "weight_sparsity": 0.0787037037037037,
@@ -4059,8 +4859,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.027810515835881233,
             "target_weight_sparsity": 0.08
           }
@@ -4069,12 +4878,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4083,7 +4898,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4105,6 +4921,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.0787037037037037,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -4124,7 +4942,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 17,
             "nonzero_parameter_count": 219,
             "weight_sparsity": 0.0787037037037037,
@@ -4135,8 +4952,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.027810515835881233,
             "target_weight_sparsity": 0.08
           }
@@ -4150,7 +4976,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 17,
             "nonzero_parameter_count": 219,
             "weight_sparsity": 0.0787037037037037,
@@ -4161,8 +4986,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.027810515835881233,
             "target_weight_sparsity": 0.08
           }
@@ -4171,12 +5005,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4185,7 +5025,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4207,6 +5048,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -4234,7 +5077,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 17,
             "nonzero_parameter_count": 219,
             "weight_sparsity": 0.0787037037037037,
@@ -4245,8 +5087,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.027810515835881233,
             "target_weight_sparsity": 0.08
           }
@@ -4260,7 +5111,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 34,
             "nonzero_parameter_count": 202,
             "weight_sparsity": 0.1574074074074074,
@@ -4271,8 +5121,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.049374934285879135,
             "target_weight_sparsity": 0.1587037037037037
           }
@@ -4281,12 +5140,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4295,7 +5160,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4317,6 +5183,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.0787037037037037,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -4336,7 +5204,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 34,
             "nonzero_parameter_count": 202,
             "weight_sparsity": 0.1574074074074074,
@@ -4347,8 +5214,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.049374934285879135,
             "target_weight_sparsity": 0.1587037037037037
           }
@@ -4362,7 +5238,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 34,
             "nonzero_parameter_count": 202,
             "weight_sparsity": 0.1574074074074074,
@@ -4373,8 +5248,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.049374934285879135,
             "target_weight_sparsity": 0.1587037037037037
           }
@@ -4383,12 +5267,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4397,7 +5287,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4419,6 +5310,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -4446,7 +5339,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 34,
             "nonzero_parameter_count": 202,
             "weight_sparsity": 0.1574074074074074,
@@ -4457,8 +5349,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.049374934285879135,
             "target_weight_sparsity": 0.1587037037037037
           }
@@ -4472,7 +5373,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 51,
             "nonzero_parameter_count": 185,
             "weight_sparsity": 0.2361111111111111,
@@ -4483,8 +5383,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.06899179518222809,
             "target_weight_sparsity": 0.2374074074074074
           }
@@ -4493,12 +5402,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4507,7 +5422,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4529,6 +5445,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.07870370370370369,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -4548,7 +5466,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 51,
             "nonzero_parameter_count": 185,
             "weight_sparsity": 0.2361111111111111,
@@ -4559,8 +5476,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.06899179518222809,
             "target_weight_sparsity": 0.2374074074074074
           }
@@ -4574,7 +5500,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 51,
             "nonzero_parameter_count": 185,
             "weight_sparsity": 0.2361111111111111,
@@ -4585,8 +5510,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.06899179518222809,
             "target_weight_sparsity": 0.2374074074074074
           }
@@ -4595,12 +5529,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4609,7 +5549,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4631,6 +5572,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -4658,7 +5601,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 51,
             "nonzero_parameter_count": 185,
             "weight_sparsity": 0.2361111111111111,
@@ -4669,8 +5611,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.06899179518222809,
             "target_weight_sparsity": 0.2374074074074074
           }
@@ -4684,7 +5635,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 68,
             "nonzero_parameter_count": 168,
             "weight_sparsity": 0.3148148148148148,
@@ -4695,8 +5645,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.09855222702026367,
             "target_weight_sparsity": 0.3161111111111111
           }
@@ -4705,12 +5664,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4719,7 +5684,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4741,6 +5707,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.07870370370370372,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -4760,7 +5728,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 68,
             "nonzero_parameter_count": 168,
             "weight_sparsity": 0.3148148148148148,
@@ -4771,8 +5738,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.09855222702026367,
             "target_weight_sparsity": 0.3161111111111111
           }
@@ -4786,7 +5762,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 68,
             "nonzero_parameter_count": 168,
             "weight_sparsity": 0.3148148148148148,
@@ -4797,8 +5772,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.09855222702026367,
             "target_weight_sparsity": 0.3161111111111111
           }
@@ -4807,12 +5791,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4821,7 +5811,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4843,6 +5834,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -4870,7 +5863,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 68,
             "nonzero_parameter_count": 168,
             "weight_sparsity": 0.3148148148148148,
@@ -4881,8 +5873,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.09855222702026367,
             "target_weight_sparsity": 0.3161111111111111
           }
@@ -4896,7 +5897,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 85,
             "nonzero_parameter_count": 151,
             "weight_sparsity": 0.39351851851851855,
@@ -4907,8 +5907,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.1196371465921402,
             "target_weight_sparsity": 0.39481481481481484
           }
@@ -4917,12 +5926,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -4931,7 +5946,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -4953,6 +5969,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.07870370370370372,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -4972,7 +5990,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 85,
             "nonzero_parameter_count": 151,
             "weight_sparsity": 0.39351851851851855,
@@ -4983,8 +6000,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.1196371465921402,
             "target_weight_sparsity": 0.39481481481481484
           }
@@ -4998,7 +6024,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 85,
             "nonzero_parameter_count": 151,
             "weight_sparsity": 0.39351851851851855,
@@ -5009,8 +6034,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.1196371465921402,
             "target_weight_sparsity": 0.39481481481481484
           }
@@ -5019,12 +6053,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -5033,7 +6073,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -5055,6 +6096,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": 0,
           "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": false,
@@ -5082,7 +6125,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 85,
             "nonzero_parameter_count": 151,
             "weight_sparsity": 0.39351851851851855,
@@ -5093,8 +6135,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.1196371465921402,
             "target_weight_sparsity": 0.39481481481481484
           }
@@ -5108,7 +6159,6 @@
               18
             ],
             "num_hidden_layers": 1,
-            "parameter_count": 236,
             "masked_weight_count": 102,
             "nonzero_parameter_count": 134,
             "weight_sparsity": 0.4722222222222222,
@@ -5119,8 +6169,17 @@
               "insert_hidden_layer",
               "net2wider",
               "prune_hidden",
+              "prune_neurons",
               "remove_hidden_layer"
             ],
+            "mask_state_names": [
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "architecture_family": "mlp",
+            "parameter_count": 236,
+            "forward_flop_proxy": 452,
+            "activation_elements": 20,
             "mask_threshold": 0.14212003350257874,
             "target_weight_sparsity": 0.47351851851851856
           }
@@ -5129,12 +6188,18 @@
           "architecture_family": "mlp",
           "supports_dynamic_structure": true,
           "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_hidden",
+            "prune_neurons"
+          ],
           "supported_event_types": [
             "apply_weight_mask",
             "grow_hidden",
             "insert_hidden_layer",
             "net2wider",
             "prune_hidden",
+            "prune_neurons",
             "remove_hidden_layer"
           ],
           "weight_transfer_strategies": [
@@ -5143,7 +6208,8 @@
             "net2wider_function_preserving",
             "identity_layer_insertion",
             "matching_layer_copy_removal",
-            "global_magnitude_mask_pruning"
+            "global_magnitude_mask_pruning",
+            "magnitude_neuron_pruning"
           ],
           "current_hidden_dims": [
             18
@@ -5165,6 +6231,8 @@
           "parameter_count_delta": 0,
           "nonzero_parameter_count_delta": -17,
           "weight_sparsity_delta": 0.07870370370370366,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
           "hidden_dims_changed": false
         },
         "applied": true,
@@ -5273,13 +6341,22 @@
         "family": "mlp"
       }
     },
+    "constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 236,
+      "nonzero_parameter_count": 134,
+      "masked_weight_count": 102,
+      "weight_sparsity": 0.4722222222222222,
+      "forward_flop_proxy": 452,
+      "activation_elements": 20
+    },
     "metadata": {
       "method_type": "dynamic",
-      "notes": "adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.10.0+cpu; cuda_available=False",
+      "notes": "adaptation=weights_connections; workflow=scheduled; device=cpu; requested_device=auto; torch=2.11.0+cpu; cuda_available=False",
       "runtime_environment": {
         "requested_device": "auto",
         "resolved_device": "cpu",
-        "torch_version": "2.10.0+cpu",
+        "torch_version": "2.11.0+cpu",
         "torch_cuda_version": null,
         "cuda_available": false,
         "cuda_device_count": 0,

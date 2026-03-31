@@ -50,6 +50,7 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
         training_runner: TrainingRunner,
         adaptation: AdaptationMethod | None,
         epochs: int,
+        trainer_config: dict[str, Any],
     ) -> TrainingSummary:
         if adaptation is not None:
             raise ValueError("AdaNetRoundsWorkflow manages structure growth internally and does not accept adaptation")
@@ -76,6 +77,7 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
                 epochs=self.warmup_epochs,
                 adaptation=None,
                 start_epoch=cursor,
+                trainer_config=trainer_config,
             )
             self._extend_selected_stage(
                 summary=summary,
@@ -100,6 +102,7 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
                     epochs=self.candidate_epochs,
                     adaptation=None,
                     start_epoch=cursor,
+                    trainer_config=trainer_config,
                 )
                 best_metric = self._best_metric(candidate_summary)
                 final_metric = self._final_metric(candidate_summary)
@@ -198,6 +201,7 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
                 epochs=self.finetune_epochs,
                 adaptation=None,
                 start_epoch=cursor,
+                trainer_config=trainer_config,
             )
             self._extend_selected_stage(
                 summary=summary,
@@ -321,6 +325,10 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
         after_nonzero = after_meta.get("nonzero_parameter_count")
         before_sparsity = before_meta.get("weight_sparsity")
         after_sparsity = after_meta.get("weight_sparsity")
+        before_flops = before_meta.get("forward_flop_proxy")
+        after_flops = after_meta.get("forward_flop_proxy")
+        before_activations = before_meta.get("activation_elements")
+        after_activations = after_meta.get("activation_elements")
         return {
             "applied": before_state != after_state,
             "structural_change": before_state != after_state,
@@ -331,6 +339,8 @@ class AdaNetRoundsWorkflow(MethodWorkflow):
             "parameter_count_delta": _numeric_delta(before_params, after_params),
             "nonzero_parameter_count_delta": _numeric_delta(before_nonzero, after_nonzero),
             "weight_sparsity_delta": _float_delta(before_sparsity, after_sparsity),
+            "forward_flop_proxy_delta": _numeric_delta(before_flops, after_flops),
+            "activation_elements_delta": _numeric_delta(before_activations, after_activations),
             "hidden_dims_changed": before_hidden_dims != after_hidden_dims,
         }
 
@@ -345,3 +355,6 @@ def _float_delta(before: Any, after: Any) -> float | None:
     if before is None or after is None:
         return None
     return float(after) - float(before)
+
+
+

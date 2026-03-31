@@ -20,6 +20,9 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.3",
 ]
+vision = [
+    "torchvision>=0.17",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

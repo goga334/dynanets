@@ -5,6 +5,7 @@ from typing import Any
 
 from dynanets.architecture import extract_architecture_artifacts
 from dynanets.config import ExperimentConfig
+from dynanets.constraints import ConstraintEvaluator
 from dynanets.experiment import Experiment
 from dynanets.models.base import DynamicNeuralModel
 from dynanets.reporting import summarize_run
@@ -21,6 +22,7 @@ class ExecutionResult:
     final_hidden_dim: int | None = None
     architecture_spec: dict[str, Any] | None = None
     architecture_graph: dict[str, Any] | None = None
+    constraint_summary: dict[str, Any] | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
     search_history: list[dict[str, Any]] = field(default_factory=list)
     best_model_params: dict[str, Any] = field(default_factory=dict)
@@ -34,6 +36,7 @@ class ExecutionResult:
             metadata=self.metadata,
             architecture_spec=self.architecture_spec,
             architecture_graph=self.architecture_graph,
+            constraints=self.constraint_summary,
         )
 
 
@@ -67,6 +70,9 @@ class ExperimentExecutor:
             f"search={summary.metadata.get('search_method')}; "
             f"{format_runtime_environment(runtime_info)}"
         )
+        constraint_summary = ConstraintEvaluator().evaluate(
+            architecture_spec=summary.architecture_spec,
+        ).to_dict() if summary.architecture_spec is not None else None
         return ExecutionResult(
             name=config.name,
             mode="search",
@@ -74,6 +80,7 @@ class ExperimentExecutor:
             final_hidden_dim=summary.final_hidden_dim,
             architecture_spec=summary.architecture_spec,
             architecture_graph=summary.architecture_graph,
+            constraint_summary=constraint_summary,
             metadata={
                 "method_type": "search",
                 "notes": notes,
@@ -98,11 +105,17 @@ class ExperimentExecutor:
             training_runner=TrainingRunner(),
             adaptation=experiment.adaptation,
             epochs=int(config.trainer.get("epochs", 1)),
+            trainer_config=dict(config.trainer),
         )
         final_hidden_dim = None
         if isinstance(experiment.model, DynamicNeuralModel):
             final_hidden_dim = int(experiment.model.architecture_state().metadata.get("hidden_dim", 0))
         architecture_spec, architecture_graph = extract_architecture_artifacts(experiment.model, name=config.name)
+        state_metadata = _state_metadata_for_model(experiment.model)
+        constraint_summary = ConstraintEvaluator().evaluate(
+            architecture_spec=architecture_spec,
+            metadata=state_metadata,
+        ).to_dict() if architecture_spec is not None or state_metadata else None
         method_type = "baseline"
         if experiment.adaptation is not None:
             method_type = "dynamic"
@@ -112,11 +125,21 @@ class ExperimentExecutor:
             config.runtime.get("device"),
             resolved=str(getattr(experiment.model, "device", None) or "cpu"),
         )
+        route_summary = None
+        route_summary_factory = getattr(experiment.model, "route_summary", None)
+        if callable(route_summary_factory):
+            route_summary = route_summary_factory()
+        route_trace = None
+        route_trace_factory = getattr(experiment.model, "route_trace", None)
+        if callable(route_trace_factory):
+            route_trace = route_trace_factory()
         notes_parts = []
         if experiment.adaptation is not None:
             notes_parts.append(f"adaptation={config.adaptation.name}")
         if config.workflow is not None:
             notes_parts.append(f"workflow={config.workflow.name}")
+        if route_summary:
+            notes_parts.append(f"route_summary={route_summary}")
         notes_parts.append(format_runtime_environment(runtime_info))
         return ExecutionResult(
             name=config.name,
@@ -125,9 +148,35 @@ class ExperimentExecutor:
             final_hidden_dim=final_hidden_dim,
             architecture_spec=architecture_spec,
             architecture_graph=architecture_graph,
+            constraint_summary=constraint_summary,
             metadata={
                 "method_type": method_type,
                 "notes": "; ".join(notes_parts) or None,
                 "runtime_environment": runtime_info,
+                "route_summary": route_summary,
+                "route_trace": route_trace,
             },
         )
+
+
+def _state_metadata_for_model(model: Any) -> dict[str, Any]:
+    state_factory = getattr(model, "architecture_state", None)
+    if callable(state_factory):
+        state = state_factory()
+        metadata = getattr(state, "metadata", None)
+        if isinstance(metadata, dict):
+            return dict(metadata)
+
+    structure_factory = getattr(model, "structure_state", None)
+    if callable(structure_factory):
+        state_dict = structure_factory()
+        if isinstance(state_dict, dict):
+            metadata = state_dict.get("metadata")
+            if isinstance(metadata, dict):
+                return dict(metadata)
+
+    return {}
+
+
+
+

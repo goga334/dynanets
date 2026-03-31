@@ -7,11 +7,13 @@ from typing import Any, Literal
 AdaptationEventType = Literal[
     "grow_hidden",
     "prune_hidden",
+    "prune_neurons",
     "net2wider",
     "insert_hidden_layer",
     "remove_hidden_layer",
     "merge_hidden_layers",
     "apply_weight_mask",
+    "prune_channels",
 ]
 
 
@@ -40,3 +42,5 @@ class AppliedAdaptationEvent:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+

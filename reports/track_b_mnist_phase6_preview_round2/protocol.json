@@ -1,0 +1,86 @@
+{
+  "name": "track_b_mnist_phase6_preview",
+  "track": "mnist",
+  "description": "MNIST Phase 6 preview protocol for CNN pruning methods. Compares the wide batch-normalized CNN baseline with structured channel pruning, Han-style weight-mask pruning, and the Network Slimming approximation.",
+  "seeds": [
+    7,
+    42
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/wide_cnn_mnist_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "baseline",
+        "batch_norm"
+      ]
+    },
+    {
+      "config": "../experiments/examples/channel_pruning_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "structured"
+      ]
+    },
+    {
+      "config": "../experiments/examples/weights_connections_cnn_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "sparse",
+        "han"
+      ]
+    },
+    {
+      "config": "../experiments/examples/layerwise_obs_cnn_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "sparse",
+        "obs"
+      ]
+    },
+    {
+      "config": "../experiments/examples/network_slimming_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "v1_subset"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "mnist",
+    "epochs": 6,
+    "train_size": 10000,
+    "validation_size": 5000,
+    "test_size": 2000
+  },
+  "metadata": {
+    "roadmap_wave": "wave_1",
+    "roadmap_phase": "phase_6",
+    "requires": [
+      "torchvision",
+      "cuda"
+    ]
+  }
+}

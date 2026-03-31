@@ -3,20 +3,25 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from dynanets.adaptation.asfp import AsymptoticSoftFilterPruningAdaptation
 from dynanets.adaptation.base import AdaptationMethod
+from dynanets.adaptation.channel_prune import ChannelPruningAdaptation, ValidationStallChannelPruningAdaptation
 from dynanets.adaptation.den import DENAdaptation
 from dynanets.adaptation.dynamic_nodes import DynamicNodesAdaptation
 from dynanets.adaptation.edge_growth import EdgeGrowthAdaptation
 from dynanets.adaptation.gradmax import GradMaxAdaptation
 from dynanets.adaptation.grow import WidthGrowthAdaptation
 from dynanets.adaptation.insert_layer import LayerInsertionAdaptation
+from dynanets.adaptation.layerwise_obs import LayerwiseOBSAdaptation
 from dynanets.adaptation.nest import NeSTAdaptation
 from dynanets.adaptation.net2deeper import Net2DeeperAdaptation
 from dynanets.adaptation.net2net import Net2WiderAdaptation
 from dynanets.adaptation.prune import WidthPruningAdaptation
+from dynanets.adaptation.runtime_neural_pruning import RuntimeNeuralPruningAdaptation
 from dynanets.adaptation.weights_connections import WeightsConnectionsAdaptation
 from dynanets.config import ExperimentConfig
 from dynanets.datasets.base import DatasetFactory
+from dynanets.datasets.images import MNISTDatasetFactory, SyntheticImagePatternsDatasetFactory
 from dynanets.datasets.synthetic import (
     ConcentricCirclesDatasetFactory,
     GaussianBlobsDatasetFactory,
@@ -25,7 +30,9 @@ from dynanets.datasets.synthetic import (
 from dynanets.metrics.base import Metric
 from dynanets.metrics.classification import AccuracyMetric
 from dynanets.models.base import DynamicNeuralModel, NeuralModel
+from dynanets.models.torch_cnn import TorchCNNClassifier
 from dynanets.models.torch_mlp import DynamicMLPClassifier, TorchMLPClassifier
+from dynanets.models.torch_routed_cnn import TorchRoutedCNNClassifier
 from dynanets.registry import Registry
 from dynanets.runtime import prepare_factory_kwargs
 from dynanets.search.base import SearchMethod
@@ -33,9 +40,18 @@ from dynanets.search.random_search import RandomSearch
 from dynanets.search.regularized_evolution import RegularizedEvolutionSearch
 from dynanets.workflows import (
     AdaNetRoundsWorkflow,
+    ChannelGatingWorkflow,
+    ConditionalComputationWorkflow,
+    DynamicSlimmableWorkflow,
+    IamNNWorkflow,
+    InstanceWiseSparsityWorkflow,
     MethodWorkflow,
+    MorphNetWorkflow,
+    NetworkSlimmingWorkflow,
+    PruneTrainWorkflow,
     ScheduledWorkflow,
     SingleStageWorkflow,
+    SkipNetWorkflow,
     WorkflowStageConfig,
 )
 
@@ -138,6 +154,15 @@ class ExperimentBuilder:
                 raise ExperimentAssemblyError(
                     f"Adaptation '{config.adaptation.name}' requires unsupported event types: {unsupported_list}"
                 )
+            if "prune_channels" in adaptation.supported_event_types():
+                if not isinstance(model, TorchCNNClassifier):
+                    raise ExperimentAssemblyError(
+                        "Channel pruning adaptations currently require the torch_cnn_classifier model"
+                    )
+                if not model.spec.use_batch_norm:
+                    raise ExperimentAssemblyError(
+                        "Channel pruning adaptations currently require use_batch_norm=true on the CNN model"
+                    )
         if search is not None and config.adaptation is not None:
             raise ExperimentAssemblyError(
                 "Search experiments and adaptation experiments must currently be run separately"
@@ -155,6 +180,41 @@ class ExperimentBuilder:
                 raise ExperimentAssemblyError(
                     "AdaNet workflow currently requires the dynamic_mlp_classifier model"
                 )
+        if config.workflow is not None and config.workflow.name in {"network_slimming", "morphnet", "prunetrain"}:
+            if adaptation is not None:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow manages pruning internally and cannot be combined with adaptation"
+                )
+            if search is not None:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow cannot be combined with search in the same experiment"
+                )
+            if not isinstance(model, TorchCNNClassifier):
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow currently requires the torch_cnn_classifier model"
+                )
+            if not model.spec.use_batch_norm:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow requires use_batch_norm=true on the CNN model"
+                )
+        if config.workflow is not None and config.workflow.name in {"dynamic_slimmable", "conditional_computation", "channel_gating", "skipnet", "instance_wise_sparsity", "iamnn"}:
+            if adaptation is not None:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow manages routing internally and cannot be combined with adaptation"
+                )
+            if search is not None:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow cannot be combined with search in the same experiment"
+                )
+            if not isinstance(model, TorchRoutedCNNClassifier):
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow currently requires the torch_routed_cnn_classifier model"
+                )
+            required_policy = "dynamic_width" if config.workflow.name in {"dynamic_slimmable", "channel_gating", "instance_wise_sparsity"} else "early_exit"
+            if model.routing_policy != required_policy:
+                raise ExperimentAssemblyError(
+                    f"{config.workflow.name} workflow requires routing_policy='{required_policy}'"
+                )
 
 
 def _default_workflow_registry() -> Registry[Any]:
@@ -162,6 +222,15 @@ def _default_workflow_registry() -> Registry[Any]:
     workflows.register("single_stage", SingleStageWorkflow)
     workflows.register("scheduled", ScheduledWorkflow)
     workflows.register("adanet_rounds", AdaNetRoundsWorkflow)
+    workflows.register("network_slimming", NetworkSlimmingWorkflow)
+    workflows.register("morphnet", MorphNetWorkflow)
+    workflows.register("prunetrain", PruneTrainWorkflow)
+    workflows.register("dynamic_slimmable", DynamicSlimmableWorkflow)
+    workflows.register("conditional_computation", ConditionalComputationWorkflow)
+    workflows.register("channel_gating", ChannelGatingWorkflow)
+    workflows.register("skipnet", SkipNetWorkflow)
+    workflows.register("instance_wise_sparsity", InstanceWiseSparsityWorkflow)
+    workflows.register("iamnn", IamNNWorkflow)
     return workflows
 
 
@@ -170,16 +239,23 @@ def default_registries() -> dict[str, Registry[Any]]:
     datasets.register("gaussian_blobs", GaussianBlobsDatasetFactory)
     datasets.register("two_spirals", TwoSpiralsDatasetFactory)
     datasets.register("concentric_circles", ConcentricCirclesDatasetFactory)
+    datasets.register("synthetic_image_patterns", SyntheticImagePatternsDatasetFactory)
+    datasets.register("mnist", MNISTDatasetFactory)
 
     models: Registry[Any] = Registry()
     models.register("torch_mlp_classifier", TorchMLPClassifier)
     models.register("dynamic_mlp_classifier", DynamicMLPClassifier)
+    models.register("torch_cnn_classifier", TorchCNNClassifier)
+    models.register("torch_routed_cnn_classifier", TorchRoutedCNNClassifier)
 
     metrics: Registry[Any] = Registry()
     metrics.register("accuracy", AccuracyMetric)
 
     adaptations: Registry[Any] = Registry()
     adaptations.register("width_growth", WidthGrowthAdaptation)
+    adaptations.register("soft_filter_pruning", AsymptoticSoftFilterPruningAdaptation)
+    adaptations.register("channel_pruning", ChannelPruningAdaptation)
+    adaptations.register("channel_pruning_plateau", ValidationStallChannelPruningAdaptation)
     adaptations.register("net2wider", Net2WiderAdaptation)
     adaptations.register("net2deeper", Net2DeeperAdaptation)
     adaptations.register("insert_layer", LayerInsertionAdaptation)
@@ -190,6 +266,8 @@ def default_registries() -> dict[str, Registry[Any]]:
     adaptations.register("dynamic_nodes", DynamicNodesAdaptation)
     adaptations.register("edge_growth", EdgeGrowthAdaptation)
     adaptations.register("weights_connections", WeightsConnectionsAdaptation)
+    adaptations.register("layerwise_obs", LayerwiseOBSAdaptation)
+    adaptations.register("runtime_neural_pruning", RuntimeNeuralPruningAdaptation)
 
     searches: Registry[Any] = Registry()
     searches.register("regularized_evolution", RegularizedEvolutionSearch)
@@ -203,3 +281,16 @@ def default_registries() -> dict[str, Registry[Any]]:
         "searches": searches,
         "workflows": _default_workflow_registry(),
     }
+
+
+
+
+
+
+
+
+
+
+
+
+

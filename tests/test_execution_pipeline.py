@@ -3,6 +3,7 @@ from dynanets.execution import ExperimentExecutor
 from dynanets.experiment import ExperimentBuilder, default_registries
 
 
+
 def _build_experiment(config_dict: dict):
     config = ExperimentConfig.from_dict(config_dict)
     registries = default_registries()
@@ -16,6 +17,7 @@ def _build_experiment(config_dict: dict):
     )
     experiment = builder.build(config)
     return config, experiment, registries
+
 
 
 def test_experiment_executor_returns_training_artifacts() -> None:
@@ -51,6 +53,9 @@ def test_experiment_executor_returns_training_artifacts() -> None:
     assert "requested_device=cpu" in report["metadata"]["notes"]
     assert "cuda_available=" in report["metadata"]["notes"]
     assert report["metadata"]["runtime_environment"]["resolved_device"] == "cpu"
+    assert report["constraints"]["parameter_count"] > 0
+    assert report["constraints"]["forward_flop_proxy"] > 0
+
 
 
 def test_experiment_executor_supports_scheduled_workflow() -> None:
@@ -91,6 +96,7 @@ def test_experiment_executor_supports_scheduled_workflow() -> None:
     assert report["stage_history"][1]["name"] == "finetune"
 
 
+
 def test_experiment_executor_returns_search_artifacts() -> None:
     config, experiment, registries = _build_experiment(
         {
@@ -129,3 +135,5 @@ def test_experiment_executor_returns_search_artifacts() -> None:
     assert "device=cpu" in report["metadata"]["notes"]
     assert "requested_device=cpu" in report["metadata"]["notes"]
     assert report["metadata"]["runtime_environment"]["resolved_device"] == "cpu"
+    assert report["constraints"]["parameter_count"] > 0
+    assert report["constraints"]["activation_elements"] > 0

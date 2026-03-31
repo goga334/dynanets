@@ -1,0 +1,45 @@
+name: asfp-mnist
+
+dataset:
+  name: mnist
+  params:
+    data_dir: data
+    validation_size: 5000
+    train_size: 10000
+    test_size: 2000
+    download: true
+    seed: 42
+
+model:
+  name: torch_cnn_classifier
+  params:
+    input_channels: 1
+    input_size: [28, 28]
+    num_classes: 10
+    conv_channels: [24, 48]
+    classifier_hidden_dims: [96]
+    activation: relu
+    use_batch_norm: true
+    lr: 0.001
+
+metrics:
+  - name: accuracy
+    params: {}
+
+adaptation:
+  name: soft_filter_pruning
+  params:
+    warmup_epochs: 2
+    prune_every_n_epochs: 1
+    total_prune_epochs: 6
+    min_prune_fraction: 0.04
+    final_prune_fraction: 0.16
+    min_channels_per_block: 12
+
+trainer:
+  epochs: 8
+  batch_size: 128
+  eval_batch_size: 256
+
+runtime:
+  seed: 42

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 from dynanets.adaptation.base import AdaptationMethod
 from dynanets.datasets.base import DatasetBundle
@@ -21,6 +22,7 @@ class SingleStageWorkflow(MethodWorkflow):
         training_runner: TrainingRunner,
         adaptation: AdaptationMethod | None,
         epochs: int,
+        trainer_config: dict[str, Any],
     ) -> TrainingSummary:
         summary = training_runner.run(
             model=model,
@@ -29,6 +31,7 @@ class SingleStageWorkflow(MethodWorkflow):
             epochs=epochs,
             adaptation=adaptation,
             start_epoch=0,
+            trainer_config=trainer_config,
         )
         summary.stage_history.append(
             {
@@ -71,6 +74,7 @@ class ScheduledWorkflow(MethodWorkflow):
         training_runner: TrainingRunner,
         adaptation: AdaptationMethod | None,
         epochs: int,
+        trainer_config: dict[str, Any],
     ) -> TrainingSummary:
         configured_total = sum(stage.epochs for stage in self.stages)
         if epochs != configured_total:
@@ -89,6 +93,7 @@ class ScheduledWorkflow(MethodWorkflow):
                 epochs=stage.epochs,
                 adaptation=stage_adaptation,
                 start_epoch=cursor,
+                trainer_config=trainer_config,
             )
             summary.train_history.extend(stage_summary.train_history)
             summary.metric_history.extend(stage_summary.metric_history)
@@ -109,11 +114,8 @@ class ScheduledWorkflow(MethodWorkflow):
             cursor += stage.epochs
 
         summary.workflow_metadata = {
-            "configured_total_epochs": epochs,
+            "configured_total_epochs": configured_total,
             "executed_total_epochs": cursor,
             "stage_count": len(self.stages),
         }
         return summary
-
-
-__all__ = ["ScheduledWorkflow", "SingleStageWorkflow"]

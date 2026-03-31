@@ -1,0 +1,28 @@
+name: track_b_mnist_wave1_preview
+track: mnist
+description: >-
+  MNIST Wave 1 preview protocol for CNN methods. Requires the optional vision
+  dependencies and compares fixed and batch-normalized CNN baselines with the
+  Network Slimming approximation.
+seeds: [7, 11, 23]
+required_metrics: [accuracy]
+budgets:
+  dataset: mnist
+  epochs: 6
+  train_size: 10000
+  validation_size: 5000
+  test_size: 2000
+experiments:
+  - config: ../experiments/examples/fixed_cnn_mnist.yaml
+    role: baseline
+    tags: [track_b, mnist, cnn, baseline]
+  - config: ../experiments/examples/wide_cnn_mnist_bn.yaml
+    role: baseline
+    tags: [track_b, mnist, cnn, baseline, batch_norm]
+  - config: ../experiments/examples/network_slimming_mnist.yaml
+    role: method
+    tags: [track_b, mnist, cnn, pruning, v1_subset]
+metadata:
+  roadmap_wave: wave_1
+  roadmap_phase: phase_5
+  requires: [torchvision]

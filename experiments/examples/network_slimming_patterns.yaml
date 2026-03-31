@@ -1,0 +1,42 @@
+name: network-slimming-patterns
+
+dataset:
+  name: synthetic_image_patterns
+  params:
+    train_size: 1600
+    validation_size: 400
+    test_size: 400
+    image_size: 28
+    noise: 0.03
+    seed: 42
+
+model:
+  name: torch_cnn_classifier
+  params:
+    input_channels: 1
+    input_size: [28, 28]
+    num_classes: 10
+    conv_channels: [24, 48]
+    classifier_hidden_dims: [96]
+    activation: relu
+    use_batch_norm: true
+    lr: 0.001
+
+metrics:
+  - name: accuracy
+    params: {}
+
+workflow:
+  name: network_slimming
+  params:
+    sparse_epochs: 18
+    finetune_epochs: 12
+    sparsity_strength: 0.0003
+    prune_fraction: 0.30
+    min_channels_per_block: 12
+
+trainer:
+  epochs: 30
+
+runtime:
+  seed: 42

@@ -14,6 +14,7 @@ dist/
 *.egg-info/
 
 # reports/
+data/
 
 .idea/
 .vscode/

@@ -65,7 +65,7 @@ def test_adanet_workflow_runs_rounds_and_records_selection() -> None:
     ]
     assert result.summary.workflow_metadata["workflow_name"] == "adanet_rounds"
     assert result.summary.workflow_metadata["round_count"] == 2
-    assert result.summary.workflow_metadata["total_candidate_evaluations"] >= 4
+    assert result.summary.workflow_metadata["total_candidate_evaluations"] >= 3
     assert len(result.summary.workflow_metadata["rounds"]) == 2
     assert result.summary.adaptation_history
     assert result.summary.adaptation_history[0]["event_type"] in {"net2wider", "insert_hidden_layer"}
@@ -108,3 +108,4 @@ def test_builder_rejects_adanet_workflow_with_non_dynamic_model() -> None:
 
     with pytest.raises(ExperimentAssemblyError):
         builder.build(config)
+

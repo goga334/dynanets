@@ -30,6 +30,7 @@ class MethodWorkflow(ABC):
         training_runner: TrainingRunner,
         adaptation: AdaptationMethod | None,
         epochs: int,
+        trainer_config: dict[str, Any],
     ) -> TrainingSummary:
         raise NotImplementedError
 

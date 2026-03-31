@@ -1,0 +1,29 @@
+name: implemented_methods_suite
+title: Implemented Methods Benchmark Suite
+description: >-
+  Cross-track benchmark suite for the dynanets methods implemented so far.
+  This keeps the synthetic growth-family, staged MLP, MNIST pruning, and MNIST routing
+  families visible in one place without pretending that they are all directly comparable
+  on a single leaderboard.
+entries:
+  - label: synthetic-growth-family
+    track: synthetic_10d
+    report_dir: ../reports/paper_batch_two_spirals_10d_benchmark
+    description: >-
+      Two-spirals 10D / 5000-row benchmark for the first dynamic-growth paper batch.
+  - label: synthetic-wave1
+    track: synthetic_10d
+    report_dir: ../reports/track_a_wave1_preview
+    description: >-
+      Wave 1 preview benchmark for AdaNet-style staged growth and Han-style pruning on the synthetic track.
+  - label: mnist-pruning
+    track: mnist
+    report_dir: ../reports/track_b_mnist_phase6_preview_round4
+    description: >-
+      MNIST pruning/compression benchmark covering structured, sparse, progressive, and workflow-based methods.
+  - label: mnist-routing
+    track: mnist
+    report_dir: ../reports/track_b_mnist_phase7_preview_round5
+    description: >-
+      MNIST routing benchmark covering dynamic slimmable execution, conditional computation, Channel Gating, and SkipNet.
+

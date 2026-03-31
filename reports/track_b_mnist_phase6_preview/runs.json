@@ -1,0 +1,6016 @@
+[
+  {
+    "name": "wide-cnn-mnist-bn",
+    "epochs": 6,
+    "final_train_loss": 2.259662628173828,
+    "final_train_accuracy": 0.21969999372959137,
+    "final_val_accuracy": 0.1103999987244606,
+    "best_val_accuracy": 0.1103999987244606,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3254928588867188,
+        "regularized_loss": 2.3254928588867188,
+        "accuracy": 0.10300000011920929,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.3072659969329834,
+        "regularized_loss": 2.3072659969329834,
+        "accuracy": 0.13740000128746033,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.2916600704193115,
+        "regularized_loss": 2.2916600704193115,
+        "accuracy": 0.2003999948501587,
+        "bn_scale_l1": 71.97538757324219
+      },
+      {
+        "loss": 2.2793073654174805,
+        "regularized_loss": 2.2793073654174805,
+        "accuracy": 0.2502000033855438,
+        "bn_scale_l1": 71.9713363647461
+      },
+      {
+        "loss": 2.2688496112823486,
+        "regularized_loss": 2.2688496112823486,
+        "accuracy": 0.21379999816417694,
+        "bn_scale_l1": 71.97142791748047
+      },
+      {
+        "loss": 2.259662628173828,
+        "regularized_loss": 2.259662628173828,
+        "accuracy": 0.21969999372959137,
+        "bn_scale_l1": 71.97624969482422
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.21969999372959137,
+        "final_val_accuracy": 0.1103999987244606,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-mnist-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "baseline",
+      "batch_norm"
+    ]
+  },
+  {
+    "name": "wide-cnn-mnist-bn",
+    "epochs": 6,
+    "final_train_loss": 2.243654251098633,
+    "final_train_accuracy": 0.24609999358654022,
+    "final_val_accuracy": 0.11079999804496765,
+    "best_val_accuracy": 0.11180000007152557,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.312913179397583,
+        "regularized_loss": 2.312913179397583,
+        "accuracy": 0.1639000028371811,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.2937214374542236,
+        "regularized_loss": 2.2937214374542236,
+        "accuracy": 0.20889998972415924,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.278024435043335,
+        "regularized_loss": 2.278024435043335,
+        "accuracy": 0.20919999480247498,
+        "bn_scale_l1": 71.97381591796875
+      },
+      {
+        "loss": 2.265099287033081,
+        "regularized_loss": 2.265099287033081,
+        "accuracy": 0.2166999876499176,
+        "bn_scale_l1": 71.96864318847656
+      },
+      {
+        "loss": 2.2537927627563477,
+        "regularized_loss": 2.2537927627563477,
+        "accuracy": 0.22849999368190765,
+        "bn_scale_l1": 71.96883392333984
+      },
+      {
+        "loss": 2.243654251098633,
+        "regularized_loss": 2.243654251098633,
+        "accuracy": 0.24609999358654022,
+        "bn_scale_l1": 71.97492980957031
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11180000007152557
+      },
+      {
+        "accuracy": 0.1111999973654747
+      },
+      {
+        "accuracy": 0.11099999397993088
+      },
+      {
+        "accuracy": 0.11079999804496765
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.24609999358654022,
+        "final_val_accuracy": 0.11079999804496765,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-mnist-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "baseline",
+      "batch_norm"
+    ]
+  },
+  {
+    "name": "channel-pruning-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.2585463523864746,
+    "final_train_accuracy": 0.20999999344348907,
+    "final_val_accuracy": 0.1103999987244606,
+    "best_val_accuracy": 0.1103999987244606,
+    "adaptations_applied": 3,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3254928588867188,
+        "regularized_loss": 2.3254928588867188,
+        "accuracy": 0.10300000011920929,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.3072659969329834,
+        "regularized_loss": 2.3072659969329834,
+        "accuracy": 0.13740000128746033,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.2884273529052734,
+        "regularized_loss": 2.2884273529052734,
+        "accuracy": 0.14549998939037323,
+        "bn_scale_l1": 65.98738098144531
+      },
+      {
+        "loss": 2.2757530212402344,
+        "regularized_loss": 2.2757530212402344,
+        "accuracy": 0.18219999969005585,
+        "bn_scale_l1": 65.99737548828125
+      },
+      {
+        "loss": 2.270277738571167,
+        "regularized_loss": 2.270277738571167,
+        "accuracy": 0.20250000059604645,
+        "bn_scale_l1": 60.03028106689453
+      },
+      {
+        "loss": 2.2585463523864746,
+        "regularized_loss": 2.2585463523864746,
+        "accuracy": 0.20999999344348907,
+        "bn_scale_l1": 60.038291931152344
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            24,
+            48
+          ],
+          "after_conv_channels": [
+            22,
+            44
+          ]
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -2076,
+          "nonzero_parameter_count_delta": -2076,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -685788,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            22,
+            44
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            22,
+            44
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 14398,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14398,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            22,
+            44
+          ],
+          "conv_channels_after": [
+            22,
+            44
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            22,
+            44
+          ],
+          "after_conv_channels": [
+            20,
+            40
+          ]
+        },
+        "before_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            22,
+            44
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 14398,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14398,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -1932,
+          "nonzero_parameter_count_delta": -1932,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -629340,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            22,
+            44
+          ],
+          "conv_channels_after": [
+            20,
+            40
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            20,
+            40
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 12466,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 12466,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            20,
+            40
+          ],
+          "conv_channels_after": [
+            20,
+            40
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            20,
+            40
+          ],
+          "after_conv_channels": [
+            18,
+            36
+          ]
+        },
+        "before_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              18,
+              36
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10678,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 10678,
+            "forward_flop_proxy": 2617894,
+            "activation_elements": 5434,
+            "conv_channels_before_prune": [
+              20,
+              40
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            20,
+            40
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 12466,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 12466,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -1788,
+          "nonzero_parameter_count_delta": -1788,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -572892,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            20,
+            40
+          ],
+          "conv_channels_after": [
+            18,
+            36
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.20999999344348907,
+        "final_val_accuracy": 0.1103999987244606,
+        "adaptations_applied": 3,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 36,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "channel-pruning-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (36, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 36,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 10678,
+      "nonzero_parameter_count": 10678,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2617894,
+      "activation_elements": 5434
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=channel_pruning; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "structured"
+    ]
+  },
+  {
+    "name": "channel-pruning-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.2441909313201904,
+    "final_train_accuracy": 0.27149999141693115,
+    "final_val_accuracy": 0.11959999799728394,
+    "best_val_accuracy": 0.19699999690055847,
+    "adaptations_applied": 3,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.312913179397583,
+        "regularized_loss": 2.312913179397583,
+        "accuracy": 0.1639000028371811,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.2937214374542236,
+        "regularized_loss": 2.2937214374542236,
+        "accuracy": 0.20889998972415924,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.2803285121917725,
+        "regularized_loss": 2.2803285121917725,
+        "accuracy": 0.2021999955177307,
+        "bn_scale_l1": 65.9858169555664
+      },
+      {
+        "loss": 2.2655086517333984,
+        "regularized_loss": 2.2655086517333984,
+        "accuracy": 0.21159999072551727,
+        "bn_scale_l1": 65.98981475830078
+      },
+      {
+        "loss": 2.2562215328216553,
+        "regularized_loss": 2.2562215328216553,
+        "accuracy": 0.28139999508857727,
+        "bn_scale_l1": 60.022396087646484
+      },
+      {
+        "loss": 2.2441909313201904,
+        "regularized_loss": 2.2441909313201904,
+        "accuracy": 0.27149999141693115,
+        "bn_scale_l1": 60.038394927978516
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.10539999604225159
+      },
+      {
+        "accuracy": 0.19699999690055847
+      },
+      {
+        "accuracy": 0.12999999523162842
+      },
+      {
+        "accuracy": 0.11959999799728394
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 1,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            24,
+            48
+          ],
+          "after_conv_channels": [
+            22,
+            44
+          ]
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -2076,
+          "nonzero_parameter_count_delta": -2076,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -685788,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            22,
+            44
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            22,
+            44
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 14398,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14398,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            22,
+            44
+          ],
+          "conv_channels_after": [
+            22,
+            44
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 3,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            22,
+            44
+          ],
+          "after_conv_channels": [
+            20,
+            40
+          ]
+        },
+        "before_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              22,
+              44
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 14398,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14398,
+            "forward_flop_proxy": 3820126,
+            "activation_elements": 6618,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            22,
+            44
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 14398,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14398,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -1932,
+          "nonzero_parameter_count_delta": -1932,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -629340,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            22,
+            44
+          ],
+          "conv_channels_after": [
+            20,
+            40
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            20,
+            40
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 12466,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 12466,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            20,
+            40
+          ],
+          "conv_channels_after": [
+            20,
+            40
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "schedule-not-reached"
+      },
+      {
+        "epoch": 5,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.1,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "channel-pruning-generic",
+          "strategy": "scheduled_channel_pruning",
+          "before_conv_channels": [
+            20,
+            40
+          ],
+          "after_conv_channels": [
+            18,
+            36
+          ]
+        },
+        "before_state": {
+          "step": 6,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              20,
+              40
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12466,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 12466,
+            "forward_flop_proxy": 3190786,
+            "activation_elements": 6026,
+            "conv_channels_before_prune": [
+              22,
+              44
+            ]
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              18,
+              36
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10678,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 10678,
+            "forward_flop_proxy": 2617894,
+            "activation_elements": 5434,
+            "conv_channels_before_prune": [
+              20,
+              40
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            20,
+            40
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 12466,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 12466,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": -1788,
+          "nonzero_parameter_count_delta": -1788,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -572892,
+          "activation_elements_delta": -592,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            20,
+            40
+          ],
+          "conv_channels_after": [
+            18,
+            36
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.27149999141693115,
+        "final_val_accuracy": 0.11959999799728394,
+        "adaptations_applied": 3,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 36,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "channel-pruning-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (36, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 36,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 10678,
+      "nonzero_parameter_count": 10678,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2617894,
+      "activation_elements": 5434
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=channel_pruning; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "structured"
+    ]
+  },
+  {
+    "name": "weights-connections-cnn-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.2634975910186768,
+    "final_train_accuracy": 0.21779999136924744,
+    "final_val_accuracy": 0.1103999987244606,
+    "best_val_accuracy": 0.1103999987244606,
+    "adaptations_applied": 5,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3254928588867188,
+        "regularized_loss": 2.3254928588867188,
+        "accuracy": 0.10300000011920929,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.3072659969329834,
+        "regularized_loss": 2.3072659969329834,
+        "accuracy": 0.13740000128746033,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.2916598320007324,
+        "regularized_loss": 2.2916598320007324,
+        "accuracy": 0.1996999979019165,
+        "bn_scale_l1": 71.97538757324219
+      },
+      {
+        "loss": 2.2791500091552734,
+        "regularized_loss": 2.2791500091552734,
+        "accuracy": 0.23899999260902405,
+        "bn_scale_l1": 71.97139739990234
+      },
+      {
+        "loss": 2.2702207565307617,
+        "regularized_loss": 2.2702207565307617,
+        "accuracy": 0.21279999613761902,
+        "bn_scale_l1": 71.97137451171875
+      },
+      {
+        "loss": 2.2634975910186768,
+        "regularized_loss": 2.2634975910186768,
+        "accuracy": 0.21779999136924744,
+        "bn_scale_l1": 71.97500610351562
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "warmup-not-finished"
+      },
+      {
+        "epoch": 1,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.0064593092538416386,
+          "target_sparsity": 0.08
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.08,
+          "threshold": 0.0064593092538416386
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 15182,
+            "masked_weight_count": 1292,
+            "weight_sparsity": 0.07999009410599306,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.0064593092538416386,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599306,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.013312816619873047,
+          "target_sparsity": 0.15999009410599307
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.16,
+          "threshold": 0.013312816619873047
+        },
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 15182,
+            "masked_weight_count": 1292,
+            "weight_sparsity": 0.07999009410599306,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.0064593092538416386,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 13890,
+            "masked_weight_count": 2584,
+            "weight_sparsity": 0.15998018821198612,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.013312816619873047,
+            "target_weight_sparsity": 0.15999009410599307
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 1292,
+          "nonzero_parameter_count": 15182,
+          "weight_sparsity": 0.07999009410599306,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599306,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 3,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.02029593475162983,
+          "target_sparsity": 0.23998018821198613
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.24,
+          "threshold": 0.02029593475162983
+        },
+        "before_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 13890,
+            "masked_weight_count": 2584,
+            "weight_sparsity": 0.15998018821198612,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.013312816619873047,
+            "target_weight_sparsity": 0.15999009410599307
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12598,
+            "masked_weight_count": 3876,
+            "weight_sparsity": 0.2399702823179792,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02029593475162983,
+            "target_weight_sparsity": 0.23998018821198613
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 2584,
+          "nonzero_parameter_count": 13890,
+          "weight_sparsity": 0.15998018821198612,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599309,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.02721419557929039,
+          "target_sparsity": 0.3199702823179792
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.32,
+          "threshold": 0.02721419557929039
+        },
+        "before_state": {
+          "step": 5,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12598,
+            "masked_weight_count": 3876,
+            "weight_sparsity": 0.2399702823179792,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02029593475162983,
+            "target_weight_sparsity": 0.23998018821198613
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 4,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 11306,
+            "masked_weight_count": 5168,
+            "weight_sparsity": 0.31996037642397224,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02721419557929039,
+            "target_weight_sparsity": 0.3199702823179792
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 3876,
+          "nonzero_parameter_count": 12598,
+          "weight_sparsity": 0.2399702823179792,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599303,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 5,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.03368646278977394,
+          "target_sparsity": 0.39996037642397225
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.4,
+          "threshold": 0.03368646278977394
+        },
+        "before_state": {
+          "step": 6,
+          "version": 4,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 11306,
+            "masked_weight_count": 5168,
+            "weight_sparsity": 0.31996037642397224,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02721419557929039,
+            "target_weight_sparsity": 0.3199702823179792
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 5,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10014,
+            "masked_weight_count": 6460,
+            "weight_sparsity": 0.39995047052996535,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.03368646278977394,
+            "target_weight_sparsity": 0.39996037642397225
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 5168,
+          "nonzero_parameter_count": 11306,
+          "weight_sparsity": 0.31996037642397224,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599311,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.21779999136924744,
+        "final_val_accuracy": 0.1103999987244606,
+        "adaptations_applied": 5,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "weights-connections-cnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 10014,
+      "masked_weight_count": 6460,
+      "weight_sparsity": 0.39995047052996535,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=weights_connections; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "sparse",
+      "han"
+    ]
+  },
+  {
+    "name": "weights-connections-cnn-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.2453606128692627,
+    "final_train_accuracy": 0.22509999573230743,
+    "final_val_accuracy": 0.11079999804496765,
+    "best_val_accuracy": 0.11459999531507492,
+    "adaptations_applied": 5,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.312913179397583,
+        "regularized_loss": 2.312913179397583,
+        "accuracy": 0.1639000028371811,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.2937214374542236,
+        "regularized_loss": 2.2937214374542236,
+        "accuracy": 0.20889998972415924,
+        "bn_scale_l1": 71.98400115966797
+      },
+      {
+        "loss": 2.2782044410705566,
+        "regularized_loss": 2.2782044410705566,
+        "accuracy": 0.21229998767375946,
+        "bn_scale_l1": 71.97381591796875
+      },
+      {
+        "loss": 2.2652781009674072,
+        "regularized_loss": 2.2652781009674072,
+        "accuracy": 0.21889999508857727,
+        "bn_scale_l1": 71.96954345703125
+      },
+      {
+        "loss": 2.25449538230896,
+        "regularized_loss": 2.25449538230896,
+        "accuracy": 0.2329999953508377,
+        "bn_scale_l1": 71.97095489501953
+      },
+      {
+        "loss": 2.2453606128692627,
+        "regularized_loss": 2.2453606128692627,
+        "accuracy": 0.22509999573230743,
+        "bn_scale_l1": 71.97811126708984
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11459999531507492
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 0,
+        "event_type": null,
+        "params": {},
+        "metadata": {},
+        "before_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 1,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": false,
+          "structural_change": false,
+          "version_delta": 0,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": 0,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": false,
+        "reason": "warmup-not-finished"
+      },
+      {
+        "epoch": 1,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.006920160260051489,
+          "target_sparsity": 0.08
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.08,
+          "threshold": 0.006920160260051489
+        },
+        "before_state": {
+          "step": 2,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 2,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 15182,
+            "masked_weight_count": 1292,
+            "weight_sparsity": 0.07999009410599306,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.006920160260051489,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 16474,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599306,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 2,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.013574463315308094,
+          "target_sparsity": 0.15999009410599307
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.16,
+          "threshold": 0.013574463315308094
+        },
+        "before_state": {
+          "step": 3,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 15182,
+            "masked_weight_count": 1292,
+            "weight_sparsity": 0.07999009410599306,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.006920160260051489,
+            "target_weight_sparsity": 0.08
+          }
+        },
+        "after_state": {
+          "step": 3,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 13890,
+            "masked_weight_count": 2584,
+            "weight_sparsity": 0.15998018821198612,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.013574463315308094,
+            "target_weight_sparsity": 0.15999009410599307
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 1292,
+          "nonzero_parameter_count": 15182,
+          "weight_sparsity": 0.07999009410599306,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599306,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 3,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.019861405715346336,
+          "target_sparsity": 0.23998018821198613
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.24,
+          "threshold": 0.019861405715346336
+        },
+        "before_state": {
+          "step": 4,
+          "version": 2,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 13890,
+            "masked_weight_count": 2584,
+            "weight_sparsity": 0.15998018821198612,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.013574463315308094,
+            "target_weight_sparsity": 0.15999009410599307
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12598,
+            "masked_weight_count": 3876,
+            "weight_sparsity": 0.2399702823179792,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.019861405715346336,
+            "target_weight_sparsity": 0.23998018821198613
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 2584,
+          "nonzero_parameter_count": 13890,
+          "weight_sparsity": 0.15998018821198612,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599309,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 4,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.02651754580438137,
+          "target_sparsity": 0.3199702823179792
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.32,
+          "threshold": 0.02651754580438137
+        },
+        "before_state": {
+          "step": 5,
+          "version": 3,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 12598,
+            "masked_weight_count": 3876,
+            "weight_sparsity": 0.2399702823179792,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.019861405715346336,
+            "target_weight_sparsity": 0.23998018821198613
+          }
+        },
+        "after_state": {
+          "step": 5,
+          "version": 4,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 11306,
+            "masked_weight_count": 5168,
+            "weight_sparsity": 0.31996037642397224,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02651754580438137,
+            "target_weight_sparsity": 0.3199702823179792
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 3876,
+          "nonzero_parameter_count": 12598,
+          "weight_sparsity": 0.2399702823179792,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599303,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      },
+      {
+        "epoch": 5,
+        "event_type": "apply_weight_mask",
+        "params": {
+          "threshold": 0.03304281830787659,
+          "target_sparsity": 0.39996037642397225
+        },
+        "metadata": {
+          "paper": "weights-connections-approx",
+          "strategy": "global_magnitude_pruning",
+          "target_sparsity": 0.4,
+          "threshold": 0.03304281830787659
+        },
+        "before_state": {
+          "step": 6,
+          "version": 4,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 11306,
+            "masked_weight_count": 5168,
+            "weight_sparsity": 0.31996037642397224,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.02651754580438137,
+            "target_weight_sparsity": 0.3199702823179792
+          }
+        },
+        "after_state": {
+          "step": 6,
+          "version": 5,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10014,
+            "masked_weight_count": 6460,
+            "weight_sparsity": 0.39995047052996535,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210,
+            "mask_threshold": 0.03304281830787659,
+            "target_weight_sparsity": 0.39996037642397225
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 16474,
+          "masked_weight_count": 5168,
+          "nonzero_parameter_count": 11306,
+          "weight_sparsity": 0.31996037642397224,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "hidden_dim_delta": null,
+          "num_hidden_layers_delta": 0,
+          "parameter_count_delta": 0,
+          "nonzero_parameter_count_delta": -1292,
+          "weight_sparsity_delta": 0.07999009410599311,
+          "forward_flop_proxy_delta": 0,
+          "activation_elements_delta": 0,
+          "hidden_dims_changed": false,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            24,
+            48
+          ],
+          "channels_changed": false
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.22509999573230743,
+        "final_val_accuracy": 0.11079999804496765,
+        "adaptations_applied": 5,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "weights-connections-cnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 10014,
+      "masked_weight_count": 6460,
+      "weight_sparsity": 0.39995047052996535,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "dynamic",
+      "notes": "adaptation=weights_connections; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "sparse",
+      "han"
+    ]
+  },
+  {
+    "name": "network-slimming-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.269932508468628,
+    "final_train_accuracy": 0.20160000026226044,
+    "final_val_accuracy": 0.1103999987244606,
+    "best_val_accuracy": 0.1103999987244606,
+    "adaptations_applied": 1,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3254928588867188,
+        "regularized_loss": 2.347092866897583,
+        "accuracy": 0.10300000011920929,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.3072683811187744,
+        "regularized_loss": 2.3288612365722656,
+        "accuracy": 0.13740000128746033,
+        "bn_scale_l1": 71.97599792480469
+      },
+      {
+        "loss": 2.291665554046631,
+        "regularized_loss": 2.3132519721984863,
+        "accuracy": 0.20029999315738678,
+        "bn_scale_l1": 71.95472717285156
+      },
+      {
+        "loss": 2.2793195247650146,
+        "regularized_loss": 2.300900459289551,
+        "accuracy": 0.25040000677108765,
+        "bn_scale_l1": 71.93614196777344
+      },
+      {
+        "loss": 2.2804760932922363,
+        "regularized_loss": 2.2804760932922363,
+        "accuracy": 0.1939999908208847,
+        "bn_scale_l1": 53.99116516113281
+      },
+      {
+        "loss": 2.269932508468628,
+        "regularized_loss": 2.269932508468628,
+        "accuracy": 0.20160000026226044,
+        "bn_scale_l1": 53.99517059326172
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      },
+      {
+        "accuracy": 0.1103999987244606
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 3,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.25,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "network-slimming-approx",
+          "before_conv_channels": [
+            24,
+            48
+          ],
+          "after_conv_channels": [
+            18,
+            36
+          ],
+          "kept_channels": [
+            18,
+            36
+          ]
+        },
+        "before_state": {
+          "step": 4,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              18,
+              36
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10678,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 10678,
+            "forward_flop_proxy": 2617894,
+            "activation_elements": 5434,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            18,
+            36
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 10678,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 10678,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "parameter_count_delta": -5796,
+          "nonzero_parameter_count_delta": -5796,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -1888020,
+          "activation_elements_delta": -1776,
+          "num_conv_blocks_delta": 0,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            18,
+            36
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "network_slimming_sparse_train",
+        "epochs": 4,
+        "epoch_start": 1,
+        "epoch_end": 4,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.25040000677108765,
+        "final_val_accuracy": 0.1103999987244606,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "sparse_train",
+          "sparsity_strength": 0.0003
+        }
+      },
+      {
+        "name": "network_slimming_finetune",
+        "epochs": 2,
+        "epoch_start": 5,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.20160000026226044,
+        "final_val_accuracy": 0.1103999987244606,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "network_slimming",
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 2,
+      "prune_fraction": 0.25,
+      "min_channels_per_block": 12,
+      "before_conv_channels": [
+        24,
+        48
+      ],
+      "after_conv_channels": [
+        18,
+        36
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 36,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "network-slimming-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (36, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 36,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 10678,
+      "nonzero_parameter_count": 10678,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2617894,
+      "activation_elements": 5434
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=network_slimming; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "v1_subset"
+    ]
+  },
+  {
+    "name": "network-slimming-mnist",
+    "epochs": 6,
+    "final_train_loss": 2.2609188556671143,
+    "final_train_accuracy": 0.20080000162124634,
+    "final_val_accuracy": 0.11079999804496765,
+    "best_val_accuracy": 0.1127999946475029,
+    "adaptations_applied": 1,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.312913179397583,
+        "regularized_loss": 2.3345131874084473,
+        "accuracy": 0.1639000028371811,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.2937371730804443,
+        "regularized_loss": 2.3153269290924072,
+        "accuracy": 0.20889998972415924,
+        "bn_scale_l1": 71.96600341796875
+      },
+      {
+        "loss": 2.2780511379241943,
+        "regularized_loss": 2.2996342182159424,
+        "accuracy": 0.20899999141693115,
+        "bn_scale_l1": 71.94338989257812
+      },
+      {
+        "loss": 2.2651307582855225,
+        "regularized_loss": 2.2867085933685303,
+        "accuracy": 0.2166999876499176,
+        "bn_scale_l1": 71.92628479003906
+      },
+      {
+        "loss": 2.2721805572509766,
+        "regularized_loss": 2.2721805572509766,
+        "accuracy": 0.18729999661445618,
+        "bn_scale_l1": 53.984588623046875
+      },
+      {
+        "loss": 2.2609188556671143,
+        "regularized_loss": 2.2609188556671143,
+        "accuracy": 0.20080000162124634,
+        "bn_scale_l1": 53.99258804321289
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.1127999946475029
+      },
+      {
+        "accuracy": 0.1111999973654747
+      },
+      {
+        "accuracy": 0.11079999804496765
+      },
+      {
+        "accuracy": 0.11079999804496765
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 3,
+        "event_type": "prune_channels",
+        "params": {
+          "prune_fraction": 0.25,
+          "min_channels_per_block": 12
+        },
+        "metadata": {
+          "paper": "network-slimming-approx",
+          "before_conv_channels": [
+            24,
+            48
+          ],
+          "after_conv_channels": [
+            18,
+            36
+          ],
+          "kept_channels": [
+            18,
+            36
+          ]
+        },
+        "before_state": {
+          "step": 4,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 16474,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 16474,
+            "forward_flop_proxy": 4505914,
+            "activation_elements": 7210
+          }
+        },
+        "after_state": {
+          "step": 4,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              18,
+              36
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              96
+            ],
+            "nonzero_parameter_count": 10678,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 10678,
+            "forward_flop_proxy": 2617894,
+            "activation_elements": 5434,
+            "conv_channels_before_prune": [
+              24,
+              48
+            ]
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning"
+          ],
+          "conv_channels": [
+            18,
+            36
+          ],
+          "classifier_hidden_dims": [
+            96
+          ],
+          "parameter_count": 10678,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 10678,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "parameter_count_delta": -5796,
+          "nonzero_parameter_count_delta": -5796,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -1888020,
+          "activation_elements_delta": -1776,
+          "num_conv_blocks_delta": 0,
+          "conv_channels_before": [
+            24,
+            48
+          ],
+          "conv_channels_after": [
+            18,
+            36
+          ],
+          "channels_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "network_slimming_sparse_train",
+        "epochs": 4,
+        "epoch_start": 1,
+        "epoch_end": 4,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2166999876499176,
+        "final_val_accuracy": 0.1111999973654747,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "sparse_train",
+          "sparsity_strength": 0.0003
+        }
+      },
+      {
+        "name": "network_slimming_finetune",
+        "epochs": 2,
+        "epoch_start": 5,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.20080000162124634,
+        "final_val_accuracy": 0.11079999804496765,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "network_slimming",
+      "configured_total_epochs": 6,
+      "executed_total_epochs": 6,
+      "stage_count": 2,
+      "prune_fraction": 0.25,
+      "min_channels_per_block": 12,
+      "before_conv_channels": [
+        24,
+        48
+      ],
+      "after_conv_channels": [
+        18,
+        36
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 36,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "network-slimming-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (36, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 36,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 10678,
+      "nonzero_parameter_count": 10678,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2617894,
+      "activation_elements": 5434
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=network_slimming; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      }
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_phase6_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "v1_subset"
+    ]
+  }
+]
