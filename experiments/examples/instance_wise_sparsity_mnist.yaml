@@ -16,24 +16,30 @@ model:
     input_channels: 1
     input_size: [28, 28]
     num_classes: 10
-    conv_channels: [24, 48]
+    conv_channels: [18, 36, 56]
     activation: relu
     lr: 0.001
     width_multipliers: [1.0, 0.75, 0.5]
     eval_width_multipliers: [0.5, 0.75, 1.0]
     routing_policy: dynamic_width
+    routing_family: instance_sparse_pyramid
     gate_mode: learned
-    confidence_threshold: 0.80
-    min_confidence_threshold: 0.35
+    confidence_threshold: 0.78
+    min_confidence_threshold: 0.34
     gate_metric: margin
     gate_temperature: 0.18
     gate_budget_weight: 0.10
     target_cost_ratio: 0.72
+    min_target_cost_ratio: 0.64
     distillation_weight: 0.40
-    gate_supervision_weight: 0.55
+    gate_supervision_weight: 0.60
     teacher_confidence_floor: 0.45
+    student_confidence_floor: 0.30
+    gate_target_strategy: hybrid
     gate_entropy_weight: 0.02
-    target_accept_rate: 0.42
+    target_accept_rate: 0.45
+    min_target_accept_rate: 0.30
+    gate_accept_rate_weight: 0.12
     route_trace_limit: 8
 
 metrics:

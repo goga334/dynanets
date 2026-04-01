@@ -8,6 +8,12 @@ import torch
 from dynanets.datasets.base import DataSplit, DatasetBundle, DatasetFactory
 
 
+CIFAR10_MEAN = (0.4914, 0.4822, 0.4465)
+CIFAR10_STD = (0.2470, 0.2435, 0.2616)
+CIFAR100_MEAN = (0.5071, 0.4867, 0.4408)
+CIFAR100_STD = (0.2675, 0.2565, 0.2761)
+
+
 @dataclass(slots=True)
 class SyntheticImagePatternsDatasetFactory(DatasetFactory):
     train_size: int = 2048
@@ -130,6 +136,170 @@ class MNISTDatasetFactory(DatasetFactory):
         for index in indices:
             image, label = dataset[index]
             images.append(image)
+            labels.append(label)
+        return DataSplit(
+            inputs=torch.stack(images).float(),
+            targets=torch.tensor(labels, dtype=torch.long),
+        )
+
+
+@dataclass(slots=True)
+class CIFAR100DatasetFactory(DatasetFactory):
+    data_dir: str = "data"
+    validation_size: int = 5000
+    train_size: int | None = None
+    test_size: int | None = None
+    download: bool = True
+    normalize: bool = False
+    train_augmentation: str | None = None
+    seed: int = 42
+
+    def build(self) -> DatasetBundle:
+        torchvision = self._load_torchvision()
+        datasets = torchvision.datasets
+        train_dataset = datasets.CIFAR100(root=self.data_dir, train=True, download=self.download)
+        test_dataset = datasets.CIFAR100(root=self.data_dir, train=False, download=self.download)
+
+        generator = torch.Generator().manual_seed(self.seed)
+        train_indices = torch.randperm(len(train_dataset), generator=generator)
+        validation_indices = train_indices[: self.validation_size]
+        fit_indices = train_indices[self.validation_size :]
+        if self.train_size is not None:
+            fit_indices = fit_indices[: self.train_size]
+
+        test_indices = torch.arange(len(test_dataset))
+        if self.test_size is not None:
+            test_indices = test_indices[: self.test_size]
+
+        train_transform, eval_transform = self._build_transforms(torchvision.transforms)
+        return DatasetBundle(
+            train=self._dataset_to_split(train_dataset, fit_indices.tolist(), transform=train_transform),
+            validation=self._dataset_to_split(train_dataset, validation_indices.tolist(), transform=eval_transform),
+            test=self._dataset_to_split(test_dataset, test_indices.tolist(), transform=eval_transform),
+            metadata={
+                "task": "classification",
+                "dataset_name": "cifar100",
+                "input_shape": [3, 32, 32],
+                "num_classes": 100,
+                "normalize": self.normalize,
+                "train_augmentation": self.train_augmentation,
+            },
+        )
+
+    def _load_torchvision(self):
+        try:
+            return importlib.import_module("torchvision")
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "CIFAR100DatasetFactory requires torchvision. Install the optional vision dependency first."
+            ) from exc
+
+    def _build_transforms(self, transforms):
+        eval_ops = [transforms.ToTensor()]
+        if self.normalize:
+            eval_ops.append(transforms.Normalize(CIFAR100_MEAN, CIFAR100_STD))
+        eval_transform = transforms.Compose(eval_ops)
+
+        train_ops = []
+        if self.train_augmentation == "cifar_standard":
+            train_ops.extend(
+                [
+                    transforms.RandomCrop(32, padding=4),
+                    transforms.RandomHorizontalFlip(),
+                ]
+            )
+        train_ops.extend(eval_ops)
+        train_transform = transforms.Compose(train_ops)
+        return train_transform, eval_transform
+
+    def _dataset_to_split(self, dataset, indices: list[int], *, transform) -> DataSplit:
+        images = []
+        labels = []
+        for index in indices:
+            image, label = dataset[index]
+            images.append(transform(image).float())
+            labels.append(label)
+        return DataSplit(
+            inputs=torch.stack(images).float(),
+            targets=torch.tensor(labels, dtype=torch.long),
+        )
+
+
+@dataclass(slots=True)
+class CIFAR10DatasetFactory(DatasetFactory):
+    data_dir: str = "data"
+    validation_size: int = 5000
+    train_size: int | None = None
+    test_size: int | None = None
+    download: bool = True
+    normalize: bool = False
+    train_augmentation: str | None = None
+    seed: int = 42
+
+    def build(self) -> DatasetBundle:
+        torchvision = self._load_torchvision()
+        datasets = torchvision.datasets
+        train_dataset = datasets.CIFAR10(root=self.data_dir, train=True, download=self.download)
+        test_dataset = datasets.CIFAR10(root=self.data_dir, train=False, download=self.download)
+
+        generator = torch.Generator().manual_seed(self.seed)
+        train_indices = torch.randperm(len(train_dataset), generator=generator)
+        validation_indices = train_indices[: self.validation_size]
+        fit_indices = train_indices[self.validation_size :]
+        if self.train_size is not None:
+            fit_indices = fit_indices[: self.train_size]
+
+        test_indices = torch.arange(len(test_dataset))
+        if self.test_size is not None:
+            test_indices = test_indices[: self.test_size]
+
+        train_transform, eval_transform = self._build_transforms(torchvision.transforms)
+        return DatasetBundle(
+            train=self._dataset_to_split(train_dataset, fit_indices.tolist(), transform=train_transform),
+            validation=self._dataset_to_split(train_dataset, validation_indices.tolist(), transform=eval_transform),
+            test=self._dataset_to_split(test_dataset, test_indices.tolist(), transform=eval_transform),
+            metadata={
+                "task": "classification",
+                "dataset_name": "cifar10",
+                "input_shape": [3, 32, 32],
+                "num_classes": 10,
+                "normalize": self.normalize,
+                "train_augmentation": self.train_augmentation,
+            },
+        )
+
+    def _load_torchvision(self):
+        try:
+            return importlib.import_module("torchvision")
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "CIFAR10DatasetFactory requires torchvision. Install the optional vision dependency first."
+            ) from exc
+
+    def _build_transforms(self, transforms):
+        eval_ops = [transforms.ToTensor()]
+        if self.normalize:
+            eval_ops.append(transforms.Normalize(CIFAR10_MEAN, CIFAR10_STD))
+        eval_transform = transforms.Compose(eval_ops)
+
+        train_ops = []
+        if self.train_augmentation == "cifar_standard":
+            train_ops.extend(
+                [
+                    transforms.RandomCrop(32, padding=4),
+                    transforms.RandomHorizontalFlip(),
+                ]
+            )
+        train_ops.extend(eval_ops)
+        train_transform = transforms.Compose(train_ops)
+        return train_transform, eval_transform
+
+    def _dataset_to_split(self, dataset, indices: list[int], *, transform) -> DataSplit:
+        images = []
+        labels = []
+        for index in indices:
+            image, label = dataset[index]
+            images.append(transform(image).float())
             labels.append(label)
         return DataSplit(
             inputs=torch.stack(images).float(),

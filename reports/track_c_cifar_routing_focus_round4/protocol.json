@@ -1,0 +1,135 @@
+{
+  "name": "track_c_cifar_routing_focus_round2",
+  "track": "cifar10",
+  "description": "Focused CIFAR-10 routing reproduction pass for dynamic-width and early-exit methods, compared against strong static and pruning references.",
+  "seeds": [
+    7,
+    23,
+    42
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/wide_cnn_cifar10_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "baseline",
+        "wide"
+      ]
+    },
+    {
+      "config": "../experiments/examples/deep_cnn_cifar10.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "baseline",
+        "deep"
+      ]
+    },
+    {
+      "config": "../experiments/examples/network_slimming_cifar10.yaml",
+      "role": "reference",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "pruning",
+        "reference"
+      ]
+    },
+    {
+      "config": "../experiments/examples/dynamic_slimmable_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "slimmable",
+        "focus"
+      ]
+    },
+    {
+      "config": "../experiments/examples/channel_gating_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "channel_gating",
+        "focus"
+      ]
+    },
+    {
+      "config": "../experiments/examples/instance_wise_sparsity_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "instance_sparsity",
+        "focus"
+      ]
+    },
+    {
+      "config": "../experiments/examples/conditional_computation_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "conditional",
+        "focus"
+      ]
+    },
+    {
+      "config": "../experiments/examples/skipnet_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "skipnet",
+        "focus"
+      ]
+    },
+    {
+      "config": "../experiments/examples/iamnn_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "track_c",
+        "cifar10",
+        "cnn",
+        "routing",
+        "iamnn",
+        "focus"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "cifar10",
+    "epochs": 8,
+    "train_size": 10000,
+    "validation_size": 5000,
+    "test_size": 2000
+  },
+  "metadata": {
+    "roadmap_phase": "phase_7",
+    "focus": "cifar_routing_reproduction",
+    "requires": [
+      "torchvision",
+      "cuda"
+    ]
+  }
+}

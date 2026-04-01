@@ -30,6 +30,12 @@ class TorchCNNClassifier(DynamicNeuralModel):
         activation: str = "relu",
         use_batch_norm: bool = False,
         lr: float = 1e-3,
+        optimizer_name: str = "adam",
+        momentum: float = 0.9,
+        weight_decay: float = 0.0,
+        lr_schedule: str = "none",
+        min_lr_ratio: float = 0.1,
+        label_smoothing: float = 0.0,
         device: str | None = None,
     ) -> None:
         self.spec = cnn_spec_from_params(
@@ -42,13 +48,19 @@ class TorchCNNClassifier(DynamicNeuralModel):
             use_batch_norm=use_batch_norm,
         )
         self.device = resolve_device(device)
-        self._lr = lr
+        self._lr = float(lr)
+        self._optimizer_name = str(optimizer_name).lower()
+        self._momentum = float(momentum)
+        self._weight_decay = float(weight_decay)
+        self._lr_schedule = str(lr_schedule).lower()
+        self._min_lr_ratio = float(min_lr_ratio)
+        self._label_smoothing = float(label_smoothing)
         self._batch_norm_sparsity_strength = 0.0
         self._sparsity_state = MaskAwareSparsityState()
         self._state = ArchitectureState(step=0, version=0, metadata={})
         self.network = build_cnn_network(self.spec).to(self.device)
-        self.loss_fn = nn.CrossEntropyLoss()
-        self.optimizer = torch.optim.Adam(self.network.parameters(), lr=lr)
+        self.loss_fn = nn.CrossEntropyLoss(label_smoothing=self._label_smoothing)
+        self.optimizer = self._build_optimizer()
         self._sync_weight_masks()
         self._refresh_state_metadata()
 
@@ -63,6 +75,10 @@ class TorchCNNClassifier(DynamicNeuralModel):
         inputs = batch["inputs"]
         targets = batch["targets"].to(self.device)
 
+        self._configure_optimizer_for_epoch(
+            epoch=int(batch.get("epoch", 0)),
+            total_epochs=int(batch.get("total_epochs", 1)),
+        )
         self.optimizer.zero_grad()
         logits = self.forward(inputs)
         loss = self.loss_fn(logits, targets)
@@ -103,13 +119,50 @@ class TorchCNNClassifier(DynamicNeuralModel):
             "activation": self.spec.activation,
             "use_batch_norm": self.spec.use_batch_norm,
             "lr": self._lr,
+            "optimizer_name": self._optimizer_name,
+            "momentum": self._momentum,
+            "weight_decay": self._weight_decay,
+            "lr_schedule": self._lr_schedule,
+            "min_lr_ratio": self._min_lr_ratio,
+            "label_smoothing": self._label_smoothing,
             "device": str(self.device),
         }
+
+    def _build_optimizer(self) -> torch.optim.Optimizer:
+        if self._optimizer_name == "sgd":
+            return torch.optim.SGD(
+                self.network.parameters(),
+                lr=self._lr,
+                momentum=self._momentum,
+                weight_decay=self._weight_decay,
+            )
+        if self._optimizer_name == "adam":
+            return torch.optim.Adam(
+                self.network.parameters(),
+                lr=self._lr,
+                weight_decay=self._weight_decay,
+            )
+        raise ValueError("optimizer_name must be one of: adam, sgd")
+
+    def _configure_optimizer_for_epoch(self, *, epoch: int, total_epochs: int) -> None:
+        lr = self._scheduled_lr(epoch=epoch, total_epochs=total_epochs)
+        for group in self.optimizer.param_groups:
+            group["lr"] = lr
+
+    def _scheduled_lr(self, *, epoch: int, total_epochs: int) -> float:
+        if self._lr_schedule == "none" or total_epochs <= 1:
+            return self._lr
+        if self._lr_schedule == "cosine":
+            progress = max(0.0, min(1.0, float(epoch) / float(max(1, total_epochs - 1))))
+            min_lr = self._lr * self._min_lr_ratio
+            cosine = 0.5 * (1.0 + torch.cos(torch.tensor(progress * torch.pi)).item())
+            return min_lr + ((self._lr - min_lr) * cosine)
+        raise ValueError("lr_schedule must be one of: none, cosine")
 
     def clone(self) -> "TorchCNNClassifier":
         clone = TorchCNNClassifier(**self.init_params())
         clone.network.load_state_dict(self.network.state_dict())
-        clone.optimizer = torch.optim.Adam(clone.network.parameters(), lr=self._lr)
+        clone.optimizer = clone._build_optimizer()
         clone._batch_norm_sparsity_strength = self._batch_norm_sparsity_strength
         clone._sparsity_state = self._sparsity_state.clone(device=clone.device)
         clone._sync_weight_masks()
@@ -124,9 +177,16 @@ class TorchCNNClassifier(DynamicNeuralModel):
     def load_from(self, other: "TorchCNNClassifier") -> None:
         self.spec = CNNArchitectureSpec.from_dict(other.spec.to_dict())
         self._lr = other._lr
+        self._optimizer_name = other._optimizer_name
+        self._momentum = other._momentum
+        self._weight_decay = other._weight_decay
+        self._lr_schedule = other._lr_schedule
+        self._min_lr_ratio = other._min_lr_ratio
+        self._label_smoothing = other._label_smoothing
+        self.loss_fn = nn.CrossEntropyLoss(label_smoothing=self._label_smoothing)
         self.network = build_cnn_network(self.spec).to(self.device)
         self.network.load_state_dict(other.network.state_dict())
-        self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
+        self.optimizer = self._build_optimizer()
         self._batch_norm_sparsity_strength = other._batch_norm_sparsity_strength
         self._sparsity_state = other._sparsity_state.clone(device=self.device)
         self._sync_weight_masks()
@@ -145,7 +205,7 @@ class TorchCNNClassifier(DynamicNeuralModel):
         return self._state.to_dict()
 
     def supported_event_types(self) -> set[str]:
-        return {"prune_channels", "apply_weight_mask"}
+        return {"prune_channels", "apply_weight_mask", "merge_hidden_layers"}
 
     def capabilities(self) -> dict[str, Any]:
         masked_weight_count, nonzero_parameter_count, weight_sparsity = self._weight_mask_statistics()
@@ -157,12 +217,14 @@ class TorchCNNClassifier(DynamicNeuralModel):
             "supports_weight_masks": True,
             "supports_mask_aware_sparsity_state": True,
             "structured_pruning_primitives": ["prune_channels"],
+            "merge_primitives": ["merge_hidden_layers"],
             "supported_event_types": supported_event_types,
             "supported_structural_ops": supported_event_types,
             "weight_transfer_strategies": [
                 "structured_channel_pruning",
                 "global_magnitude_mask_pruning",
                 "layerwise_magnitude_mask_pruning",
+                "classifier_layer_merge",
             ],
             "conv_channels": self.spec.conv_channels,
             "classifier_hidden_dims": list(self.spec.classifier_hidden_dims),
@@ -231,6 +293,9 @@ class TorchCNNClassifier(DynamicNeuralModel):
                 thresholds_by_name=thresholds_by_name,
             )
             return
+        if event.event_type == "merge_hidden_layers":
+            self.merge_classifier_layers(merge_index=int(event.params.get("merge_index", 0)))
+            return
         raise ValueError(f"Unsupported adaptation action '{event.event_type}'")
 
     def prune_channels(self, *, prune_fraction: float, min_channels_per_block: int = 4) -> dict[str, Any]:
@@ -280,6 +345,30 @@ class TorchCNNClassifier(DynamicNeuralModel):
             "before_conv_channels": self._state.metadata.get("conv_channels_before_prune", []),
             "after_conv_channels": self.spec.conv_channels,
             "kept_channels": kept_channels,
+        }
+
+
+    def merge_classifier_layers(self, *, merge_index: int = 0) -> dict[str, Any]:
+        hidden_dims = list(self.spec.classifier_hidden_dims)
+        if len(hidden_dims) < 2:
+            raise ValueError("Layer merge currently requires at least two classifier hidden layers")
+        if merge_index < 0 or merge_index >= len(hidden_dims) - 1:
+            raise ValueError("merge_index must point to an adjacent hidden-layer pair")
+
+        before_hidden_dims = list(hidden_dims)
+        merged_hidden_dims = hidden_dims[:merge_index] + [hidden_dims[merge_index + 1]] + hidden_dims[merge_index + 2 :]
+        mutated = CNNArchitectureSpec.from_dict(
+            {
+                **self.spec.to_dict(),
+                "classifier_hidden_dims": merged_hidden_dims,
+            }
+        )
+        self._apply_merged_classifier_layers(mutated, merge_index=merge_index, before_hidden_dims=before_hidden_dims)
+        return {
+            "merged": True,
+            "merge_index": merge_index,
+            "before_classifier_hidden_dims": before_hidden_dims,
+            "after_classifier_hidden_dims": list(self.spec.classifier_hidden_dims),
         }
 
     def _named_prunable_weights(self, network: nn.Module | None = None, spec: CNNArchitectureSpec | None = None) -> dict[str, torch.Tensor]:
@@ -388,13 +477,75 @@ class TorchCNNClassifier(DynamicNeuralModel):
                         transferred_masks[f"linear_{index}.weight"] = old_mask.clone()
 
         self.network = new_network
-        self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self._lr)
+        self.optimizer = self._build_optimizer()
         self._sparsity_state = MaskAwareSparsityState(masks=transferred_masks)
         self._sync_weight_masks()
         self._apply_active_weight_masks()
         self._state.version += 1
         self._refresh_state_metadata()
         self._state.metadata["conv_channels_before_prune"] = old_conv_channels
+
+
+    def _apply_merged_classifier_layers(
+        self,
+        mutated_spec: CNNArchitectureSpec,
+        *,
+        merge_index: int,
+        before_hidden_dims: list[int],
+    ) -> None:
+        old_network = self.network
+        old_spec = self.spec
+        old_blocks = self._feature_blocks(old_network, old_spec)
+        old_linears = self._classifier_linear_layers(old_network)
+
+        self.spec = mutated_spec
+        new_network = build_cnn_network(self.spec).to(self.device)
+        new_blocks = self._feature_blocks(new_network, self.spec)
+        new_linears = self._classifier_linear_layers(new_network)
+
+        with torch.no_grad():
+            for old_block, new_block in zip(old_blocks, new_blocks):
+                new_block["conv"].weight.copy_(old_block["conv"].weight)
+                if old_block["conv"].bias is not None and new_block["conv"].bias is not None:
+                    new_block["conv"].bias.copy_(old_block["conv"].bias)
+                old_bn = old_block.get("bn")
+                new_bn = new_block.get("bn")
+                if old_bn is not None and new_bn is not None:
+                    new_bn.weight.copy_(old_bn.weight)
+                    new_bn.bias.copy_(old_bn.bias)
+                    new_bn.running_mean.copy_(old_bn.running_mean)
+                    new_bn.running_var.copy_(old_bn.running_var)
+
+            for index in range(merge_index):
+                new_linears[index].weight.copy_(old_linears[index].weight)
+                if old_linears[index].bias is not None and new_linears[index].bias is not None:
+                    new_linears[index].bias.copy_(old_linears[index].bias)
+
+            first = old_linears[merge_index]
+            second = old_linears[merge_index + 1]
+            merged_weight = second.weight @ first.weight
+            first_bias = first.bias if first.bias is not None else torch.zeros(first.out_features, device=self.device)
+            second_bias = second.bias if second.bias is not None else torch.zeros(second.out_features, device=self.device)
+            merged_bias = (second.weight @ first_bias) + second_bias
+            new_linears[merge_index].weight.copy_(merged_weight)
+            if new_linears[merge_index].bias is not None:
+                new_linears[merge_index].bias.copy_(merged_bias)
+
+            for old_index in range(merge_index + 2, len(old_linears)):
+                new_index = old_index - 1
+                new_linears[new_index].weight.copy_(old_linears[old_index].weight)
+                if old_linears[old_index].bias is not None and new_linears[new_index].bias is not None:
+                    new_linears[new_index].bias.copy_(old_linears[old_index].bias)
+
+        self.network = new_network
+        self.optimizer = self._build_optimizer()
+        self._sparsity_state = MaskAwareSparsityState()
+        self._sync_weight_masks()
+        self._apply_active_weight_masks()
+        self._state.version += 1
+        self._refresh_state_metadata()
+        self._state.metadata["classifier_hidden_dims_before_merge"] = before_hidden_dims
+        self._state.metadata["merge_index"] = merge_index
 
     def _feature_blocks(self, network: nn.Module, spec: CNNArchitectureSpec) -> list[dict[str, nn.Module]]:
         modules = list(network.features)
@@ -439,6 +590,10 @@ class TorchCNNClassifier(DynamicNeuralModel):
         self._state.metadata["weight_sparsity"] = weight_sparsity
         self._state.metadata["mask_state_names"] = self._sparsity_state.named_mask_keys()
         self._state.metadata["device"] = str(self.device)
+        self._state.metadata["optimizer_name"] = self._optimizer_name
+        self._state.metadata["lr_schedule"] = self._lr_schedule
+        self._state.metadata["weight_decay"] = self._weight_decay
+        self._state.metadata["label_smoothing"] = self._label_smoothing
         self._state.metadata["use_batch_norm"] = self.spec.use_batch_norm
         self._state.metadata["batch_norm_sparsity_strength"] = self._batch_norm_sparsity_strength
         self._state.metadata["supported_events"] = sorted(self.supported_event_types())

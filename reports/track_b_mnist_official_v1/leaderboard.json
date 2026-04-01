@@ -1,0 +1,135 @@
+{
+  "protocol_name": "track_b_mnist_official_v1",
+  "track": "mnist",
+  "tier": "official",
+  "top_overall": {
+    "name": "network-slimming-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8398000001907349,
+    "mean_best_val_accuracy": 0.8398000001907349,
+    "mean_forward_flop_proxy": 3119397,
+    "mean_parameter_count": 12187,
+    "best_seed": 7
+  },
+  "top_method": {
+    "name": "network-slimming-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8398000001907349,
+    "mean_best_val_accuracy": 0.8398000001907349,
+    "mean_forward_flop_proxy": 3119397,
+    "mean_parameter_count": 12187,
+    "best_seed": 7
+  },
+  "top_baseline": {
+    "name": "wide-cnn-mnist-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.8339999914169312,
+    "mean_best_val_accuracy": 0.8472999930381775,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 42
+  },
+  "accuracy_ranking": [
+    {
+      "name": "network-slimming-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8398000001907349,
+      "mean_best_val_accuracy": 0.8398000001907349,
+      "mean_forward_flop_proxy": 3119397,
+      "mean_parameter_count": 12187,
+      "best_seed": 7
+    },
+    {
+      "name": "wide-cnn-mnist-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.8339999914169312,
+      "mean_best_val_accuracy": 0.8472999930381775,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 42
+    },
+    {
+      "name": "prunetrain-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.83160001039505,
+      "mean_best_val_accuracy": 0.83160001039505,
+      "mean_forward_flop_proxy": 3190786,
+      "mean_parameter_count": 12466,
+      "best_seed": 42
+    },
+    {
+      "name": "layermerge-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8046000003814697,
+      "mean_best_val_accuracy": 0.8046000003814697,
+      "mean_forward_flop_proxy": 4502170,
+      "mean_parameter_count": 14586,
+      "best_seed": 42
+    },
+    {
+      "name": "runtime-neural-pruning-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.7975000143051147,
+      "mean_best_val_accuracy": 0.7975000143051147,
+      "mean_forward_flop_proxy": 2489228,
+      "mean_parameter_count": 10156,
+      "best_seed": 7
+    },
+    {
+      "name": "asfp-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.7881999909877777,
+      "mean_best_val_accuracy": 0.8043999969959259,
+      "mean_forward_flop_proxy": 1929619,
+      "mean_parameter_count": 8305,
+      "best_seed": 7
+    },
+    {
+      "name": "weights-connections-cnn-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.7815999984741211,
+      "mean_best_val_accuracy": 0.824099987745285,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    },
+    {
+      "name": "morphnet-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.747299998998642,
+      "mean_best_val_accuracy": 0.7912999987602234,
+      "mean_forward_flop_proxy": 2617894,
+      "mean_parameter_count": 10678,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "asfp-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.7881999909877777,
+      "mean_best_val_accuracy": 0.8043999969959259,
+      "mean_forward_flop_proxy": 1929619,
+      "mean_parameter_count": 8305,
+      "best_seed": 7
+    },
+    {
+      "name": "runtime-neural-pruning-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.7975000143051147,
+      "mean_best_val_accuracy": 0.7975000143051147,
+      "mean_forward_flop_proxy": 2489228,
+      "mean_parameter_count": 10156,
+      "best_seed": 7
+    },
+    {
+      "name": "network-slimming-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8398000001907349,
+      "mean_best_val_accuracy": 0.8398000001907349,
+      "mean_forward_flop_proxy": 3119397,
+      "mean_parameter_count": 12187,
+      "best_seed": 7
+    }
+  ]
+}

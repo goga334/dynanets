@@ -1,0 +1,24 @@
+{
+  "protocol_name": "track_a_cnn_wave1_preview",
+  "track": "synthetic",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 15,
+    "num_experiments": 3,
+    "num_seeds": 5,
+    "baseline_count": 2,
+    "method_count": 1,
+    "role_counts": {
+      "baseline": 2,
+      "method": 1
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

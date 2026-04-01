@@ -1,0 +1,53 @@
+name: network-slimming-cifar10
+dataset:
+  name: cifar10
+  params:
+    data_dir: data
+    validation_size: 5000
+    download: true
+    seed: 42
+    normalize: true
+    train_augmentation: cifar_standard
+    train_size: 20000
+    test_size: 5000
+model:
+  name: torch_cnn_classifier
+  params:
+    input_channels: 3
+    input_size:
+    - 32
+    - 32
+    num_classes: 10
+    conv_channels:
+    - 24
+    - 48
+    - 72
+    classifier_hidden_dims:
+    - 128
+    activation: relu
+    use_batch_norm: true
+    lr: 0.03
+    optimizer_name: sgd
+    momentum: 0.9
+    weight_decay: 0.0005
+    lr_schedule: cosine
+    min_lr_ratio: 0.05
+    label_smoothing: 0.05
+metrics:
+- name: accuracy
+  params: {}
+workflow:
+  name: network_slimming
+  params:
+    sparse_epochs: 7
+    finetune_epochs: 5
+    sparsity_strength: 0.00015
+    prune_fraction: 0.18
+    min_channels_per_block: 12
+trainer:
+  epochs: 12
+  batch_size: 128
+  eval_batch_size: 256
+runtime:
+  seed: 42
+  device: auto

@@ -1,0 +1,82 @@
+{
+  "protocol_name": "track_c_cifar_static_preview",
+  "track": "cifar10",
+  "tier": "preview",
+  "top_overall": {
+    "name": "condensenet-style-cifar10",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.47019998729228973,
+    "mean_best_val_accuracy": 0.523499995470047,
+    "mean_forward_flop_proxy": 11159424,
+    "mean_parameter_count": 29418,
+    "best_seed": 7
+  },
+  "top_method": null,
+  "top_baseline": {
+    "name": "condensenet-style-cifar10",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.47019998729228973,
+    "mean_best_val_accuracy": 0.523499995470047,
+    "mean_forward_flop_proxy": 11159424,
+    "mean_parameter_count": 29418,
+    "best_seed": 7
+  },
+  "accuracy_ranking": [
+    {
+      "name": "condensenet-style-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.47019998729228973,
+      "mean_best_val_accuracy": 0.523499995470047,
+      "mean_forward_flop_proxy": 11159424,
+      "mean_parameter_count": 29418,
+      "best_seed": 7
+    },
+    {
+      "name": "fixed-cnn-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.39819999039173126,
+      "mean_best_val_accuracy": 0.546500027179718,
+      "mean_forward_flop_proxy": 10772746,
+      "mean_parameter_count": 53186,
+      "best_seed": 42
+    },
+    {
+      "name": "squeezenet-style-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.32819999754428864,
+      "mean_best_val_accuracy": 0.33239999413490295,
+      "mean_forward_flop_proxy": 4317184,
+      "mean_parameter_count": 46594,
+      "best_seed": 7
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "squeezenet-style-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.32819999754428864,
+      "mean_best_val_accuracy": 0.33239999413490295,
+      "mean_forward_flop_proxy": 4317184,
+      "mean_parameter_count": 46594,
+      "best_seed": 7
+    },
+    {
+      "name": "fixed-cnn-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.39819999039173126,
+      "mean_best_val_accuracy": 0.546500027179718,
+      "mean_forward_flop_proxy": 10772746,
+      "mean_parameter_count": 53186,
+      "best_seed": 42
+    },
+    {
+      "name": "condensenet-style-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.47019998729228973,
+      "mean_best_val_accuracy": 0.523499995470047,
+      "mean_forward_flop_proxy": 11159424,
+      "mean_parameter_count": 29418,
+      "best_seed": 7
+    }
+  ]
+}

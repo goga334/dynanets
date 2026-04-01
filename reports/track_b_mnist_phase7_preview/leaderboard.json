@@ -1,0 +1,99 @@
+{
+  "protocol_name": "track_b_mnist_phase7_preview",
+  "track": "mnist",
+  "tier": "preview",
+  "top_overall": {
+    "name": "network-slimming-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8028799891471863,
+    "mean_best_val_accuracy": 0.8363999962806702,
+    "mean_forward_flop_proxy": 3119397,
+    "mean_parameter_count": 12187,
+    "best_seed": 7
+  },
+  "top_method": {
+    "name": "network-slimming-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8028799891471863,
+    "mean_best_val_accuracy": 0.8363999962806702,
+    "mean_forward_flop_proxy": 3119397,
+    "mean_parameter_count": 12187,
+    "best_seed": 7
+  },
+  "top_baseline": {
+    "name": "wide-cnn-mnist-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.7938400030136108,
+    "mean_best_val_accuracy": 0.836520004272461,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 99
+  },
+  "accuracy_ranking": [
+    {
+      "name": "network-slimming-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8028799891471863,
+      "mean_best_val_accuracy": 0.8363999962806702,
+      "mean_forward_flop_proxy": 3119397,
+      "mean_parameter_count": 12187,
+      "best_seed": 7
+    },
+    {
+      "name": "wide-cnn-mnist-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.7938400030136108,
+      "mean_best_val_accuracy": 0.836520004272461,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 99
+    },
+    {
+      "name": "conditional-computation-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5925600051879882,
+      "mean_best_val_accuracy": 0.5939599990844726,
+      "mean_forward_flop_proxy": 4439194,
+      "mean_parameter_count": 11146,
+      "best_seed": 42
+    },
+    {
+      "name": "dynamic-slimmable-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5825999855995179,
+      "mean_best_val_accuracy": 0.5842399835586548,
+      "mean_forward_flop_proxy": 4439194,
+      "mean_parameter_count": 11146,
+      "best_seed": 7
+    },
+    {
+      "name": "fixed-cnn-mnist",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.47528000473976134,
+      "mean_best_val_accuracy": 0.47528000473976134,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 99
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "fixed-cnn-mnist",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.47528000473976134,
+      "mean_best_val_accuracy": 0.47528000473976134,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 99
+    },
+    {
+      "name": "network-slimming-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8028799891471863,
+      "mean_best_val_accuracy": 0.8363999962806702,
+      "mean_forward_flop_proxy": 3119397,
+      "mean_parameter_count": 12187,
+      "best_seed": 7
+    }
+  ]
+}

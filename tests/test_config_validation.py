@@ -253,3 +253,11 @@ def test_config_accepts_positive_eval_batch_size() -> None:
 
     assert config.trainer["batch_size"] == 8
     assert config.trainer["eval_batch_size"] == 16
+
+
+def test_default_registries_include_cifar100_and_routed_resnet() -> None:
+    registries = default_registries()
+    dataset_factory = registries["datasets"].get("cifar100")
+    model_factory = registries["models"].get("torch_routed_resnet_classifier")
+    assert dataset_factory is not None
+    assert model_factory is not None

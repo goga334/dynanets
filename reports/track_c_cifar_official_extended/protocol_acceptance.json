@@ -1,0 +1,64 @@
+{
+  "protocol_name": "track_c_cifar_official_extended",
+  "track": "cifar10",
+  "tier": "official_extended",
+  "passed": true,
+  "summary": {
+    "num_runs": 32,
+    "num_experiments": 16,
+    "num_seeds": 2,
+    "baseline_count": 2,
+    "method_count": 14,
+    "role_counts": {
+      "baseline": 2,
+      "method": 14
+    }
+  },
+  "checks": [
+    {
+      "name": "min_seeds",
+      "passed": true,
+      "detail": "required>=2, observed=2"
+    },
+    {
+      "name": "required_roles",
+      "passed": true,
+      "detail": "required=['baseline', 'method'], missing=none"
+    },
+    {
+      "name": "required_experiments",
+      "passed": true,
+      "detail": "required=['asfp_cifar10', 'channel_gating_cifar10', 'channel_pruning_cifar10', 'conditional_computation_cifar10', 'deep_cnn_cifar10', 'dynamic_slimmable_cifar10', 'iamnn_cifar10', 'instance_wise_sparsity_cifar10', 'layermerge_cifar10', 'morphnet_cifar10', 'network_slimming_cifar10', 'prunetrain_cifar10', 'runtime_neural_pruning_cifar10', 'skipnet_cifar10', 'weights_connections_cnn_cifar10', 'wide_cnn_cifar10_bn'], missing=none"
+    },
+    {
+      "name": "minimum_methods",
+      "passed": true,
+      "detail": "required>=14, observed=14"
+    },
+    {
+      "name": "minimum_baselines",
+      "passed": true,
+      "detail": "required>=2, observed=2"
+    },
+    {
+      "name": "require_constraints",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "require_runtime_environment",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "require_stage_history",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

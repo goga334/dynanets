@@ -1,0 +1,51 @@
+{
+  "name": "track_b_mnist_layermerge_preview",
+  "track": "mnist",
+  "description": "MNIST preview protocol for the LayerMerge approximation against a deeper fixed CNN baseline.",
+  "seeds": [
+    7,
+    42
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/deep_cnn_mnist.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "baseline",
+        "deep"
+      ]
+    },
+    {
+      "config": "../experiments/examples/layermerge_mnist.yaml",
+      "role": "method",
+      "tags": [
+        "track_b",
+        "mnist",
+        "cnn",
+        "pruning",
+        "layermerge"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "mnist",
+    "epochs": 8,
+    "train_size": 10000,
+    "validation_size": 5000,
+    "test_size": 2000
+  },
+  "metadata": {
+    "roadmap_wave": "wave_4",
+    "roadmap_phase": "phase_6",
+    "requires": [
+      "torchvision",
+      "cuda"
+    ]
+  }
+}

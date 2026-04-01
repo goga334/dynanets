@@ -1,0 +1,1568 @@
+[
+  {
+    "name": "deep-cnn-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.5324584440231324,
+    "final_train_accuracy": 0.8283,
+    "final_val_accuracy": 0.7897999882698059,
+    "best_val_accuracy": 0.7897999882698059,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9657768398284912,
+        "regularized_loss": 1.9657768398284912,
+        "accuracy": 0.2858,
+        "bn_scale_l1": 73.10085363769531
+      },
+      {
+        "loss": 1.3416097705841064,
+        "regularized_loss": 1.3416097705841064,
+        "accuracy": 0.516,
+        "bn_scale_l1": 75.23851008300781
+      },
+      {
+        "loss": 1.052391996383667,
+        "regularized_loss": 1.052391996383667,
+        "accuracy": 0.6316,
+        "bn_scale_l1": 76.30244645996093
+      },
+      {
+        "loss": 0.8831941257476806,
+        "regularized_loss": 0.8831941257476806,
+        "accuracy": 0.6971,
+        "bn_scale_l1": 76.92269812011719
+      },
+      {
+        "loss": 0.755412071800232,
+        "regularized_loss": 0.755412071800232,
+        "accuracy": 0.7522,
+        "bn_scale_l1": 77.39496540527344
+      },
+      {
+        "loss": 0.6684894384384156,
+        "regularized_loss": 0.6684894384384156,
+        "accuracy": 0.7787,
+        "bn_scale_l1": 77.79988355712891
+      },
+      {
+        "loss": 0.5738761311531067,
+        "regularized_loss": 0.5738761311531067,
+        "accuracy": 0.8181,
+        "bn_scale_l1": 78.13409028320312
+      },
+      {
+        "loss": 0.5324584440231324,
+        "regularized_loss": 0.5324584440231324,
+        "accuracy": 0.8283,
+        "bn_scale_l1": 78.41147541503906
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.3497999906539917
+      },
+      {
+        "accuracy": 0.49320000410079956
+      },
+      {
+        "accuracy": 0.6248000264167786
+      },
+      {
+        "accuracy": 0.6123999953269958
+      },
+      {
+        "accuracy": 0.6711999773979187
+      },
+      {
+        "accuracy": 0.6895999908447266
+      },
+      {
+        "accuracy": 0.6398000121116638
+      },
+      {
+        "accuracy": 0.7897999882698059
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.8283,
+        "final_val_accuracy": 0.7897999882698059,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128,
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "deep-cnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_2",
+          "label": "FC 2 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "fc_hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 25978,
+      "nonzero_parameter_count": 25978,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4524826,
+      "activation_elements": 7306
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_layermerge_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "baseline",
+      "deep"
+    ]
+  },
+  {
+    "name": "deep-cnn-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.6032817861557007,
+    "final_train_accuracy": 0.808,
+    "final_val_accuracy": 0.7156000137329102,
+    "best_val_accuracy": 0.7955999970436096,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9577544342041016,
+        "regularized_loss": 1.9577544342041016,
+        "accuracy": 0.3013,
+        "bn_scale_l1": 73.17565274658203
+      },
+      {
+        "loss": 1.3115839157104492,
+        "regularized_loss": 1.3115839157104492,
+        "accuracy": 0.5099,
+        "bn_scale_l1": 75.50902608642578
+      },
+      {
+        "loss": 1.0767690475463867,
+        "regularized_loss": 1.0767690475463867,
+        "accuracy": 0.6065,
+        "bn_scale_l1": 76.35952526855469
+      },
+      {
+        "loss": 0.946934985256195,
+        "regularized_loss": 0.946934985256195,
+        "accuracy": 0.6654,
+        "bn_scale_l1": 76.8837778564453
+      },
+      {
+        "loss": 0.832294677734375,
+        "regularized_loss": 0.832294677734375,
+        "accuracy": 0.7115,
+        "bn_scale_l1": 77.31360393066406
+      },
+      {
+        "loss": 0.7326421970367432,
+        "regularized_loss": 0.7326421970367432,
+        "accuracy": 0.7572,
+        "bn_scale_l1": 77.6701830078125
+      },
+      {
+        "loss": 0.6301510956287384,
+        "regularized_loss": 0.6301510956287384,
+        "accuracy": 0.8028,
+        "bn_scale_l1": 77.99565479736329
+      },
+      {
+        "loss": 0.6032817861557007,
+        "regularized_loss": 0.6032817861557007,
+        "accuracy": 0.808,
+        "bn_scale_l1": 78.24462019042969
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.31279999017715454
+      },
+      {
+        "accuracy": 0.5192000269889832
+      },
+      {
+        "accuracy": 0.41040000319480896
+      },
+      {
+        "accuracy": 0.5920000076293945
+      },
+      {
+        "accuracy": 0.6043999791145325
+      },
+      {
+        "accuracy": 0.7739999890327454
+      },
+      {
+        "accuracy": 0.7955999970436096
+      },
+      {
+        "accuracy": 0.7156000137329102
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.808,
+        "final_val_accuracy": 0.7156000137329102,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128,
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "deep-cnn-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_2",
+          "label": "FC 2 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "fc_hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 25978,
+      "nonzero_parameter_count": 25978,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4524826,
+      "activation_elements": 7306
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_layermerge_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "baseline",
+      "deep"
+    ]
+  },
+  {
+    "name": "layermerge-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.5481920204162598,
+    "final_train_accuracy": 0.8313,
+    "final_val_accuracy": 0.7986000180244446,
+    "best_val_accuracy": 0.7986000180244446,
+    "adaptations_applied": 1,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9657768398284912,
+        "regularized_loss": 1.9657768398284912,
+        "accuracy": 0.2858,
+        "bn_scale_l1": 73.10085363769531
+      },
+      {
+        "loss": 1.3416097705841064,
+        "regularized_loss": 1.3416097705841064,
+        "accuracy": 0.516,
+        "bn_scale_l1": 75.23851008300781
+      },
+      {
+        "loss": 1.052391996383667,
+        "regularized_loss": 1.052391996383667,
+        "accuracy": 0.6316,
+        "bn_scale_l1": 76.30244645996093
+      },
+      {
+        "loss": 0.8831941257476806,
+        "regularized_loss": 0.8831941257476806,
+        "accuracy": 0.6971,
+        "bn_scale_l1": 76.92269812011719
+      },
+      {
+        "loss": 0.755412071800232,
+        "regularized_loss": 0.755412071800232,
+        "accuracy": 0.7522,
+        "bn_scale_l1": 77.39496540527344
+      },
+      {
+        "loss": 0.6517037216186523,
+        "regularized_loss": 0.6517037216186523,
+        "accuracy": 0.7919,
+        "bn_scale_l1": 77.81131580810546
+      },
+      {
+        "loss": 0.5968852831840515,
+        "regularized_loss": 0.5968852831840515,
+        "accuracy": 0.8164,
+        "bn_scale_l1": 78.16875397949218
+      },
+      {
+        "loss": 0.5481920204162598,
+        "regularized_loss": 0.5481920204162598,
+        "accuracy": 0.8313,
+        "bn_scale_l1": 78.50601650390625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.3497999906539917
+      },
+      {
+        "accuracy": 0.49320000410079956
+      },
+      {
+        "accuracy": 0.6248000264167786
+      },
+      {
+        "accuracy": 0.6123999953269958
+      },
+      {
+        "accuracy": 0.6711999773979187
+      },
+      {
+        "accuracy": 0.7886000275611877
+      },
+      {
+        "accuracy": 0.7968000173568726
+      },
+      {
+        "accuracy": 0.7986000180244446
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 4,
+        "event_type": "merge_hidden_layers",
+        "params": {
+          "merge_index": 0
+        },
+        "metadata": {
+          "paper": "layermerge-approx",
+          "before_classifier_hidden_dims": [
+            128,
+            64
+          ],
+          "after_classifier_hidden_dims": [
+            64
+          ]
+        },
+        "before_state": {
+          "step": 395,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              128,
+              64
+            ],
+            "nonzero_parameter_count": 25978,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight",
+              "linear_2.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "merge_hidden_layers",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 25978,
+            "forward_flop_proxy": 4524826,
+            "activation_elements": 7306
+          }
+        },
+        "after_state": {
+          "step": 395,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              64
+            ],
+            "nonzero_parameter_count": 14586,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "merge_hidden_layers",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14586,
+            "forward_flop_proxy": 4502170,
+            "activation_elements": 7178,
+            "classifier_hidden_dims_before_merge": [
+              128,
+              64
+            ],
+            "merge_index": 0
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "merge_primitives": [
+            "merge_hidden_layers"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "merge_hidden_layers",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "merge_hidden_layers",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning",
+            "layerwise_magnitude_mask_pruning",
+            "classifier_layer_merge"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            64
+          ],
+          "parameter_count": 14586,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14586,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "parameter_count_delta": -11392,
+          "nonzero_parameter_count_delta": -11392,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -22656,
+          "activation_elements_delta": -128,
+          "classifier_hidden_dims_before": [
+            128,
+            64
+          ],
+          "classifier_hidden_dims_after": [
+            64
+          ],
+          "hidden_layers_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "layermerge_pretrain",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7522,
+        "final_val_accuracy": 0.6711999773979187,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "pretrain"
+        }
+      },
+      {
+        "name": "layermerge_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.8313,
+        "final_val_accuracy": 0.7986000180244446,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "layermerge",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 2,
+      "merge_index": 0,
+      "before_classifier_hidden_dims": [
+        128,
+        64
+      ],
+      "after_classifier_hidden_dims": [
+        64
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "layermerge-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 14586,
+      "nonzero_parameter_count": 14586,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4502170,
+      "activation_elements": 7178
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=layermerge; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_b_mnist_layermerge_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "layermerge"
+    ]
+  },
+  {
+    "name": "layermerge-mnist",
+    "epochs": 8,
+    "final_train_loss": 0.6155227412223816,
+    "final_train_accuracy": 0.808,
+    "final_val_accuracy": 0.8105999827384949,
+    "best_val_accuracy": 0.8105999827384949,
+    "adaptations_applied": 1,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 1.9577544342041016,
+        "regularized_loss": 1.9577544342041016,
+        "accuracy": 0.3013,
+        "bn_scale_l1": 73.17565274658203
+      },
+      {
+        "loss": 1.3115839157104492,
+        "regularized_loss": 1.3115839157104492,
+        "accuracy": 0.5099,
+        "bn_scale_l1": 75.50902608642578
+      },
+      {
+        "loss": 1.0767690475463867,
+        "regularized_loss": 1.0767690475463867,
+        "accuracy": 0.6065,
+        "bn_scale_l1": 76.35952526855469
+      },
+      {
+        "loss": 0.946934985256195,
+        "regularized_loss": 0.946934985256195,
+        "accuracy": 0.6654,
+        "bn_scale_l1": 76.8837778564453
+      },
+      {
+        "loss": 0.832294677734375,
+        "regularized_loss": 0.832294677734375,
+        "accuracy": 0.7115,
+        "bn_scale_l1": 77.31360393066406
+      },
+      {
+        "loss": 0.7238459081649781,
+        "regularized_loss": 0.7238459081649781,
+        "accuracy": 0.7639,
+        "bn_scale_l1": 77.6693424560547
+      },
+      {
+        "loss": 0.6708766956329346,
+        "regularized_loss": 0.6708766956329346,
+        "accuracy": 0.7872,
+        "bn_scale_l1": 77.99018071289062
+      },
+      {
+        "loss": 0.6155227412223816,
+        "regularized_loss": 0.6155227412223816,
+        "accuracy": 0.808,
+        "bn_scale_l1": 78.27991234130859
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.31279999017715454
+      },
+      {
+        "accuracy": 0.5192000269889832
+      },
+      {
+        "accuracy": 0.41040000319480896
+      },
+      {
+        "accuracy": 0.5920000076293945
+      },
+      {
+        "accuracy": 0.6043999791145325
+      },
+      {
+        "accuracy": 0.6800000071525574
+      },
+      {
+        "accuracy": 0.7684000134468079
+      },
+      {
+        "accuracy": 0.8105999827384949
+      }
+    ],
+    "adaptation_history": [
+      {
+        "epoch": 4,
+        "event_type": "merge_hidden_layers",
+        "params": {
+          "merge_index": 0
+        },
+        "metadata": {
+          "paper": "layermerge-approx",
+          "before_classifier_hidden_dims": [
+            128,
+            64
+          ],
+          "after_classifier_hidden_dims": [
+            64
+          ]
+        },
+        "before_state": {
+          "step": 395,
+          "version": 0,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              128,
+              64
+            ],
+            "nonzero_parameter_count": 25978,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight",
+              "linear_2.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "merge_hidden_layers",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 25978,
+            "forward_flop_proxy": 4524826,
+            "activation_elements": 7306
+          }
+        },
+        "after_state": {
+          "step": 395,
+          "version": 1,
+          "metadata": {
+            "conv_channels": [
+              24,
+              48
+            ],
+            "num_conv_blocks": 2,
+            "classifier_hidden_dims": [
+              64
+            ],
+            "nonzero_parameter_count": 14586,
+            "masked_weight_count": 0,
+            "weight_sparsity": 0.0,
+            "mask_state_names": [
+              "conv_0.weight",
+              "conv_1.weight",
+              "linear_0.weight",
+              "linear_1.weight"
+            ],
+            "device": "cuda",
+            "use_batch_norm": true,
+            "batch_norm_sparsity_strength": 0.0,
+            "supported_events": [
+              "apply_weight_mask",
+              "merge_hidden_layers",
+              "prune_channels"
+            ],
+            "architecture_family": "cnn",
+            "parameter_count": 14586,
+            "forward_flop_proxy": 4502170,
+            "activation_elements": 7178,
+            "classifier_hidden_dims_before_merge": [
+              128,
+              64
+            ],
+            "merge_index": 0
+          }
+        },
+        "model_capabilities": {
+          "architecture_family": "cnn",
+          "supports_dynamic_structure": true,
+          "supports_batch_norm_sparsity": true,
+          "supports_weight_masks": true,
+          "supports_mask_aware_sparsity_state": true,
+          "structured_pruning_primitives": [
+            "prune_channels"
+          ],
+          "merge_primitives": [
+            "merge_hidden_layers"
+          ],
+          "supported_event_types": [
+            "apply_weight_mask",
+            "merge_hidden_layers",
+            "prune_channels"
+          ],
+          "supported_structural_ops": [
+            "apply_weight_mask",
+            "merge_hidden_layers",
+            "prune_channels"
+          ],
+          "weight_transfer_strategies": [
+            "structured_channel_pruning",
+            "global_magnitude_mask_pruning",
+            "layerwise_magnitude_mask_pruning",
+            "classifier_layer_merge"
+          ],
+          "conv_channels": [
+            24,
+            48
+          ],
+          "classifier_hidden_dims": [
+            64
+          ],
+          "parameter_count": 14586,
+          "masked_weight_count": 0,
+          "nonzero_parameter_count": 14586,
+          "weight_sparsity": 0.0,
+          "device": "cuda"
+        },
+        "effect_summary": {
+          "applied": true,
+          "structural_change": true,
+          "version_delta": 1,
+          "step_delta": 0,
+          "parameter_count_delta": -11392,
+          "nonzero_parameter_count_delta": -11392,
+          "weight_sparsity_delta": 0.0,
+          "forward_flop_proxy_delta": -22656,
+          "activation_elements_delta": -128,
+          "classifier_hidden_dims_before": [
+            128,
+            64
+          ],
+          "classifier_hidden_dims_after": [
+            64
+          ],
+          "hidden_layers_changed": true
+        },
+        "applied": true,
+        "reason": null
+      }
+    ],
+    "stage_history": [
+      {
+        "name": "layermerge_pretrain",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7115,
+        "final_val_accuracy": 0.6043999791145325,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "pretrain"
+        }
+      },
+      {
+        "name": "layermerge_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.808,
+        "final_val_accuracy": 0.8105999827384949,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "workflow_metadata": {
+      "workflow_name": "layermerge",
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 2,
+      "merge_index": 0,
+      "before_classifier_hidden_dims": [
+        128,
+        64
+      ],
+      "after_classifier_hidden_dims": [
+        64
+      ]
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "layermerge-mnist",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 14586,
+      "nonzero_parameter_count": 14586,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4502170,
+      "activation_elements": 7178
+    },
+    "metadata": {
+      "method_type": "workflow",
+      "notes": "workflow=layermerge; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_b_mnist_layermerge_preview",
+    "protocol_track": "mnist",
+    "protocol_role": "method",
+    "protocol_tags": [
+      "track_b",
+      "mnist",
+      "cnn",
+      "pruning",
+      "layermerge"
+    ]
+  }
+]

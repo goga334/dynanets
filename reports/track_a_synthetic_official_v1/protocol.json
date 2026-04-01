@@ -1,0 +1,136 @@
+{
+  "name": "track_a_synthetic_official_v1",
+  "track": "synthetic_10d",
+  "description": "Official Track A synthetic development benchmark for the growth, staged, and sparse MLP methods in the v1 subset.",
+  "seeds": [
+    7,
+    11,
+    23,
+    42,
+    99
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/fixed_mlp_spirals10.yaml",
+      "role": "baseline",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/edge_growth_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "growth"
+      ]
+    },
+    {
+      "config": "../experiments/examples/gradmax_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "growth"
+      ]
+    },
+    {
+      "config": "../experiments/examples/den_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "growth"
+      ]
+    },
+    {
+      "config": "../experiments/examples/nest_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "grow_prune"
+      ]
+    },
+    {
+      "config": "../experiments/examples/dynamic_nodes_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "growth"
+      ]
+    },
+    {
+      "config": "../experiments/examples/adanet_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "staged"
+      ]
+    },
+    {
+      "config": "../experiments/examples/weights_connections_spirals10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_a",
+        "synthetic",
+        "sparse"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "two_spirals_10d",
+    "epochs": 12,
+    "train_size": 3500,
+    "validation_size": 750,
+    "test_size": 750
+  },
+  "metadata": {
+    "roadmap_phase": "phase_8",
+    "stadium_track": "track_a",
+    "focus": "official_v1_synthetic"
+  },
+  "tier": "official",
+  "acceptance": {
+    "min_seeds": 5,
+    "required_roles": [
+      "baseline",
+      "method"
+    ],
+    "required_experiments": [
+      "fixed_mlp_spirals10",
+      "edge_growth_spirals10",
+      "gradmax_spirals10",
+      "den_spirals10",
+      "nest_spirals10",
+      "dynamic_nodes_spirals10",
+      "adanet_spirals10",
+      "weights_connections_spirals10"
+    ],
+    "minimum_methods": 7,
+    "minimum_baselines": 1,
+    "require_constraints": true,
+    "require_runtime_environment": true,
+    "require_stage_history": false
+  },
+  "leaderboard": {
+    "primary_metric": "accuracy",
+    "cost_metric": "forward_flop_proxy"
+  }
+}

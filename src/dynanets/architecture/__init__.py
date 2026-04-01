@@ -1,6 +1,7 @@
 from dynanets.architecture.artifacts import extract_architecture_artifacts
 from dynanets.architecture.builders import build_cnn_network, build_mlp_network
 from dynanets.architecture.cnn import CNNArchitectureSpec, ConvBlockSpec, cnn_spec_from_params
+from dynanets.architecture.efficient import EfficientBlockSpec, EfficientCNNArchitectureSpec
 from dynanets.architecture.graph import ArchitectureEdge, ArchitectureGraph, ArchitectureNode
 from dynanets.architecture.mlp import DenseLayerSpec, MLPArchitectureSpec, mlp_spec_from_params
 from dynanets.architecture.mutations import (
@@ -18,6 +19,8 @@ __all__ = [
     "CNNArchitectureSpec",
     "ConvBlockSpec",
     "DenseLayerSpec",
+    "EfficientBlockSpec",
+    "EfficientCNNArchitectureSpec",
     "MLPArchitectureSpec",
     "build_cnn_network",
     "build_mlp_network",

@@ -1,0 +1,221 @@
+{
+  "name": "track_c_cifar_official_extended",
+  "track": "cifar10",
+  "description": "Official Track C extended CIFAR benchmark spanning static, pruning, compression, LayerMerge, and routing families.",
+  "seeds": [
+    7,
+    42
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/wide_cnn_cifar10_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/deep_cnn_cifar10.yaml",
+      "role": "baseline",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/network_slimming_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "slimming"
+      ]
+    },
+    {
+      "config": "../experiments/examples/channel_pruning_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "pruning"
+      ]
+    },
+    {
+      "config": "../experiments/examples/weights_connections_cnn_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "sparse"
+      ]
+    },
+    {
+      "config": "../experiments/examples/runtime_neural_pruning_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "pruning"
+      ]
+    },
+    {
+      "config": "../experiments/examples/morphnet_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "morphnet"
+      ]
+    },
+    {
+      "config": "../experiments/examples/asfp_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "asfp"
+      ]
+    },
+    {
+      "config": "../experiments/examples/prunetrain_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "prunetrain"
+      ]
+    },
+    {
+      "config": "../experiments/examples/layermerge_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "layermerge"
+      ]
+    },
+    {
+      "config": "../experiments/examples/dynamic_slimmable_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    },
+    {
+      "config": "../experiments/examples/conditional_computation_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    },
+    {
+      "config": "../experiments/examples/channel_gating_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    },
+    {
+      "config": "../experiments/examples/skipnet_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    },
+    {
+      "config": "../experiments/examples/instance_wise_sparsity_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    },
+    {
+      "config": "../experiments/examples/iamnn_cifar10.yaml",
+      "role": "method",
+      "tags": [
+        "official",
+        "track_c",
+        "cifar10",
+        "routing"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "cifar10",
+    "epochs": 12,
+    "train_size": 20000,
+    "validation_size": 5000,
+    "test_size": 5000
+  },
+  "metadata": {
+    "roadmap_phase": "phase_8",
+    "stadium_track": "track_c",
+    "focus": "official_extended_cifar"
+  },
+  "tier": "official_extended",
+  "acceptance": {
+    "min_seeds": 2,
+    "required_roles": [
+      "baseline",
+      "method"
+    ],
+    "required_experiments": [
+      "wide_cnn_cifar10_bn",
+      "deep_cnn_cifar10",
+      "network_slimming_cifar10",
+      "channel_pruning_cifar10",
+      "weights_connections_cnn_cifar10",
+      "runtime_neural_pruning_cifar10",
+      "morphnet_cifar10",
+      "asfp_cifar10",
+      "prunetrain_cifar10",
+      "layermerge_cifar10",
+      "dynamic_slimmable_cifar10",
+      "conditional_computation_cifar10",
+      "channel_gating_cifar10",
+      "skipnet_cifar10",
+      "instance_wise_sparsity_cifar10",
+      "iamnn_cifar10"
+    ],
+    "minimum_methods": 14,
+    "minimum_baselines": 2,
+    "require_constraints": true,
+    "require_runtime_environment": true,
+    "require_stage_history": true
+  },
+  "leaderboard": {
+    "primary_metric": "accuracy",
+    "cost_metric": "forward_flop_proxy"
+  }
+}

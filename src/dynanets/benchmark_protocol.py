@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
@@ -16,13 +16,26 @@ from dynanets.benchmark import (
     write_runs_json,
 )
 from dynanets.protocol import BenchmarkProtocol
-
+from dynanets.stadium import (
+    build_protocol_leaderboard,
+    evaluate_protocol_acceptance,
+    write_protocol_acceptance_json,
+    write_protocol_acceptance_markdown,
+    write_protocol_leaderboard_json,
+    write_protocol_leaderboard_latex,
+    write_protocol_leaderboard_markdown,
+)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a benchmark protocol manifest.")
     parser.add_argument("protocol", help="Path to a benchmark protocol YAML manifest")
     parser.add_argument("--output-dir", help="Directory for benchmark artifacts")
+    parser.add_argument(
+        "--strict-acceptance",
+        action="store_true",
+        help="Exit with a non-zero status when protocol acceptance checks fail.",
+    )
     args = parser.parse_args()
 
     protocol_path = Path(args.protocol).resolve()
@@ -42,18 +55,31 @@ def main() -> None:
             runs.append(run)
 
     aggregate = aggregate_benchmark_runs(runs)
+    acceptance = evaluate_protocol_acceptance(protocol, runs, aggregate, manifest_dir=protocol_path.parent)
+    leaderboard = build_protocol_leaderboard(protocol, aggregate)
+
     write_runs_json(output_dir / "runs.json", runs)
     write_runs_csv(output_dir / "runs.csv", runs)
     write_aggregate_json(output_dir / "summary.json", aggregate)
     write_aggregate_csv(output_dir / "summary.csv", aggregate)
     write_benchmark_plots(output_dir, aggregate)
     write_aggregate_markdown(output_dir / "summary.md", aggregate, protocol.seeds)
+    write_protocol_acceptance_json(output_dir / "protocol_acceptance.json", acceptance)
+    write_protocol_acceptance_markdown(output_dir / "protocol_acceptance.md", acceptance)
+    write_protocol_leaderboard_json(output_dir / "leaderboard.json", leaderboard)
+    write_protocol_leaderboard_markdown(output_dir / "leaderboard.md", leaderboard)
+    write_protocol_leaderboard_latex(output_dir / "leaderboard.tex", leaderboard)
     (output_dir / "protocol.json").write_text(json.dumps(asdict(protocol), indent=2), encoding="utf-8")
 
     print(output_dir / "summary.md")
     print(f"protocol={protocol.name}")
     print(f"track={protocol.track}")
+    print(f"tier={protocol.tier}")
     print(f"experiments={len(resolved_experiments)}")
+    print(f"acceptance_passed={acceptance['passed']}")
+
+    if args.strict_acceptance and not acceptance["passed"]:
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

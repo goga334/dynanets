@@ -1,0 +1,21 @@
+name: official_benchmark_suite
+title: Official Stadium Benchmark Suite
+description: >-
+  Suite manifest for official stadium-style track reports once the official
+  protocols have been run and packaged.
+entries:
+  - label: track-a-synthetic-official-v1
+    track: synthetic_10d
+    report_dir: ../reports/track_a_synthetic_official_v1
+    description: >-
+      Official Track A synthetic development benchmark.
+  - label: track-b-mnist-official-v1
+    track: mnist
+    report_dir: ../reports/track_b_mnist_official_v1
+    description: >-
+      Official Track B MNIST benchmark for the v1 subset.
+  - label: track-c-cifar-official-extended
+    track: cifar10
+    report_dir: ../reports/track_c_cifar_official_extended
+    description: >-
+      Official Track C extended CIFAR benchmark.

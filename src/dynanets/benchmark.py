@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import csv
@@ -20,7 +20,8 @@ from dynanets.runtime import set_global_seed
 
 
 DEFAULT_SEEDS = [7, 11, 23, 42, 99]
-PLOT_COLORS = ["#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", "#9467bd", "#8c564b", "#17becf"]
+PLOT_COLORS = ["#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", "#9467bd", "#8c564b", "#17becf", "#bcbd22", "#e377c2", "#7f7f7f"]
+PLOT_MARKERS = ["o", "s", "^", "D", "v", "P", "X", "*", "<", ">"]
 
 
 def main() -> None:
@@ -126,6 +127,7 @@ def aggregate_benchmark_runs(runs: list[dict[str, Any]]) -> list[dict[str, Any]]
             for item in group
             if item.get("constraints")
         ]
+        mean_metric_history = _mean_metric_history(group)
         forward_flop_proxies = [
             int(item["constraints"]["forward_flop_proxy"])
             for item in group
@@ -158,6 +160,7 @@ def aggregate_benchmark_runs(runs: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "best_seed": int(representative["benchmark_seed"]),
                 "best_seed_final_val_accuracy": float(representative["final_val_accuracy"]),
                 "best_seed_best_val_accuracy": float(representative["best_val_accuracy"]),
+                "mean_metric_history": mean_metric_history,
                 "representative_architecture_spec": representative.get("architecture_spec"),
                 "representative_architecture_graph": representative.get("architecture_graph"),
                 "representative_constraints": representative.get("constraints", {}),
@@ -250,9 +253,17 @@ def write_aggregate_markdown(path: Path, aggregate: list[dict[str, Any]], seeds:
         "",
         "## Aggregate Plots",
         "",
+        "![Mean validation accuracy by epoch](mean_validation_accuracy_by_epoch.png)",
+        "",
         "![Mean final validation accuracy](mean_final_val_accuracy.png)",
         "",
         "![Per-seed final validation accuracy](per_seed_final_val_accuracy.png)",
+        "",
+        "![Mean parameter count](mean_parameter_count.png)",
+        "",
+        "![Mean FLOP proxy](mean_forward_flop_proxy.png)",
+        "",
+        "![Accuracy vs FLOP proxy](accuracy_vs_flop_proxy.png)",
         "",
         "| Experiment | Type | Runs | Mean final val acc | Std final val acc | Mean best val acc | Mean adaptations | Mean final hidden dim | Best seed |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -271,6 +282,14 @@ def write_aggregate_markdown(path: Path, aggregate: list[dict[str, Any]], seeds:
                 best_seed=item["best_seed"],
             )
         )
+
+    frontier_items = _pareto_frontier(aggregate, x_key="mean_forward_flop_proxy", y_key="mean_final_val_accuracy")
+    if frontier_items:
+        lines.extend(["", "## Accuracy-FLOP Pareto Frontier", ""])
+        for item in frontier_items:
+            lines.append(
+                f"- `{item['name']}`: acc={item['mean_final_val_accuracy']:.4f}, flop_proxy={_format_number(item.get('mean_forward_flop_proxy'))}, params={_format_number(item.get('mean_parameter_count'))}"
+            )
 
     constraint_items = [item for item in aggregate if item.get("mean_parameter_count") is not None]
     if constraint_items:
@@ -339,44 +358,222 @@ def write_aggregate_markdown(path: Path, aggregate: list[dict[str, Any]], seeds:
 
 
 def write_benchmark_plots(output_dir: Path, aggregate: list[dict[str, Any]]) -> None:
-    _write_mean_accuracy_plot(output_dir / "mean_final_val_accuracy.png", aggregate)
-    _write_per_seed_plot(output_dir / "per_seed_final_val_accuracy.png", aggregate)
+    styles = _style_map(aggregate)
+    _write_epoch_accuracy_plot(output_dir / "mean_validation_accuracy_by_epoch.png", aggregate, styles)
+    _write_mean_accuracy_plot(output_dir / "mean_final_val_accuracy.png", aggregate, styles)
+    _write_per_seed_plot(output_dir / "per_seed_final_val_accuracy.png", aggregate, styles)
+    _write_constraint_bar_plot(
+        output_dir / "mean_parameter_count.png",
+        aggregate,
+        metric_key="mean_parameter_count",
+        title="Mean Parameter Count",
+        ylabel="Parameters",
+        styles=styles,
+    )
+    _write_constraint_bar_plot(
+        output_dir / "mean_forward_flop_proxy.png",
+        aggregate,
+        metric_key="mean_forward_flop_proxy",
+        title="Mean FLOP Proxy",
+        ylabel="FLOP proxy",
+        styles=styles,
+    )
+    _write_accuracy_vs_constraint_plot(
+        output_dir / "accuracy_vs_flop_proxy.png",
+        aggregate,
+        metric_key="mean_forward_flop_proxy",
+        xlabel="Mean FLOP proxy",
+        title="Accuracy vs FLOP Proxy",
+        styles=styles,
+    )
 
 
-def _write_mean_accuracy_plot(path: Path, aggregate: list[dict[str, Any]]) -> None:
+def _method_style(name: str, names: list[str]) -> dict[str, str]:
+    ordered = sorted(dict.fromkeys(names))
+    index = ordered.index(name)
+    return {
+        "color": PLOT_COLORS[index % len(PLOT_COLORS)],
+        "marker": PLOT_MARKERS[index % len(PLOT_MARKERS)],
+    }
+
+
+
+def _style_map(aggregate: list[dict[str, Any]]) -> dict[str, dict[str, str]]:
+    names = [item["name"] for item in aggregate]
+    return {name: _method_style(name, names) for name in names}
+
+
+def _write_epoch_accuracy_plot(path: Path, aggregate: list[dict[str, Any]], styles: dict[str, dict[str, str]]) -> None:
+    fig, ax = plt.subplots(figsize=(12.5, 7), constrained_layout=True)
+    plotted = False
+    for item in aggregate:
+        values = list(item.get("mean_metric_history") or [])
+        if not values:
+            continue
+        epochs = list(range(1, len(values) + 1))
+        style = styles[item["name"]]
+        markevery = max(1, len(epochs) // 8)
+        ax.plot(
+            epochs,
+            values,
+            marker=style["marker"],
+            markevery=markevery,
+            linewidth=2.0,
+            color=style["color"],
+            label=item["name"],
+        )
+        plotted = True
+    if plotted:
+        ax.set_xlabel("Epoch")
+        ax.set_ylabel("Mean validation accuracy")
+        ax.set_title("Mean Validation Accuracy by Epoch")
+        ax.grid(True, linestyle="--", linewidth=0.6, alpha=0.5)
+        ax.legend(loc="upper left", bbox_to_anchor=(1.02, 1.0), fontsize=8, frameon=False, borderaxespad=0.0)
+    else:
+        ax.text(0.5, 0.5, "No epoch history available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_axis_off()
+    fig.savefig(path, dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+def _write_mean_accuracy_plot(path: Path, aggregate: list[dict[str, Any]], styles: dict[str, dict[str, str]]) -> None:
     names = [item["name"] for item in aggregate]
     means = [item["mean_final_val_accuracy"] for item in aggregate]
     stds = [item["std_final_val_accuracy"] for item in aggregate]
-    colors = [PLOT_COLORS[index % len(PLOT_COLORS)] for index in range(len(aggregate))]
+    colors = [styles[name]["color"] for name in names]
 
-    fig, ax = plt.subplots(figsize=(11, 6), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(12.5, max(5.5, 0.42 * len(names) + 2.0)), constrained_layout=True)
     positions = list(range(len(names)))
-    ax.bar(positions, means, yerr=stds, color=colors, capsize=5)
-    ax.set_xticks(positions)
-    ax.set_xticklabels(names, rotation=25, ha="right")
-    ax.set_ylabel("Mean final validation accuracy")
-    ax.set_ylim(0.0, min(1.0, max(means) + max(stds, default=0.0) + 0.08))
+    ax.barh(positions, means, xerr=stds, color=colors, capsize=5, edgecolor="#222222", linewidth=0.8)
+    ax.set_yticks(positions)
+    ax.set_yticklabels(names)
+    ax.invert_yaxis()
+    ax.set_xlabel("Mean final validation accuracy")
+    ax.set_xlim(0.0, min(1.0, max(means) + max(stds, default=0.0) + 0.08))
     ax.set_title("Benchmark Summary: Mean Final Validation Accuracy")
-    ax.grid(True, axis="y", linestyle="--", linewidth=0.6, alpha=0.5)
-    fig.savefig(path, dpi=160)
+    ax.grid(True, axis="x", linestyle="--", linewidth=0.6, alpha=0.5)
+    fig.savefig(path, dpi=160, bbox_inches="tight")
     plt.close(fig)
 
+def _mean_metric_history(group: list[dict[str, Any]]) -> list[float]:
+    histories = []
+    for item in group:
+        metric_history = item.get("metric_history") or []
+        if not metric_history:
+            continue
+        curve = []
+        for point in metric_history:
+            accuracy = point.get("accuracy")
+            if accuracy is None:
+                curve.append(float("nan"))
+            else:
+                curve.append(float(accuracy))
+        histories.append(curve)
+    if not histories:
+        return []
+    max_len = max(len(history) for history in histories)
+    mean_curve = []
+    for epoch_index in range(max_len):
+        values = [history[epoch_index] for history in histories if epoch_index < len(history)]
+        if not values:
+            continue
+        mean_curve.append(sum(values) / len(values))
+    return mean_curve
 
-def _write_per_seed_plot(path: Path, aggregate: list[dict[str, Any]]) -> None:
-    fig, ax = plt.subplots(figsize=(11, 6), constrained_layout=True)
-    for index, item in enumerate(aggregate):
-        color = PLOT_COLORS[index % len(PLOT_COLORS)]
+
+def _write_per_seed_plot(path: Path, aggregate: list[dict[str, Any]], styles: dict[str, dict[str, str]]) -> None:
+    fig, ax = plt.subplots(figsize=(12.5, 7), constrained_layout=True)
+    for item in aggregate:
+        style = styles[item["name"]]
         seed_runs = item["seed_runs"]
         seeds = [run["seed"] for run in seed_runs]
         values = [run["final_val_accuracy"] for run in seed_runs]
-        ax.plot(seeds, values, marker="o", linewidth=2.0, color=color, label=item["name"])
+        ax.plot(seeds, values, marker=style["marker"], linewidth=2.0, color=style["color"], label=item["name"])
     ax.set_xlabel("Seed")
     ax.set_ylabel("Final validation accuracy")
     ax.set_title("Per-Seed Final Validation Accuracy")
     ax.grid(True, linestyle="--", linewidth=0.6, alpha=0.5)
-    ax.legend(loc="best", fontsize=8)
-    fig.savefig(path, dpi=160)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.02, 1.0), fontsize=8, frameon=False, borderaxespad=0.0)
+    fig.savefig(path, dpi=160, bbox_inches="tight")
     plt.close(fig)
+
+def _write_constraint_bar_plot(
+    path: Path,
+    aggregate: list[dict[str, Any]],
+    *,
+    metric_key: str,
+    title: str,
+    ylabel: str,
+    styles: dict[str, dict[str, str]],
+) -> None:
+    filtered = [item for item in aggregate if item.get(metric_key) is not None]
+    fig, ax = plt.subplots(figsize=(12.5, max(5.5, 0.42 * len(filtered) + 2.0)), constrained_layout=True)
+    if not filtered:
+        ax.text(0.5, 0.5, f"No data available for {title.lower()}", ha="center", va="center", transform=ax.transAxes)
+        ax.set_axis_off()
+    else:
+        names = [item["name"] for item in filtered]
+        values = [float(item[metric_key]) for item in filtered]
+        colors = [styles[name]["color"] for name in names]
+        positions = list(range(len(names)))
+        ax.barh(positions, values, color=colors, alpha=0.9, edgecolor="#222222", linewidth=0.8)
+        ax.set_yticks(positions)
+        ax.set_yticklabels(names)
+        ax.invert_yaxis()
+        ax.set_xlabel(ylabel)
+        ax.set_title(title)
+        ax.grid(True, axis="x", linestyle="--", linewidth=0.6, alpha=0.5)
+    fig.savefig(path, dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def _write_accuracy_vs_constraint_plot(
+    path: Path,
+    aggregate: list[dict[str, Any]],
+    *,
+    metric_key: str,
+    xlabel: str,
+    title: str,
+    styles: dict[str, dict[str, str]],
+) -> None:
+    filtered = [item for item in aggregate if item.get(metric_key) is not None]
+    fig, ax = plt.subplots(figsize=(11.5, 7), constrained_layout=True)
+    if not filtered:
+        ax.text(0.5, 0.5, f"No data available for {title.lower()}", ha="center", va="center", transform=ax.transAxes)
+        ax.set_axis_off()
+    else:
+        for item in filtered:
+            style = styles[item["name"]]
+            x_value = float(item[metric_key])
+            y_value = float(item["mean_final_val_accuracy"])
+            ax.scatter(
+                x_value,
+                y_value,
+                color=style["color"],
+                marker=style["marker"],
+                s=80,
+                edgecolors="#222222",
+                linewidths=0.6,
+                label=item["name"],
+            )
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel("Mean final validation accuracy")
+        ax.set_title(title)
+        ax.grid(True, linestyle="--", linewidth=0.6, alpha=0.5)
+        ax.legend(loc="upper left", bbox_to_anchor=(1.02, 1.0), fontsize=8, frameon=False, borderaxespad=0.0)
+    fig.savefig(path, dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+def _pareto_frontier(aggregate: list[dict[str, Any]], *, x_key: str, y_key: str) -> list[dict[str, Any]]:
+    candidates = [item for item in aggregate if item.get(x_key) is not None and item.get(y_key) is not None]
+    ordered = sorted(candidates, key=lambda item: (float(item[x_key]), -float(item[y_key])))
+    frontier: list[dict[str, Any]] = []
+    best_y = float('-inf')
+    for item in ordered:
+        y_value = float(item[y_key])
+        if y_value > best_y:
+            frontier.append(item)
+            best_y = y_value
+    return frontier
 
 
 def _format_number(value: Any) -> str:
@@ -393,3 +590,5 @@ def _format_sparsity(value: Any) -> str:
 
 if __name__ == "__main__":
     main()
+
+

@@ -1,0 +1,5425 @@
+[
+  {
+    "name": "wide-cnn-cifar10-bn",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5706000030040741,
+    "std_final_val_accuracy": 0.0014000236988067627,
+    "mean_best_val_accuracy": 0.5706000030040741,
+    "std_best_val_accuracy": 0.0014000236988067627,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 92298,
+    "mean_nonzero_parameter_count": 92298,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 18498346,
+    "mean_activation_elements": 14090,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.5720000267028809,
+    "best_seed_best_val_accuracy": 0.5720000267028809,
+    "mean_metric_history": [
+      0.36879999935626984,
+      0.42589999735355377,
+      0.46459999680519104,
+      0.42749999463558197,
+      0.5286000072956085,
+      0.4399000108242035,
+      0.4569000005722046,
+      0.5706000030040741
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 96,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        160
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "wide-cnn-cifar10-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (96, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 96,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (160)",
+          "op": "linear",
+          "params": {
+            "out_features": 160,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 92298,
+      "nonzero_parameter_count": 92298,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 18498346,
+      "activation_elements": 14090
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6506,
+        "final_val_accuracy": 0.5720000267028809,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5691999793052673,
+        "best_val_accuracy": 0.5691999793052673,
+        "adaptations_applied": 0,
+        "parameter_count": 92298,
+        "nonzero_parameter_count": 92298,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5720000267028809,
+        "best_val_accuracy": 0.5720000267028809,
+        "adaptations_applied": 0,
+        "parameter_count": 92298,
+        "nonzero_parameter_count": 92298,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "deep-cnn-cifar10",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5406000018119812,
+    "std_final_val_accuracy": 0.0153999924659729,
+    "mean_best_val_accuracy": 0.5406000018119812,
+    "std_best_val_accuracy": 0.0153999924659729,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 76066,
+    "mean_nonzero_parameter_count": 76066,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 10818346,
+    "mean_activation_elements": 10738,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.5559999942779541,
+    "best_seed_best_val_accuracy": 0.5559999942779541,
+    "mean_metric_history": [
+      0.2993000000715256,
+      0.32510000467300415,
+      0.4407999962568283,
+      0.40780000388622284,
+      0.4895000010728836,
+      0.5022999942302704,
+      0.4202999919652939,
+      0.5406000018119812
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 72,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        192,
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "deep-cnn-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (72, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 72,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (192)",
+          "op": "linear",
+          "params": {
+            "out_features": 192,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_2",
+          "label": "FC 2 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "fc_hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 76066,
+      "nonzero_parameter_count": 76066,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 10818346,
+      "activation_elements": 10738
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6268,
+        "final_val_accuracy": 0.5559999942779541,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5559999942779541,
+        "best_val_accuracy": 0.5559999942779541,
+        "adaptations_applied": 0,
+        "parameter_count": 76066,
+        "nonzero_parameter_count": 76066,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5252000093460083,
+        "best_val_accuracy": 0.5252000093460083,
+        "adaptations_applied": 0,
+        "parameter_count": 76066,
+        "nonzero_parameter_count": 76066,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "asfp-cifar10",
+    "method_type": "dynamic",
+    "notes": "adaptation=soft_filter_pruning; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5329999923706055,
+    "std_final_val_accuracy": 0.013999998569488525,
+    "mean_best_val_accuracy": 0.545199990272522,
+    "std_best_val_accuracy": 0.0018000006675720215,
+    "mean_adaptations_applied": 6,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 22625,
+    "mean_nonzero_parameter_count": 22625,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 4525546,
+    "mean_activation_elements": 6804,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.546999990940094,
+    "best_seed_best_val_accuracy": 0.546999990940094,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.5184000134468079,
+      0.5080999881029129,
+      0.47269999980926514,
+      0.5324999988079071,
+      0.5329999923706055
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 29,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 42,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "asfp-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (29, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 29,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (42, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 42,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 22625,
+      "nonzero_parameter_count": 22625,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4525546,
+      "activation_elements": 6804
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.5878,
+        "final_val_accuracy": 0.546999990940094,
+        "adaptations_applied": 6,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5189999938011169,
+        "best_val_accuracy": 0.54339998960495,
+        "adaptations_applied": 6,
+        "parameter_count": 22625,
+        "nonzero_parameter_count": 22625,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.546999990940094,
+        "best_val_accuracy": 0.546999990940094,
+        "adaptations_applied": 6,
+        "parameter_count": 22625,
+        "nonzero_parameter_count": 22625,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "channel-pruning-cifar10",
+    "method_type": "dynamic",
+    "notes": "adaptation=channel_pruning; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5210999846458435,
+    "std_final_val_accuracy": 0.009700000286102295,
+    "mean_best_val_accuracy": 0.5302999913692474,
+    "std_best_val_accuracy": 0.0004999935626983643,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 38307,
+    "mean_nonzero_parameter_count": 38307,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 7640954,
+    "mean_activation_elements": 8821,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.5307999849319458,
+    "best_seed_best_val_accuracy": 0.5307999849319458,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.461200013756752,
+      0.46379999816417694,
+      0.5115000009536743,
+      0.5194000005722046,
+      0.5210999846458435
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 20,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 40,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 59,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "channel-pruning-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (20, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 20,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (40, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 40,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (59, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 59,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 38307,
+      "nonzero_parameter_count": 38307,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 7640954,
+      "activation_elements": 8821
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6086,
+        "final_val_accuracy": 0.5307999849319458,
+        "adaptations_applied": 2,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5113999843597412,
+        "best_val_accuracy": 0.5297999978065491,
+        "adaptations_applied": 2,
+        "parameter_count": 38307,
+        "nonzero_parameter_count": 38307,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5307999849319458,
+        "best_val_accuracy": 0.5307999849319458,
+        "adaptations_applied": 2,
+        "parameter_count": 38307,
+        "nonzero_parameter_count": 38307,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "prunetrain-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=prunetrain; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5210999846458435,
+    "std_final_val_accuracy": 0.009700000286102295,
+    "mean_best_val_accuracy": 0.5302999913692474,
+    "std_best_val_accuracy": 0.0004999935626983643,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 38307,
+    "mean_nonzero_parameter_count": 38307,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 7640954,
+    "mean_activation_elements": 8821,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.5307999849319458,
+    "best_seed_best_val_accuracy": 0.5307999849319458,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.461200013756752,
+      0.46379999816417694,
+      0.5115000009536743,
+      0.5194000005722046,
+      0.5210999846458435
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 20,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 40,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 59,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "prunetrain-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (20, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 20,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (40, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 40,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (59, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 59,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 38307,
+      "nonzero_parameter_count": 38307,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 7640954,
+      "activation_elements": 8821
+    },
+    "representative_stage_history": [
+      {
+        "name": "prunetrain_segment_1",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.509,
+        "final_val_accuracy": 0.36320000886917114,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "train",
+          "segment_end_epoch": 3
+        }
+      },
+      {
+        "name": "prunetrain_segment_2",
+        "epochs": 3,
+        "epoch_start": 4,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5836,
+        "final_val_accuracy": 0.5108000040054321,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "train",
+          "segment_end_epoch": 6
+        }
+      },
+      {
+        "name": "prunetrain_segment_3",
+        "epochs": 2,
+        "epoch_start": 7,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6086,
+        "final_val_accuracy": 0.5307999849319458,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "train",
+          "segment_end_epoch": 8
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5113999843597412,
+        "best_val_accuracy": 0.5297999978065491,
+        "adaptations_applied": 2,
+        "parameter_count": 38307,
+        "nonzero_parameter_count": 38307,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5307999849319458,
+        "best_val_accuracy": 0.5307999849319458,
+        "adaptations_applied": 2,
+        "parameter_count": 38307,
+        "nonzero_parameter_count": 38307,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "morphnet-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=morphnet; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5154000073671341,
+    "std_final_val_accuracy": 0.0390000194311142,
+    "mean_best_val_accuracy": 0.538100004196167,
+    "std_best_val_accuracy": 0.0163000226020813,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 32468,
+    "mean_nonzero_parameter_count": 32468,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 6338410,
+    "mean_activation_elements": 7968,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.5544000267982483,
+    "best_seed_best_val_accuracy": 0.5544000267982483,
+    "mean_metric_history": [
+      0.3904000073671341,
+      0.41940000653266907,
+      0.38590000569820404,
+      0.4569000005722046,
+      0.4982999861240387,
+      0.4650999903678894,
+      0.47689999639987946,
+      0.5154000073671341
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 36,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 54,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "morphnet-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (36, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 36,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (54, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 54,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 32468,
+      "nonzero_parameter_count": 32468,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 6338410,
+      "activation_elements": 7968
+    },
+    "representative_stage_history": [
+      {
+        "name": "morphnet_resource_train",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5626,
+        "final_val_accuracy": 0.49459999799728394,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "resource_train",
+          "sparsity_strength": 0.00025
+        }
+      },
+      {
+        "name": "morphnet_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.605,
+        "final_val_accuracy": 0.5544000267982483,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5544000267982483,
+        "best_val_accuracy": 0.5544000267982483,
+        "adaptations_applied": 1,
+        "parameter_count": 32468,
+        "nonzero_parameter_count": 32468,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.4763999879360199,
+        "best_val_accuracy": 0.5217999815940857,
+        "adaptations_applied": 1,
+        "parameter_count": 32468,
+        "nonzero_parameter_count": 32468,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "runtime-neural-pruning-cifar10",
+    "method_type": "dynamic",
+    "notes": "adaptation=runtime_neural_pruning; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.5081000030040741,
+    "std_final_val_accuracy": 0.012699991464614868,
+    "mean_best_val_accuracy": 0.5304999947547913,
+    "std_best_val_accuracy": 0.009700000286102295,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 29855,
+    "mean_nonzero_parameter_count": 29855,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 5927546,
+    "mean_activation_elements": 7789,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.49540001153945923,
+    "best_seed_best_val_accuracy": 0.5401999950408936,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.4770999997854233,
+      0.4538999944925308,
+      0.47829999029636383,
+      0.5178000032901764,
+      0.5081000030040741
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 18,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 34,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 51,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "runtime-neural-pruning-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (18, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 18,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (34, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 34,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (51, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 51,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 29855,
+      "nonzero_parameter_count": 29855,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 5927546,
+      "activation_elements": 7789
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.5909,
+        "final_val_accuracy": 0.49540001153945923,
+        "adaptations_applied": 3,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.520799994468689,
+        "best_val_accuracy": 0.520799994468689,
+        "adaptations_applied": 3,
+        "parameter_count": 29855,
+        "nonzero_parameter_count": 29855,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.49540001153945923,
+        "best_val_accuracy": 0.5401999950408936,
+        "adaptations_applied": 3,
+        "parameter_count": 29855,
+        "nonzero_parameter_count": 29855,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "layermerge-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=layermerge; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.4787999987602234,
+    "std_final_val_accuracy": 0.003600001335144043,
+    "mean_best_val_accuracy": 0.5177000164985657,
+    "std_best_val_accuracy": 0.02770000696182251,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 50530,
+    "mean_nonzero_parameter_count": 50530,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 10767466,
+    "mean_activation_elements": 10546,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.48240000009536743,
+    "best_seed_best_val_accuracy": 0.5454000234603882,
+    "mean_metric_history": [
+      0.2993000000715256,
+      0.32510000467300415,
+      0.4407999962568283,
+      0.40780000388622284,
+      0.4895000010728836,
+      0.44110000133514404,
+      0.5177000164985657,
+      0.4787999987602234
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 72,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "layermerge-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (72, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 72,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 50530,
+      "nonzero_parameter_count": 50530,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 10767466,
+      "activation_elements": 10546
+    },
+    "representative_stage_history": [
+      {
+        "name": "layermerge_pretrain",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5708,
+        "final_val_accuracy": 0.5157999992370605,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "pretrain"
+        }
+      },
+      {
+        "name": "layermerge_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6343,
+        "final_val_accuracy": 0.48240000009536743,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.48240000009536743,
+        "best_val_accuracy": 0.5454000234603882,
+        "adaptations_applied": 1,
+        "parameter_count": 50530,
+        "nonzero_parameter_count": 50530,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.47519999742507935,
+        "best_val_accuracy": 0.49000000953674316,
+        "adaptations_applied": 1,
+        "parameter_count": 50530,
+        "nonzero_parameter_count": 50530,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "condensenet-style-cifar10",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.47019998729228973,
+    "std_final_val_accuracy": 0.052000001072883606,
+    "mean_best_val_accuracy": 0.523499995470047,
+    "std_best_val_accuracy": 0.0013000071048736572,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 29418,
+    "mean_nonzero_parameter_count": 29418,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11159424,
+    "mean_activation_elements": 67594,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.41819998621940613,
+    "best_seed_best_val_accuracy": 0.5248000025749207,
+    "mean_metric_history": [
+      0.35990001261234283,
+      0.42490001022815704,
+      0.45419999957084656,
+      0.4309000074863434,
+      0.5017000138759613,
+      0.47200000286102295,
+      0.4976000040769577,
+      0.47019998729228973
+    ],
+    "representative_architecture_spec": {
+      "family": "condensenet_style",
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": null
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 96,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 8,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "condensenet"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "condensenet-style-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=32, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Grouped 2 (out=48, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Grouped 3 (out=64, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Grouped 4 (out=96, g=8)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 96,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 8,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "condensenet_style",
+        "paper_family": "condensenet"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "condensenet_style",
+      "parameter_count": 29418,
+      "nonzero_parameter_count": 29418,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11159424,
+      "activation_elements": 67594
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5923,
+        "final_val_accuracy": 0.41819998621940613,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.41819998621940613,
+        "best_val_accuracy": 0.5248000025749207,
+        "adaptations_applied": 0,
+        "parameter_count": 29418,
+        "nonzero_parameter_count": 29418,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5221999883651733,
+        "best_val_accuracy": 0.5221999883651733,
+        "adaptations_applied": 0,
+        "parameter_count": 29418,
+        "nonzero_parameter_count": 29418,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "network-slimming-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=network_slimming; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.4619999974966049,
+    "std_final_val_accuracy": 0.009800001978874207,
+    "mean_best_val_accuracy": 0.5175999999046326,
+    "std_best_val_accuracy": 0.014599978923797607,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 37111,
+    "mean_nonzero_parameter_count": 37111,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 7434602,
+    "mean_activation_elements": 8740,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.4521999955177307,
+    "best_seed_best_val_accuracy": 0.5321999788284302,
+    "mean_metric_history": [
+      0.39259999990463257,
+      0.44210000336170197,
+      0.3946000039577484,
+      0.43780000507831573,
+      0.4935000091791153,
+      0.47130000591278076,
+      0.5154999941587448,
+      0.4619999974966049
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 20,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 39,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 58,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "network-slimming-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (20, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 20,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (39, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 39,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (58, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 58,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 37111,
+      "nonzero_parameter_count": 37111,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 7434602,
+      "activation_elements": 8740
+    },
+    "representative_stage_history": [
+      {
+        "name": "network_slimming_sparse_train",
+        "epochs": 5,
+        "epoch_start": 1,
+        "epoch_end": 5,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5631,
+        "final_val_accuracy": 0.48399999737739563,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "sparse_train",
+          "sparsity_strength": 0.0002
+        }
+      },
+      {
+        "name": "network_slimming_finetune",
+        "epochs": 3,
+        "epoch_start": 6,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6131,
+        "final_val_accuracy": 0.4521999955177307,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "finetune"
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.4521999955177307,
+        "best_val_accuracy": 0.5321999788284302,
+        "adaptations_applied": 1,
+        "parameter_count": 37111,
+        "nonzero_parameter_count": 37111,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.4717999994754791,
+        "best_val_accuracy": 0.503000020980835,
+        "adaptations_applied": 1,
+        "parameter_count": 37111,
+        "nonzero_parameter_count": 37111,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "layerwise-obs-cnn-cifar10",
+    "method_type": "dynamic",
+    "notes": "adaptation=layerwise_obs; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.45749999582767487,
+    "std_final_val_accuracy": 0.03390000760555267,
+    "mean_best_val_accuracy": 0.5322999954223633,
+    "std_best_val_accuracy": 0.015900015830993652,
+    "mean_adaptations_applied": 6,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 53186,
+    "mean_nonzero_parameter_count": 36882,
+    "mean_weight_sparsity": 0.30986772084537023,
+    "mean_forward_flop_proxy": 10772746,
+    "mean_activation_elements": 10578,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.49140000343322754,
+    "best_seed_best_val_accuracy": 0.5482000112533569,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.4325000047683716,
+      0.5130999982357025,
+      0.5081999897956848,
+      0.5322999954223633,
+      0.45749999582767487
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 72,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "layerwise-obs-cnn-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (72, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 72,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 53186,
+      "nonzero_parameter_count": 36882,
+      "masked_weight_count": 16304,
+      "weight_sparsity": 0.30986772084537023,
+      "forward_flop_proxy": 10772746,
+      "activation_elements": 10578
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.617,
+        "final_val_accuracy": 0.49140000343322754,
+        "adaptations_applied": 6,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.4235999882221222,
+        "best_val_accuracy": 0.5163999795913696,
+        "adaptations_applied": 6,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 36882,
+        "weight_sparsity": 0.30986772084537023
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.49140000343322754,
+        "best_val_accuracy": 0.5482000112533569,
+        "adaptations_applied": 6,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 36882,
+        "weight_sparsity": 0.30986772084537023
+      }
+    ]
+  },
+  {
+    "name": "weights-connections-cnn-cifar10",
+    "method_type": "dynamic",
+    "notes": "adaptation=weights_connections; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.4382999986410141,
+    "std_final_val_accuracy": 0.057899996638298035,
+    "mean_best_val_accuracy": 0.552299976348877,
+    "std_best_val_accuracy": 0.0006999969482421875,
+    "mean_adaptations_applied": 6,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 53186,
+    "mean_nonzero_parameter_count": 34771,
+    "mean_weight_sparsity": 0.34998859662460086,
+    "mean_forward_flop_proxy": 10772746,
+    "mean_activation_elements": 10578,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.49619999527931213,
+    "best_seed_best_val_accuracy": 0.5529999732971191,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.41439999639987946,
+      0.5004000067710876,
+      0.552299976348877,
+      0.5143000185489655,
+      0.4382999986410141
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 72,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "weights-connections-cnn-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (72, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 72,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 53186,
+      "nonzero_parameter_count": 34771,
+      "masked_weight_count": 18415,
+      "weight_sparsity": 0.34998859662460086,
+      "forward_flop_proxy": 10772746,
+      "activation_elements": 10578
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6218,
+        "final_val_accuracy": 0.49619999527931213,
+        "adaptations_applied": 6,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.38040000200271606,
+        "best_val_accuracy": 0.5515999794006348,
+        "adaptations_applied": 6,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 34771,
+        "weight_sparsity": 0.34998859662460086
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.49619999527931213,
+        "best_val_accuracy": 0.5529999732971191,
+        "adaptations_applied": 6,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 34771,
+        "weight_sparsity": 0.34998859662460086
+      }
+    ]
+  },
+  {
+    "name": "fixed-cnn-cifar10",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.39819999039173126,
+    "std_final_val_accuracy": 0.034199997782707214,
+    "mean_best_val_accuracy": 0.546500027179718,
+    "std_best_val_accuracy": 0.009700000286102295,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": 0,
+    "mean_parameter_count": 53186,
+    "mean_nonzero_parameter_count": 53186,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 10772746,
+    "mean_activation_elements": 10578,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.4323999881744385,
+    "best_seed_best_val_accuracy": 0.5562000274658203,
+    "mean_metric_history": [
+      0.3962000012397766,
+      0.43470001220703125,
+      0.3830000013113022,
+      0.4537000060081482,
+      0.5007999986410141,
+      0.546500027179718,
+      0.535400003194809,
+      0.39819999039173126
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 72,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        128
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "fixed-cnn-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_3",
+          "label": "Conv 3 (72, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 72,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (128)",
+          "op": "linear",
+          "params": {
+            "out_features": 128,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "conv_3",
+          "metadata": {}
+        },
+        {
+          "source": "conv_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 53186,
+      "nonzero_parameter_count": 53186,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 10772746,
+      "activation_elements": 10578
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.618,
+        "final_val_accuracy": 0.4323999881744385,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.36399999260902405,
+        "best_val_accuracy": 0.5368000268936157,
+        "adaptations_applied": 0,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 53186,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.4323999881744385,
+        "best_val_accuracy": 0.5562000274658203,
+        "adaptations_applied": 0,
+        "parameter_count": 53186,
+        "nonzero_parameter_count": 53186,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "squeezenet-style-cifar10",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.32819999754428864,
+    "std_final_val_accuracy": 0.02479998767375946,
+    "mean_best_val_accuracy": 0.33239999413490295,
+    "std_best_val_accuracy": 0.02059999108314514,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 46594,
+    "mean_nonzero_parameter_count": 46594,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 4317184,
+    "mean_activation_elements": 66570,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.3529999852180481,
+    "best_seed_best_val_accuracy": 0.3529999852180481,
+    "mean_metric_history": [
+      0.18969999998807907,
+      0.21459999680519104,
+      0.23420000076293945,
+      0.2589000016450882,
+      0.25839999318122864,
+      0.2889999896287918,
+      0.3122999966144562,
+      0.32819999754428864
+    ],
+    "representative_architecture_spec": {
+      "family": "squeezenet_style",
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": 24,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": 32,
+          "groups": 1,
+          "pool": null
+        },
+        {
+          "kind": "fire",
+          "out_channels": 96,
+          "kernel_size": 3,
+          "squeeze_channels": 48,
+          "groups": 1,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "squeezenet"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "squeezenet-style-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=32, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Fire 2 (sq=24, out=48)",
+          "op": "fire",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": 24,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Fire 3 (sq=32, out=64)",
+          "op": "fire",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": 32,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Fire 4 (sq=48, out=96)",
+          "op": "fire",
+          "params": {
+            "out_channels": 96,
+            "kernel_size": 3,
+            "squeeze_channels": 48,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "squeezenet_style",
+        "paper_family": "squeezenet"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "squeezenet_style",
+      "parameter_count": 46594,
+      "nonzero_parameter_count": 46594,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4317184,
+      "activation_elements": 66570
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.3249,
+        "final_val_accuracy": 0.3529999852180481,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.3529999852180481,
+        "best_val_accuracy": 0.3529999852180481,
+        "adaptations_applied": 0,
+        "parameter_count": 46594,
+        "nonzero_parameter_count": 46594,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.3034000098705292,
+        "best_val_accuracy": 0.3118000030517578,
+        "adaptations_applied": 0,
+        "parameter_count": 46594,
+        "nonzero_parameter_count": 46594,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "instance-wise-sparsity-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=instance_wise_sparsity; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.36, 'target_cost_ratio': 0.68, 'target_accept_rate': 0.4, 'route_counts': {'0.5': 0, '0.75': 0, '1.0': 136}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 1.0}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 1.0}, {'sample': 7, 'width': 1.0}], 'mean_width': 1.0, 'mean_cost_ratio': 1.0}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.2994000017642975,
+    "std_final_val_accuracy": 0.0033999979496002197,
+    "mean_best_val_accuracy": 0.30470000207424164,
+    "std_best_val_accuracy": 0.008699998259544373,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.3027999997138977,
+    "best_seed_best_val_accuracy": 0.313400000333786,
+    "mean_metric_history": [
+      0.20489999651908875,
+      0.23659999668598175,
+      0.2587999999523163,
+      0.26989999413490295,
+      0.27880001068115234,
+      0.29600000381469727,
+      0.30219998955726624,
+      0.2994000017642975
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "instance-wise-sparsity-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "instance_wise_sparsity_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.239,
+        "final_val_accuracy": 0.2574000060558319,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.92,
+          "min_threshold": 0.92
+        }
+      },
+      {
+        "name": "instance_wise_sparsity_routing",
+        "epochs": 3,
+        "epoch_start": 4,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.288,
+        "final_val_accuracy": 0.313400000333786,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "target_cost_ratio": 0.72,
+          "target_accept_rate": 0.48
+        }
+      },
+      {
+        "name": "instance_wise_sparsity_consolidation",
+        "epochs": 2,
+        "epoch_start": 7,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.3036,
+        "final_val_accuracy": 0.3027999997138977,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "consolidation",
+          "target_cost_ratio": 0.68,
+          "target_accept_rate": 0.4,
+          "threshold": 0.36,
+          "min_threshold": 0.36
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.29600000381469727,
+        "best_val_accuracy": 0.29600000381469727,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.3027999997138977,
+        "best_val_accuracy": 0.313400000333786,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "channel-gating-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=channel_gating; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.36, 'target_cost_ratio': 0.78, 'target_accept_rate': 0.48, 'route_counts': {'0.5': 0, '0.75': 0, '1.0': 136}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 1.0}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 1.0}, {'sample': 7, 'width': 1.0}], 'mean_width': 1.0, 'mean_cost_ratio': 1.0}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.29919999837875366,
+    "std_final_val_accuracy": 0.0033999979496002197,
+    "mean_best_val_accuracy": 0.30470000207424164,
+    "std_best_val_accuracy": 0.008900001645088196,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.3025999963283539,
+    "best_seed_best_val_accuracy": 0.31360000371932983,
+    "mean_metric_history": [
+      0.20489999651908875,
+      0.23659999668598175,
+      0.2587999999523163,
+      0.26979999244213104,
+      0.2785000056028366,
+      0.2962000072002411,
+      0.3025999963283539,
+      0.29919999837875366
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "channel-gating-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "channel_gating_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.239,
+        "final_val_accuracy": 0.2574000060558319,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "threshold": 0.92,
+          "min_threshold": 0.92
+        }
+      },
+      {
+        "name": "channel_gating_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.3038,
+        "final_val_accuracy": 0.3025999963283539,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "dynamic_width",
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.78
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.29580000042915344,
+        "best_val_accuracy": 0.29580000042915344,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.3025999963283539,
+        "best_val_accuracy": 0.31360000371932983,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "dynamic-slimmable-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=dynamic_slimmable; route_summary={'policy': 'dynamic_width', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.36, 'target_cost_ratio': 0.78, 'target_accept_rate': 0.48, 'route_counts': {'0.5': 0, '0.75': 0, '1.0': 136}, 'trace_samples': [{'sample': 0, 'width': 1.0}, {'sample': 1, 'width': 1.0}, {'sample': 2, 'width': 1.0}, {'sample': 3, 'width': 1.0}, {'sample': 4, 'width': 1.0}, {'sample': 5, 'width': 1.0}, {'sample': 6, 'width': 1.0}, {'sample': 7, 'width': 1.0}], 'mean_width': 1.0, 'mean_cost_ratio': 1.0}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.28849999606609344,
+    "std_final_val_accuracy": 0.003299996256828308,
+    "mean_best_val_accuracy": 0.2952999919652939,
+    "std_best_val_accuracy": 0.0034999996423721313,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.28519999980926514,
+    "best_seed_best_val_accuracy": 0.298799991607666,
+    "mean_metric_history": [
+      0.20279999822378159,
+      0.2362999990582466,
+      0.2551000043749809,
+      0.26749999821186066,
+      0.2709999978542328,
+      0.28949999809265137,
+      0.2905000001192093,
+      0.28849999606609344
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "dynamic-slimmable-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "dynamic_slimmable_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2354,
+        "final_val_accuracy": 0.24940000474452972,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "accept_rate_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.9,
+          "min_threshold": 0.9
+        }
+      },
+      {
+        "name": "dynamic_slimmable_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2958,
+        "final_val_accuracy": 0.28519999980926514,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "dynamic_width",
+          "width_multipliers": [
+            1.0,
+            0.75,
+            0.5
+          ],
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.78,
+          "target_accept_rate": 0.48
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.29179999232292175,
+        "best_val_accuracy": 0.29179999232292175,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.28519999980926514,
+        "best_val_accuracy": 0.298799991607666,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "iamnn-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=iamnn; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.12, 'target_cost_ratio': 0.72, 'target_accept_rate': 0.16, 'early_exit_fraction': 0.1618, 'eligible_fraction': 0.1985, 'mean_gate_score': 0.0104, 'max_gate_score': 0.0652, 'mean_exit_confidence': 0.2818, 'full_path_fraction': 0.8382, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'early'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'early'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 0.8455}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.28220000863075256,
+    "std_final_val_accuracy": 0.0067999958992004395,
+    "mean_best_val_accuracy": 0.29260000586509705,
+    "std_best_val_accuracy": 0.0,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 42,
+    "best_seed_final_val_accuracy": 0.289000004529953,
+    "best_seed_best_val_accuracy": 0.29260000586509705,
+    "mean_metric_history": [
+      0.1899000033736229,
+      0.23149999976158142,
+      0.25129999965429306,
+      0.26169998943805695,
+      0.2695000022649765,
+      0.288100004196167,
+      0.29250000417232513,
+      0.28220000863075256
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "iamnn-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "iamnn_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2321,
+        "final_val_accuracy": 0.2492000013589859,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.96,
+          "min_threshold": 0.96,
+          "early_exit_loss_weight": 1.3
+        }
+      },
+      {
+        "name": "iamnn_routing",
+        "epochs": 3,
+        "epoch_start": 4,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2876,
+        "final_val_accuracy": 0.29260000586509705,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "target_cost_ratio": 0.78,
+          "target_accept_rate": 0.3,
+          "early_exit_loss_weight": 1.3
+        }
+      },
+      {
+        "name": "iamnn_consolidation",
+        "epochs": 2,
+        "epoch_start": 7,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.3061,
+        "final_val_accuracy": 0.289000004529953,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "consolidation",
+          "target_cost_ratio": 0.72,
+          "target_accept_rate": 0.3,
+          "threshold": 0.22,
+          "min_threshold": 0.22,
+          "early_exit_loss_weight": 1.3
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.2754000127315521,
+        "best_val_accuracy": 0.29260000586509705,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.289000004529953,
+        "best_val_accuracy": 0.29260000586509705,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "skipnet-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=skipnet; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.12, 'target_cost_ratio': 0.78, 'target_accept_rate': 0.16, 'early_exit_fraction': 0.1618, 'eligible_fraction': 0.3235, 'mean_gate_score': 0.0159, 'max_gate_score': 0.0527, 'mean_exit_confidence': 0.3199, 'full_path_fraction': 0.8382, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'full'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'full'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 0.8455}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.28120000660419464,
+    "std_final_val_accuracy": 0.0007999986410140991,
+    "mean_best_val_accuracy": 0.29590000212192535,
+    "std_best_val_accuracy": 0.005300000309944153,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.28200000524520874,
+    "best_seed_best_val_accuracy": 0.3012000024318695,
+    "mean_metric_history": [
+      0.1908000037074089,
+      0.23569999635219574,
+      0.25190000236034393,
+      0.25949999690055847,
+      0.26650000363588333,
+      0.28630000352859497,
+      0.2928999960422516,
+      0.28120000660419464
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "skipnet-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "skipnet_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2478,
+        "final_val_accuracy": 0.25040000677108765,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "threshold": 0.95,
+          "min_threshold": 0.95,
+          "early_exit_loss_weight": 1.3
+        }
+      },
+      {
+        "name": "skipnet_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.297,
+        "final_val_accuracy": 0.28200000524520874,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "early_exit",
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.78
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.28200000524520874,
+        "best_val_accuracy": 0.3012000024318695,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.28040000796318054,
+        "best_val_accuracy": 0.2906000018119812,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "conditional-computation-cifar10",
+    "method_type": "workflow",
+    "notes": "workflow=conditional_computation; route_summary={'policy': 'early_exit', 'mode': 'eval', 'gate_mode': 'learned', 'gate_metric': 'margin', 'confidence_threshold': 0.12, 'target_cost_ratio': 0.78, 'target_accept_rate': 0.16, 'early_exit_fraction': 0.1618, 'eligible_fraction': 0.2794, 'mean_gate_score': 0.0116, 'max_gate_score': 0.0536, 'mean_exit_confidence': 0.3136, 'full_path_fraction': 0.8382, 'trace_samples': [{'sample': 0, 'path': 'full'}, {'sample': 1, 'path': 'full'}, {'sample': 2, 'path': 'full'}, {'sample': 3, 'path': 'full'}, {'sample': 4, 'path': 'full'}, {'sample': 5, 'path': 'full'}, {'sample': 6, 'path': 'full'}, {'sample': 7, 'path': 'full'}], 'mean_width': 1.0, 'mean_cost_ratio': 0.8455}; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 2,
+    "seeds": [
+      7,
+      42
+    ],
+    "mean_final_val_accuracy": 0.2760000079870224,
+    "std_final_val_accuracy": 0.0007999986410140991,
+    "mean_best_val_accuracy": 0.2921999990940094,
+    "std_best_val_accuracy": 0.000800013542175293,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 20042,
+    "mean_nonzero_parameter_count": 20042,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 11269386,
+    "mean_activation_elements": 12362,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.2752000093460083,
+    "best_seed_best_val_accuracy": 0.2930000126361847,
+    "mean_metric_history": [
+      0.19120000302791595,
+      0.23189999908208847,
+      0.2530999928712845,
+      0.2597000002861023,
+      0.2620999962091446,
+      0.2880999892950058,
+      0.2880000025033951,
+      0.2760000079870224
+    ],
+    "representative_architecture_spec": {
+      "input_channels": 3,
+      "input_size": [
+        32,
+        32
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 64,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_architecture_graph": {
+      "name": "conditional-computation-cifar10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (3x32x32)",
+          "op": "input",
+          "params": {
+            "channels": 3,
+            "size": [
+              32,
+              32
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (64, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn",
+        "routing_family": "routed_cnn"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 20042,
+      "nonzero_parameter_count": 20042,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 11269386,
+      "activation_elements": 12362
+    },
+    "representative_stage_history": [
+      {
+        "name": "conditional_computation_warmup",
+        "epochs": 3,
+        "epoch_start": 1,
+        "epoch_end": 3,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2442,
+        "final_val_accuracy": 0.2533999979496002,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup",
+          "budget_weight": 0.0,
+          "accept_rate_weight": 0.0,
+          "target_cost_ratio": 1.0,
+          "target_accept_rate": null,
+          "threshold": 0.94,
+          "min_threshold": 0.94,
+          "early_exit_loss_weight": 1.3
+        }
+      },
+      {
+        "name": "conditional_computation_routing",
+        "epochs": 5,
+        "epoch_start": 4,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2924,
+        "final_val_accuracy": 0.2752000093460083,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "routing",
+          "routing_policy": "early_exit",
+          "confidence_threshold": 0.5,
+          "gate_mode": "learned",
+          "target_cost_ratio": 0.78,
+          "target_accept_rate": 0.3
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.2752000093460083,
+        "best_val_accuracy": 0.2930000126361847,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.2768000066280365,
+        "best_val_accuracy": 0.2913999855518341,
+        "adaptations_applied": 0,
+        "parameter_count": 20042,
+        "nonzero_parameter_count": 20042,
+        "weight_sparsity": 0.0
+      }
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "protocol_name": "track_a_synthetic_official_v1",
+  "track": "synthetic_10d",
+  "tier": "official",
+  "passed": true,
+  "summary": {
+    "num_runs": 40,
+    "num_experiments": 8,
+    "num_seeds": 5,
+    "baseline_count": 1,
+    "method_count": 7,
+    "role_counts": {
+      "baseline": 1,
+      "method": 7
+    }
+  },
+  "checks": [
+    {
+      "name": "min_seeds",
+      "passed": true,
+      "detail": "required>=5, observed=5"
+    },
+    {
+      "name": "required_roles",
+      "passed": true,
+      "detail": "required=['baseline', 'method'], missing=none"
+    },
+    {
+      "name": "required_experiments",
+      "passed": true,
+      "detail": "required=['adanet_spirals10', 'den_spirals10', 'dynamic_nodes_spirals10', 'edge_growth_spirals10', 'fixed_mlp_spirals10', 'gradmax_spirals10', 'nest_spirals10', 'weights_connections_spirals10'], missing=none"
+    },
+    {
+      "name": "minimum_methods",
+      "passed": true,
+      "detail": "required>=7, observed=7"
+    },
+    {
+      "name": "minimum_baselines",
+      "passed": true,
+      "detail": "required>=1, observed=1"
+    },
+    {
+      "name": "require_constraints",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "require_runtime_environment",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

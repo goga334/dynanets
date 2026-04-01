@@ -1,0 +1,67 @@
+name: conditional-computation-cifar100
+
+dataset:
+  name: cifar100
+  params:
+    data_dir: data
+    validation_size: 5000
+    train_size: 40000
+    test_size: 5000
+    download: true
+    seed: 42
+
+model:
+  name: torch_routed_resnet_classifier
+  params:
+    input_channels: 3
+    input_size: [32, 32]
+    num_classes: 100
+    stage_channels: [40, 80, 120]
+    blocks_per_stage: [1, 1, 1]
+    activation: relu
+    lr: 0.001
+    width_multipliers: [1.0, 0.875, 0.75]
+    eval_width_multipliers: [1.0]
+    routing_policy: early_exit
+    routing_family: early_exit_cascade
+    gate_mode: learned
+    confidence_threshold: 0.56
+    min_confidence_threshold: 0.30
+    gate_metric: margin
+    gate_temperature: 0.16
+    gate_metric_blend: 0.28
+    eval_min_threshold: 0.20
+    eval_threshold_offset: -0.06
+    gate_budget_weight: 0.03
+    target_cost_ratio: 0.92
+    min_target_cost_ratio: 0.82
+    distillation_weight: 0.36
+    gate_supervision_weight: 0.74
+    teacher_confidence_floor: 0.30
+    student_confidence_floor: 0.22
+    gate_target_strategy: hybrid
+    target_accept_rate: 0.14
+    min_target_accept_rate: 0.08
+    gate_accept_rate_weight: 0.08
+    early_exit_loss_weight: 1.55
+    early_exit_focus_floor: 0.16
+    early_exit_focus_weight: 1.45
+    route_trace_limit: 8
+
+metrics:
+  - name: accuracy
+    params: {}
+
+workflow:
+  name: conditional_computation
+  params:
+    warmup_epochs: 5
+
+trainer:
+  epochs: 12
+  batch_size: 128
+  eval_batch_size: 256
+
+runtime:
+  seed: 42
+  device: auto

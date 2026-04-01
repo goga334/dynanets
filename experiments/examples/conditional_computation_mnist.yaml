@@ -16,23 +16,36 @@ model:
     input_channels: 1
     input_size: [28, 28]
     num_classes: 10
-    conv_channels: [24, 48]
+    conv_channels: [24, 48, 72]
     activation: relu
     lr: 0.001
     width_multipliers: [1.0, 0.75, 0.5]
     eval_width_multipliers: [1.0]
     routing_policy: early_exit
+    routing_family: early_exit_cascade
     gate_mode: learned
-    confidence_threshold: 0.82
-    min_confidence_threshold: 0.55
+    confidence_threshold: 0.76
+    min_confidence_threshold: 0.44
     gate_metric: margin
-    gate_temperature: 0.20
-    gate_budget_weight: 0.04
-    target_cost_ratio: 0.80
+    gate_temperature: 0.16
+    gate_metric_blend: 0.25
+    eval_min_threshold: 0.18
+    eval_threshold_offset: -0.22
+    gate_budget_weight: 0.06
+    target_cost_ratio: 0.74
+    min_target_cost_ratio: 0.60
     distillation_weight: 0.30
-    gate_supervision_weight: 0.45
-    teacher_confidence_floor: 0.55
-    early_exit_loss_weight: 0.90
+    gate_supervision_weight: 0.60
+    teacher_confidence_floor: 0.50
+    student_confidence_floor: 0.25
+    gate_target_strategy: hybrid
+    target_accept_rate: 0.36
+    min_target_accept_rate: 0.22
+    gate_accept_rate_weight: 0.12
+    early_exit_loss_weight: 1.35
+    early_exit_focus_floor: 0.20
+    early_exit_focus_weight: 1.20
+    route_trace_limit: 8
 
 metrics:
   - name: accuracy
@@ -40,7 +53,8 @@ metrics:
 
 workflow:
   name: conditional_computation
-  params: {}
+  params:
+    warmup_epochs: 2
 
 trainer:
   epochs: 8

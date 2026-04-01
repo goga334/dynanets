@@ -1,0 +1,73 @@
+{
+  "protocol_name": "track_a_efficient_static_preview",
+  "track": "synthetic_patterns",
+  "tier": "preview",
+  "top_overall": {
+    "name": "squeezenet-style-patterns",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.8971354166666666,
+    "mean_best_val_accuracy": 0.904296875,
+    "mean_forward_flop_proxy": 1292032,
+    "mean_parameter_count": 22354,
+    "best_seed": 99
+  },
+  "top_method": null,
+  "top_baseline": {
+    "name": "squeezenet-style-patterns",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.8971354166666666,
+    "mean_best_val_accuracy": 0.904296875,
+    "mean_forward_flop_proxy": 1292032,
+    "mean_parameter_count": 22354,
+    "best_seed": 99
+  },
+  "accuracy_ranking": [
+    {
+      "name": "squeezenet-style-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.8971354166666666,
+      "mean_best_val_accuracy": 0.904296875,
+      "mean_forward_flop_proxy": 1292032,
+      "mean_parameter_count": 22354,
+      "best_seed": 99
+    },
+    {
+      "name": "condensenet-style-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.8971354166666666,
+      "mean_best_val_accuracy": 0.8971354166666666,
+      "mean_forward_flop_proxy": 5457920,
+      "mean_parameter_count": 22034,
+      "best_seed": 7
+    },
+    {
+      "name": "wide-cnn-patterns-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.5924999713897705,
+      "mean_best_val_accuracy": 0.5991666316986084,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    },
+    {
+      "name": "fixed-cnn-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.15666666130224863,
+      "mean_best_val_accuracy": 0.19249999523162842,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "squeezenet-style-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.8971354166666666,
+      "mean_best_val_accuracy": 0.904296875,
+      "mean_forward_flop_proxy": 1292032,
+      "mean_parameter_count": 22354,
+      "best_seed": 99
+    }
+  ]
+}

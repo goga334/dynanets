@@ -1,0 +1,63 @@
+name: track_b_mnist_official_v1
+track: mnist
+tier: official
+description: >-
+  Official Track B MNIST benchmark for the v1 CNN pruning/compression subset
+  and the first stage-managed image methods.
+seeds: [7, 42]
+required_metrics: [accuracy]
+budgets:
+  dataset: mnist
+  epochs: 12
+  train_size: 10000
+  validation_size: 2000
+  test_size: 2000
+acceptance:
+  min_seeds: 2
+  required_roles: [baseline, method]
+  required_experiments:
+    - wide_cnn_mnist_bn
+    - network_slimming_mnist
+    - weights_connections_cnn_mnist
+    - runtime_neural_pruning_mnist
+    - morphnet_mnist
+    - asfp_mnist
+    - prunetrain_mnist
+    - layermerge_mnist
+  minimum_methods: 7
+  minimum_baselines: 1
+  require_constraints: true
+  require_runtime_environment: true
+  require_stage_history: true
+leaderboard:
+  primary_metric: accuracy
+  cost_metric: forward_flop_proxy
+experiments:
+  - config: ../experiments/examples/wide_cnn_mnist_bn.yaml
+    role: baseline
+    tags: [official, track_b, mnist, baseline]
+  - config: ../experiments/examples/network_slimming_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, slimming]
+  - config: ../experiments/examples/weights_connections_cnn_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, sparse]
+  - config: ../experiments/examples/runtime_neural_pruning_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, pruning]
+  - config: ../experiments/examples/morphnet_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, morphnet]
+  - config: ../experiments/examples/asfp_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, asfp]
+  - config: ../experiments/examples/prunetrain_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, prunetrain]
+  - config: ../experiments/examples/layermerge_mnist.yaml
+    role: method
+    tags: [official, track_b, mnist, layermerge]
+metadata:
+  roadmap_phase: phase_8
+  stadium_track: track_b
+  focus: official_v1_mnist

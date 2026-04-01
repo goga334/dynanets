@@ -1,0 +1,225 @@
+{
+  "protocol_name": "track_c_cifar_official_extended",
+  "track": "cifar10",
+  "tier": "official_extended",
+  "top_overall": {
+    "name": "wide-cnn-cifar10-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.6788999736309052,
+    "mean_best_val_accuracy": 0.6788999736309052,
+    "mean_forward_flop_proxy": 18498346,
+    "mean_parameter_count": 92298,
+    "best_seed": 42
+  },
+  "top_method": {
+    "name": "weights-connections-cnn-cifar10",
+    "method_type": "dynamic",
+    "mean_final_val_accuracy": 0.6540000140666962,
+    "mean_best_val_accuracy": 0.65420001745224,
+    "mean_forward_flop_proxy": 10772746,
+    "mean_parameter_count": 53186,
+    "best_seed": 42
+  },
+  "top_baseline": {
+    "name": "wide-cnn-cifar10-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.6788999736309052,
+    "mean_best_val_accuracy": 0.6788999736309052,
+    "mean_forward_flop_proxy": 18498346,
+    "mean_parameter_count": 92298,
+    "best_seed": 42
+  },
+  "accuracy_ranking": [
+    {
+      "name": "wide-cnn-cifar10-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.6788999736309052,
+      "mean_best_val_accuracy": 0.6788999736309052,
+      "mean_forward_flop_proxy": 18498346,
+      "mean_parameter_count": 92298,
+      "best_seed": 42
+    },
+    {
+      "name": "weights-connections-cnn-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6540000140666962,
+      "mean_best_val_accuracy": 0.65420001745224,
+      "mean_forward_flop_proxy": 10772746,
+      "mean_parameter_count": 53186,
+      "best_seed": 42
+    },
+    {
+      "name": "runtime-neural-pruning-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6437999904155731,
+      "mean_best_val_accuracy": 0.6447999775409698,
+      "mean_forward_flop_proxy": 6338410,
+      "mean_parameter_count": 32468,
+      "best_seed": 42
+    },
+    {
+      "name": "deep-cnn-cifar10",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.6407999992370605,
+      "mean_best_val_accuracy": 0.6446999907493591,
+      "mean_forward_flop_proxy": 10818346,
+      "mean_parameter_count": 76066,
+      "best_seed": 42
+    },
+    {
+      "name": "channel-pruning-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6389999985694885,
+      "mean_best_val_accuracy": 0.6389999985694885,
+      "mean_forward_flop_proxy": 4753562,
+      "mean_parameter_count": 24353,
+      "best_seed": 42
+    },
+    {
+      "name": "network-slimming-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.6252999901771545,
+      "mean_best_val_accuracy": 0.6259999871253967,
+      "mean_forward_flop_proxy": 7687498,
+      "mean_parameter_count": 38798,
+      "best_seed": 42
+    },
+    {
+      "name": "morphnet-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.6244000196456909,
+      "mean_best_val_accuracy": 0.6244000196456909,
+      "mean_forward_flop_proxy": 6996826,
+      "mean_parameter_count": 35561,
+      "best_seed": 42
+    },
+    {
+      "name": "layermerge-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.6181000173091888,
+      "mean_best_val_accuracy": 0.6186999976634979,
+      "mean_forward_flop_proxy": 10767466,
+      "mean_parameter_count": 50530,
+      "best_seed": 7
+    },
+    {
+      "name": "prunetrain-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.6026999950408936,
+      "mean_best_val_accuracy": 0.6083999872207642,
+      "mean_forward_flop_proxy": 7672938,
+      "mean_parameter_count": 37492,
+      "best_seed": 42
+    },
+    {
+      "name": "asfp-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6007000207901001,
+      "mean_best_val_accuracy": 0.6191000044345856,
+      "mean_forward_flop_proxy": 3122058,
+      "mean_parameter_count": 15792,
+      "best_seed": 7
+    },
+    {
+      "name": "dynamic-slimmable-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5266000032424927,
+      "mean_best_val_accuracy": 0.5266000032424927,
+      "mean_forward_flop_proxy": 52765322,
+      "mean_parameter_count": 221178,
+      "best_seed": 42
+    },
+    {
+      "name": "channel-gating-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.4943999946117401,
+      "mean_best_val_accuracy": 0.4952999949455261,
+      "mean_forward_flop_proxy": 28843530,
+      "mean_parameter_count": 123578,
+      "best_seed": 42
+    },
+    {
+      "name": "skipnet-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.4805999994277954,
+      "mean_best_val_accuracy": 0.48319999873638153,
+      "mean_forward_flop_proxy": 28843530,
+      "mean_parameter_count": 123578,
+      "best_seed": 42
+    },
+    {
+      "name": "conditional-computation-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.4537999927997589,
+      "mean_best_val_accuracy": 0.4537999927997589,
+      "mean_forward_flop_proxy": 39919690,
+      "mean_parameter_count": 168922,
+      "best_seed": 42
+    },
+    {
+      "name": "iamnn-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.445700004696846,
+      "mean_best_val_accuracy": 0.4486999958753586,
+      "mean_forward_flop_proxy": 33348618,
+      "mean_parameter_count": 138962,
+      "best_seed": 42
+    },
+    {
+      "name": "instance-wise-sparsity-cifar10",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.4450000077486038,
+      "mean_best_val_accuracy": 0.44910000264644623,
+      "mean_forward_flop_proxy": 18355594,
+      "mean_parameter_count": 75754,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "asfp-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6007000207901001,
+      "mean_best_val_accuracy": 0.6191000044345856,
+      "mean_forward_flop_proxy": 3122058,
+      "mean_parameter_count": 15792,
+      "best_seed": 7
+    },
+    {
+      "name": "channel-pruning-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6389999985694885,
+      "mean_best_val_accuracy": 0.6389999985694885,
+      "mean_forward_flop_proxy": 4753562,
+      "mean_parameter_count": 24353,
+      "best_seed": 42
+    },
+    {
+      "name": "runtime-neural-pruning-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6437999904155731,
+      "mean_best_val_accuracy": 0.6447999775409698,
+      "mean_forward_flop_proxy": 6338410,
+      "mean_parameter_count": 32468,
+      "best_seed": 42
+    },
+    {
+      "name": "weights-connections-cnn-cifar10",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.6540000140666962,
+      "mean_best_val_accuracy": 0.65420001745224,
+      "mean_forward_flop_proxy": 10772746,
+      "mean_parameter_count": 53186,
+      "best_seed": 42
+    },
+    {
+      "name": "wide-cnn-cifar10-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.6788999736309052,
+      "mean_best_val_accuracy": 0.6788999736309052,
+      "mean_forward_flop_proxy": 18498346,
+      "mean_parameter_count": 92298,
+      "best_seed": 42
+    }
+  ]
+}

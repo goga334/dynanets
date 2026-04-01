@@ -1,0 +1,24 @@
+{
+  "protocol_name": "track_b_mnist_phase6_preview",
+  "track": "mnist",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 8,
+    "num_experiments": 4,
+    "num_seeds": 2,
+    "baseline_count": 1,
+    "method_count": 3,
+    "role_counts": {
+      "baseline": 2,
+      "method": 8
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

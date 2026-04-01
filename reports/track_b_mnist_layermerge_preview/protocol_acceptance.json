@@ -1,0 +1,24 @@
+{
+  "protocol_name": "track_b_mnist_layermerge_preview",
+  "track": "mnist",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 4,
+    "num_experiments": 2,
+    "num_seeds": 2,
+    "baseline_count": 1,
+    "method_count": 1,
+    "role_counts": {
+      "baseline": 1,
+      "method": 1
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

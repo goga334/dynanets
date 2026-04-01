@@ -1,0 +1,25 @@
+{
+  "protocol_name": "track_c_cifar_full_preview",
+  "track": "cifar10",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 40,
+    "num_experiments": 20,
+    "num_seeds": 2,
+    "baseline_count": 5,
+    "method_count": 15,
+    "role_counts": {
+      "baseline": 3,
+      "reference": 2,
+      "method": 15
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

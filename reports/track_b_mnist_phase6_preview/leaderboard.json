@@ -1,0 +1,81 @@
+{
+  "protocol_name": "track_b_mnist_phase6_preview",
+  "track": "mnist",
+  "tier": "preview",
+  "top_overall": {
+    "name": "channel-pruning-mnist",
+    "method_type": "dynamic",
+    "mean_final_val_accuracy": 0.11499999836087227,
+    "mean_best_val_accuracy": 0.15369999781250954,
+    "mean_forward_flop_proxy": 2617894,
+    "mean_parameter_count": 10678,
+    "best_seed": 42
+  },
+  "top_method": {
+    "name": "channel-pruning-mnist",
+    "method_type": "dynamic",
+    "mean_final_val_accuracy": 0.11499999836087227,
+    "mean_best_val_accuracy": 0.15369999781250954,
+    "mean_forward_flop_proxy": 2617894,
+    "mean_parameter_count": 10678,
+    "best_seed": 42
+  },
+  "top_baseline": {
+    "name": "wide-cnn-mnist-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.11059999838471413,
+    "mean_best_val_accuracy": 0.11109999939799309,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 42
+  },
+  "accuracy_ranking": [
+    {
+      "name": "channel-pruning-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.11499999836087227,
+      "mean_best_val_accuracy": 0.15369999781250954,
+      "mean_forward_flop_proxy": 2617894,
+      "mean_parameter_count": 10678,
+      "best_seed": 42
+    },
+    {
+      "name": "weights-connections-cnn-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.11059999838471413,
+      "mean_best_val_accuracy": 0.11249999701976776,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 42
+    },
+    {
+      "name": "network-slimming-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.11059999838471413,
+      "mean_best_val_accuracy": 0.11159999668598175,
+      "mean_forward_flop_proxy": 2617894,
+      "mean_parameter_count": 10678,
+      "best_seed": 42
+    },
+    {
+      "name": "wide-cnn-mnist-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.11059999838471413,
+      "mean_best_val_accuracy": 0.11109999939799309,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "channel-pruning-mnist",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.11499999836087227,
+      "mean_best_val_accuracy": 0.15369999781250954,
+      "mean_forward_flop_proxy": 2617894,
+      "mean_parameter_count": 10678,
+      "best_seed": 42
+    }
+  ]
+}

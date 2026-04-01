@@ -1,0 +1,34 @@
+name: squeezenet-style-patterns
+
+dataset:
+  name: synthetic_image_patterns
+  params:
+    train_size: 2048
+    validation_size: 512
+    test_size: 512
+    image_size: 28
+    num_classes: 10
+    seed: 42
+
+model:
+  name: squeezenet_style_cnn_classifier
+  params:
+    input_channels: 1
+    input_size: [28, 28]
+    num_classes: 10
+    stem_channels: 24
+    fire_channels: [32, 48, 64]
+    squeeze_ratio: 0.5
+    lr: 0.001
+
+metrics:
+  - name: accuracy
+    params: {}
+
+trainer:
+  epochs: 8
+  batch_size: 128
+  eval_batch_size: 256
+
+runtime:
+  seed: 42

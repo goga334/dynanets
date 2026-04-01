@@ -1,0 +1,144 @@
+{
+  "protocol_name": "track_d_routing_efficiency_cifar100_preview",
+  "track": "cifar100",
+  "tier": "preview",
+  "top_overall": {
+    "name": "routed-resnet-largest-cifar100",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.3653999865055084,
+    "mean_best_val_accuracy": 0.3653999865055084,
+    "mean_forward_flop_proxy": 38171748,
+    "mean_parameter_count": 166532,
+    "best_seed": 7
+  },
+  "top_method": {
+    "name": "dynamic-slimmable-cifar100",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.3288999944925308,
+    "mean_best_val_accuracy": 0.3343999981880188,
+    "mean_forward_flop_proxy": 38171748,
+    "mean_parameter_count": 166532,
+    "best_seed": 42
+  },
+  "top_baseline": {
+    "name": "routed-resnet-largest-cifar100",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.3653999865055084,
+    "mean_best_val_accuracy": 0.3653999865055084,
+    "mean_forward_flop_proxy": 38171748,
+    "mean_parameter_count": 166532,
+    "best_seed": 7
+  },
+  "accuracy_ranking": [
+    {
+      "name": "routed-resnet-largest-cifar100",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.3653999865055084,
+      "mean_best_val_accuracy": 0.3653999865055084,
+      "mean_forward_flop_proxy": 38171748,
+      "mean_parameter_count": 166532,
+      "best_seed": 7
+    },
+    {
+      "name": "wide-cnn-cifar100-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.3358999937772751,
+      "mean_best_val_accuracy": 0.3563000112771988,
+      "mean_forward_flop_proxy": 18527236,
+      "mean_parameter_count": 106788,
+      "best_seed": 42
+    },
+    {
+      "name": "dynamic-slimmable-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.3288999944925308,
+      "mean_best_val_accuracy": 0.3343999981880188,
+      "mean_forward_flop_proxy": 38171748,
+      "mean_parameter_count": 166532,
+      "best_seed": 42
+    },
+    {
+      "name": "conditional-computation-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.3249000012874603,
+      "mean_best_val_accuracy": 0.3249000012874603,
+      "mean_forward_flop_proxy": 28127140,
+      "mean_parameter_count": 128620,
+      "best_seed": 42
+    },
+    {
+      "name": "iamnn-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.3222000002861023,
+      "mean_best_val_accuracy": 0.3222000002861023,
+      "mean_forward_flop_proxy": 19995940,
+      "mean_parameter_count": 78436,
+      "best_seed": 7
+    },
+    {
+      "name": "skipnet-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.31530000269412994,
+      "mean_best_val_accuracy": 0.31530000269412994,
+      "mean_forward_flop_proxy": 18372964,
+      "mean_parameter_count": 84484,
+      "best_seed": 42
+    },
+    {
+      "name": "channel-gating-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.2895999997854233,
+      "mean_best_val_accuracy": 0.2895999997854233,
+      "mean_forward_flop_proxy": 18372964,
+      "mean_parameter_count": 84484,
+      "best_seed": 42
+    },
+    {
+      "name": "instance-wise-sparsity-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.2651999890804291,
+      "mean_best_val_accuracy": 0.2695000022649765,
+      "mean_forward_flop_proxy": 11127780,
+      "mean_parameter_count": 53828,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "instance-wise-sparsity-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.2651999890804291,
+      "mean_best_val_accuracy": 0.2695000022649765,
+      "mean_forward_flop_proxy": 11127780,
+      "mean_parameter_count": 53828,
+      "best_seed": 42
+    },
+    {
+      "name": "skipnet-cifar100",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.31530000269412994,
+      "mean_best_val_accuracy": 0.31530000269412994,
+      "mean_forward_flop_proxy": 18372964,
+      "mean_parameter_count": 84484,
+      "best_seed": 42
+    },
+    {
+      "name": "wide-cnn-cifar100-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.3358999937772751,
+      "mean_best_val_accuracy": 0.3563000112771988,
+      "mean_forward_flop_proxy": 18527236,
+      "mean_parameter_count": 106788,
+      "best_seed": 42
+    },
+    {
+      "name": "routed-resnet-largest-cifar100",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.3653999865055084,
+      "mean_best_val_accuracy": 0.3653999865055084,
+      "mean_forward_flop_proxy": 38171748,
+      "mean_parameter_count": 166532,
+      "best_seed": 7
+    }
+  ]
+}

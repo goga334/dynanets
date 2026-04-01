@@ -9,6 +9,7 @@ This document turns the current roadmap into a repo-tracked program.
 - Fidelity: approximate sandbox-faithful implementations
 - Dataset ladder: Synthetic -> MNIST -> CIFAR
 - Baselines are tracked separately from the 20-paper target
+- Static comparison families: SqueezeNet-style and CondenseNet-style compact CNNs
 
 ## Official v1 Subset
 
@@ -37,14 +38,19 @@ Included today:
 - Edge Growth
 - Han-style "Learning both Weights and Connections" approximation
 - AdaNet-style staged workflow on the Wave 1 preview track
-- Network Slimming on the synthetic-image CNN preview track
+- Network Slimming on the CNN track
+- LayerMerge on the MNIST preview track
+- SqueezeNet-style and CondenseNet-style compact CNN comparison families
 
 Active preview protocols:
 
 - [benchmarks/track_a_wave1_preview.yaml](../benchmarks/track_a_wave1_preview.yaml) for MLP-based Wave 1 methods on 10D two-spirals
 - [benchmarks/track_a_cnn_wave1_preview.yaml](../benchmarks/track_a_cnn_wave1_preview.yaml) for CNN plus Network Slimming on synthetic image patterns
-- [benchmarks/track_b_mnist_wave1_preview.yaml](../benchmarks/track_b_mnist_wave1_preview.yaml) for the MNIST-ready CNN Wave 1 preview once `torchvision` is installed
-- [benchmarks/track_b_mnist_phase7_preview.yaml](../benchmarks/track_b_mnist_phase7_preview.yaml) for the first routed-CNN routing preview on MNIST with 5 seeds
+- [benchmarks/track_a_efficient_static_preview.yaml](../benchmarks/track_a_efficient_static_preview.yaml) for efficient static-family comparisons on synthetic image patterns
+- [benchmarks/track_b_mnist_wave1_preview.yaml](../benchmarks/track_b_mnist_wave1_preview.yaml) for the MNIST-ready CNN Wave 1 preview
+- [benchmarks/track_b_mnist_phase7_preview.yaml](../benchmarks/track_b_mnist_phase7_preview.yaml) for the routed-CNN routing preview on MNIST with 5 seeds
+- [benchmarks/track_b_mnist_layermerge_preview.yaml](../benchmarks/track_b_mnist_layermerge_preview.yaml) for the LayerMerge preview on MNIST
+- [benchmarks/track_c_cifar_static_preview.yaml](../benchmarks/track_c_cifar_static_preview.yaml) for CIFAR-10 static-family comparisons once CIFAR data is available locally
 
 ## Phase Status
 
@@ -84,7 +90,8 @@ Landed in this phase so far:
 - `scheduled` workflow for staged adaptation and finetune runs
 - `adanet_rounds` workflow for AdaNet-style candidate selection rounds
 - `network_slimming` workflow for sparse-train, prune, and finetune execution
-- protocol-driven Wave 1 preview benchmarking
+- `layermerge` workflow for merge-and-finetune execution
+- protocol-driven Wave 1 and LayerMerge preview benchmarking
 
 ### Phase 5
 
@@ -94,16 +101,16 @@ Current implementation focus:
 
 - `CNNArchitectureSpec` and CNN graph export
 - fixed and batch-normalized CNN baselines
-- a runnable synthetic image benchmark for CNN smoke tests
-- a `Network Slimming` approximation on top of the CNN path
-- synthetic-image and MNIST-ready protocol manifests for CNN Wave 1 methods
-- an optional MNIST dataset adapter gated by `torchvision`
+- runnable synthetic image and MNIST-ready CNN benchmarks
+- optional CIFAR-10 and CIFAR-100 adapters gated by `torchvision`
+- compact efficient CNN comparison families for SqueezeNet-style and CondenseNet-style experiments
+- routed-ResNet family for harder routing/computation-efficiency benchmarks
 
 Next unlocks inside this phase:
 
 - broader dynamic CNN-capable methods
-- real MNIST execution in environments with `torchvision`
-- compact CIFAR-ready CNN families
+- real CIFAR execution in environments with local data or network access
+- track-C protocol hardening for the static efficient families
 
 ### Phase 6
 
@@ -115,6 +122,7 @@ Current implementation focus:
 - constraint-aware compare and benchmark artifacts
 - constraint deltas in adaptation and workflow event histories
 - groundwork for first-class pruning and compression methods beyond one-off approximations
+- LayerMerge as an explicit staged merge workflow
 
 Next unlocks inside this phase:
 
@@ -129,23 +137,32 @@ Started.
 Current implementation focus:
 
 - routed CNN execution with route-aware metadata and cost summaries
-- first routing-family workflow approximations for Dynamic Slimmable and Conditional Computation
-- MNIST protocol previews with expanded 5-seed evaluation for routing methods
+- routing-family workflow approximations for Dynamic Slimmable, Conditional Computation, Channel Gating, SkipNet, Instance-wise Sparsity, and IamNN
+- MNIST protocol previews with expanded 5-seed evaluation for routing methods and stronger gate-training objectives
 
 Next unlocks inside this phase:
 
 - richer gate modules and route objectives
 - per-sample route accounting in benchmark artifacts
-- additional routing papers such as Channel Gating and SkipNet
+- route-quality polishing for the early-exit family
+- CIFAR-100 routing-efficiency previews with Pareto-aware reporting and routed-ResNet baselines
 
 ### Phase 8
 
-Planned.
+Started.
 
-Next major unlocks:
+Current implementation focus:
 
 - official benchmark protocols for Synthetic, MNIST, and CIFAR tracks
 - stricter stadium-style reproducibility and acceptance checks
+- leaderboard regeneration from manifest-only benchmark definitions
+- protocol acceptance and leaderboard artifacts alongside summary reports
+
+Current official manifests:
+
+- [benchmarks/track_a_synthetic_official_v1.yaml](../benchmarks/track_a_synthetic_official_v1.yaml)
+- [benchmarks/track_b_mnist_official_v1.yaml](../benchmarks/track_b_mnist_official_v1.yaml)
+- [benchmarks/track_c_cifar_official_extended.yaml](../benchmarks/track_c_cifar_official_extended.yaml)
 
 ## Wave Plan
 
@@ -155,22 +172,31 @@ Stabilize the existing growth-family methods and keep them as the Synthetic seed
 
 ### Wave 1
 
-In progress.
+Implemented at the method/config level.
 
-Current landing order:
+Current landing order completed:
 
-- Han-style pruning is now in place as `weights_connections`
-- AdaNet is now in place as the first staged workflow method
-- the first CNN/block path is now in place
-- Network Slimming is now in place on the CNN path
-- Runtime Neural Pruning, MorphNet, ASFP, and PruneTrain approximations are now extending the CNN pruning track
-- the official v1 subset is code-complete at the method/config level
+- Han-style pruning as `weights_connections`
+- AdaNet as the first staged workflow method
+- the first CNN/block path
+- Network Slimming on the CNN path
+- Runtime Neural Pruning, MorphNet, ASFP, and PruneTrain on the CNN pruning track
+- the official v1 subset code-complete for Synthetic and MNIST-ready execution
 
-Wave 1 closes operationally when the official v1 subset is runnable on both Synthetic and MNIST protocol tracks in an environment with `torchvision` and CUDA-enabled PyTorch.
+Wave 1 closes operationally when the official v1 subset is run under the final Phase 8 stadium protocols.
 
 ### Wave 2
 
-Add deeper pruning/compression methods once CNN and sparsity support are ready.
+Implemented at the method/config level for the current preview scope.
+
+Included today:
+
+- Layer-wise OBS approximation
+- Runtime Neural Pruning approximation
+- MorphNet approximation
+- Asymptotic Soft Filter Pruning approximation
+- PruneTrain approximation
+- LayerMerge approximation
 
 ### Wave 3
 
@@ -180,13 +206,21 @@ Current landing order:
 
 - routed CNN execution and route-aware metadata are now in place
 - Dynamic Slimmable and Conditional Computation MNIST previews are now runnable
+- Channel Gating, SkipNet, Instance-wise Sparsity, and IamNN are all on the shared routing substrate
 - the routing benchmark preview now uses 5 seeds for a more stable view
 
 ### Wave 4
 
-Add LayerMerge and tighten protocol outputs into publication-ready benchmark artifacts.
+Started.
 
+Current landing order:
 
+- LayerMerge preview benchmark landed on MNIST
+- SqueezeNet-style and CondenseNet-style comparison families landed on the synthetic image track
+- CIFAR-10 static-family configs and protocol manifest are in place
 
+Next focus:
 
-
+- bring CIFAR-10 data online for Track C
+- tighten protocol outputs into publication-ready benchmark artifacts
+- complete Phase 8 stadium packaging

@@ -1,14 +1,35 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from dynanets.benchmark_suite import BenchmarkSuiteManifest, build_suite_summary, write_suite_markdown, write_suite_plots
+from dynanets.benchmark_suite import (
+    BenchmarkSuiteManifest,
+    build_suite_summary,
+    write_suite_latex,
+    write_suite_markdown,
+    write_suite_plots,
+)
 
 
 def _write_report(report_dir: Path, *, track: str, results: list[dict]) -> None:
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / "summary.json").write_text(json.dumps(results, indent=2), encoding="utf-8")
+    runs = []
+    for result in results:
+        for seed_index, seed_run in enumerate(result.get("seed_runs", []), start=1):
+            final_accuracy = float(result["mean_final_val_accuracy"])
+            runs.append(
+                {
+                    "name": result["name"],
+                    "metric_history": [
+                        {"accuracy": max(0.0, final_accuracy - 0.1)},
+                        {"accuracy": final_accuracy},
+                    ],
+                    "seed": seed_run.get("seed", seed_index),
+                }
+            )
+    (report_dir / "runs.json").write_text(json.dumps(runs, indent=2), encoding="utf-8")
     (report_dir / "protocol.json").write_text(
         json.dumps(
             {
@@ -149,8 +170,18 @@ def test_benchmark_suite_builds_cross_track_summary(tmp_path: Path) -> None:
     output_dir = tmp_path / "out"
     output_dir.mkdir()
     write_suite_markdown(output_dir / "summary.md", suite)
+    write_suite_latex(output_dir / "summary.tex", suite)
     write_suite_plots(output_dir, suite)
 
     assert (output_dir / "summary.md").exists()
+    assert (output_dir / "summary.tex").exists()
+    assert (output_dir / "benchmark_epoch_curves.png").exists()
+    assert (output_dir / "benchmark_final_accuracy.png").exists()
     assert (output_dir / "benchmark_leaderboards.png").exists()
     assert (output_dir / "method_coverage.png").exists()
+    assert (output_dir / "synthetic_family_epoch_curves.png").exists()
+    assert (output_dir / "synthetic_family_final_accuracy.png").exists()
+
+    latex = (output_dir / "summary.tex").read_text(encoding="utf-8")
+    assert "\\begin{table*}" in latex
+    assert "wide-cnn" in latex

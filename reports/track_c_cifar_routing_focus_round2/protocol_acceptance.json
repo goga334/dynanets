@@ -1,0 +1,25 @@
+{
+  "protocol_name": "track_c_cifar_routing_focus_round2",
+  "track": "cifar10",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 27,
+    "num_experiments": 9,
+    "num_seeds": 3,
+    "baseline_count": 2,
+    "method_count": 7,
+    "role_counts": {
+      "baseline": 2,
+      "reference": 1,
+      "method": 6
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

@@ -1,0 +1,4658 @@
+[
+  {
+    "name": "fixed-cnn-patterns",
+    "epochs": 25,
+    "final_train_loss": 2.1488523483276367,
+    "final_train_accuracy": 0.2175000011920929,
+    "final_val_accuracy": 0.17249999940395355,
+    "best_val_accuracy": 0.17249999940395355,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.305290460586548,
+        "regularized_loss": 2.305290460586548,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.3017280101776123,
+        "regularized_loss": 2.3017280101776123,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.299079179763794,
+        "regularized_loss": 2.299079179763794,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2963953018188477,
+        "regularized_loss": 2.2963953018188477,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.293720245361328,
+        "regularized_loss": 2.293720245361328,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.291184425354004,
+        "regularized_loss": 2.291184425354004,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2884268760681152,
+        "regularized_loss": 2.2884268760681152,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.28544545173645,
+        "regularized_loss": 2.28544545173645,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.282259941101074,
+        "regularized_loss": 2.282259941101074,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2787129878997803,
+        "regularized_loss": 2.2787129878997803,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.274848222732544,
+        "regularized_loss": 2.274848222732544,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2706918716430664,
+        "regularized_loss": 2.2706918716430664,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.265984058380127,
+        "regularized_loss": 2.265984058380127,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2607266902923584,
+        "regularized_loss": 2.2607266902923584,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2549009323120117,
+        "regularized_loss": 2.2549009323120117,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2482869625091553,
+        "regularized_loss": 2.2482869625091553,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2407658100128174,
+        "regularized_loss": 2.2407658100128174,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2323970794677734,
+        "regularized_loss": 2.2323970794677734,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2230870723724365,
+        "regularized_loss": 2.2230870723724365,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.213036298751831,
+        "regularized_loss": 2.213036298751831,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.202101945877075,
+        "regularized_loss": 2.202101945877075,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1900954246520996,
+        "regularized_loss": 2.1900954246520996,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1771633625030518,
+        "regularized_loss": 2.1771633625030518,
+        "accuracy": 0.1287499964237213,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1634185314178467,
+        "regularized_loss": 2.1634185314178467,
+        "accuracy": 0.2175000011920929,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1488523483276367,
+        "regularized_loss": 2.1488523483276367,
+        "accuracy": 0.2175000011920929,
+        "bn_scale_l1": 0.0
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.07499999552965164
+      },
+      {
+        "accuracy": 0.08249999582767487
+      },
+      {
+        "accuracy": 0.17249999940395355
+      },
+      {
+        "accuracy": 0.17249999940395355
+      },
+      {
+        "accuracy": 0.17249999940395355
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.2175000011920929,
+        "final_val_accuracy": 0.17249999940395355,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 25,
+      "executed_total_epochs": 25,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 7562,
+      "nonzero_parameter_count": 7562,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2061098,
+      "activation_elements": 4810
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline"
+    ]
+  },
+  {
+    "name": "fixed-cnn-patterns",
+    "epochs": 25,
+    "final_train_loss": 2.069613456726074,
+    "final_train_accuracy": 0.11249999701976776,
+    "final_val_accuracy": 0.09999999403953552,
+    "best_val_accuracy": 0.20749999582767487,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3030426502227783,
+        "regularized_loss": 2.3030426502227783,
+        "accuracy": 0.09999999403953552,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.297409772872925,
+        "regularized_loss": 2.297409772872925,
+        "accuracy": 0.09999999403953552,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.29288649559021,
+        "regularized_loss": 2.29288649559021,
+        "accuracy": 0.21249999105930328,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.288717746734619,
+        "regularized_loss": 2.288717746734619,
+        "accuracy": 0.21249999105930328,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.284170627593994,
+        "regularized_loss": 2.284170627593994,
+        "accuracy": 0.21249999105930328,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2787926197052,
+        "regularized_loss": 2.2787926197052,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2726235389709473,
+        "regularized_loss": 2.2726235389709473,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.266044855117798,
+        "regularized_loss": 2.266044855117798,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2591514587402344,
+        "regularized_loss": 2.2591514587402344,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.251650810241699,
+        "regularized_loss": 2.251650810241699,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.243525505065918,
+        "regularized_loss": 2.243525505065918,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2348122596740723,
+        "regularized_loss": 2.2348122596740723,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2253572940826416,
+        "regularized_loss": 2.2253572940826416,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2153372764587402,
+        "regularized_loss": 2.2153372764587402,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2047455310821533,
+        "regularized_loss": 2.2047455310821533,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1935625076293945,
+        "regularized_loss": 2.1935625076293945,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1816670894622803,
+        "regularized_loss": 2.1816670894622803,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.169126510620117,
+        "regularized_loss": 2.169126510620117,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1558616161346436,
+        "regularized_loss": 2.1558616161346436,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1419806480407715,
+        "regularized_loss": 2.1419806480407715,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.127995491027832,
+        "regularized_loss": 2.127995491027832,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1137397289276123,
+        "regularized_loss": 2.1137397289276123,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.0991363525390625,
+        "regularized_loss": 2.0991363525390625,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.0842690467834473,
+        "regularized_loss": 2.0842690467834473,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.069613456726074,
+        "regularized_loss": 2.069613456726074,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.10749999433755875
+      },
+      {
+        "accuracy": 0.20749999582767487
+      },
+      {
+        "accuracy": 0.20749999582767487
+      },
+      {
+        "accuracy": 0.20749999582767487
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      },
+      {
+        "accuracy": 0.09999999403953552
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.11249999701976776,
+        "final_val_accuracy": 0.09999999403953552,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 25,
+      "executed_total_epochs": 25,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 7562,
+      "nonzero_parameter_count": 7562,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2061098,
+      "activation_elements": 4810
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline"
+    ]
+  },
+  {
+    "name": "fixed-cnn-patterns",
+    "epochs": 25,
+    "final_train_loss": 2.0695462226867676,
+    "final_train_accuracy": 0.11437499523162842,
+    "final_val_accuracy": 0.19749999046325684,
+    "best_val_accuracy": 0.19749999046325684,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.306783676147461,
+        "regularized_loss": 2.306783676147461,
+        "accuracy": 0.10374999791383743,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2993381023406982,
+        "regularized_loss": 2.2993381023406982,
+        "accuracy": 0.22499999403953552,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2923455238342285,
+        "regularized_loss": 2.2923455238342285,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2853288650512695,
+        "regularized_loss": 2.2853288650512695,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2789297103881836,
+        "regularized_loss": 2.2789297103881836,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2720963954925537,
+        "regularized_loss": 2.2720963954925537,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2651922702789307,
+        "regularized_loss": 2.2651922702789307,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2578577995300293,
+        "regularized_loss": 2.2578577995300293,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2500624656677246,
+        "regularized_loss": 2.2500624656677246,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.241541862487793,
+        "regularized_loss": 2.241541862487793,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.232189893722534,
+        "regularized_loss": 2.232189893722534,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.222264289855957,
+        "regularized_loss": 2.222264289855957,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2119104862213135,
+        "regularized_loss": 2.2119104862213135,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.2010338306427,
+        "regularized_loss": 2.2010338306427,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.190185785293579,
+        "regularized_loss": 2.190185785293579,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1794490814208984,
+        "regularized_loss": 2.1794490814208984,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.168177604675293,
+        "regularized_loss": 2.168177604675293,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1566574573516846,
+        "regularized_loss": 2.1566574573516846,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.145035743713379,
+        "regularized_loss": 2.145035743713379,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.1330788135528564,
+        "regularized_loss": 2.1330788135528564,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.121094226837158,
+        "regularized_loss": 2.121094226837158,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.108811140060425,
+        "regularized_loss": 2.108811140060425,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.096045732498169,
+        "regularized_loss": 2.096045732498169,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.083004951477051,
+        "regularized_loss": 2.083004951477051,
+        "accuracy": 0.11249999701976776,
+        "bn_scale_l1": 0.0
+      },
+      {
+        "loss": 2.0695462226867676,
+        "regularized_loss": 2.0695462226867676,
+        "accuracy": 0.11437499523162842,
+        "bn_scale_l1": 0.0
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.1899999976158142
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.10249999910593033
+      },
+      {
+        "accuracy": 0.19749999046325684
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 25,
+        "epoch_start": 1,
+        "epoch_end": 25,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.11437499523162842,
+        "final_val_accuracy": 0.19749999046325684,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 25,
+      "executed_total_epochs": 25,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 16,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 32,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        64
+      ],
+      "activation": "relu",
+      "use_batch_norm": false,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "fixed-cnn-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (16, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 16,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (32, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (64)",
+          "op": "linear",
+          "params": {
+            "out_features": 64,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 7562,
+      "nonzero_parameter_count": 7562,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 2061098,
+      "activation_elements": 4810
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 99,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline"
+    ]
+  },
+  {
+    "name": "wide-cnn-patterns-bn",
+    "epochs": 30,
+    "final_train_loss": 1.4647732973098755,
+    "final_train_accuracy": 0.7412499785423279,
+    "final_val_accuracy": 0.79749995470047,
+    "best_val_accuracy": 0.79749995470047,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3491051197052,
+        "regularized_loss": 2.3491051197052,
+        "accuracy": 0.10374999791383743,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.295994520187378,
+        "regularized_loss": 2.295994520187378,
+        "accuracy": 0.10374999791383743,
+        "bn_scale_l1": 71.98999786376953
+      },
+      {
+        "loss": 2.2517893314361572,
+        "regularized_loss": 2.2517893314361572,
+        "accuracy": 0.10374999791383743,
+        "bn_scale_l1": 71.98599243164062
+      },
+      {
+        "loss": 2.21370267868042,
+        "regularized_loss": 2.21370267868042,
+        "accuracy": 0.10499999672174454,
+        "bn_scale_l1": 71.98971557617188
+      },
+      {
+        "loss": 2.1797378063201904,
+        "regularized_loss": 2.1797378063201904,
+        "accuracy": 0.17374999821186066,
+        "bn_scale_l1": 71.99888610839844
+      },
+      {
+        "loss": 2.1481313705444336,
+        "regularized_loss": 2.1481313705444336,
+        "accuracy": 0.21812500059604645,
+        "bn_scale_l1": 72.01361846923828
+      },
+      {
+        "loss": 2.1190011501312256,
+        "regularized_loss": 2.1190011501312256,
+        "accuracy": 0.3137499988079071,
+        "bn_scale_l1": 72.03338623046875
+      },
+      {
+        "loss": 2.0914058685302734,
+        "regularized_loss": 2.0914058685302734,
+        "accuracy": 0.32124999165534973,
+        "bn_scale_l1": 72.05764770507812
+      },
+      {
+        "loss": 2.0649404525756836,
+        "regularized_loss": 2.0649404525756836,
+        "accuracy": 0.32124999165534973,
+        "bn_scale_l1": 72.0859146118164
+      },
+      {
+        "loss": 2.0392632484436035,
+        "regularized_loss": 2.0392632484436035,
+        "accuracy": 0.4206250011920929,
+        "bn_scale_l1": 72.11727905273438
+      },
+      {
+        "loss": 2.0124688148498535,
+        "regularized_loss": 2.0124688148498535,
+        "accuracy": 0.5193749666213989,
+        "bn_scale_l1": 72.151611328125
+      },
+      {
+        "loss": 1.9850174188613892,
+        "regularized_loss": 1.9850174188613892,
+        "accuracy": 0.5293750166893005,
+        "bn_scale_l1": 72.18875122070312
+      },
+      {
+        "loss": 1.9575204849243164,
+        "regularized_loss": 1.9575204849243164,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.2286148071289
+      },
+      {
+        "loss": 1.9299224615097046,
+        "regularized_loss": 1.9299224615097046,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.27082061767578
+      },
+      {
+        "loss": 1.901780366897583,
+        "regularized_loss": 1.901780366897583,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.31520080566406
+      },
+      {
+        "loss": 1.873510479927063,
+        "regularized_loss": 1.873510479927063,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.3616943359375
+      },
+      {
+        "loss": 1.8449890613555908,
+        "regularized_loss": 1.8449890613555908,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.41017150878906
+      },
+      {
+        "loss": 1.8157587051391602,
+        "regularized_loss": 1.8157587051391602,
+        "accuracy": 0.6112499833106995,
+        "bn_scale_l1": 72.4603042602539
+      },
+      {
+        "loss": 1.7865056991577148,
+        "regularized_loss": 1.7865056991577148,
+        "accuracy": 0.6256250143051147,
+        "bn_scale_l1": 72.51190948486328
+      },
+      {
+        "loss": 1.7575346231460571,
+        "regularized_loss": 1.7575346231460571,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.5645751953125
+      },
+      {
+        "loss": 1.7283135652542114,
+        "regularized_loss": 1.7283135652542114,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.61792755126953
+      },
+      {
+        "loss": 1.6988492012023926,
+        "regularized_loss": 1.6988492012023926,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.67181396484375
+      },
+      {
+        "loss": 1.6698189973831177,
+        "regularized_loss": 1.6698189973831177,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.72616577148438
+      },
+      {
+        "loss": 1.6406418085098267,
+        "regularized_loss": 1.6406418085098267,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.7807388305664
+      },
+      {
+        "loss": 1.6112648248672485,
+        "regularized_loss": 1.6112648248672485,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.83558654785156
+      },
+      {
+        "loss": 1.581793189048767,
+        "regularized_loss": 1.581793189048767,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.89080810546875
+      },
+      {
+        "loss": 1.5524135828018188,
+        "regularized_loss": 1.5524135828018188,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.94636535644531
+      },
+      {
+        "loss": 1.5232641696929932,
+        "regularized_loss": 1.5232641696929932,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 73.0020751953125
+      },
+      {
+        "loss": 1.4940365552902222,
+        "regularized_loss": 1.4940365552902222,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 73.05785369873047
+      },
+      {
+        "loss": 1.4647732973098755,
+        "regularized_loss": 1.4647732973098755,
+        "accuracy": 0.7412499785423279,
+        "bn_scale_l1": 73.11383056640625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.0925000011920929
+      },
+      {
+        "accuracy": 0.16749998927116394
+      },
+      {
+        "accuracy": 0.27250000834465027
+      },
+      {
+        "accuracy": 0.27250000834465027
+      },
+      {
+        "accuracy": 0.27250000834465027
+      },
+      {
+        "accuracy": 0.27250000834465027
+      },
+      {
+        "accuracy": 0.3700000047683716
+      },
+      {
+        "accuracy": 0.3700000047683716
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.47749999165534973
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6150000095367432
+      },
+      {
+        "accuracy": 0.79749995470047
+      },
+      {
+        "accuracy": 0.79749995470047
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7412499785423279,
+        "final_val_accuracy": 0.79749995470047,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-patterns-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline",
+      "wide"
+    ]
+  },
+  {
+    "name": "wide-cnn-patterns-bn",
+    "epochs": 30,
+    "final_train_loss": 1.4725005626678467,
+    "final_train_accuracy": 0.7024999856948853,
+    "final_val_accuracy": 0.3725000023841858,
+    "best_val_accuracy": 0.39249998331069946,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.31721568107605,
+        "regularized_loss": 2.31721568107605,
+        "accuracy": 0.08562500029802322,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.264115571975708,
+        "regularized_loss": 2.264115571975708,
+        "accuracy": 0.2787500023841858,
+        "bn_scale_l1": 71.99800109863281
+      },
+      {
+        "loss": 2.2189066410064697,
+        "regularized_loss": 2.2189066410064697,
+        "accuracy": 0.2787500023841858,
+        "bn_scale_l1": 71.99665069580078
+      },
+      {
+        "loss": 2.179123640060425,
+        "regularized_loss": 2.179123640060425,
+        "accuracy": 0.3968749940395355,
+        "bn_scale_l1": 72.00043487548828
+      },
+      {
+        "loss": 2.1447877883911133,
+        "regularized_loss": 2.1447877883911133,
+        "accuracy": 0.4975000023841858,
+        "bn_scale_l1": 72.00802612304688
+      },
+      {
+        "loss": 2.113292694091797,
+        "regularized_loss": 2.113292694091797,
+        "accuracy": 0.4975000023841858,
+        "bn_scale_l1": 72.01889038085938
+      },
+      {
+        "loss": 2.0848653316497803,
+        "regularized_loss": 2.0848653316497803,
+        "accuracy": 0.5037499666213989,
+        "bn_scale_l1": 72.0343017578125
+      },
+      {
+        "loss": 2.0591299533843994,
+        "regularized_loss": 2.0591299533843994,
+        "accuracy": 0.45124998688697815,
+        "bn_scale_l1": 72.05418395996094
+      },
+      {
+        "loss": 2.034168004989624,
+        "regularized_loss": 2.034168004989624,
+        "accuracy": 0.43062499165534973,
+        "bn_scale_l1": 72.077880859375
+      },
+      {
+        "loss": 2.008174419403076,
+        "regularized_loss": 2.008174419403076,
+        "accuracy": 0.5118749737739563,
+        "bn_scale_l1": 72.10444641113281
+      },
+      {
+        "loss": 1.9821971654891968,
+        "regularized_loss": 1.9821971654891968,
+        "accuracy": 0.4431249797344208,
+        "bn_scale_l1": 72.13347625732422
+      },
+      {
+        "loss": 1.9570437669754028,
+        "regularized_loss": 1.9570437669754028,
+        "accuracy": 0.4131249785423279,
+        "bn_scale_l1": 72.16500854492188
+      },
+      {
+        "loss": 1.9318325519561768,
+        "regularized_loss": 1.9318325519561768,
+        "accuracy": 0.4118749797344208,
+        "bn_scale_l1": 72.19882202148438
+      },
+      {
+        "loss": 1.9071658849716187,
+        "regularized_loss": 1.9071658849716187,
+        "accuracy": 0.4118749797344208,
+        "bn_scale_l1": 72.23471069335938
+      },
+      {
+        "loss": 1.88273024559021,
+        "regularized_loss": 1.88273024559021,
+        "accuracy": 0.4587499797344208,
+        "bn_scale_l1": 72.27281188964844
+      },
+      {
+        "loss": 1.8575282096862793,
+        "regularized_loss": 1.8575282096862793,
+        "accuracy": 0.512499988079071,
+        "bn_scale_l1": 72.31266021728516
+      },
+      {
+        "loss": 1.8318983316421509,
+        "regularized_loss": 1.8318983316421509,
+        "accuracy": 0.5256249904632568,
+        "bn_scale_l1": 72.3541259765625
+      },
+      {
+        "loss": 1.8060243129730225,
+        "regularized_loss": 1.8060243129730225,
+        "accuracy": 0.5999999642372131,
+        "bn_scale_l1": 72.39730072021484
+      },
+      {
+        "loss": 1.7800171375274658,
+        "regularized_loss": 1.7800171375274658,
+        "accuracy": 0.6150000095367432,
+        "bn_scale_l1": 72.44196319580078
+      },
+      {
+        "loss": 1.7537301778793335,
+        "regularized_loss": 1.7537301778793335,
+        "accuracy": 0.6150000095367432,
+        "bn_scale_l1": 72.4881591796875
+      },
+      {
+        "loss": 1.7270714044570923,
+        "regularized_loss": 1.7270714044570923,
+        "accuracy": 0.6175000071525574,
+        "bn_scale_l1": 72.53578186035156
+      },
+      {
+        "loss": 1.6996104717254639,
+        "regularized_loss": 1.6996104717254639,
+        "accuracy": 0.7168749570846558,
+        "bn_scale_l1": 72.584716796875
+      },
+      {
+        "loss": 1.6716479063034058,
+        "regularized_loss": 1.6716479063034058,
+        "accuracy": 0.7168749570846558,
+        "bn_scale_l1": 72.63489532470703
+      },
+      {
+        "loss": 1.643455147743225,
+        "regularized_loss": 1.643455147743225,
+        "accuracy": 0.7168749570846558,
+        "bn_scale_l1": 72.6861801147461
+      },
+      {
+        "loss": 1.6152969598770142,
+        "regularized_loss": 1.6152969598770142,
+        "accuracy": 0.715624988079071,
+        "bn_scale_l1": 72.7385482788086
+      },
+      {
+        "loss": 1.5869505405426025,
+        "regularized_loss": 1.5869505405426025,
+        "accuracy": 0.7137500047683716,
+        "bn_scale_l1": 72.79205322265625
+      },
+      {
+        "loss": 1.5582712888717651,
+        "regularized_loss": 1.5582712888717651,
+        "accuracy": 0.7099999785423279,
+        "bn_scale_l1": 72.84671783447266
+      },
+      {
+        "loss": 1.529841661453247,
+        "regularized_loss": 1.529841661453247,
+        "accuracy": 0.706250011920929,
+        "bn_scale_l1": 72.90223693847656
+      },
+      {
+        "loss": 1.5011813640594482,
+        "regularized_loss": 1.5011813640594482,
+        "accuracy": 0.7043749690055847,
+        "bn_scale_l1": 72.9580307006836
+      },
+      {
+        "loss": 1.4725005626678467,
+        "regularized_loss": 1.4725005626678467,
+        "accuracy": 0.7024999856948853,
+        "bn_scale_l1": 73.01364135742188
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.07999999821186066
+      },
+      {
+        "accuracy": 0.0
+      },
+      {
+        "accuracy": 0.08749999850988388
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.19999998807907104
+      },
+      {
+        "accuracy": 0.19999998807907104
+      },
+      {
+        "accuracy": 0.19999998807907104
+      },
+      {
+        "accuracy": 0.19999998807907104
+      },
+      {
+        "accuracy": 0.1875
+      },
+      {
+        "accuracy": 0.1875
+      },
+      {
+        "accuracy": 0.29249998927116394
+      },
+      {
+        "accuracy": 0.29249998927116394
+      },
+      {
+        "accuracy": 0.375
+      },
+      {
+        "accuracy": 0.39249998331069946
+      },
+      {
+        "accuracy": 0.39249998331069946
+      },
+      {
+        "accuracy": 0.3125
+      },
+      {
+        "accuracy": 0.2874999940395355
+      },
+      {
+        "accuracy": 0.2874999940395355
+      },
+      {
+        "accuracy": 0.2874999940395355
+      },
+      {
+        "accuracy": 0.2874999940395355
+      },
+      {
+        "accuracy": 0.2874999940395355
+      },
+      {
+        "accuracy": 0.35749998688697815
+      },
+      {
+        "accuracy": 0.3725000023841858
+      },
+      {
+        "accuracy": 0.3725000023841858
+      },
+      {
+        "accuracy": 0.3725000023841858
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7024999856948853,
+        "final_val_accuracy": 0.3725000023841858,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-patterns-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline",
+      "wide"
+    ]
+  },
+  {
+    "name": "wide-cnn-patterns-bn",
+    "epochs": 30,
+    "final_train_loss": 1.4735324382781982,
+    "final_train_accuracy": 0.7199999690055847,
+    "final_val_accuracy": 0.6074999570846558,
+    "best_val_accuracy": 0.6074999570846558,
+    "adaptations_applied": 0,
+    "final_hidden_dim": 0,
+    "train_history": [
+      {
+        "loss": 2.3258514404296875,
+        "regularized_loss": 2.3258514404296875,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 72.0
+      },
+      {
+        "loss": 2.2715721130371094,
+        "regularized_loss": 2.2715721130371094,
+        "accuracy": 0.12124999612569809,
+        "bn_scale_l1": 71.99400329589844
+      },
+      {
+        "loss": 2.2260630130767822,
+        "regularized_loss": 2.2260630130767822,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 71.99461364746094
+      },
+      {
+        "loss": 2.18440318107605,
+        "regularized_loss": 2.18440318107605,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 71.99800109863281
+      },
+      {
+        "loss": 2.1476569175720215,
+        "regularized_loss": 2.1476569175720215,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 72.00601196289062
+      },
+      {
+        "loss": 2.1144962310791016,
+        "regularized_loss": 2.1144962310791016,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 72.01690673828125
+      },
+      {
+        "loss": 2.082519769668579,
+        "regularized_loss": 2.082519769668579,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 72.03031158447266
+      },
+      {
+        "loss": 2.0512619018554688,
+        "regularized_loss": 2.0512619018554688,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 72.04627990722656
+      },
+      {
+        "loss": 2.0202786922454834,
+        "regularized_loss": 2.0202786922454834,
+        "accuracy": 0.23375000059604645,
+        "bn_scale_l1": 72.06568908691406
+      },
+      {
+        "loss": 1.9901217222213745,
+        "regularized_loss": 1.9901217222213745,
+        "accuracy": 0.29874998331069946,
+        "bn_scale_l1": 72.08840942382812
+      },
+      {
+        "loss": 1.9614776372909546,
+        "regularized_loss": 1.9614776372909546,
+        "accuracy": 0.328125,
+        "bn_scale_l1": 72.11410522460938
+      },
+      {
+        "loss": 1.9337173700332642,
+        "regularized_loss": 1.9337173700332642,
+        "accuracy": 0.328125,
+        "bn_scale_l1": 72.1419448852539
+      },
+      {
+        "loss": 1.907106876373291,
+        "regularized_loss": 1.907106876373291,
+        "accuracy": 0.328125,
+        "bn_scale_l1": 72.17188262939453
+      },
+      {
+        "loss": 1.8808518648147583,
+        "regularized_loss": 1.8808518648147583,
+        "accuracy": 0.4274999797344208,
+        "bn_scale_l1": 72.20382690429688
+      },
+      {
+        "loss": 1.8552838563919067,
+        "regularized_loss": 1.8552838563919067,
+        "accuracy": 0.4274999797344208,
+        "bn_scale_l1": 72.23753356933594
+      },
+      {
+        "loss": 1.8301610946655273,
+        "regularized_loss": 1.8301610946655273,
+        "accuracy": 0.4274999797344208,
+        "bn_scale_l1": 72.27313995361328
+      },
+      {
+        "loss": 1.8050155639648438,
+        "regularized_loss": 1.8050155639648438,
+        "accuracy": 0.4274999797344208,
+        "bn_scale_l1": 72.31025695800781
+      },
+      {
+        "loss": 1.7792723178863525,
+        "regularized_loss": 1.7792723178863525,
+        "accuracy": 0.4287499785423279,
+        "bn_scale_l1": 72.34899139404297
+      },
+      {
+        "loss": 1.7535653114318848,
+        "regularized_loss": 1.7535653114318848,
+        "accuracy": 0.5193749666213989,
+        "bn_scale_l1": 72.38887786865234
+      },
+      {
+        "loss": 1.7279165983200073,
+        "regularized_loss": 1.7279165983200073,
+        "accuracy": 0.6299999952316284,
+        "bn_scale_l1": 72.43009185791016
+      },
+      {
+        "loss": 1.7020128965377808,
+        "regularized_loss": 1.7020128965377808,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.47278594970703
+      },
+      {
+        "loss": 1.6761888265609741,
+        "regularized_loss": 1.6761888265609741,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.51691436767578
+      },
+      {
+        "loss": 1.6503322124481201,
+        "regularized_loss": 1.6503322124481201,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.56233978271484
+      },
+      {
+        "loss": 1.6250344514846802,
+        "regularized_loss": 1.6250344514846802,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.60881042480469
+      },
+      {
+        "loss": 1.599858045578003,
+        "regularized_loss": 1.599858045578003,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.65625
+      },
+      {
+        "loss": 1.5748482942581177,
+        "regularized_loss": 1.5748482942581177,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.70452880859375
+      },
+      {
+        "loss": 1.5495758056640625,
+        "regularized_loss": 1.5495758056640625,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.75360107421875
+      },
+      {
+        "loss": 1.5240333080291748,
+        "regularized_loss": 1.5240333080291748,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.80335998535156
+      },
+      {
+        "loss": 1.4989269971847534,
+        "regularized_loss": 1.4989269971847534,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.853759765625
+      },
+      {
+        "loss": 1.4735324382781982,
+        "regularized_loss": 1.4735324382781982,
+        "accuracy": 0.7199999690055847,
+        "bn_scale_l1": 72.90486145019531
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.0949999988079071
+      },
+      {
+        "accuracy": 0.17999999225139618
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.19749999046325684
+      },
+      {
+        "accuracy": 0.38749998807907104
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.41999998688697815
+      },
+      {
+        "accuracy": 0.42499998211860657
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.4975000023841858
+      },
+      {
+        "accuracy": 0.5774999856948853
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6074999570846558
+      },
+      {
+        "accuracy": 0.6074999570846558
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.7199999690055847,
+        "final_val_accuracy": 0.6074999570846558,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 30,
+      "executed_total_epochs": 30,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "out_channels": 24,
+          "kernel_size": 3,
+          "pool": "max"
+        },
+        {
+          "out_channels": 48,
+          "kernel_size": 3,
+          "pool": "max"
+        }
+      ],
+      "classifier_hidden_dims": [
+        96
+      ],
+      "activation": "relu",
+      "use_batch_norm": true,
+      "metadata": {}
+    },
+    "architecture_graph": {
+      "name": "wide-cnn-patterns-bn",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_1",
+          "label": "Conv 1 (24, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "conv_2",
+          "label": "Conv 2 (48, k=3)",
+          "op": "conv2d",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "global_pool",
+          "label": "GlobalPool",
+          "op": "adaptiveavgpool2d",
+          "params": {
+            "output_size": [
+              1,
+              1
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "fc_hidden_1",
+          "label": "FC 1 (96)",
+          "op": "linear",
+          "params": {
+            "out_features": 96,
+            "activation": "relu"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "conv_1",
+          "metadata": {}
+        },
+        {
+          "source": "conv_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "conv_2",
+          "metadata": {}
+        },
+        {
+          "source": "conv_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "global_pool",
+          "metadata": {}
+        },
+        {
+          "source": "global_pool",
+          "target": "fc_hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "fc_hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "cnn"
+      }
+    },
+    "constraints": {
+      "architecture_family": "cnn",
+      "parameter_count": 16474,
+      "nonzero_parameter_count": 16474,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 4505914,
+      "activation_elements": 7210
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 99,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "baseline",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "baseline",
+      "wide"
+    ]
+  },
+  {
+    "name": "squeezenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.21614251285791397,
+    "final_train_accuracy": 0.90478515625,
+    "final_val_accuracy": 0.908203125,
+    "best_val_accuracy": 0.908203125,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 2.3043649792671204,
+        "accuracy": 0.099609375
+      },
+      {
+        "loss": 2.2989357262849808,
+        "accuracy": 0.14404296875
+      },
+      {
+        "loss": 2.225113943219185,
+        "accuracy": 0.1943359375
+      },
+      {
+        "loss": 1.8408199325203896,
+        "accuracy": 0.23388671875
+      },
+      {
+        "loss": 1.179825458675623,
+        "accuracy": 0.6171875
+      },
+      {
+        "loss": 0.45407130289822817,
+        "accuracy": 0.88037109375
+      },
+      {
+        "loss": 0.24803347885608673,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.21614251285791397,
+        "accuracy": 0.90478515625
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.095703125
+      },
+      {
+        "accuracy": 0.083984375
+      },
+      {
+        "accuracy": 0.169921875
+      },
+      {
+        "accuracy": 0.349609375
+      },
+      {
+        "accuracy": 0.751953125
+      },
+      {
+        "accuracy": 0.884765625
+      },
+      {
+        "accuracy": 0.884765625
+      },
+      {
+        "accuracy": 0.908203125
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.90478515625,
+        "final_val_accuracy": 0.908203125,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "squeezenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": 16,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": 24,
+          "groups": 1,
+          "pool": null
+        },
+        {
+          "kind": "fire",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": 32,
+          "groups": 1,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "squeezenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "squeezenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Fire 2 (sq=16, out=32)",
+          "op": "fire",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": 16,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Fire 3 (sq=24, out=48)",
+          "op": "fire",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": 24,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Fire 4 (sq=32, out=64)",
+          "op": "fire",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": 32,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "squeezenet_style",
+        "paper_family": "squeezenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "squeezenet_style",
+      "parameter_count": 22354,
+      "nonzero_parameter_count": 22354,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 1292032,
+      "activation_elements": 36466
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "squeezenet"
+    ]
+  },
+  {
+    "name": "squeezenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.17967132572084665,
+    "final_train_accuracy": 0.90673828125,
+    "final_val_accuracy": 0.88671875,
+    "best_val_accuracy": 0.88671875,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 2.3057705461978912,
+        "accuracy": 0.0986328125
+      },
+      {
+        "loss": 2.2967286705970764,
+        "accuracy": 0.10595703125
+      },
+      {
+        "loss": 2.19297131896019,
+        "accuracy": 0.201171875
+      },
+      {
+        "loss": 1.7417179271578789,
+        "accuracy": 0.22900390625
+      },
+      {
+        "loss": 1.1129133887588978,
+        "accuracy": 0.7529296875
+      },
+      {
+        "loss": 0.41339975595474243,
+        "accuracy": 0.85693359375
+      },
+      {
+        "loss": 0.23778359033167362,
+        "accuracy": 0.90478515625
+      },
+      {
+        "loss": 0.17967132572084665,
+        "accuracy": 0.90673828125
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.072265625
+      },
+      {
+        "accuracy": 0.072265625
+      },
+      {
+        "accuracy": 0.2734375
+      },
+      {
+        "accuracy": 0.498046875
+      },
+      {
+        "accuracy": 0.8359375
+      },
+      {
+        "accuracy": 0.859375
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.90673828125,
+        "final_val_accuracy": 0.88671875,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "squeezenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": 16,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": 24,
+          "groups": 1,
+          "pool": null
+        },
+        {
+          "kind": "fire",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": 32,
+          "groups": 1,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "squeezenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "squeezenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Fire 2 (sq=16, out=32)",
+          "op": "fire",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": 16,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Fire 3 (sq=24, out=48)",
+          "op": "fire",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": 24,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Fire 4 (sq=32, out=64)",
+          "op": "fire",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": 32,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "squeezenet_style",
+        "paper_family": "squeezenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "squeezenet_style",
+      "parameter_count": 22354,
+      "nonzero_parameter_count": 22354,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 1292032,
+      "activation_elements": 36466
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "squeezenet"
+    ]
+  },
+  {
+    "name": "squeezenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.2523289676755667,
+    "final_train_accuracy": 0.8935546875,
+    "final_val_accuracy": 0.896484375,
+    "best_val_accuracy": 0.91796875,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 2.303523302078247,
+        "accuracy": 0.09814453125
+      },
+      {
+        "loss": 2.293486922979355,
+        "accuracy": 0.12353515625
+      },
+      {
+        "loss": 2.1951520293951035,
+        "accuracy": 0.11376953125
+      },
+      {
+        "loss": 1.9386326745152473,
+        "accuracy": 0.2177734375
+      },
+      {
+        "loss": 1.4201458469033241,
+        "accuracy": 0.48095703125
+      },
+      {
+        "loss": 0.7120162323117256,
+        "accuracy": 0.83349609375
+      },
+      {
+        "loss": 0.28909153025597334,
+        "accuracy": 0.89111328125
+      },
+      {
+        "loss": 0.2523289676755667,
+        "accuracy": 0.8935546875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.08203125
+      },
+      {
+        "accuracy": 0.12109375
+      },
+      {
+        "accuracy": 0.197265625
+      },
+      {
+        "accuracy": 0.236328125
+      },
+      {
+        "accuracy": 0.66796875
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.91796875
+      },
+      {
+        "accuracy": 0.896484375
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.8935546875,
+        "final_val_accuracy": 0.896484375,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "squeezenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": 16,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "fire",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": 24,
+          "groups": 1,
+          "pool": null
+        },
+        {
+          "kind": "fire",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": 32,
+          "groups": 1,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "squeezenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "squeezenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Fire 2 (sq=16, out=32)",
+          "op": "fire",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": 16,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_2",
+          "label": "MaxPool 2",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Fire 3 (sq=24, out=48)",
+          "op": "fire",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": 24,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Fire 4 (sq=32, out=64)",
+          "op": "fire",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": 32,
+            "groups": 1,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "pool_2",
+          "metadata": {}
+        },
+        {
+          "source": "pool_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "squeezenet_style",
+        "paper_family": "squeezenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "squeezenet_style",
+      "parameter_count": 22354,
+      "nonzero_parameter_count": 22354,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 1292032,
+      "activation_elements": 36466
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 99,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "squeezenet"
+    ]
+  },
+  {
+    "name": "condensenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.2673514485359192,
+    "final_train_accuracy": 0.91552734375,
+    "final_val_accuracy": 0.908203125,
+    "best_val_accuracy": 0.908203125,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.8946017175912857,
+        "accuracy": 0.5751953125
+      },
+      {
+        "loss": 1.3562932759523392,
+        "accuracy": 0.916015625
+      },
+      {
+        "loss": 1.0095444098114967,
+        "accuracy": 0.91552734375
+      },
+      {
+        "loss": 0.7402975931763649,
+        "accuracy": 0.91552734375
+      },
+      {
+        "loss": 0.5448346883058548,
+        "accuracy": 0.916015625
+      },
+      {
+        "loss": 0.4095051232725382,
+        "accuracy": 0.91552734375
+      },
+      {
+        "loss": 0.3241144772619009,
+        "accuracy": 0.91552734375
+      },
+      {
+        "loss": 0.2673514485359192,
+        "accuracy": 0.91552734375
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.0859375
+      },
+      {
+        "accuracy": 0.0859375
+      },
+      {
+        "accuracy": 0.908203125
+      },
+      {
+        "accuracy": 0.908203125
+      },
+      {
+        "accuracy": 0.908203125
+      },
+      {
+        "accuracy": 0.908203125
+      },
+      {
+        "accuracy": 0.908203125
+      },
+      {
+        "accuracy": 0.908203125
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.91552734375,
+        "final_val_accuracy": 0.908203125,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "condensenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 2,
+          "pool": null
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "condensenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "condensenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Grouped 2 (out=32, g=2)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 2,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Grouped 3 (out=48, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Grouped 4 (out=64, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "condensenet_style",
+        "paper_family": "condensenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "condensenet_style",
+      "parameter_count": 22034,
+      "nonzero_parameter_count": 22034,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 5457920,
+      "activation_elements": 37642
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 7,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "condensenet"
+    ]
+  },
+  {
+    "name": "condensenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.26833174005150795,
+    "final_train_accuracy": 0.9091796875,
+    "final_val_accuracy": 0.88671875,
+    "best_val_accuracy": 0.88671875,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.9400458112359047,
+        "accuracy": 0.54345703125
+      },
+      {
+        "loss": 1.4195906221866608,
+        "accuracy": 0.88134765625
+      },
+      {
+        "loss": 1.0613718293607235,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.7666263207793236,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.552795672789216,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.41052775643765926,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.3215917367488146,
+        "accuracy": 0.9091796875
+      },
+      {
+        "loss": 0.26833174005150795,
+        "accuracy": 0.9091796875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.123046875
+      },
+      {
+        "accuracy": 0.123046875
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      },
+      {
+        "accuracy": 0.88671875
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.9091796875,
+        "final_val_accuracy": 0.88671875,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "condensenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 2,
+          "pool": null
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "condensenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "condensenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Grouped 2 (out=32, g=2)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 2,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Grouped 3 (out=48, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Grouped 4 (out=64, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "condensenet_style",
+        "paper_family": "condensenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "condensenet_style",
+      "parameter_count": 22034,
+      "nonzero_parameter_count": 22034,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 5457920,
+      "activation_elements": 37642
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 42,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "condensenet"
+    ]
+  },
+  {
+    "name": "condensenet-style-patterns",
+    "epochs": 8,
+    "final_train_loss": 0.27262937743216753,
+    "final_train_accuracy": 0.9013671875,
+    "final_val_accuracy": 0.896484375,
+    "best_val_accuracy": 0.896484375,
+    "adaptations_applied": 0,
+    "final_hidden_dim": null,
+    "train_history": [
+      {
+        "loss": 1.884470395743847,
+        "accuracy": 0.51171875
+      },
+      {
+        "loss": 1.3337824121117592,
+        "accuracy": 0.8310546875
+      },
+      {
+        "loss": 0.9880949705839157,
+        "accuracy": 0.9013671875
+      },
+      {
+        "loss": 0.7240772061049938,
+        "accuracy": 0.9013671875
+      },
+      {
+        "loss": 0.5351137798279524,
+        "accuracy": 0.9013671875
+      },
+      {
+        "loss": 0.40136318281292915,
+        "accuracy": 0.90087890625
+      },
+      {
+        "loss": 0.32224347814917564,
+        "accuracy": 0.9013671875
+      },
+      {
+        "loss": 0.27262937743216753,
+        "accuracy": 0.9013671875
+      }
+    ],
+    "metric_history": [
+      {
+        "accuracy": 0.115234375
+      },
+      {
+        "accuracy": 0.58984375
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.896484375
+      },
+      {
+        "accuracy": 0.896484375
+      }
+    ],
+    "adaptation_history": [],
+    "stage_history": [
+      {
+        "name": "train",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.9013671875,
+        "final_val_accuracy": 0.896484375,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "workflow_metadata": {
+      "configured_total_epochs": 8,
+      "executed_total_epochs": 8,
+      "stage_count": 1
+    },
+    "architecture_spec": {
+      "family": "condensenet_style",
+      "input_channels": 1,
+      "input_size": [
+        28,
+        28
+      ],
+      "num_classes": 10,
+      "blocks": [
+        {
+          "kind": "conv",
+          "out_channels": 24,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 1,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 32,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 2,
+          "pool": null
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 48,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": "max"
+        },
+        {
+          "kind": "grouped",
+          "out_channels": 64,
+          "kernel_size": 3,
+          "squeeze_channels": null,
+          "groups": 4,
+          "pool": null
+        }
+      ],
+      "metadata": {
+        "paper_family": "condensenet"
+      }
+    },
+    "architecture_graph": {
+      "name": "condensenet-style-patterns",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (1x28x28)",
+          "op": "input",
+          "params": {
+            "channels": 1,
+            "size": [
+              28,
+              28
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_1",
+          "label": "Conv 1 (out=24, k=3)",
+          "op": "conv",
+          "params": {
+            "out_channels": 24,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 1,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_1",
+          "label": "MaxPool 1",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_2",
+          "label": "Grouped 2 (out=32, g=2)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 32,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 2,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_3",
+          "label": "Grouped 3 (out=48, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 48,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": "max"
+          },
+          "metadata": {}
+        },
+        {
+          "id": "pool_3",
+          "label": "MaxPool 3",
+          "op": "maxpool2d",
+          "params": {
+            "stride": 2
+          },
+          "metadata": {}
+        },
+        {
+          "id": "block_4",
+          "label": "Grouped 4 (out=64, g=4)",
+          "op": "grouped",
+          "params": {
+            "out_channels": 64,
+            "kernel_size": 3,
+            "squeeze_channels": null,
+            "groups": 4,
+            "pool": null
+          },
+          "metadata": {}
+        },
+        {
+          "id": "classifier",
+          "label": "Classifier (10)",
+          "op": "linear",
+          "params": {
+            "out_features": 10
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "block_1",
+          "metadata": {}
+        },
+        {
+          "source": "block_1",
+          "target": "pool_1",
+          "metadata": {}
+        },
+        {
+          "source": "pool_1",
+          "target": "block_2",
+          "metadata": {}
+        },
+        {
+          "source": "block_2",
+          "target": "block_3",
+          "metadata": {}
+        },
+        {
+          "source": "block_3",
+          "target": "pool_3",
+          "metadata": {}
+        },
+        {
+          "source": "pool_3",
+          "target": "block_4",
+          "metadata": {}
+        },
+        {
+          "source": "block_4",
+          "target": "classifier",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "condensenet_style",
+        "paper_family": "condensenet"
+      }
+    },
+    "constraints": {
+      "architecture_family": "condensenet_style",
+      "parameter_count": 22034,
+      "nonzero_parameter_count": 22034,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 5457920,
+      "activation_elements": 37642
+    },
+    "metadata": {
+      "method_type": "baseline",
+      "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+      "runtime_environment": {
+        "requested_device": "auto",
+        "resolved_device": "cuda",
+        "torch_version": "2.11.0+cu128",
+        "torch_cuda_version": "12.8",
+        "cuda_available": true,
+        "cuda_device_count": 1,
+        "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+      },
+      "route_summary": null,
+      "route_trace": null
+    },
+    "benchmark_seed": 99,
+    "protocol_name": "track_a_efficient_static_preview",
+    "protocol_track": "synthetic_patterns",
+    "protocol_role": "reference",
+    "protocol_tags": [
+      "track_a",
+      "patterns",
+      "cnn",
+      "efficient",
+      "condensenet"
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+name: track_d_routing_efficiency_cifar100_preview
+track: cifar100
+description: >-
+  Routing-efficiency preview on CIFAR-100 with routed ResNet backbones,
+  longer schedules, and cost-aware comparison artifacts.
+seeds: [7, 42]
+required_metrics: [accuracy]
+budgets:
+  dataset: cifar100
+  epochs: 12
+  train_size: 40000
+  validation_size: 5000
+  test_size: 5000
+experiments:
+  - config: ../experiments/examples/wide_cnn_cifar100_bn.yaml
+    role: baseline
+    tags: [track_d, cifar100, baseline, cnn, static]
+  - config: ../experiments/examples/routed_resnet_largest_cifar100.yaml
+    role: baseline
+    tags: [track_d, cifar100, baseline, routed_resnet, static]
+  - config: ../experiments/examples/dynamic_slimmable_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, dynamic_width]
+  - config: ../experiments/examples/channel_gating_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, channel_gating]
+  - config: ../experiments/examples/instance_wise_sparsity_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, instance_sparsity]
+  - config: ../experiments/examples/conditional_computation_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, conditional]
+  - config: ../experiments/examples/skipnet_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, skipnet]
+  - config: ../experiments/examples/iamnn_cifar100.yaml
+    role: method
+    tags: [track_d, cifar100, routing, iamnn]
+metadata:
+  roadmap_phase: phase_8
+  focus: routing_efficiency
+  requires: [torchvision, cuda]

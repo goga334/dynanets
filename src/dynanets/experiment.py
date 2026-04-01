@@ -21,7 +21,7 @@ from dynanets.adaptation.runtime_neural_pruning import RuntimeNeuralPruningAdapt
 from dynanets.adaptation.weights_connections import WeightsConnectionsAdaptation
 from dynanets.config import ExperimentConfig
 from dynanets.datasets.base import DatasetFactory
-from dynanets.datasets.images import MNISTDatasetFactory, SyntheticImagePatternsDatasetFactory
+from dynanets.datasets.images import CIFAR10DatasetFactory, CIFAR100DatasetFactory, MNISTDatasetFactory, SyntheticImagePatternsDatasetFactory
 from dynanets.datasets.synthetic import (
     ConcentricCirclesDatasetFactory,
     GaussianBlobsDatasetFactory,
@@ -30,9 +30,11 @@ from dynanets.datasets.synthetic import (
 from dynanets.metrics.base import Metric
 from dynanets.metrics.classification import AccuracyMetric
 from dynanets.models.base import DynamicNeuralModel, NeuralModel
+from dynanets.models.efficient_cnn import TorchCondenseStyleCNNClassifier, TorchSqueezeStyleCNNClassifier
 from dynanets.models.torch_cnn import TorchCNNClassifier
 from dynanets.models.torch_mlp import DynamicMLPClassifier, TorchMLPClassifier
 from dynanets.models.torch_routed_cnn import TorchRoutedCNNClassifier
+from dynanets.models.torch_routed_resnet import TorchRoutedResNetClassifier
 from dynanets.registry import Registry
 from dynanets.runtime import prepare_factory_kwargs
 from dynanets.search.base import SearchMethod
@@ -45,6 +47,7 @@ from dynanets.workflows import (
     DynamicSlimmableWorkflow,
     IamNNWorkflow,
     InstanceWiseSparsityWorkflow,
+    LayerMergeWorkflow,
     MethodWorkflow,
     MorphNetWorkflow,
     NetworkSlimmingWorkflow,
@@ -197,7 +200,14 @@ class ExperimentBuilder:
                 raise ExperimentAssemblyError(
                     f"{config.workflow.name} workflow requires use_batch_norm=true on the CNN model"
                 )
-        if config.workflow is not None and config.workflow.name in {"dynamic_slimmable", "conditional_computation", "channel_gating", "skipnet", "instance_wise_sparsity", "iamnn"}:
+        if config.workflow is not None and config.workflow.name in {
+            "dynamic_slimmable",
+            "conditional_computation",
+            "channel_gating",
+            "skipnet",
+            "instance_wise_sparsity",
+            "iamnn",
+        }:
             if adaptation is not None:
                 raise ExperimentAssemblyError(
                     f"{config.workflow.name} workflow manages routing internally and cannot be combined with adaptation"
@@ -206,14 +216,35 @@ class ExperimentBuilder:
                 raise ExperimentAssemblyError(
                     f"{config.workflow.name} workflow cannot be combined with search in the same experiment"
                 )
-            if not isinstance(model, TorchRoutedCNNClassifier):
+            if not isinstance(model, (TorchRoutedCNNClassifier, TorchRoutedResNetClassifier)):
                 raise ExperimentAssemblyError(
-                    f"{config.workflow.name} workflow currently requires the torch_routed_cnn_classifier model"
+                    f"{config.workflow.name} workflow currently requires a routed CNN or routed ResNet model"
                 )
-            required_policy = "dynamic_width" if config.workflow.name in {"dynamic_slimmable", "channel_gating", "instance_wise_sparsity"} else "early_exit"
+            required_policy = (
+                "dynamic_width"
+                if config.workflow.name in {"dynamic_slimmable", "channel_gating", "instance_wise_sparsity"}
+                else "early_exit"
+            )
             if model.routing_policy != required_policy:
                 raise ExperimentAssemblyError(
                     f"{config.workflow.name} workflow requires routing_policy='{required_policy}'"
+                )
+        if config.workflow is not None and config.workflow.name == "layermerge":
+            if adaptation is not None:
+                raise ExperimentAssemblyError(
+                    "layermerge workflow manages merging internally and cannot be combined with adaptation"
+                )
+            if search is not None:
+                raise ExperimentAssemblyError(
+                    "layermerge workflow cannot be combined with search in the same experiment"
+                )
+            if not isinstance(model, TorchCNNClassifier):
+                raise ExperimentAssemblyError(
+                    "layermerge workflow currently requires the torch_cnn_classifier model"
+                )
+            if len(model.spec.classifier_hidden_dims) < 2:
+                raise ExperimentAssemblyError(
+                    "layermerge workflow requires at least two classifier hidden layers"
                 )
 
 
@@ -231,6 +262,7 @@ def _default_workflow_registry() -> Registry[Any]:
     workflows.register("skipnet", SkipNetWorkflow)
     workflows.register("instance_wise_sparsity", InstanceWiseSparsityWorkflow)
     workflows.register("iamnn", IamNNWorkflow)
+    workflows.register("layermerge", LayerMergeWorkflow)
     return workflows
 
 
@@ -241,12 +273,17 @@ def default_registries() -> dict[str, Registry[Any]]:
     datasets.register("concentric_circles", ConcentricCirclesDatasetFactory)
     datasets.register("synthetic_image_patterns", SyntheticImagePatternsDatasetFactory)
     datasets.register("mnist", MNISTDatasetFactory)
+    datasets.register("cifar10", CIFAR10DatasetFactory)
+    datasets.register("cifar100", CIFAR100DatasetFactory)
 
     models: Registry[Any] = Registry()
     models.register("torch_mlp_classifier", TorchMLPClassifier)
     models.register("dynamic_mlp_classifier", DynamicMLPClassifier)
     models.register("torch_cnn_classifier", TorchCNNClassifier)
     models.register("torch_routed_cnn_classifier", TorchRoutedCNNClassifier)
+    models.register("torch_routed_resnet_classifier", TorchRoutedResNetClassifier)
+    models.register("squeezenet_style_cnn_classifier", TorchSqueezeStyleCNNClassifier)
+    models.register("condensenet_style_cnn_classifier", TorchCondenseStyleCNNClassifier)
 
     metrics: Registry[Any] = Registry()
     metrics.register("accuracy", AccuracyMetric)
@@ -281,16 +318,3 @@ def default_registries() -> dict[str, Registry[Any]]:
         "searches": searches,
         "workflows": _default_workflow_registry(),
     }
-
-
-
-
-
-
-
-
-
-
-
-
-

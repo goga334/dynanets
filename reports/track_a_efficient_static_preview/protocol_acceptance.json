@@ -1,0 +1,24 @@
+{
+  "protocol_name": "track_a_efficient_static_preview",
+  "track": "synthetic_patterns",
+  "tier": "preview",
+  "passed": true,
+  "summary": {
+    "num_runs": 12,
+    "num_experiments": 4,
+    "num_seeds": 3,
+    "baseline_count": 4,
+    "method_count": 0,
+    "role_counts": {
+      "baseline": 2,
+      "reference": 2
+    }
+  },
+  "checks": [
+    {
+      "name": "required_metrics",
+      "passed": true,
+      "detail": "missing=none"
+    }
+  ]
+}

@@ -16,23 +16,36 @@ model:
     input_channels: 1
     input_size: [28, 28]
     num_classes: 10
-    conv_channels: [24, 48]
+    conv_channels: [20, 40, 64]
     activation: relu
     lr: 0.001
     width_multipliers: [1.0, 0.75, 0.5]
     eval_width_multipliers: [1.0]
     routing_policy: early_exit
+    routing_family: skip_cascade
     gate_mode: learned
-    confidence_threshold: 0.58
-    min_confidence_threshold: 0.30
+    confidence_threshold: 0.60
+    min_confidence_threshold: 0.28
     gate_metric: margin
-    gate_temperature: 0.20
-    gate_budget_weight: 0.06
-    target_cost_ratio: 0.82
+    gate_temperature: 0.16
+    gate_metric_blend: 0.30
+    eval_min_threshold: 0.16
+    eval_threshold_offset: -0.20
+    gate_budget_weight: 0.07
+    target_cost_ratio: 0.74
+    min_target_cost_ratio: 0.58
     distillation_weight: 0.30
-    gate_supervision_weight: 0.55
+    gate_supervision_weight: 0.65
     teacher_confidence_floor: 0.45
-    early_exit_loss_weight: 1.00
+    student_confidence_floor: 0.25
+    gate_target_strategy: hybrid
+    target_accept_rate: 0.42
+    min_target_accept_rate: 0.26
+    gate_accept_rate_weight: 0.12
+    early_exit_loss_weight: 1.40
+    early_exit_focus_floor: 0.20
+    early_exit_focus_weight: 1.25
+    route_trace_limit: 8
 
 metrics:
   - name: accuracy

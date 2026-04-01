@@ -1,0 +1,68 @@
+name: iamnn-cifar100
+
+dataset:
+  name: cifar100
+  params:
+    data_dir: data
+    validation_size: 5000
+    train_size: 40000
+    test_size: 5000
+    download: true
+    seed: 42
+
+model:
+  name: torch_routed_resnet_classifier
+  params:
+    input_channels: 3
+    input_size: [32, 32]
+    num_classes: 100
+    stage_channels: [36, 72, 72]
+    blocks_per_stage: [1, 1, 1]
+    activation: relu
+    lr: 0.001
+    width_multipliers: [1.0, 0.875, 0.75]
+    eval_width_multipliers: [1.0]
+    routing_policy: early_exit
+    routing_family: iterative_refine
+    gate_mode: learned
+    confidence_threshold: 0.52
+    min_confidence_threshold: 0.26
+    gate_metric: margin
+    gate_temperature: 0.16
+    gate_metric_blend: 0.32
+    eval_min_threshold: 0.18
+    eval_threshold_offset: -0.04
+    gate_budget_weight: 0.03
+    target_cost_ratio: 0.90
+    min_target_cost_ratio: 0.74
+    distillation_weight: 0.40
+    gate_supervision_weight: 0.78
+    teacher_confidence_floor: 0.30
+    student_confidence_floor: 0.20
+    gate_target_strategy: hybrid
+    target_accept_rate: 0.18
+    min_target_accept_rate: 0.10
+    gate_accept_rate_weight: 0.09
+    early_exit_loss_weight: 1.65
+    early_exit_focus_floor: 0.16
+    early_exit_focus_weight: 1.55
+    route_trace_limit: 8
+
+metrics:
+  - name: accuracy
+    params: {}
+
+workflow:
+  name: iamnn
+  params:
+    warmup_epochs: 4
+    consolidation_epochs: 3
+
+trainer:
+  epochs: 12
+  batch_size: 128
+  eval_batch_size: 256
+
+runtime:
+  seed: 42
+  device: auto

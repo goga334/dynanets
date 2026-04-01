@@ -2,9 +2,9 @@ name: implemented_methods_suite
 title: Implemented Methods Benchmark Suite
 description: >-
   Cross-track benchmark suite for the dynanets methods implemented so far.
-  This keeps the synthetic growth-family, staged MLP, MNIST pruning, and MNIST routing
-  families visible in one place without pretending that they are all directly comparable
-  on a single leaderboard.
+  This keeps the synthetic growth-family, staged MLP, pruning/compression,
+  routing, LayerMerge, and efficient static-family tracks visible in one place
+  without pretending that they are all directly comparable on a single leaderboard.
 entries:
   - label: synthetic-growth-family
     track: synthetic_10d
@@ -23,7 +23,26 @@ entries:
       MNIST pruning/compression benchmark covering structured, sparse, progressive, and workflow-based methods.
   - label: mnist-routing
     track: mnist
-    report_dir: ../reports/track_b_mnist_phase7_preview_round5
+    report_dir: ../reports/track_b_mnist_phase7_preview_round9
     description: >-
       MNIST routing benchmark covering dynamic slimmable execution, conditional computation, Channel Gating, and SkipNet.
-
+  - label: mnist-layermerge
+    track: mnist
+    report_dir: ../reports/track_b_mnist_layermerge_preview
+    description: >-
+      MNIST preview for the LayerMerge approximation against a deeper fixed CNN baseline.
+  - label: synthetic-efficient-static
+    track: synthetic_patterns
+    report_dir: ../reports/track_a_efficient_static_preview
+    description: >-
+      Synthetic image benchmark for efficient static comparison families inspired by SqueezeNet and CondenseNet.
+  - label: cifar-full-preview
+    track: cifar10
+    report_dir: ../reports/track_c_cifar_full_preview
+    description: >-
+      CIFAR-10 full preview benchmark for the implemented image-capable methods, including static, pruning, LayerMerge, and routing families.
+  - label: cifar100-routing-efficiency
+    track: cifar100
+    report_dir: ../reports/track_d_routing_efficiency_cifar100_preview
+    description: >-
+      CIFAR-100 routing-efficiency preview with routed-ResNet-family baselines and cost-aware comparisons for dynamic-width and early-exit methods.

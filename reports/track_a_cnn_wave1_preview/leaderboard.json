@@ -1,0 +1,90 @@
+{
+  "protocol_name": "track_a_cnn_wave1_preview",
+  "track": "synthetic",
+  "tier": "preview",
+  "top_overall": {
+    "name": "wide-cnn-patterns-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.5565000057220459,
+    "mean_best_val_accuracy": 0.5605000078678131,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 7
+  },
+  "top_method": {
+    "name": "network-slimming-patterns",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.5534999966621399,
+    "mean_best_val_accuracy": 0.5534999966621399,
+    "mean_forward_flop_proxy": 2352616,
+    "mean_parameter_count": 9838,
+    "best_seed": 7
+  },
+  "top_baseline": {
+    "name": "wide-cnn-patterns-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.5565000057220459,
+    "mean_best_val_accuracy": 0.5605000078678131,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 7
+  },
+  "accuracy_ranking": [
+    {
+      "name": "wide-cnn-patterns-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.5565000057220459,
+      "mean_best_val_accuracy": 0.5605000078678131,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    },
+    {
+      "name": "network-slimming-patterns",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5534999966621399,
+      "mean_best_val_accuracy": 0.5534999966621399,
+      "mean_forward_flop_proxy": 2352616,
+      "mean_parameter_count": 9838,
+      "best_seed": 7
+    },
+    {
+      "name": "fixed-cnn-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.15250000208616257,
+      "mean_best_val_accuracy": 0.21249999701976777,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 23
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "fixed-cnn-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.15250000208616257,
+      "mean_best_val_accuracy": 0.21249999701976777,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 23
+    },
+    {
+      "name": "network-slimming-patterns",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5534999966621399,
+      "mean_best_val_accuracy": 0.5534999966621399,
+      "mean_forward_flop_proxy": 2352616,
+      "mean_parameter_count": 9838,
+      "best_seed": 7
+    },
+    {
+      "name": "wide-cnn-patterns-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.5565000057220459,
+      "mean_best_val_accuracy": 0.5605000078678131,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    }
+  ]
+}

@@ -153,3 +153,29 @@ def test_mnist_factory_requires_torchvision_when_missing() -> None:
 
     with pytest.raises(RuntimeError):
         MNISTDatasetFactory(download=False).build()
+
+
+def test_torch_cnn_classifier_cosine_schedule_updates_learning_rate() -> None:
+    dataset = SyntheticImagePatternsDatasetFactory(train_size=32, validation_size=16, test_size=16, seed=7).build()
+    model = TorchCNNClassifier(
+        input_channels=1,
+        input_size=[28, 28],
+        num_classes=10,
+        conv_channels=[8, 16],
+        classifier_hidden_dims=[32],
+        lr=0.05,
+        optimizer_name="sgd",
+        momentum=0.9,
+        weight_decay=0.001,
+        lr_schedule="cosine",
+        min_lr_ratio=0.2,
+        device="cpu",
+    )
+
+    model.training_step({"inputs": dataset.train.inputs, "targets": dataset.train.targets, "epoch": 0, "total_epochs": 10})
+    initial_lr = model.optimizer.param_groups[0]["lr"]
+    model.training_step({"inputs": dataset.train.inputs, "targets": dataset.train.targets, "epoch": 9, "total_epochs": 10})
+    final_lr = model.optimizer.param_groups[0]["lr"]
+
+    assert initial_lr > final_lr
+    assert final_lr >= (0.05 * 0.2)

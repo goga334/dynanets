@@ -1,0 +1,99 @@
+{
+  "protocol_name": "track_a_cnn_phase6_preview",
+  "track": "synthetic",
+  "tier": "preview",
+  "top_overall": {
+    "name": "wide-cnn-patterns-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.51583331823349,
+    "mean_best_val_accuracy": 0.5224999785423279,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 7
+  },
+  "top_method": {
+    "name": "network-slimming-patterns",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.5091666579246521,
+    "mean_best_val_accuracy": 0.5091666579246521,
+    "mean_forward_flop_proxy": 2352616,
+    "mean_parameter_count": 9838,
+    "best_seed": 42
+  },
+  "top_baseline": {
+    "name": "wide-cnn-patterns-bn",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.51583331823349,
+    "mean_best_val_accuracy": 0.5224999785423279,
+    "mean_forward_flop_proxy": 4505914,
+    "mean_parameter_count": 16474,
+    "best_seed": 7
+  },
+  "accuracy_ranking": [
+    {
+      "name": "wide-cnn-patterns-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.51583331823349,
+      "mean_best_val_accuracy": 0.5224999785423279,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    },
+    {
+      "name": "network-slimming-patterns",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5091666579246521,
+      "mean_best_val_accuracy": 0.5091666579246521,
+      "mean_forward_flop_proxy": 2352616,
+      "mean_parameter_count": 9838,
+      "best_seed": 42
+    },
+    {
+      "name": "channel-pruning-patterns",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.4833333194255829,
+      "mean_best_val_accuracy": 0.48999998966852826,
+      "mean_forward_flop_proxy": 1194741,
+      "mean_parameter_count": 5971,
+      "best_seed": 42
+    },
+    {
+      "name": "fixed-cnn-patterns",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.12166666487852733,
+      "mean_best_val_accuracy": 0.1899999976158142,
+      "mean_forward_flop_proxy": 2061098,
+      "mean_parameter_count": 7562,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "channel-pruning-patterns",
+      "method_type": "dynamic",
+      "mean_final_val_accuracy": 0.4833333194255829,
+      "mean_best_val_accuracy": 0.48999998966852826,
+      "mean_forward_flop_proxy": 1194741,
+      "mean_parameter_count": 5971,
+      "best_seed": 42
+    },
+    {
+      "name": "network-slimming-patterns",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.5091666579246521,
+      "mean_best_val_accuracy": 0.5091666579246521,
+      "mean_forward_flop_proxy": 2352616,
+      "mean_parameter_count": 9838,
+      "best_seed": 42
+    },
+    {
+      "name": "wide-cnn-patterns-bn",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.51583331823349,
+      "mean_best_val_accuracy": 0.5224999785423279,
+      "mean_forward_flop_proxy": 4505914,
+      "mean_parameter_count": 16474,
+      "best_seed": 7
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+name: wide-cnn-cifar10-bn
+dataset:
+  name: cifar10
+  params:
+    data_dir: data
+    validation_size: 5000
+    download: true
+    seed: 42
+    normalize: true
+    train_augmentation: cifar_standard
+    train_size: 20000
+    test_size: 5000
+model:
+  name: torch_cnn_classifier
+  params:
+    input_channels: 3
+    input_size:
+    - 32
+    - 32
+    num_classes: 10
+    conv_channels:
+    - 32
+    - 64
+    - 96
+    classifier_hidden_dims:
+    - 160
+    activation: relu
+    use_batch_norm: true
+    lr: 0.04
+    optimizer_name: sgd
+    momentum: 0.9
+    weight_decay: 0.0005
+    lr_schedule: cosine
+    min_lr_ratio: 0.05
+    label_smoothing: 0.05
+metrics:
+- name: accuracy
+  params: {}
+trainer:
+  epochs: 12
+  batch_size: 128
+  eval_batch_size: 256
+runtime:
+  seed: 42
+  device: auto

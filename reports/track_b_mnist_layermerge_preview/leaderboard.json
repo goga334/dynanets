@@ -1,0 +1,63 @@
+{
+  "protocol_name": "track_b_mnist_layermerge_preview",
+  "track": "mnist",
+  "tier": "preview",
+  "top_overall": {
+    "name": "layermerge-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8046000003814697,
+    "mean_best_val_accuracy": 0.8046000003814697,
+    "mean_forward_flop_proxy": 4502170,
+    "mean_parameter_count": 14586,
+    "best_seed": 42
+  },
+  "top_method": {
+    "name": "layermerge-mnist",
+    "method_type": "workflow",
+    "mean_final_val_accuracy": 0.8046000003814697,
+    "mean_best_val_accuracy": 0.8046000003814697,
+    "mean_forward_flop_proxy": 4502170,
+    "mean_parameter_count": 14586,
+    "best_seed": 42
+  },
+  "top_baseline": {
+    "name": "deep-cnn-mnist",
+    "method_type": "baseline",
+    "mean_final_val_accuracy": 0.752700001001358,
+    "mean_best_val_accuracy": 0.7926999926567078,
+    "mean_forward_flop_proxy": 4524826,
+    "mean_parameter_count": 25978,
+    "best_seed": 42
+  },
+  "accuracy_ranking": [
+    {
+      "name": "layermerge-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8046000003814697,
+      "mean_best_val_accuracy": 0.8046000003814697,
+      "mean_forward_flop_proxy": 4502170,
+      "mean_parameter_count": 14586,
+      "best_seed": 42
+    },
+    {
+      "name": "deep-cnn-mnist",
+      "method_type": "baseline",
+      "mean_final_val_accuracy": 0.752700001001358,
+      "mean_best_val_accuracy": 0.7926999926567078,
+      "mean_forward_flop_proxy": 4524826,
+      "mean_parameter_count": 25978,
+      "best_seed": 42
+    }
+  ],
+  "accuracy_flop_pareto_frontier": [
+    {
+      "name": "layermerge-mnist",
+      "method_type": "workflow",
+      "mean_final_val_accuracy": 0.8046000003814697,
+      "mean_best_val_accuracy": 0.8046000003814697,
+      "mean_forward_flop_proxy": 4502170,
+      "mean_parameter_count": 14586,
+      "best_seed": 42
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+name: dynamic-slimmable-cifar10
+dataset:
+  name: cifar10
+  params:
+    data_dir: data
+    validation_size: 5000
+    download: true
+    seed: 42
+    normalize: true
+    train_augmentation: cifar_standard
+    train_size: 20000
+    test_size: 5000
+model:
+  name: torch_routed_resnet_classifier
+  params:
+    input_channels: 3
+    input_size:
+    - 32
+    - 32
+    num_classes: 10
+    activation: relu
+    lr: 0.03
+    width_multipliers:
+    - 1.0
+    - 0.875
+    - 0.75
+    eval_width_multipliers:
+    - 0.75
+    - 0.875
+    - 1.0
+    routing_policy: dynamic_width
+    routing_family: slimmable_pyramid
+    gate_mode: learned
+    confidence_threshold: 0.58
+    min_confidence_threshold: 0.22
+    gate_metric: margin
+    gate_temperature: 0.14
+    gate_metric_blend: 0.2
+    gate_budget_weight: 0.03
+    target_cost_ratio: 0.9
+    min_target_cost_ratio: 0.82
+    distillation_weight: 0.5
+    gate_supervision_weight: 0.65
+    teacher_confidence_floor: 0.36
+    student_confidence_floor: 0.2
+    gate_target_strategy: hybrid
+    target_accept_rate: 0.4
+    min_target_accept_rate: 0.24
+    gate_accept_rate_weight: 0.05
+    route_trace_limit: 8
+    stage_channels:
+    - 56
+    - 112
+    - 160
+    blocks_per_stage:
+    - 1
+    - 1
+    - 1
+    optimizer_name: sgd
+    momentum: 0.9
+    weight_decay: 0.0005
+    lr_schedule: cosine
+    min_lr_ratio: 0.05
+    label_smoothing: 0.05
+metrics:
+- name: accuracy
+  params: {}
+workflow:
+  name: dynamic_slimmable
+  params:
+    warmup_epochs: 4
+trainer:
+  epochs: 12
+  batch_size: 128
+  eval_batch_size: 256
+runtime:
+  seed: 42
+  device: auto

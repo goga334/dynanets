@@ -1,0 +1,72 @@
+{
+  "name": "track_a_efficient_static_preview",
+  "track": "synthetic_patterns",
+  "description": "Synthetic image preview benchmark for efficient static comparison families, including SqueezeNet-style and CondenseNet-style compact CNNs.",
+  "seeds": [
+    7,
+    42,
+    99
+  ],
+  "required_metrics": [
+    "accuracy"
+  ],
+  "experiments": [
+    {
+      "config": "../experiments/examples/fixed_cnn_patterns.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "patterns",
+        "cnn",
+        "baseline"
+      ]
+    },
+    {
+      "config": "../experiments/examples/wide_cnn_patterns_bn.yaml",
+      "role": "baseline",
+      "tags": [
+        "track_a",
+        "patterns",
+        "cnn",
+        "baseline",
+        "wide"
+      ]
+    },
+    {
+      "config": "../experiments/examples/squeezenet_style_patterns.yaml",
+      "role": "reference",
+      "tags": [
+        "track_a",
+        "patterns",
+        "cnn",
+        "efficient",
+        "squeezenet"
+      ]
+    },
+    {
+      "config": "../experiments/examples/condensenet_style_patterns.yaml",
+      "role": "reference",
+      "tags": [
+        "track_a",
+        "patterns",
+        "cnn",
+        "efficient",
+        "condensenet"
+      ]
+    }
+  ],
+  "budgets": {
+    "dataset": "synthetic_image_patterns",
+    "epochs": 8,
+    "train_size": 2048,
+    "validation_size": 512,
+    "test_size": 512
+  },
+  "metadata": {
+    "roadmap_wave": "wave_4",
+    "roadmap_phase": "phase_5",
+    "requires": [
+      "cuda"
+    ]
+  }
+}

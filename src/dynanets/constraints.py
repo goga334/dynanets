@@ -181,6 +181,9 @@ def _normalize_spec(
     if {"input_dim", "output_dim", "hidden_dims"}.issubset(architecture_spec):
         return MLPArchitectureSpec.from_dict(architecture_spec)
     if {"input_channels", "input_size", "num_classes", "blocks"}.issubset(architecture_spec):
+        blocks = architecture_spec.get("blocks", [])
+        if blocks and isinstance(blocks[0], dict) and "kind" in blocks[0]:
+            return None
         return CNNArchitectureSpec.from_dict(architecture_spec)
     return None
 

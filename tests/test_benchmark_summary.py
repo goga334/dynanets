@@ -36,6 +36,7 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
                 "activation_elements": 12,
             },
             "stage_history": [{"name": "adapt", "epochs": 2, "epoch_start": 1, "epoch_end": 2, "adaptation_enabled": True, "final_val_accuracy": 0.62}],
+            "metric_history": [{"accuracy": 0.55}, {"accuracy": 0.62}],
             "metadata": {
                 "method_type": "dynamic",
                 "notes": "demo; device=cpu; requested_device=auto; cuda_available=False",
@@ -72,6 +73,7 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
                 "activation_elements": 14,
             },
             "stage_history": [{"name": "adapt", "epochs": 2, "epoch_start": 1, "epoch_end": 2, "adaptation_enabled": True, "final_val_accuracy": 0.74}],
+            "metric_history": [{"accuracy": 0.66}, {"accuracy": 0.74}],
             "metadata": {
                 "method_type": "dynamic",
                 "notes": "demo; device=cpu; requested_device=auto; cuda_available=False",
@@ -95,15 +97,23 @@ def test_aggregate_benchmark_runs_computes_mean_std_and_representation(tmp_path:
     assert abs(item["mean_weight_sparsity"] - 0.26535) < 1e-9
 
     write_benchmark_plots(tmp_path, aggregate)
+    assert (tmp_path / "mean_validation_accuracy_by_epoch.png").exists()
     assert (tmp_path / "mean_final_val_accuracy.png").exists()
     assert (tmp_path / "per_seed_final_val_accuracy.png").exists()
+    assert (tmp_path / "mean_parameter_count.png").exists()
+    assert (tmp_path / "mean_forward_flop_proxy.png").exists()
+    assert (tmp_path / "accuracy_vs_flop_proxy.png").exists()
 
     output = tmp_path / "summary.md"
     write_aggregate_markdown(output, aggregate, [7, 11])
     text = output.read_text(encoding="utf-8")
 
     assert "Seeds: 7, 11" in text
+    assert "Mean validation accuracy by epoch" in text
     assert "Mean final validation accuracy" in text
+    assert "Mean parameter count" in text
+    assert "Mean FLOP proxy" in text
+    assert "Accuracy vs FLOP proxy" in text
     assert "Constraint Summary" in text
     assert "Experiment Notes" in text
     assert "Representative Stage Histories" in text

@@ -1,0 +1,1803 @@
+[
+  {
+    "name": "edge-growth-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=edge_growth; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6282666563987732,
+    "std_final_val_accuracy": 0.01731076438654429,
+    "mean_best_val_accuracy": 0.6495999813079834,
+    "std_best_val_accuracy": 0.030350824269265494,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 14,
+    "mean_parameter_count": 326,
+    "mean_nonzero_parameter_count": 326,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 626,
+    "mean_activation_elements": 26,
+    "best_seed": 99,
+    "best_seed_final_val_accuracy": 0.6213333010673523,
+    "best_seed_best_val_accuracy": 0.687999963760376,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.4874666631221771,
+      0.49786666631698606,
+      0.4991999864578247,
+      0.5181333243846893,
+      0.5309333324432373,
+      0.5506666541099549,
+      0.5624000072479248,
+      0.5618666648864746,
+      0.5770666480064393,
+      0.5911999940872192,
+      0.6058666586875916,
+      0.5271999955177307,
+      0.5336000084877014,
+      0.5421333312988281,
+      0.5472000002861023,
+      0.5538666486740113,
+      0.5642666697502137,
+      0.5647999882698059,
+      0.5717333197593689,
+      0.58586665391922,
+      0.5954666495323181,
+      0.5978666543960571,
+      0.5946666598320007,
+      0.5965333342552185,
+      0.6055999994277954,
+      0.6165333271026612,
+      0.6191999912261963,
+      0.620800006389618,
+      0.6282666563987732
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        14,
+        10
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "edge-growth-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (14)",
+          "op": "linear",
+          "params": {
+            "features": 14,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_2",
+          "label": "Hidden 2 (10)",
+          "op": "linear",
+          "params": {
+            "features": 10,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 326,
+      "nonzero_parameter_count": 326,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 626,
+      "activation_elements": 26
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.621999979019165,
+        "final_val_accuracy": 0.6213333010673523,
+        "adaptations_applied": 3,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.656000018119812,
+        "best_val_accuracy": 0.6813333034515381,
+        "adaptations_applied": 3,
+        "parameter_count": 326,
+        "nonzero_parameter_count": 326,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6146666407585144,
+        "best_val_accuracy": 0.6293333172798157,
+        "adaptations_applied": 3,
+        "parameter_count": 326,
+        "nonzero_parameter_count": 326,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.6399999856948853,
+        "best_val_accuracy": 0.6399999856948853,
+        "adaptations_applied": 3,
+        "parameter_count": 326,
+        "nonzero_parameter_count": 326,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.609333336353302,
+        "best_val_accuracy": 0.609333336353302,
+        "adaptations_applied": 3,
+        "parameter_count": 326,
+        "nonzero_parameter_count": 326,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6213333010673523,
+        "best_val_accuracy": 0.687999963760376,
+        "adaptations_applied": 3,
+        "parameter_count": 326,
+        "nonzero_parameter_count": 326,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "adanet-spirals10",
+    "method_type": "workflow",
+    "notes": "workflow=adanet_rounds; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6226666569709778,
+    "std_final_val_accuracy": 0.05050500070637613,
+    "mean_best_val_accuracy": 0.6663999915122986,
+    "std_best_val_accuracy": 0.019013910216075392,
+    "mean_adaptations_applied": 3,
+    "mean_final_hidden_dim": 16.4,
+    "mean_parameter_count": 420.4,
+    "mean_nonzero_parameter_count": 420.4,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 808.4,
+    "mean_activation_elements": 32.4,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6986666321754456,
+    "best_seed_best_val_accuracy": 0.6986666321754456,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.4874666631221771,
+      0.49786666631698606,
+      0.4991999864578247,
+      0.5154666602611542,
+      0.5226666629314423,
+      0.538400000333786,
+      0.5479999959468842,
+      0.5613333284854889,
+      0.5616000056266784,
+      0.5626666665077209,
+      0.5607999920845032,
+      0.5759999990463257,
+      0.576800012588501,
+      0.5991999983787537,
+      0.606933319568634,
+      0.6167999863624573,
+      0.6290666580200195,
+      0.5695999920368194,
+      0.5845333099365234,
+      0.5959999918937683,
+      0.6037333488464356,
+      0.6093333125114441,
+      0.6050666570663452,
+      0.6285333156585693,
+      0.6250666618347168,
+      0.625599992275238,
+      0.6349333167076111,
+      0.6261333227157593,
+      0.6226666569709778
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18,
+        10
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "adanet-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_2",
+          "label": "Hidden 2 (10)",
+          "op": "linear",
+          "params": {
+            "features": 10,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 410,
+      "nonzero_parameter_count": 410,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 790,
+      "activation_elements": 30
+    },
+    "representative_stage_history": [
+      {
+        "name": "adanet_warmup",
+        "epochs": 6,
+        "epoch_start": 1,
+        "epoch_end": 6,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5462856888771057,
+        "final_val_accuracy": 0.6146666407585144,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "warmup"
+        }
+      },
+      {
+        "name": "adanet_round_1",
+        "epochs": 6,
+        "epoch_start": 7,
+        "epoch_end": 12,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6714285612106323,
+        "final_val_accuracy": 0.6746666431427002,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "selection",
+          "round_index": 1,
+          "selected_candidate_type": "wider",
+          "selected_score": 0.6448484856432134,
+          "candidate_count": 2,
+          "candidate_training_epochs": 12,
+          "complexity_penalty": 0.03,
+          "candidates": [
+            {
+              "candidate_type": "wider",
+              "best_metric": 0.6866666674613953,
+              "final_metric": 0.6746666431427002,
+              "selection_score": 0.6448484856432134,
+              "parameter_count": 184,
+              "parameter_ratio": 1.393939393939394,
+              "hidden_dims": [
+                14
+              ]
+            },
+            {
+              "candidate_type": "deeper",
+              "best_metric": 0.6866666674613953,
+              "final_metric": 0.6866666674613953,
+              "selection_score": 0.6316666674613953,
+              "parameter_count": 242,
+              "parameter_ratio": 1.8333333333333333,
+              "hidden_dims": [
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "adanet_round_2",
+        "epochs": 6,
+        "epoch_start": 13,
+        "epoch_end": 18,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6837142705917358,
+        "final_val_accuracy": 0.6946666836738586,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "selection",
+          "round_index": 2,
+          "selected_candidate_type": "wider",
+          "selected_score": 0.6561884228042935,
+          "candidate_count": 2,
+          "candidate_training_epochs": 12,
+          "complexity_penalty": 0.03,
+          "candidates": [
+            {
+              "candidate_type": "wider",
+              "best_metric": 0.6946666836738586,
+              "final_metric": 0.6946666836738586,
+              "selection_score": 0.6561884228042935,
+              "parameter_count": 236,
+              "parameter_ratio": 1.2826086956521738,
+              "hidden_dims": [
+                18
+              ]
+            },
+            {
+              "candidate_type": "deeper",
+              "best_metric": 0.5306666493415833,
+              "final_metric": 0.5306666493415833,
+              "selection_score": 0.47751447542853975,
+              "parameter_count": 326,
+              "parameter_ratio": 1.7717391304347827,
+              "hidden_dims": [
+                14,
+                10
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "adanet_round_3",
+        "epochs": 6,
+        "epoch_start": 19,
+        "epoch_end": 24,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5811428427696228,
+        "final_val_accuracy": 0.5706666707992554,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "selection",
+          "round_index": 3,
+          "selected_candidate_type": "deeper",
+          "selected_score": 0.5185480267314587,
+          "candidate_count": 1,
+          "candidate_training_epochs": 6,
+          "complexity_penalty": 0.03,
+          "candidates": [
+            {
+              "candidate_type": "deeper",
+              "best_metric": 0.5706666707992554,
+              "final_metric": 0.5706666707992554,
+              "selection_score": 0.5185480267314587,
+              "parameter_count": 410,
+              "parameter_ratio": 1.7372881355932204,
+              "hidden_dims": [
+                18,
+                10
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "adanet_consolidate",
+        "epochs": 6,
+        "epoch_start": 25,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6834285855293274,
+        "final_val_accuracy": 0.6986666321754456,
+        "adaptations_applied": 0,
+        "metadata": {
+          "phase": "consolidate"
+        }
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6986666321754456,
+        "best_val_accuracy": 0.6986666321754456,
+        "adaptations_applied": 3,
+        "parameter_count": 410,
+        "nonzero_parameter_count": 410,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6413333415985107,
+        "best_val_accuracy": 0.6506666541099548,
+        "adaptations_applied": 3,
+        "parameter_count": 410,
+        "nonzero_parameter_count": 410,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5479999780654907,
+        "best_val_accuracy": 0.656000018119812,
+        "adaptations_applied": 3,
+        "parameter_count": 436,
+        "nonzero_parameter_count": 436,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6333333253860474,
+        "best_val_accuracy": 0.6493332982063293,
+        "adaptations_applied": 3,
+        "parameter_count": 410,
+        "nonzero_parameter_count": 410,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5920000076293945,
+        "best_val_accuracy": 0.6773333549499512,
+        "adaptations_applied": 3,
+        "parameter_count": 436,
+        "nonzero_parameter_count": 436,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "dynamic-nodes-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=dynamic_nodes; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.613866662979126,
+    "std_final_val_accuracy": 0.028777764111113192,
+    "mean_best_val_accuracy": 0.6474666714668273,
+    "std_best_val_accuracy": 0.027707670701141256,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 10,
+    "mean_parameter_count": 242,
+    "mean_nonzero_parameter_count": 242,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 462,
+    "mean_activation_elements": 22,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6573333144187927,
+    "best_seed_best_val_accuracy": 0.699999988079071,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.5074666559696197,
+      0.5085333228111267,
+      0.5167999804019928,
+      0.5317333281040192,
+      0.5493333220481873,
+      0.560266661643982,
+      0.5517333209514618,
+      0.5458666622638703,
+      0.5514666557312011,
+      0.5623999953269958,
+      0.5717333436012269,
+      0.5834666609764099,
+      0.5959999918937683,
+      0.6055999875068665,
+      0.6162666559219361,
+      0.6213333249092102,
+      0.6253333330154419,
+      0.6266666650772095,
+      0.6293333172798157,
+      0.6317333221435547,
+      0.6343999862670898,
+      0.6381333231925964,
+      0.6367999911308289,
+      0.6309333324432373,
+      0.6248000025749206,
+      0.6210666537284851,
+      0.6173333168029785,
+      0.6157333254814148,
+      0.613866662979126
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        10,
+        10
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "dynamic-nodes-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (10)",
+          "op": "linear",
+          "params": {
+            "features": 10,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_2",
+          "label": "Hidden 2 (10)",
+          "op": "linear",
+          "params": {
+            "features": 10,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "hidden_2",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_2",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 242,
+      "nonzero_parameter_count": 242,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 462,
+      "activation_elements": 22
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6522856950759888,
+        "final_val_accuracy": 0.6573333144187927,
+        "adaptations_applied": 1,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6573333144187927,
+        "best_val_accuracy": 0.699999988079071,
+        "adaptations_applied": 1,
+        "parameter_count": 242,
+        "nonzero_parameter_count": 242,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6186666488647461,
+        "best_val_accuracy": 0.6386666893959045,
+        "adaptations_applied": 1,
+        "parameter_count": 242,
+        "nonzero_parameter_count": 242,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5666666626930237,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 1,
+        "parameter_count": 242,
+        "nonzero_parameter_count": 242,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6133333444595337,
+        "best_val_accuracy": 0.6399999856948853,
+        "adaptations_applied": 1,
+        "parameter_count": 242,
+        "nonzero_parameter_count": 242,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6133333444595337,
+        "best_val_accuracy": 0.6173333525657654,
+        "adaptations_applied": 1,
+        "parameter_count": 242,
+        "nonzero_parameter_count": 242,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "fixed-mlp-spirals10",
+    "method_type": "baseline",
+    "notes": "device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.6130666494369507,
+    "std_final_val_accuracy": 0.05158742644242202,
+    "mean_best_val_accuracy": 0.660266661643982,
+    "std_best_val_accuracy": 0.022012516379632162,
+    "mean_adaptations_applied": 0,
+    "mean_final_hidden_dim": null,
+    "mean_parameter_count": 236,
+    "mean_nonzero_parameter_count": 236,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 452,
+    "mean_activation_elements": 20,
+    "best_seed": 99,
+    "best_seed_final_val_accuracy": 0.699999988079071,
+    "best_seed_best_val_accuracy": 0.699999988079071,
+    "mean_metric_history": [
+      0.5365333318710327,
+      0.5258666634559631,
+      0.5338666558265686,
+      0.5317333340644836,
+      0.5351999878883362,
+      0.5514666557312011,
+      0.5714666604995727,
+      0.5751999974250793,
+      0.5957333207130432,
+      0.6074666738510132,
+      0.6143999934196472,
+      0.6103999972343445,
+      0.6018666625022888,
+      0.5991999983787537,
+      0.5962666630744934,
+      0.5946666598320007,
+      0.5901333332061768,
+      0.5890666604042053,
+      0.585866641998291,
+      0.583466649055481,
+      0.5805333137512207,
+      0.5807999968528748,
+      0.5855999946594238,
+      0.5871999979019165,
+      0.5927999973297119,
+      0.6007999777793884,
+      0.6061333298683167,
+      0.6103999972343445,
+      0.6109333157539367,
+      0.6130666494369507
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "fixed-mlp-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 236,
+      "nonzero_parameter_count": 236,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 452,
+      "activation_elements": 20
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.6831428408622742,
+        "final_val_accuracy": 0.699999988079071,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.5973333120346069,
+        "best_val_accuracy": 0.6679999828338623,
+        "adaptations_applied": 0,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 236,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.6266666650772095,
+        "best_val_accuracy": 0.6399999856948853,
+        "adaptations_applied": 0,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 236,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5413333177566528,
+        "best_val_accuracy": 0.6453333497047424,
+        "adaptations_applied": 0,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 236,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5999999642372131,
+        "best_val_accuracy": 0.6480000019073486,
+        "adaptations_applied": 0,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 236,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.699999988079071,
+        "best_val_accuracy": 0.699999988079071,
+        "adaptations_applied": 0,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 236,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "nest-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=nest; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.604799997806549,
+    "std_final_val_accuracy": 0.03973780660816487,
+    "mean_best_val_accuracy": 0.6229333400726318,
+    "std_best_val_accuracy": 0.03989676481541276,
+    "mean_adaptations_applied": 1,
+    "mean_final_hidden_dim": 12,
+    "mean_parameter_count": 158,
+    "mean_nonzero_parameter_count": 158,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 302,
+    "mean_activation_elements": 14,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6639999747276306,
+    "best_seed_best_val_accuracy": 0.6946666836738586,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.4874666631221771,
+      0.49786666631698606,
+      0.4991999864578247,
+      0.5154666602611542,
+      0.5226666629314423,
+      0.5351999878883362,
+      0.5447999954223632,
+      0.5637333393096924,
+      0.5680000007152557,
+      0.5597333312034607,
+      0.5586666584014892,
+      0.5608000099658966,
+      0.5666666448116302,
+      0.5690666615962983,
+      0.5762666583061218,
+      0.581333327293396,
+      0.5898666501045227,
+      0.5973333358764649,
+      0.6021333456039428,
+      0.6072000026702881,
+      0.6071999907493592,
+      0.604799997806549,
+      0.6042666554450988,
+      0.6037333250045777,
+      0.604533338546753,
+      0.6087999939918518,
+      0.6079999923706054,
+      0.6072000026702881,
+      0.604799997806549
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        12
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "nest-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (12)",
+          "op": "linear",
+          "params": {
+            "features": 12,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 158,
+      "nonzero_parameter_count": 158,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 302,
+      "activation_elements": 14
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6700000166893005,
+        "final_val_accuracy": 0.6639999747276306,
+        "adaptations_applied": 1,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6639999747276306,
+        "best_val_accuracy": 0.6946666836738586,
+        "adaptations_applied": 1,
+        "parameter_count": 158,
+        "nonzero_parameter_count": 158,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5586666464805603,
+        "best_val_accuracy": 0.5960000157356262,
+        "adaptations_applied": 1,
+        "parameter_count": 158,
+        "nonzero_parameter_count": 158,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5839999914169312,
+        "best_val_accuracy": 0.5946666598320007,
+        "adaptations_applied": 1,
+        "parameter_count": 158,
+        "nonzero_parameter_count": 158,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5786666870117188,
+        "best_val_accuracy": 0.590666651725769,
+        "adaptations_applied": 1,
+        "parameter_count": 158,
+        "nonzero_parameter_count": 158,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6386666893959045,
+        "best_val_accuracy": 0.6386666893959045,
+        "adaptations_applied": 1,
+        "parameter_count": 158,
+        "nonzero_parameter_count": 158,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "gradmax-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=gradmax; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.604533314704895,
+    "std_final_val_accuracy": 0.03155917530264865,
+    "mean_best_val_accuracy": 0.6293333292007446,
+    "std_best_val_accuracy": 0.03611341525847139,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 14,
+    "mean_parameter_count": 184,
+    "mean_nonzero_parameter_count": 184,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 352,
+    "mean_activation_elements": 16,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6599999666213989,
+    "best_seed_best_val_accuracy": 0.6946666836738586,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.4874666631221771,
+      0.49786666631698606,
+      0.4991999864578247,
+      0.5154666602611542,
+      0.5226666629314423,
+      0.5351999878883362,
+      0.5447999954223632,
+      0.5637333393096924,
+      0.5680000007152557,
+      0.5597333312034607,
+      0.5586666584014892,
+      0.5608000099658966,
+      0.5666666448116302,
+      0.5690666615962983,
+      0.5762666583061218,
+      0.5853333473205566,
+      0.6010666728019715,
+      0.6047999858856201,
+      0.6029333353042603,
+      0.6029333114624024,
+      0.6079999923706054,
+      0.618666672706604,
+      0.6194666624069214,
+      0.6191999912261963,
+      0.6170666694641114,
+      0.6173333406448365,
+      0.6184000015258789,
+      0.6146666526794433,
+      0.604533314704895
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        14
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "gradmax-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (14)",
+          "op": "linear",
+          "params": {
+            "features": 14,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 184,
+      "nonzero_parameter_count": 184,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 352,
+      "activation_elements": 16
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.657714307308197,
+        "final_val_accuracy": 0.6599999666213989,
+        "adaptations_applied": 2,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6599999666213989,
+        "best_val_accuracy": 0.6946666836738586,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5706666707992554,
+        "best_val_accuracy": 0.6119999885559082,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5973333120346069,
+        "best_val_accuracy": 0.5973333120346069,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5799999833106995,
+        "best_val_accuracy": 0.6013333201408386,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.6146666407585144,
+        "best_val_accuracy": 0.6413333415985107,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "den-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=den; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.5917333364486694,
+    "std_final_val_accuracy": 0.03664507985057578,
+    "mean_best_val_accuracy": 0.6397333264350891,
+    "std_best_val_accuracy": 0.034722004447588356,
+    "mean_adaptations_applied": 2,
+    "mean_final_hidden_dim": 14,
+    "mean_parameter_count": 184,
+    "mean_nonzero_parameter_count": 184,
+    "mean_weight_sparsity": 0.0,
+    "mean_forward_flop_proxy": 352,
+    "mean_activation_elements": 16,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6613333225250244,
+    "best_seed_best_val_accuracy": 0.6959999799728394,
+    "mean_metric_history": [
+      0.4781333327293396,
+      0.4874666631221771,
+      0.49786666631698606,
+      0.4991999864578247,
+      0.5149333298206329,
+      0.5239999949932098,
+      0.538133317232132,
+      0.5421333312988281,
+      0.5549333214759826,
+      0.5653333365917206,
+      0.565333342552185,
+      0.5709333300590516,
+      0.5714666664600372,
+      0.5775999963283539,
+      0.5807999849319458,
+      0.6039999842643737,
+      0.6202666640281678,
+      0.6173333168029785,
+      0.6229333400726318,
+      0.6191999912261963,
+      0.6250666499137878,
+      0.6234666705131531,
+      0.6213333249092102,
+      0.618666660785675,
+      0.6191999912261963,
+      0.6122666716575622,
+      0.6050666570663452,
+      0.5997333288192749,
+      0.5973333120346069,
+      0.5917333364486694
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        14
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "den-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (14)",
+          "op": "linear",
+          "params": {
+            "features": 14,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 184,
+      "nonzero_parameter_count": 184,
+      "masked_weight_count": 0,
+      "weight_sparsity": 0.0,
+      "forward_flop_proxy": 352,
+      "activation_elements": 16
+    },
+    "representative_stage_history": [
+      {
+        "name": "train",
+        "epochs": 30,
+        "epoch_start": 1,
+        "epoch_end": 30,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.6497142910957336,
+        "final_val_accuracy": 0.6613333225250244,
+        "adaptations_applied": 2,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6613333225250244,
+        "best_val_accuracy": 0.6959999799728394,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5706666707992554,
+        "best_val_accuracy": 0.6079999804496765,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5960000157356262,
+        "best_val_accuracy": 0.5986666679382324,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.5680000185966492,
+        "best_val_accuracy": 0.6520000100135803,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.562666654586792,
+        "best_val_accuracy": 0.6439999938011169,
+        "adaptations_applied": 2,
+        "parameter_count": 184,
+        "nonzero_parameter_count": 184,
+        "weight_sparsity": 0.0
+      }
+    ]
+  },
+  {
+    "name": "weights-connections-spirals10",
+    "method_type": "dynamic",
+    "notes": "adaptation=weights_connections; workflow=scheduled; device=cuda; requested_device=auto; torch=2.11.0+cu128; cuda_available=True; torch_cuda=12.8; cuda_device=NVIDIA GeForce RTX 4070 Laptop GPU",
+    "runtime_environment": {
+      "requested_device": "auto",
+      "resolved_device": "cuda",
+      "torch_version": "2.11.0+cu128",
+      "torch_cuda_version": "12.8",
+      "cuda_available": true,
+      "cuda_device_count": 1,
+      "cuda_device_name": "NVIDIA GeForce RTX 4070 Laptop GPU"
+    },
+    "num_runs": 5,
+    "seeds": [
+      7,
+      11,
+      23,
+      42,
+      99
+    ],
+    "mean_final_val_accuracy": 0.5861333250999451,
+    "std_final_val_accuracy": 0.018791962056009925,
+    "mean_best_val_accuracy": 0.5989333152770996,
+    "std_best_val_accuracy": 0.01916292176921592,
+    "mean_adaptations_applied": 6,
+    "mean_final_hidden_dim": 18,
+    "mean_parameter_count": 236,
+    "mean_nonzero_parameter_count": 134,
+    "mean_weight_sparsity": 0.4722222222222222,
+    "mean_forward_flop_proxy": 452,
+    "mean_activation_elements": 20,
+    "best_seed": 7,
+    "best_seed_final_val_accuracy": 0.6079999804496765,
+    "best_seed_best_val_accuracy": 0.625333309173584,
+    "mean_metric_history": [
+      0.5151999950408935,
+      0.5303999781608582,
+      0.5495999932289124,
+      0.5690666675567627,
+      0.5642666578292846,
+      0.5623999953269958,
+      0.5773333311080933,
+      0.5802666544914246,
+      0.5786666512489319,
+      0.5834666609764099,
+      0.5786666512489319,
+      0.5738666653633118,
+      0.5736000061035156,
+      0.5776000022888184,
+      0.5773333191871644,
+      0.5797333359718323,
+      0.5735999941825867,
+      0.5783999919891357,
+      0.5706666588783265,
+      0.5701333284378052,
+      0.5720000028610229,
+      0.5717333197593689,
+      0.562666654586792,
+      0.5674666643142701,
+      0.5765333294868469,
+      0.5821333289146423,
+      0.5874666690826416,
+      0.5861333131790161,
+      0.5839999914169312,
+      0.5861333250999451
+    ],
+    "representative_architecture_spec": {
+      "input_dim": 10,
+      "output_dim": 2,
+      "hidden_dims": [
+        18
+      ],
+      "hidden_activation": "relu",
+      "output_activation": null,
+      "bias": true,
+      "metadata": {}
+    },
+    "representative_architecture_graph": {
+      "name": "weights-connections-spirals10",
+      "nodes": [
+        {
+          "id": "input",
+          "label": "Input (10)",
+          "op": "input",
+          "params": {
+            "features": 10
+          },
+          "metadata": {}
+        },
+        {
+          "id": "hidden_1",
+          "label": "Hidden 1 (18)",
+          "op": "linear",
+          "params": {
+            "features": 18,
+            "activation": "relu",
+            "bias": true
+          },
+          "metadata": {}
+        },
+        {
+          "id": "output",
+          "label": "Output (2)",
+          "op": "linear",
+          "params": {
+            "features": 2,
+            "activation": null,
+            "bias": true
+          },
+          "metadata": {}
+        }
+      ],
+      "edges": [
+        {
+          "source": "input",
+          "target": "hidden_1",
+          "metadata": {}
+        },
+        {
+          "source": "hidden_1",
+          "target": "output",
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "family": "mlp"
+      }
+    },
+    "representative_constraints": {
+      "architecture_family": "mlp",
+      "parameter_count": 236,
+      "nonzero_parameter_count": 134,
+      "masked_weight_count": 102,
+      "weight_sparsity": 0.4722222222222222,
+      "forward_flop_proxy": 452,
+      "activation_elements": 20
+    },
+    "representative_stage_history": [
+      {
+        "name": "dense_warmup",
+        "epochs": 8,
+        "epoch_start": 1,
+        "epoch_end": 8,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5954285860061646,
+        "final_val_accuracy": 0.5999999642372131,
+        "adaptations_applied": 0,
+        "metadata": {}
+      },
+      {
+        "name": "prune",
+        "epochs": 12,
+        "epoch_start": 9,
+        "epoch_end": 20,
+        "adaptation_enabled": true,
+        "final_train_accuracy": 0.5994285941123962,
+        "final_val_accuracy": 0.5920000076293945,
+        "adaptations_applied": 6,
+        "metadata": {}
+      },
+      {
+        "name": "finetune",
+        "epochs": 10,
+        "epoch_start": 21,
+        "epoch_end": 30,
+        "adaptation_enabled": false,
+        "final_train_accuracy": 0.5897142887115479,
+        "final_val_accuracy": 0.6079999804496765,
+        "adaptations_applied": 0,
+        "metadata": {}
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 7,
+        "final_val_accuracy": 0.6079999804496765,
+        "best_val_accuracy": 0.625333309173584,
+        "adaptations_applied": 6,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 134,
+        "weight_sparsity": 0.4722222222222222
+      },
+      {
+        "seed": 11,
+        "final_val_accuracy": 0.5733333230018616,
+        "best_val_accuracy": 0.5879999995231628,
+        "adaptations_applied": 6,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 134,
+        "weight_sparsity": 0.4722222222222222
+      },
+      {
+        "seed": 23,
+        "final_val_accuracy": 0.5586666464805603,
+        "best_val_accuracy": 0.5693333148956299,
+        "adaptations_applied": 6,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 134,
+        "weight_sparsity": 0.4722222222222222
+      },
+      {
+        "seed": 42,
+        "final_val_accuracy": 0.6053333282470703,
+        "best_val_accuracy": 0.6106666326522827,
+        "adaptations_applied": 6,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 134,
+        "weight_sparsity": 0.4722222222222222
+      },
+      {
+        "seed": 99,
+        "final_val_accuracy": 0.5853333473205566,
+        "best_val_accuracy": 0.6013333201408386,
+        "adaptations_applied": 6,
+        "parameter_count": 236,
+        "nonzero_parameter_count": 134,
+        "weight_sparsity": 0.4722222222222222
+      }
+    ]
+  }
+]

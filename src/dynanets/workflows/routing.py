@@ -8,35 +8,41 @@ from dynanets.datasets.base import DatasetBundle
 from dynanets.metrics.base import Metric
 from dynanets.models.base import NeuralModel
 from dynanets.models.torch_routed_cnn import TorchRoutedCNNClassifier
+from dynanets.models.torch_routed_resnet import TorchRoutedResNetClassifier
 from dynanets.runners.train import TrainingRunner, TrainingSummary
 from dynanets.workflows.base import MethodWorkflow
 
 
-def _require_routed_model(model: NeuralModel, *, routing_policy: str, workflow_name: str) -> TorchRoutedCNNClassifier:
-    if not isinstance(model, TorchRoutedCNNClassifier):
+def _require_routed_model(model: NeuralModel, *, routing_policy: str, workflow_name: str) -> TorchRoutedCNNClassifier | TorchRoutedResNetClassifier:
+    if not isinstance(model, (TorchRoutedCNNClassifier, TorchRoutedResNetClassifier)):
         raise ValueError(f"{workflow_name} currently requires TorchRoutedCNNClassifier")
     if model.routing_policy != routing_policy:
         raise ValueError(f"{workflow_name} requires routing_policy='{routing_policy}'")
     return model
 
 
-def _gate_snapshot(model: TorchRoutedCNNClassifier) -> dict[str, Any]:
-    return model.gate_config.to_dict()
+def _gate_snapshot(model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier) -> dict[str, Any]:
+    snapshot = model.gate_config.to_dict()
+    snapshot["early_exit_loss_weight"] = float(model.early_exit_loss_weight)
+    return snapshot
 
 
-def _apply_gate_overrides(model: TorchRoutedCNNClassifier, **overrides: Any) -> None:
+def _apply_gate_overrides(model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier, **overrides: Any) -> None:
     for key, value in overrides.items():
         if value is None:
             continue
         if hasattr(model.gate_config, key):
             setattr(model.gate_config, key, value)
+            continue
+        if hasattr(model, key):
+            setattr(model, key, value)
     if "threshold" in overrides and overrides["threshold"] is not None:
         model.confidence_threshold = float(overrides["threshold"])
     if "min_threshold" in overrides:
         model.min_confidence_threshold = None if overrides["min_threshold"] is None else float(overrides["min_threshold"])
 
 
-def _restore_gate_snapshot(model: TorchRoutedCNNClassifier, snapshot: dict[str, Any]) -> None:
+def _restore_gate_snapshot(model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier, snapshot: dict[str, Any]) -> None:
     _apply_gate_overrides(model, **snapshot)
 
 
@@ -70,7 +76,7 @@ def _extend_stage(
 def _run_stage(
     *,
     summary: TrainingSummary,
-    model: TorchRoutedCNNClassifier,
+    model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier,
     dataset: DatasetBundle,
     metrics: list[Metric],
     training_runner: TrainingRunner,
@@ -102,7 +108,7 @@ def _run_stage(
 def _execute_single_stage(
     *,
     workflow_name: str,
-    model: TorchRoutedCNNClassifier,
+    model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier,
     dataset: DatasetBundle,
     metrics: list[Metric],
     training_runner: TrainingRunner,
@@ -139,7 +145,7 @@ def _execute_single_stage(
 def _execute_two_stage_routing(
     *,
     workflow_name: str,
-    model: TorchRoutedCNNClassifier,
+    model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier,
     dataset: DatasetBundle,
     metrics: list[Metric],
     training_runner: TrainingRunner,
@@ -201,7 +207,7 @@ def _execute_two_stage_routing(
 def _execute_three_stage_routing(
     *,
     workflow_name: str,
-    model: TorchRoutedCNNClassifier,
+    model: TorchRoutedCNNClassifier | TorchRoutedResNetClassifier,
     dataset: DatasetBundle,
     metrics: list[Metric],
     training_runner: TrainingRunner,
@@ -283,6 +289,8 @@ def _execute_three_stage_routing(
 
 @dataclass(slots=True)
 class DynamicSlimmableWorkflow(MethodWorkflow):
+    warmup_epochs: int = 2
+
     def execute(
         self,
         *,
@@ -297,7 +305,9 @@ class DynamicSlimmableWorkflow(MethodWorkflow):
         if adaptation is not None:
             raise ValueError("DynamicSlimmableWorkflow manages routing internally and does not accept adaptation")
         routed_model = _require_routed_model(model, routing_policy="dynamic_width", workflow_name="DynamicSlimmableWorkflow")
-        return _execute_single_stage(
+        snapshot = _gate_snapshot(routed_model)
+        warmup_threshold = max(0.90, float(snapshot.get("threshold", 0.90)))
+        return _execute_two_stage_routing(
             workflow_name="dynamic_slimmable",
             model=routed_model,
             dataset=dataset,
@@ -305,16 +315,29 @@ class DynamicSlimmableWorkflow(MethodWorkflow):
             training_runner=training_runner,
             epochs=epochs,
             trainer_config=trainer_config,
-            stage_metadata={
+            warmup_epochs=self.warmup_epochs,
+            warmup_overrides={
+                "budget_weight": 0.0,
+                "accept_rate_weight": 0.0,
+                "target_cost_ratio": 1.0,
+                "target_accept_rate": None,
+                "threshold": warmup_threshold,
+                "min_threshold": warmup_threshold,
+            },
+            routing_metadata={
                 "routing_policy": routed_model.routing_policy,
                 "width_multipliers": routed_model.width_multipliers,
                 "gate_mode": routed_model.gate_config.mode,
+                "target_cost_ratio": snapshot.get("target_cost_ratio"),
+                "target_accept_rate": snapshot.get("target_accept_rate"),
             },
         )
 
 
 @dataclass(slots=True)
 class ConditionalComputationWorkflow(MethodWorkflow):
+    warmup_epochs: int = 2
+
     def execute(
         self,
         *,
@@ -329,7 +352,9 @@ class ConditionalComputationWorkflow(MethodWorkflow):
         if adaptation is not None:
             raise ValueError("ConditionalComputationWorkflow manages routing internally and does not accept adaptation")
         routed_model = _require_routed_model(model, routing_policy="early_exit", workflow_name="ConditionalComputationWorkflow")
-        return _execute_single_stage(
+        snapshot = _gate_snapshot(routed_model)
+        warmup_threshold = max(0.94, float(snapshot.get("threshold", 0.94)))
+        return _execute_two_stage_routing(
             workflow_name="conditional_computation",
             model=routed_model,
             dataset=dataset,
@@ -337,10 +362,22 @@ class ConditionalComputationWorkflow(MethodWorkflow):
             training_runner=training_runner,
             epochs=epochs,
             trainer_config=trainer_config,
-            stage_metadata={
+            warmup_epochs=self.warmup_epochs,
+            warmup_overrides={
+                "budget_weight": 0.0,
+                "accept_rate_weight": 0.0,
+                "target_cost_ratio": 1.0,
+                "target_accept_rate": None,
+                "threshold": warmup_threshold,
+                "min_threshold": warmup_threshold,
+                "early_exit_loss_weight": max(1.15, float(routed_model.early_exit_loss_weight)),
+            },
+            routing_metadata={
                 "routing_policy": routed_model.routing_policy,
                 "confidence_threshold": routed_model.confidence_threshold,
                 "gate_mode": routed_model.gate_config.mode,
+                "target_cost_ratio": snapshot.get("target_cost_ratio"),
+                "target_accept_rate": snapshot.get("target_accept_rate"),
             },
         )
 
@@ -422,6 +459,7 @@ class SkipNetWorkflow(MethodWorkflow):
                 "target_cost_ratio": 1.0,
                 "threshold": warmup_threshold,
                 "min_threshold": warmup_threshold,
+                "early_exit_loss_weight": max(1.2, float(routed_model.early_exit_loss_weight)),
             },
             routing_metadata={
                 "routing_policy": routed_model.routing_policy,
@@ -525,15 +563,18 @@ class IamNNWorkflow(MethodWorkflow):
                 "target_accept_rate": None,
                 "threshold": warmup_threshold,
                 "min_threshold": warmup_threshold,
+                "early_exit_loss_weight": max(1.15, float(routed_model.early_exit_loss_weight)),
             },
             routing_overrides={
                 "target_cost_ratio": min(float(snapshot.get("target_cost_ratio", 0.8)), 0.78),
                 "target_accept_rate": target_accept_rate,
+                "early_exit_loss_weight": max(1.05, float(routed_model.early_exit_loss_weight)),
             },
             consolidation_overrides={
                 "target_cost_ratio": min(float(snapshot.get("target_cost_ratio", 0.8)), 0.72),
                 "target_accept_rate": min(float(target_accept_rate), 0.3),
                 "threshold": snapshot.get("min_threshold") or snapshot.get("threshold"),
                 "min_threshold": snapshot.get("min_threshold") or snapshot.get("threshold"),
+                "early_exit_loss_weight": float(routed_model.early_exit_loss_weight),
             },
         )
